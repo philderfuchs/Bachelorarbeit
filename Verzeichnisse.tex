@@ -1,0 +1,42 @@
+% ----------------------------------------------------------------------------------------------------------
+% Verzeichnisse
+% ----------------------------------------------------------------------------------------------------------
+% TODO Typ vor Nummer
+\renewcommand{\cfttabpresnum}{Tab. }
+\renewcommand{\cftfigpresnum}{Abb. }
+\settowidth{\cfttabnumwidth}{Abb. 10\quad}
+\settowidth{\cftfignumwidth}{Abb. 10\quad}
+
+\titlespacing{\section}{0pt}{12pt plus 4pt minus 2pt}{2pt plus 2pt minus 2pt}
+\singlespacing
+\phantomsection
+
+\addtocounter{section}{1}
+\rhead{Inhaltsverzeichnis}
+\tableofcontents
+\pagebreak
+\rhead{Verzeichnisse}
+\listoffigures
+\pagebreak
+\listoftables
+\pagebreak
+\renewcommand{\lstlistlistingname}{Listing-Verzeichnis}
+{\labelsep2cm\lstlistoflistings}
+\pagebreak
+
+% ----------------------------------------------------------------------------------------------------------
+% Abkürzungen
+% ----------------------------------------------------------------------------------------------------------
+\section*{Abkürzungsverzeichnis}
+\begin{acronym}[WSDL] % längste Abkürzung steht in eckigen Klammern
+	\setlength{\itemsep}{-\parsep} % geringerer Zeilenabstand
+	\acro{ATO}{Assemble-to-Order}
+	\acro{CSP}{Constraint Satisfaction Problem}
+	\acro{ETO}{Engineer-to-Order}
+	\acro{MC}{Mass Customization}
+	\acro{MTO}{Make-to-Order}
+	\acro{PTO}{Pick-to-Order}
+	\acro{RPC}{Remote Procedure Call}
+	\acro{WSDL} {Web Service Description Language}
+\end{acronym}
+\newpage

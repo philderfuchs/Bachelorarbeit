@@ -1,0 +1,479 @@
+\documentclass[12pt,a4paper,bibliography=totocnumbered,listof=totoc]{scrartcl}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}% wichtig für Trennung von Wörtern mit Umlauten
+\usepackage{microtype}% verbesserter Randausgleich
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{tabularx}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage[right]{eurosym}
+\usepackage[printonlyused]{acronym}
+\usepackage{subfig}
+\usepackage{floatflt}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{colortbl}
+\usepackage{paralist}
+\usepackage{array}
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage[right]{eurosym}
+\usepackage{picins}
+\usepackage[subfigure,titles]{tocloft}
+\usepackage[pdfpagelabels=true]{hyperref}
+\usepackage{natbib}
+\bibliographystyle{dinat}
+
+\usepackage{listings}
+\lstset{basicstyle=\footnotesize, captionpos=b, breaklines=true, showstringspaces=false, tabsize=2, frame=lines, numbers=left, numberstyle=\tiny, xleftmargin=2em, framexleftmargin=2em}
+\makeatletter
+\def\l@lstlisting#1#2{\@dottedtocline{1}{0em}{1em}{\hspace{1,5em} Lst. #1}{#2}}
+\makeatother
+
+\geometry{a4paper, top=27mm, left=30mm, right=30mm, bottom=35mm, headsep=10mm, footskip=12mm}
+
+\hypersetup{unicode=false, pdftoolbar=true, pdfmenubar=true, pdffitwindow=false, pdfstartview={FitH},
+	pdftitle={Abschlussarbeit},
+	pdfauthor={Philipp Anders},
+	pdfsubject={Bachelorarbeit},
+	pdfcreator={\LaTeX\ with package \flqq hyperref\frqq},
+	pdfproducer={pdfTeX \the\pdftexversion.\pdftexrevision},
+	pdfkeywords={Bachelorarebti},
+	pdfnewwindow=true,
+	colorlinks=true,linkcolor=black,citecolor=black,filecolor=magenta,urlcolor=black}
+\pdfinfo{/CreationDate (D:20110620133321)}
+
+\begin{document}
+
+\include{Header}
+
+\include{Preambel}
+
+\include{Titelseite}
+
+\include{Abstract}
+
+\include{Verzeichnisse}
+
+\include{Formatierung}
+
+
+\section{Einleitung}
+
+\subsection{Ziel der Arbeit}
+
+\subsection{Aufbau der Arbeit}
+
+\pagebreak
+
+\section{Grundlagen}
+
+\subsection{Konfiguration}
+Im Folgenden Abschnitt wird geklärt: was ist ein Konfigurator und wofür brauchen wir ihn? Aus Gründen der Nachvollziehbarkeit werden diese Fragen allerdings in umgedrehter Reihenfolge bearbeitet.
+Dazu wird zunächst eine marktwirtschaftliche Situation erläutert, welche die Notwendigkeit hybrider Wettbewerbsstrategien begründet. Diese wiederum stellen zu ihrer Umsetzbarkeit Bedingungen an Produktionskonzepte, welche daraufhin vorgestellt werden. Abschließend wird geklärt, welchen Beitrag die Produktkonfiguration dabei leistet und dessen Funktionsweise erläutert.
+
+\subsubsection{Ausgangssituation}
+ \label{subssubsection:Ausgangssituation}
+Verschiedene Einflussfaktoren haben den Druck auf Industrieunternehmen zur Produktion individualisierter Produkte erhöht. Zu nennen wäre unter anderem das selbstbewusstere Kaufverhalten der Kunden sowie ein global ausgerichteter Wettbewerb, welcher mit mehr Konkurrenz verbunden ist. Dies erfordert eine stärkere Leistungsdifferenzierung\citep{lutz11}.
+
+Die Differenzierung ist ein der von \citeauthor{porter02} beschriebenen "generischen Wettbewerbsstrategien". Weitere sind die Kostenführerschafts- und die Fokussierungsstrategie.  Die Kostenführerschaft bezieht sich klassischerweise auf Anbieter von Massenproduktion. Durch den Verkauf zu geringeren Preisen als die Konkurrenz erlangt der Wettbewerber einen höheren Marktanteil. Die Leistungsdifferenzierung entspricht hingegen dem Anbieten von Produkten mit hohem individuelle Kundennutzen zu erhöhten Preisen.
+
+\vspace{1em}
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=0.7\linewidth]{Abbildungen/unvereinbarkeitshypothese.jpg}
+	\captionof{figure}[Unvereinbarkeitshypothese]{Unvereinbarkeitshypothese nach \cite{porter80}, zitiert von \cite{schuh05}}
+	\label{fig:unvereinbarkeitshypothese}
+\end{minipage}
+\vspace{1em}
+
+
+In diesem Zusammenhang formulierte \citeauthor{porter80} die Unvereinbarkeitshypothese. So sollen Kostenführerschaft und Leistungsdifferenzierung nicht gleichzeitig erreichbar sein. Ein unscharfe Positionierung führe zu einem \glqq stuck in the middle\grqq{} und damit zur Unwirtschftlichkeit, wie in Abbildung \ref{fig:unvereinbarkeitshypothese} dargestellt wird.
+
+Die Beobachtung der Unternehmensrealität zeichnet jedoch ein anderes Bild. Neue Organisatzionsprinzipien, Informationsverarbeitsungspotentiale und Produktstrukturierungsansätze schaffen einen Kompromiss zwischen Preis- und Leistungsführerschaft \citep{schuh05}. Das Ergebnis wird als hybride Wettbewerbsstrategien bezeichnet. Eine dieser Strategien ist die sogenannte \ac{MC}.  Diese wird definiert als die "Produktion von Gütern und Leistungen für einen (relativ) großen Absatzmarkt, welche die unterschiedlichen Bedürfnisse jedes einzelnen Nachfragers dieser Produkte treffen, zu Kosten, die ungefähr denen einer massenhaften Fertigung vergleichbarer Standardgüter entsprechen"  \citep{piller98}. Mit anderen Worten: Preisvorteil (i.d.R. durch Massenfertigung) wird mit Individualisierung (i.d.R. durch Variantenvielfalt) verbunden.
+
+\subsubsection{Produktklassifizierung}
+ \label{subssubsection:Produktklassifizierung}
+
+\ac{MC} setzt zu deren Umsetzbarkeit gewisse Bedingungen an die Güter, die mit dieser Strategie abgesetzt werden. Um Nachvollziehen zu können, wie \ac{MC}-Kompatible Produkte beschaffen sind, wird zunächst eine geeignete Produkttklassifizierung eingelöst. Von dieser wird eine Produktstruktur ersichtlich, die den Einsatz von Konfiguratoren erfordert. Dementsprechend ergibt sich ebenfall, wleche Art von Produkten durch den Einsatz eines Konfigurators in einem E-Commerce System gehandelt werden können.
+
+Im folgenden werden zwei verschiedene Klassifizierungsvarianten vorsgestellt. Daraus werden verschiedene Perspektiven auf die Produktbeschaffenheit entwickelt, welche daraufhin in Zusammenhang gebracht werden.
+
+\textbf{Produktstrukturtypen}\\
+Im folgenden werden Möglichkeiten zur Produktstrukturierung erläutert, typisiert nach \cite{schuh88}. Sie verdeutlichen das "Wechselspiel zwischen Produktstandardisierung und -individualisierung" \citep{lutz11}.
+
+\vspace{1em}
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=0.9\linewidth]{Abbildungen/produktstrukturtypen.jpg}
+	\captionof{figure}[Produktstrukturtypen]{Produktstrukturtypen (Quelle: \cite{schuh88}}
+	\label{fig:produktstrukturtypen}
+\end{minipage}
+\vspace{1em}
+
+\begin{compactitem}
+	\item \textbf{Baureihen:} Bezeichnen Produkte gleichen Baumusters mit unterschiedlichen Größen. Im weiteren Sinne wird die gleiche abstrakte Funktion bei unterschiedlicher Dimensionierung erfüllt. Beispiel: Konfektionsgrößen.
+	\item \textbf{Baukasten:} Bezeichnet die beliebige Kombination von Elementen (z.B. Baugruppen oder -teile) zur Erfüllung einer Gesamtfunktion. Realisierung z.B. durch Montage mit einheitliche Schnittstellen, oft unter Verwendung eines Grundkörpers\citep{rapp99}. Auch eine Zusammenstellung wie z.B. bei Küchenmöbeln ist denkbar.
+	\item \textbf{Modularisierung:} Verwandt zum Baukasten, jedoch erfolgt Kombination der Elemente nicht mehr beliebig. Die Elemente werden nun als Module bezeichnet. Diese bilden logische und funktionale Einheiten, die prinzipiell Austauschbar sind und über klar definierte Schnittstellen miteinander verbunden werden können. Ein modularisiertes Produkt kann aus generischen (d.h. standardisierten) und sowie kundenindividuellen (d.h. für diesen konstruierte und/oder gefertigten) Modulen bestehen. Beispiel: die Zusammenstellung eines PC's. Dabei ist zu beachten, dass bei der Verwendung von Windows 8 als Betriebssystem mindestens 2 GB Arbeitsspeicher vorliegen müssen. 
+\end{compactitem}
+
+
+\textbf{Klassifizierung nach Produktionskonzept}\\
+Produkte können je nach ihrer Herstellungsart klassifiziert werden. Es werden vier Varianten unterschieden:
+(nach \citealt{schuh06}, zitiert von \citealt{lutz11})
+\begin{compactitem}
+	\item \textbf{\ac{PTO}:} Herstellung ohne Kundenauftrag. Lagerhaltung ganzer Produkte. Keine Abhängigkeit dieser Produkte untereinander. Keine Berücksichtigung von Kundenanforderungen.
+	\item \textbf{\ac{ATO}:} Herstellung ohne Kundeauftrag. Lagerhaltung von Baugruppen/-teilen. Teile mit Abhängigkeiten untereinander. Berücksichtigung von Kundenanforderungen.
+	\item \textbf{\ac{MTO}:} Herstellung teilweise erst nach Kundenenauftrag. Lagerhaltung von standardisierten Baugruppen/-teilen sowie Produktion von vorgedachten Komponenten nach Kundenanforderung. Abhängigkeiten zwischen Teilen. Keine unendliche Anzahl von Variationen.
+	\item \textbf{\ac{ETO}:} Herstellung erst nach Kundenauftrag. Wenig Lagerhaltung von Baugruppen/-teilen. Entwicklung und Fertigung von Teilen nach Kundenspezifikation. Unendliche Anzahl an Variationen möglich.
+\end{compactitem}
+
+Die Produktionskonzepte unterscheiden sich hauptsächlich nach dem Kriterium, wann die Produktion der Baugruppen/-teile beginnt - vor oder nach Auftragsspezifikation. Eine Produktion vor Auftragseingang, also ohne Kundenspezifikation, erlaubt Lagerhaltung. Die Einflussnahme des Kunden auf das Endprodukt - abgesehen von der Kaufentscheidung - beginnt bei \ac{ATO}. \citeauthor{lutz11} kommt zu dem Schluss, dass \ac{MTO} am ehesten der Definition individualisierter Güter im Rahmen der \ac{MC} entspricht. Während sie einen Grundanteil standardisierter Komponenten besitzen, sind sie doch im ausreichenden Maße durch den Kunden anpassbar.
+
+\textbf{Zusammenhang zwischen Prduktionskonzept und Produktstruktur}\\
+Aus dem verwendeten Produktstrutkturtyp lässt sich das Produktionskonzept ableiten. Anders ausgedrückt: die Beschaffenheit bedingt die Herstellungsweise.
+
+\begin{table}[]
+\centering
+\caption{Zurdnung von Produktionskonzept und Produktstruktur}
+\label{tab:produktionskonzeptstruktur}
+\begin{tabularx}{\textwidth}{|l|X|X|X|X|X|}
+   \hline
+{\bf Produktionskonzept} & PTO & \multicolumn{2}{|X|}{ATO}                                                                             & MTO & ETO\\
+	\hline
+{\bf Produktstruktur}    & Baureihe & Baukasten & Mod. ohne kundenspezifische Elemente & \multicolumn{2}{|X|}{Mod. mit kundenspezifischen Elementen} \\
+   \hline
+\end{tabularx}
+\end{table}
+
+Der Tabelle \ref{tab:produktionskonzeptstruktur} ist zu entnehmen, dass \ac{ATO} Produkte sowohl durch einen Baukasten als auch Modularisierung realisierbar sind.
+Zur Veranschaulichung der Konzepte und deren Zusammenhänge soll ein Beispiel erläutert werden. Ein Kunde möchte einen Ski bestellen.
+
+\begin{compactitem}
+\item \textbf{\ac{PTO} / Baureihe:} Der Kauf eines Skis in Kindergröße.
+\item \textbf{\ac{ATO} / Baukasten:} Die Kombination aus Skilänge und einer bestimmten Bindungslänge
+\item \textbf{\ac{ATO} / Modularisierung:} Bei deren Kombination ist zusätzlich der Hersteller aufgrund der Montageschnittstellen zu beachten
+\item \textbf{\ac{MTO} / Modularisierung:} Möchte der Kunde eine Standardbindungslänge, jedoch eine individuelle (centimetergenaue) Skilänge, welche entsprechend für ihn gefräst werden müsste
+\item \textbf{\ac{ETO} / Modularisierung:} Ein gänzlich individueller Ski (z.B. mit spezieller Kantenbeschaffenheit)
+\end{compactitem}
+
+\textbf{Zwischenfazit}\\
+In Abschnitt \ref{subssubsection:Produktklassifizierung} wurde dargestellt, wie durch  Produktstrukturen und Produktionskonzepte individualisierte Varianten bei gleichzeitiger Lagerfertigung möglich sind. Produkte werden mit dem Ziel gestaltet, so individuell wie möglich und auftragsunabhängig wie nötig zu sein.
+
+Damit wurde eine der drei Schlüsselfaktoren für die Ermöglichung hybrider Wettbewerbsstrategien erläutert, welche in Abschnitt \ref{subssubsection:Ausgangssituation} angeführt wurden. Der im Rahmen dieser Arbeit relevante Vertreter ist die \ac{MC}. Sie begründet sich in der Verlagerung von Massenproduktion und Massenverbrauch zu kundenindividueller Massenproduktion \citep{piller98}.
+
+\subsubsection{Produktkonfiguration}
+ \label{subssubsection:Produktkonfiguration}
+ 
+In Abschnitt \ref{subssubsection:Produktklassifizierung} wurde dargestellt, dass eine Variantenbildung und somit einen Kundenanpassung ab \ac{ATO} möglich ist. Der Vorgang der Anpassung wird als Konfiguration bezeichnet. Diese wird durch einen Konfigurator durchgeführt.  Es folgt nun eine Definition der in diesem Zusammenhang wichtigen Begriffe.
+
+
+\textbf{Begriffsüberblick}\\
+\textbf{Konfiguration} ist eine spezielle Designaktivität, bei der der zu konfigurierende Gegenstand aus Instanzen einer festen Menge wohldefinierter Komponententypen zusammengesetzt wird, welche entsprechend einer Menge an Konfigurationsregeln kombiniert werden können \citep{sabin98}.
+
+Aus dieser Definition lässt sich ableiten, dass das Haupteinsatzgebiet der Konfiguration im \ac{ATO}/\ac{MTO}-Umfeld liegt \citep{lutz11}. Die Deutung als Designaktivität erlaubt die Einordnung der Konfiguration als "Routine Design". Andere Designtypen sind das "Innovative Design" sowie "Creative Design". Routine Design als simpelste der drei Formen ist ein Problem, bei der die Spezifikation der Objekte, deren Eigenschaften sowie kompositionelle Struktur gegeben sind und die Lösung auf Basis einer bekannten Strategie gefunden wird \citep{brown89}. Die anderen Designtypen enthalten hingegen Objekte und Objektbeziehungen, die erst während des Designprozesses entwickelt werden.
+
+Die Schlüsselbegriffe der Definition von \citeauthor{sabin98} sind Komponententypen und Konfigurationsregeln. Komponententypen \textbf{Komponententypen} sind Kombinationselemente, welche durch Attribute charakterisiert werden und eine Menge alternativer Komponenten repräsentieren. Übertragen auf die objektorientierte Programmierung verhalten sich Komponententypen zu Komponenten wie Klassen zu Instanzen. Komponententypen stehen zueinander in Beziehung. Diese kann entweder eine "Teil-Ganzes" Beziehung (z.B. das Betriebssystem ist Teil eines Computers) oder Generalisierung (z.B. OSX 10.10 ist ein Betriebssystem) sein \citep{felferning14}. 
+
+\textbf{Konfigurationsregeln} beschränken die Art und Weise, in der Komponententypen kombiniert werden können. Sie bestehen hauptsächlich aus Vorzugsregeln sowie Kombinationsverboten (z.B. OSX 10.10 benötigt mindestens 2GB Arbeitsspeicher).
+
+Die Einheit aus Komponententypen sowie das Wissen um deren Kombinierbarkeit in Form von Konfigurationsregeln wird als \textbf{Konfigurationsmodell} bezeichnet. Es definiert die Menge der validen Lösungen und bildet so alle möglichen Variationen eines Produktes. Dadurch ist es nicht nötig, jede einzelne Variation explizit zu definieren und abzuspeichern (z.B. in einer Datenbank). Die Anzahl möglicher Kombinationen kann in die Millionen gehen, was die Suche nach einer bestimmten sehr zeitaufwändig machen würde \citep{falkner11}.
+
+In diesem Zusammenhang ist eine genaue Definition des Variantenbegriffs angebracht. DIN 199 beschreibt Varianten als "Gegenstände ähnlicher Form und/oder Funktion mit einem in der Regel hohen Anteil identischer Gruppen oder Teile". Damit ist also eine Menge von Gegenständen gemeint. Ein Element dieser Menge kann als konkrete Variantenausprägung bezeichnet werden. Eine Variantenausprägung unterscheidet sich von einer anderen durch mindestens eine Beziehung oder ein Element \citep{lutz11}.
+
+Die Einheit aus Konfigurationsmodell und den Kundenanforderungen wird als \textbf{Konfigurationsaufgabe} bezeichnet \citep{felferning14}. Dieser ist die Eingabe in das Konfigurationssystem (Konfigurator), welcher als Ausgabe eine Konfiguration und somit konkrete Produktvariante generiert. Somit ist der Begriff Konfiguration überlagert: er bezeichnet sowohl den Prozess entsprechend der Eingangs genannten Definition als auch das Ergebnis dieses Prozesses. Im Folgenden wird daher die Begriffe Konfigurationsprozess sowie Konfiguraitonsergebnis verwendet.
+
+Aus diesem Begriffsüberblick geht hervor, dass das Konfigurationsmodell sowie die Konfigurationsaufgabe die Schlüssel zur Bildung einer kundenspezifischen Variante sind. Aus diesem Grunde werden sie im Folgenden noch einmal genauer erläutert.
+
+
+\textbf{Konfigurationsmodell}\\
+Das Konfigurationsmodell kapselt Wissen über die beteiligten Komponenten, deren Beziehungen und Kombinierbarkeit eines variierbaren Produktes. Es wird auch als Wissensbasis $C_KB$ bezeichnet. Durch es kann eine Vorstellung über alle abbildbaren Varianten gewonnen werden. Als Bestandteil der Konfigurationsaufgabe wird es als erster Begriff genauer erläutert.
+
+Es gibt verschiedene Fromalisierungs- und Visualisierungskonzepte von Konfigurationsmodellen. Für eine vollständige Übersicht sei auf \citet{felferning14} verwiesen. Im Folgenden wird eine Visualisierungsmethode über UML vorgestellt, da diese im Bereich der Informatik eine besondere Verbreitung aufweist.
+
+
+\textbf{UML-Konfigurationsmodellvisualisierung}\\
+Die Visualisierung eines Konfigurationsmodells wird in Anlehnung an \citeauthor{felferning14} anhand einer exemplarischer PC-Konfiguration erklärt.
+
+\vspace{1em}
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=0.9\linewidth]{Abbildungen/konfigurationsmodellUml.png}
+	\captionof{figure}[konfigurationsmodellUml]{UML-Konfigurationsmodellvisualisierung einer PC-Konfiguration (Quelle: \cite{felferning14})}
+	\label{fig:konfigurationsmodellUml}
+\end{minipage}
+\vspace{1em}
+
+Abbildung \ref{fig:konfigurationsmodellUml} besteht aus einer Strukturdarstellung und einer Regeltabelle. Vor der genauen Beschreibung der Modellierungsmöglichkeiten erfolgt zur besseren Nachvollziehbarkeit eine unformale Beschreibung der Grafik:
+
+Ein PC besteht aus einem Motherboard (MB) und Betriebssystem (OS). Ein Motherboard besitzt wiederum einen oder zwei CPUs. Ein Motherboard kann in der Ausfertigung "MBDiamond" oder "MBSilver" vorliegen. Ein CPU in den Ausfertigungen "CPUD" oder "CPUS", ein Betriebssystem als OSBETA oder OSALPHA. MBDiamond und CPUS dürfen nicht gleichzeitig gewählt werden. Gleiches gilt für MBSilver und CPUD. Wird OSAlpha gewählt, muss CPUD auch gewählt werden. Der Preis errechnet sich aus der Summer der Einzelkosten des verwendeten Motherboards, Betriebssystems und der CPUs. Er darf das Preislimit des Kunden nicht überschreiten.
+
+Es stehen folgende Modellierungsmöglichkeiten des Strukturteils zur Verfügung:
+\begin{compactitem}
+\item \textbf{Komponententypen:} Kann mit Klassen aus der Objektorientierten Programmierung verglichen werden. Es besitzt einen eindeutigen Namen (z.B. MB) und wird durch eine Menge Attribute beschrieben (z.B. efficiency und price). Ein Attribute hat einen Datentyp, welcher eine Konstante, ein Wertebereich oder eine Enumeration (z.B. efficiency kann die Werte 'A', 'B' oder 'C' annehmen) sein kann.
+\item \textbf{Assoziationen mit Kardinalität:} Aus UML sind die Associationstypen Aggregation und Komposition bekannt. Im Rahmen der Konfigurationsmodellbeschreibung geschieht eine Beschränkung auf die Komposition. Auf diese Art und Weise steht jede Komponente in einer teil-ganzen Beziehung zu genau einer anderen Komponente. Kardinalitäten beschreiben Assoziationen noch näher, indem sie sie durch Mengeninformationen ergänzen (ein Motherboard hat ein bis zwei CPUs, welche zu genau einem Motherboard gehören).
+\item \textbf{Generalisierung}: Stellt die Verbindungen zwischen einem spezialisierten Subtyp (z.B. OSAlpha) zu einem einem generalisierten Supertyp (z.B. OS) her. Sie ist disjunkt und vollständig. Disjunkt bedeutet, dass ein Supertyp genau einem seiner Subtypen zugewiesen werden kann. Vollständig bedeutet, dass die Subtypen alle Instanzen darstellen, die ein Supertyp annehmen kann.
+\end{compactitem}
+
+Die Darstellung wird ergänzt durch Konfigurationsregeln. Sie gelten zwischen Komponententypen und/oder deren Attribute. Wenn möglich, können sie direkt im Diagramm dargestellt werden. Außerdem könne sie in einer Tabelle aufgelistet werden. Man unterscheidet unterschiedliche Formen von Konfigurationsregeln:
+
+\begin{compactitem}
+\item \textbf{Grafische Konfigurationsregeln $GC$:} Können im Gegensatz zu anderen Regeln direkt im UML-Diagramm dargestellt werden. Ansonsten entsprechen einem der folgenden Typen.
+\item \textbf{Preisbildungs-Konfigurationsregeln $PRC$:} Nehmen eine Sonderstellung, da sie keinen direkten Einfluss auf die Kombinierbarkeit haben. Stattdessen kann aus der Auswertung des Wertes dieser Regel eine Preisinformation gewonnen werden. Bei tatsächlichen Konfigurationsanwendungen sind Preisregeln jedoch meistens nicht Teil des Konfigurationsmodells. Der Konfigurator hat dann einen eigenen Mechanismus zur Preisbildung.
+\item \textbf{Ressourcen-Konfigurationsregeln $RESC$:} Beschränken die Produktion oder den Verbrauch bestimmter Ressourcen.
+\item \textbf{Abhängigkeits-Konfigurationsregeln $CRC$:} Beschreiben, unter welchen Vorraussetzungen zusätzliche Komponenten Teil der Konfiguration sein müssen.
+\item \textbf{Kompatibilitäts-Konfigurationsregeln $COMPC$:} Beschreiben die Kompatibiltät  oder Inkompatibilität bestimmter Komponenten. In der Regeln finden sich in einer Regeltabelle entweder erstere oder zweitere Art. Sind nur wenige Komponenten kompatibel, wird dies durch die jeweiligen Regeln signalisiert und umgedreht.
+\end{compactitem}
+
+Die Menge aller Konfigurationsregeln wird auch als Wissensbasis $C_{KB}$ beschrieben. Es gilt:
+
+ $C_{KB} = GC \cup PRC \cup RESC \cup CRC \cup COMPC$
+
+\textbf{Konfigurationsaufgabe}\\
+\citet{mittal89} definieren einen Konfigurationsaufgabe wie folgt:
+\begin{quote}
+(A) a fixed, pre-defined set of components, where a component is described by a set of properties, ports for connecting it to other components, constraints at each port that describe the components that can be connected at that port, and other structural constraints; (B) some description of the desired configuration; and (C) possibly some criteria for making optimal selections.
+\end{quote}
+(A) entspricht den Informationen, die durch das oben vorgestellte Konfigurationsmodell gemacht werden. (B) und (C) kann auch als die Kundenanforderungen zusammengefasst werden werden. Informell kann die Aussage getroffen werden, dass eine Konfigurationsaufgabe aus den Konfigurationsmodell sowie den Kundenanforderungen besteht \citep{felferning14}.
+
+Auf formeller Ebene kann eine Konfigurationsaufgabe auch auf Grundlage eines \ac{CSP} als Regelbasierte Wissensrepräsentation beschrieben werden. Eine Diskussion dieser Variante ist sinnvoll, da sich daraus eine die Konfigurationslösung genau definiert werden kann. Es handelt sich dabei um ein Problem, bei den für eine gegebene Menge Variablen mit Wertebereichen unter Berücksichtigung einer Regelmenge versucht wird, eine zulässige Kombination von Werten aus der Wertebereichen der Variablen zu ermitteln. Bei einem Konfigurationstask wird die Regelmenge um die Menge der Kundenanforderungen erweitert.
+
+Eine Konfigurationsaufgabe ist demzufolge ein Tripel $(V, D, C)$, wobei $V = \{v_1, ..., v_n\}$ eine endliche Menge Variablen ,  $D  = \{dom(v_1), ..., dom(v_n)\}$ die Menge der Werte der Variablen und $C = C_{KB} \cup REQ$, wobei $C_{KB}$ die oben beschriebene Wissensbasis und $REQ$ die Menge der Kundenanforderungen ist \citep{felferning14}.
+
+\textbf{Konfigurationsergebnis}\\
+Auf Grundlage der der Regelbasierten Wissensrepresentation kann eine Konfigurationslösung genau beschrieben werden. Es handelt sich dabei um eine Insttanziierung $I = \{v_1 = i_1, ..., v_n = i_n\}$, wobei $i_j$ ein Element aus $dom(v_1)$ ist. I ist vollständig (jede Variable bestitzt einen zugewiesenen Wert) und konsistent (erfüllt alle Konfigurationsregeln) \citep{falkner11}.
+
+Es kann durch ein UML-Instanz-Diagramm visualisiert werden, wie Abbildung \ref{fig:konfigurationsmodellUmlLoesung} darstellt. Anstatt von Komponententypen sind nur noch konkrete Instanzen enthalten.
+
+\vspace{1em}
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=0.9\linewidth]{Abbildungen/konfigurationsmodellUmlLoesung.png}
+	\captionof{figure}[konfigurationsmodellUmlLoesung]{Visualisierung eines Konfigurationsergebnisses als UML-Instanz-Diagramm (Quelle: \cite{felferning14})}
+	\label{fig:konfigurationsmodellUmlLoesung}
+\end{minipage}
+\vspace{1em}
+
+\subsubsection{Konfigurator}
+Der Konfigurator ist das System, welches den Konfigurationsprozess durchführt. Es bekommt die Konfigurationsaufgabe als Eingabe und liefert als Ausgabe das Konfigurationsergebnis \citep{felferning14}. Sie "[...] führen den Abnehmer durch alle Abstimmungsprozesse, die zur Definition des individuellen Produktes nötig sind und prüfen sogleich die Konsistenz sowie Fertigungsfähigkeit der gewünschten Variante" \citep{piller06}.
+
+Nach \citet{piller06} besitzt ein Konfigurator typischerweise drei Komponenten:
+\begin{compactitem}
+\item \textbf{Konfigurationskomponente:} Führt den Konfigurationsprozess durch. \citet{lutz11} bemerkt, dass hierzu eine explizite Wissensbasis (das Konfigurationsmodell, Anmerkung des Authors) und eine Problemlösungskomponente zur Lösungsfindung gehört.
+\item \textbf{Präsentationskomponente:} Erstellte eine Konfiguration in Zielgruppenspezifischer Form. Der Author bemerkt, dass sie gleichzeitig als Schnittstelle zur Aufnahme der Kundenanforderungen dienst.
+\item \textbf{Auswertungskomponente:} Präsentation der Konfiguration in einer Form, welche eine Interpretation der letztendlichen Variantenausprägung außerhalb des Konfigurators erlaubt. Dies können zum Beispiel Stücklisten, Konstruktionszeichnungen oder Arbeitspläne sein.
+\end{compactitem}
+
+Konfiguratoren für die Erhebung komplexer Anforderungen technischer Systeme unterschieden müssen von Konfiguration für den Einsatz im \ac{MC} werden \citep{felferning14}. Erstere sind für den Experteneinsatz gedacht oder dienen nach \citet{piller06} als Vertriebskonfiguratoren der Unterstützung des Verkaufsgespräches.   Letztere werden von Kunden in einer Company-to–Customer Beziehung genutzt und werden auch als Mass Customization Toolkit bezeichnet. Die sogenannte Selbstkonfiguration ist wesentlich sie die Verheiratung von kundenindividueller Fertigung und Massenproduktion, indem der zeitkonsumierende Prozess der Erhebung der Kundenbedürfnisse auch die Seite des Kunden verlagert wird\citep{piller06}
+
+Konfiguratoren können bei allen in Abschnit \ref{subssubsection:Produktklassifizierung} genannten Produktionskonzepten zum Einsatz kommen. Je nach Produktionskonzept erfüllen sie für den Anwender eine unterschiedliche Funktion. Bei \ac{PTO} erfüllt der Konfigurator eine Katalogfunktion, indem er den Anwender er den Anwender bei der Auswahl eines fertigen Produktes aus einer Produktpalette unterstützt. Bei \ac{ATO} verhält sich der Konfigurator wie eine Variantengenerator, der den Anwender bei der Auswahl der richtigen, vom Hersteller vordefinierten Variante unterstützt. Der Anwendungsfall \ac{MTO} ist ähnlich, jedoch sind die Varianten vom Anwender definiert. Bei \ac{ETO} können Konfiguratoren durch den erheblichen Neukonstruktionsbedarf nur begrenzten Beitrag leisten. Aus dieser Erläuterung lässt sich Ableiten, dass das Haupteinsatzgebiet von Konfiguratoren im \ac{ATO}/\ac{MTO} Umfeld liegt.
+
+\subsection{Webservices}
+
+Das \citet	{w3c04} definiert Web-Services lose als:
+
+\begin{quote}
+\glqq [...] a software system designed to support interoperable machine-to-machine interaction over a network\grqq
+\end{quote}
+
+Die Definition hebt hervor, dass die Kommunikation zwischen heterogenen Systemen stattfinden kann. \glqq Zwischen Systemen\grqq{} differenziert gleichzeitig klar zur klassischen Verwendung eines Programms, bei der ein (menschlicher) Nutzer mit einem System kommuniziert. \citet{tilkov11} bemerkt, dass Web Service damit sehr weich definiert ist; \glqq nämlich eigentlich gar nicht\grqq{}. Fest steht, dass hier ein Service einen gewissen Dienst anbietet, die von einem Clienten über Webtechnologien angesprochen werden kann. Webservices sind also eine Möglichkeit zur Realisierung von Integrationsszenarien.
+
+\vspace{1em}
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=0.7\linewidth]{Abbildungen/clientServerKommunikation.png}
+	\captionof{figure}[clientServerKommunikation.png]{Generische Client-Server Kommunikation bei Web Services}
+	\label{fig:clientServerKommunikation.png}
+\end{minipage}
+\vspace{1em}
+
+Abbildung \ref{fig:clientServerKommunikation.png} entspricht im wesentlichen der klassischen Client-Server Kommunikation im Web. Exemplarisch werden XML-Daten übertragen, was die zugrunde liegende Idee der Web Services illustriert: die Übertragung anderer Daten als Webseiten mittels HTTP.
+
+\citet{wilde11} reden von zwei "Geschmäkern" (flavors) in der Web Service Welt: SOAP und REST. Die erste Geschmacksrichtung bedeutet Web Services \glqq auf Basis von SOAP, WSDL und den WS-*Standards - bzw. mit deren Architektur\grqq{} \citep{tilkov11}. Hier wird also ein Technologiestack beschrieben. REST hingegen ist ein Archikturstil, der 2000 in der Dissertation von \citeauthor{fielding00} vorgestellt wurde. Der Versuch, beide Varianten direkt gegenüberstellen stellen zu wollen, ist ein \glqq [...] klassischer Apfel-Birnenvergleich: ein konkretes XML-Format gegen einen abstrakten Architekturstil\grqq{} \citep{tilkov11}.
+
+Vor einer detailierteren Diskussion von SOAP und REST wird zur Einordnung eine Grundlegende Unterscheidung der Ansätze vorgestellt. Gemeinsam ist beiden, dass HTTP als Transportprotkoll zur Übertragung der Frage (Request) verwendet wird, die vom Server (Response) beantwortert werden soll. HTTP wiederum besteht aus einem Header und einem Entity-Body, in welchem ein Datenformat übertragen werden kann. \citet{richardson07} haben hierbei zwei Leitfragen herausgearbeitet, die von den jeweiligen Ansätzen unterschiedlich beantwortet werden: wo in diesem Paket sagt der Client dem Service, mit welchen Daten (Fokusinformation) was (Methodeninformation) gemacht werden soll?
+
+Die Fokusinformation besagt, für welche Datenelemente sich der Client interessiert (z.B. ein Artikel eines Onlineshops). Bei REST ist dies der URI zu entnehmen (z.B. http://onlineshop.com/artikel/ski). Bei SOAP steht diese Information in einer XML-Datei, welche im Entity-Body liegt. Die Methodeninformation besagt, was mit dem identifizierten Datenelement geschehen soll (z.B. einen neuen Artikel anlegen). Bei REST steht dies im Methodenfeld der HTTP-Headers, bei SOAP wieder um Entity-Body. Als Ausgangsbasis ist zu bemerken: SOAP verwendet HTTP nur als Transportprotokoll, REST auch dessen Ausdruckskraft \citep{wilde11}.
+
+\subsubsection{SOAP}
+Bei SOAP-Web Services wird ein \ac{RPC} durchgeführt. Es handelt sich hierbei um eine generelle Technik zur Realisierung von Systemverteilung, bei der ein System die Funktion eines Systems aus einem anderen Adressraum aufruft. SOAP ist ein XML-basiertes Umschlagsformat, welches wiederum die Beschreibung eines Methodenaufrufs in XML Form enthält. Bei SOAP-Web Services werden also im wesentlichen \ac{RPC}s über HTTP getunnelt \citep{wilde11}. Der SOAP-Umschlag ist Transportunabhängig, könnte also auch von anderen Protokollen als HTTP übertragen werden \citep{tilkov11}
+
+Wie die Beschreibung des Methodenaufrufs aussehen muss, definiert die \ac{WSDL}. Jeder SOAP basierte Service stellt eine machinenverarbeitbare \ac{WSDL}-Datei bereit. Darin werden die aufrufbaren Methoden, deren Argumente und Rückgabetypen beschrieben sowie die Schemata der XML-Dokumente, die der Service akzeptiert und versendet \citep{richardson07}.
+
+Es existieren eine Vielzahl von middleware Interoperabilitätsstandards, die mit dem \glqq WS-\grqq{} Prefix versehen sind. Diese sind XML-Aufkleber für den SOAP-Umschlag, die HTTP-Headern entsprechen \citep{richardson07}. Sie erweitern die Ausdrucksmöglichkeit des SOAP-Formats \citep{wilde11}. Beispielsweise erlaubt WS-Security die Berücksichtigung von Sicherheitsaspekten bei der Client-Server Kommunikation.  Eine Übersicht der existierenden Standards ist dem Wiki für Webservices \citeauthor{webServiceWiki09} zu entnehmen.
+
+\subsubsection{REST}
+\begin{quote}
+\glqq Eine Architektur zu definieren bedeutet zu entscheiden, welche Eigenschaften das System haben soll, und eine Reihe von Einschränkungen vorzugeben, mit denen diese Eigenschaften erreicht werden können.\grqq{} \citep{tilkov11}
+\end{quote}
+
+Dies ist in der Dissertation von \citeauthor{fielding00} geschehen, in derer REST als Architekturstil definiert wird. Ein Architekturstil ist ein stärkerer Abstraktionsgrad als eine Architektur. Beispielsweise ist das Web eine HTTP-Implementierung von REST \citep{tilkov11}. Tatsächlich wurden die Einschränkungen von REST aber dem Web entnommen, indem \citeauthor{fielding00} es post-hoc als lose gekoppeltes, dezentralisiertes Hypermediasystem konzeptualisiert \citep{wilde11} und dann von diesem Konzept abstrahiert hat. Einen Webservice nach dem REST-Architekturstil zu implementieren, bedeutet, sie dem Wesen des Webs anzupassen und damit seine stärken zu nutzen \citep{tilkov11}.
+
+Entsprechend \citeauthor{tilkov11}s Architekturdefinition werden im Folgenden die Einschränkungen von REST sowie die daraus resultierenden Eigenschaften besprochen.
+
+\textbf{Einschränkungen}\\
+Einschränkungen können auch als Kriterien für die Implementierung betrachtet werden. Während \citeauthor{fielding00} explizit vier Kriterien nennt, basiert die folgende Auflistung auf der praxiserprobten Variante der Sekundärliteratur \citep{wilde11, tilkov11}.
+
+\begin{compactitem}
+\item \textbf{Ressourcen mit eindeutiger Identifikation}: \glqq Eine Ressource ist alles, was wichtig genug ist, um als eigenständiges Etwas referenziert zu werden\grqq{} \citep{richardson07}. Identifiziert werden sie im Web durch URIs, die einen globalen Namensraum darstellen.  Es ist hervorzuheben, dass eine Ressource nicht das gleiche ist wie die Datenelemente aus der Persistenzschicht einer Anwendung. Sie befinden sich auf einem anderen Abstraktionsniveau. Beispiel: eine Warenkorbressource kann ein Aggregat von Artikelelementen sein, welche allerdings nicht einzeln als Ressource zur Verfügung gestellt werden. \citeauthor{tilkov11} nimmt in diesem Zusammenhang eine Typisierung von Ressourcen vor. Im Rahmen dieser Arbeit sind folgende Ressourcentypen interessant:
+\begin{enumerate}[a.]
+\item Bei einer Projektion wird die \textbf{Informationsmenge} verringert, indem eine sinnvolle Untermenge von Attributen eines Objektes gebildet wird. Zweck ist die zur Reduktion der Datenmenge. Beispiel: Weglassen der Beschreibungstexte von Warenkorbartikeln.
+\item Die \textbf{Aggregation} ist das Gegenteil. Hier werden Attribute unterschiedlicher Ressourcen zur Reduktion der Anzahl notwendiger Client/Server Interaktionen zusammengefasst. Beispiel: Hinzufügen der Versandkosten beim Abruf der Warenkorbartikel.
+\item \textbf{Aktivitäten} sind Ressourcen, die aus Prozessen ergeben, wie etwa ein Schritt innerhalb einer Verarbeitung. Beispiel: Ein Schritt einer nicht abgeschlossenen Konfiguration.
+\end{enumerate}
+\item \textbf{Hypermedia}: Beschreibt das Prinzip verknüpfter Ressourcen. Der Service eröffnet so die Möglichkeiten, neue Ressourcen zu entdecken oder bestimmte Prozesse anzustoßen. Beispiel: Zur einer Bestellbestätigungsressource wird ein Stornierungslink für genau dieser Bestellung hinzugefügt.
+\item \textbf{Standardmethoden/uniforme Schnittstelle}: Oben wurde beschreiben, dass jede Ressource durch (mindestens) eine ID identifiziert wird. Jede URI unterstützt dabei den gleichen Satz an Methoden, welche mit den HTTP-Methoden korrespondieren. Übertragen auf die objektorientierte Programmierung bedeutet dies, dass jedes Objekt das gleiche Interface implementiert. Folgende Methoden werden typischerweise unterstützt:
+\begin{enumerate}[a.]
+\item \textbf{GET:} abholen einer Ressource
+\item \textbf{PUT:} anlegen einer Ressource unter dieser URI oder deren Aktualisierung, falls unter dieser URI bereist eine Ressource existiert.
+\item \textbf{POST:} bedeutet im engeren Sinne das Anlegen einer Ressource unter einer URI, die vom Service bestimmt. Im weiteren Sinne kann durch Post ein Prozess angestoßen werden.
+\item \textbf{Delete:} löschen einer Ressource
+\end{enumerate}
+
+\vspace{1em}
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=0.7\linewidth]{Abbildungen/restMethoden.jpg}
+	\captionof{figure}[restMethoden]{HTTP-Methoden und ihre Eigenschaften
+	\footnote{Relevante Attribute im Rahmen der Arbeit: \glqq sicher\grqq{} bedeutet Nebenwirkungsfrei, d.h. kein Ressourcenzustand ändert sich durch diese Methode. \glqq Idempotent\grqq{} bedeutet, dass das Resultat der Methode bei Mehrfachausführung das gleiche ist. \glqq Identifizierbare Ressource\grqq{} bedeutet, dass unter der angegebenen URL in jedem Falle eine Ressource zu erwarten ist.}
+	(Quelle: \citet{tilkov11})}
+	\label{fig:restMethoden}
+\end{minipage}
+\vspace{1em}
+
+Diese Beschreibung sowie die Eigenschaften aus Abbildung \ref{fig:restMethoden} entsprechen der HTTP-Spezifikation. Die Implementierung einer Methode muss dem erwarteten Verhalten aus dieser Spezifikation entsprechen. Die Praxis zeigt, dass nur die Methoden unterstützt werden, die für die jeweilige Ressource sinnvoll sind. Abbildung \ref{fig:restMethoden} macht außerdem klar, dass es für POST keinerlei Garantien gibt. Da nicht eindeutig ist, ob über POST eine Ressource erstellt oder ein Prozess angestoßen wird, sehen \citeauthor{richardson07} und sieht hierin eine Verletzung der uniformen Schnittstelle. Dies bedeutet in der Praxis: was bei einem Post passiert, ist nicht der HTTP-Spezifikation, sondern der Api-Beschreibung des Webservice zu entnehmen.
+\item \textbf{Ressourcen und Repräsentationen:} Beschreibt die Darstellungen einer Ressource in einem definierten Format. Der Client bekommt nie die Ressource selbst, sondern nur eine Repräsentation derer zu sehen. Die Praxis zeigt, dass häufig eine einfache serialisierte Variante eines Objektes als JSON zur Verfügung gestellt wird. Beispielsweise könnte eine Bestellbestätigung auch als zugänglich gemacht werden.
+\item \textbf{statuslose Kommunikation:} Bedeutet die Nichtexistenz eines serverseitig abgelegten, transienten, clientspezifischen Status über die Dauer eines Requests hinweg. Der Service benötigt also nie Contextinformationen zur Bearbeitung eines Requests. Beispiel: Ein Warenkorb wird nicht in einem Sessionobjekt, sondern als persistentes Datenelement gehalten.
+\end{compactitem}
+
+Diese Auflistung legt folgende die Frage nahe: ist ein Webservice, der nicht jedes Kriterium unterstützt, nicht mehr REST-konform? Was ist mit einem Webservice, der allen Einschränkungen gerecht wird, aber jedoch Ressourcen nur als JSON ausliefert - ein in der Praxis häufig anzutreffender Fall und dennoch ein Verstoß gegen die Forderung nach unterschiedlichen Repräsentationen. Aus diesem Grund existiert das \glqq Richardson Maturity Model\grqq{}, welches eine abgestufte Bewertung eines Webservices dessen REST-konformität erlaubt. Es wird im Auswertungsteil vorgestellt und zur Evaluierung der Implementierung genutzt.
+
+\textbf{Eigenschaften}\\
+Aus den vorgestellten Kriterien resultieren folgende Eigenschaften, welche die beabsichtigten Vorteile dieses Architekturstils darstellen \citep{tilkov11}. Dies Vorteile meint Vorteile im Vergleich zu SOAP-basierten Webservices \citep{richardson07}:
+
+\begin{compactitem}
+\item \textbf{Lose Kopplung:} Beschreibt isolierte Systeme mit größtmöglicher Unabhängigkeit, die über Schnittstellen miteinander kommunizieren. Wird vor allem  durch die Standardmethoden ermöglicht.
+\item \textbf{Interoperabilität:} Beschreibt die Möglichkeit der Kommunikation von Systemen unabhängig von deren technischen Implementierung. Dieser ergibt sich durch die Festlegung auf Standards, welche bei REST-konformen Webservices die Webstandards (z.B. HTTP, URIs) sind 
+\item \textbf{Wiederverwendung}: Jeder Client, der die Schnittstelle eines REST-basierten Service verwenden kann, kann auch jeden anderen beliebigen REST-basierten Service nutzen - vorausgesetzt, das Datenformat wird von beiden Seiten verstanden.
+\item \textbf{Performance und Skalierbarkeit}: Befähigt Services zum schnellen antworten, unabhängig von der Anzahl von Anfragen in einem definierten Zeitraum. Dies wird durch Cachebarkeit und Zustandslosigkeit erreicht. Cachebare Antworten ermöglichen die Wiederverwendung von Prozessergebnissen. Da der Service keinen clientspezifischen Kontext aufbauen muss, müssen aufeinanderfolgende Requests nicht vom gleichen System beantwortet werden.
+\end{compactitem}
+
+\subsection{E-Commerce}
+
+\pagebreak
+
+\section{Analyse}
+
+\subsection{Tacton Produktkonfigurator}
+
+\subsection{TCsite}
+
+\subsection{Produktkonfiguration in TCsite}
+
+\subsection{Shopsystem}
+
+\pagebreak
+
+\section{Anforderungen}
+
+\subsection{Funktionale Anforderungen}
+
+\subsection{Nichtfunktionale Anforderungen}
+
+\pagebreak
+
+\section{Integrationskonzept}
+
+\pagebreak
+
+\section{Integrationsumsetzung}
+
+\pagebreak
+
+\section{Fazit}
+
+\pagebreak
+
+% ----------------------------------------------------------------------------------------------------------
+% Vorlagen
+% ----------------------------------------------------------------------------------------------------------
+\section{Vorlagen}
+Dieses Kapitel enthält Beispiele zum Einfügen von Abbildungen, Tabellen, etc.
+
+\subsection{Bilder}
+Zum Einfügen eines Bildes, siehe Abbildung \ref{fig:osgi}, wird die \textit{minipage}-Umgebung genutzt, da die Bilder so gut positioniert werden können.
+
+\vspace{1em}
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=0.7\linewidth]{Bilder/layering-osgi.png}
+	\captionof{figure}[OSGi Architektur]{OSGi Architektur\footnotemark }
+	\label{fig:osgi}
+\end{minipage}
+\footnotetext{Quelle: \url{http://www.osgi.org/Technology/WhatIsOSGi}}
+
+\subsection{Tabellen}
+In diesem Abschnitt wird eine Tabelle (siehe Tabelle \ref{tab:beispiel}) dargestellt.
+
+\vspace{1em}
+\begin{table}[!h]
+	\centering
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\textbf{Name} & \textbf{Name} & \textbf{Name}\\
+		\hline
+		1 & 2 & 3\\
+		\hline
+		4 & 5 & 6\\
+		\hline
+		7 & 8 & 9\\
+		\hline
+	\end{tabular}
+	\caption{Beispieltabelle}
+	\label{tab:beispiel}
+\end{table}
+
+\pagebreak
+\subsection{Auflistung}
+Für Auflistungen wird die \textit{compactitem}-Umgebung genutzt, wodurch der Zeilenabstand zwischen den Punkten verringert wird.
+
+\begin{compactitem}
+	\item Nur
+	\item ein
+	\item Beispiel.
+\end{compactitem}
+
+\subsection{Listings}
+Zuletzt ein Beispiel für ein Listing, in dem Quellcode eingebunden werden kann, siehe Listing \ref{lst:arduino}.
+
+\vspace{1em}
+\begin{lstlisting}[caption=Arduino Beispielprogramm, label=lst:arduino]
+int ledPin = 13;
+void setup() {
+    pinMode(ledPin, OUTPUT);
+}
+void loop() {
+    digitalWrite(ledPin, HIGH);
+    delay(500);
+    digitalWrite(ledPin, LOW);
+    delay(500);
+}
+\end{lstlisting}
+
+\subsection{Tipps}
+Die Quellen befinden sich in der Datei \textit{bibo.bib}. Ein Buch- und eine Online-Quelle sind beispielhaft eingefügt.
+
+Abkürzungen lassen sich natürlich auch nutzen. Weiter oben im Latex-Code findet sich das Verzeichnis.
+\pagebreak
+
+\include{Literaturverzeichnis}
+
+\include{Anhang}
+
+\include{Selbststaendigkeitserklaerung}
+
+\end{document}
