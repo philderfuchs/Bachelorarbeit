@@ -76,7 +76,7 @@
 Im Folgenden Abschnitt wird geklärt: was ist ein Konfigurator und wofür brauchen wir ihn? Aus Gründen der Nachvollziehbarkeit werden diese Fragen allerdings in umgedrehter Reihenfolge bearbeitet.
 Dazu wird zunächst eine marktwirtschaftliche Situation erläutert, welche die Notwendigkeit hybrider Wettbewerbsstrategien begründet. Diese wiederum stellen zu ihrer Umsetzbarkeit Bedingungen an Produktionskonzepte, welche daraufhin vorgestellt werden. Abschließend wird geklärt, welchen Beitrag die Produktkonfiguration dabei leistet und dessen Funktionsweise erläutert.
 
-\subsubsection{Ausgangssituation}
+\subsubsection{Anwendungsrahmen}
  \label{subssubsection:Ausgangssituation}
 Neue Wettbewerbsbedingungen und gesteigerte Kundenansprüche haben den Druck auf Industrieunternehmen zur Produktion individualisierter Produkte erhöht \citep{piller98}. Dies erfordert eine stärkere Leistungsdifferenzierung\citep{lutz11}. Die Differenzierung ist ein der von \citeauthor{porter02} beschriebenen \glqq generischen Wettbewerbsstrategien\grqq{}. Weitere sind die Kostenführerschafts- und Fokussierungsstrategie. Die Kostenführerschaft bezieht sich klassischerweise auf Anbieter von Massenproduktion. Durch die Unterbietung der Konkurrenzpreise wird der Marktanteil erhöht. Dem Gegenüber entspricht die Leistungsdifferenzierung dem Verkauf von Produkten mit höherem individuellen Kundennutzen zu höheren Preisen.
 
@@ -205,7 +205,7 @@ Eine Lösung kann durch ein UML-Instanz-Diagramm visualisiert werden, wie Abbild
 
 Eine Konfigurationsaufgabe kann mehr als eine valide Lösung liefern. In diesem Falle ist es Möglich, dem Benutzer als Ergebnis eine Variantenmenge zu präsentieren. Nicht erfüllbare Constraints führen hingegen zu einer leeren Lösungsmenge.
 
-Diese Beschreibung einer Konfigurationslösung suggeriert, dass zu Beginn des Konfigurationsprozesses einmalig die Kundenanforderungen aufgenommen und daraufhin die Lösungsmenge ermittelt wird. Diese Form ohne interaktive Eingriffsmöglichkeiten wird als statisch bezeichnet. Demgegenüber erlaubt die interaktive Konfiguration einen schrittweisen Entscheidungsprozess \citep{hadzic04}. Dieser Prozess muss durch eine Software unterstützt werden. Sie wird als Konfigurator bezeichnet und wird im Folgenden vorgestellt.
+Diese Beschreibung einer Konfigurationslösung suggeriert, dass zu Beginn des Konfigurationsprozesses einmalig die Kundenanforderungen aufgenommen und daraufhin die Lösungsmenge ermittelt wird. Diese Form ohne interaktive Eingriffsmöglichkeiten wird als statisch bezeichnet. Demgegenüber erlaubt die interaktive Konfiguration das schrittweise Treffen und Revidieren von Entscheidungen \citep{hadzic04}. Dieser Prozess muss durch eine Software unterstützt werden. Sie wird als Konfigurator bezeichnet und wird im Folgenden vorgestellt.
 
 \subsubsection{Konfigurator}
 Der Konfigurator ist das System, welche die Schnittstelle zum Benutzer darstellt und den Konfigurationsprozess durchführt. Es bekommt die Konfigurationsaufgabe als Eingabe und liefert als Ausgabe die Konfigurationslösung \citep{felferning14}. Sie "[...] führen den Abnehmer durch alle Abstimmungsprozesse, die zur Definition des individuellen Produktes nötig sind und prüfen sogleich die Konsistenz sowie Fertigungsfähigkeit der gewünschten Variante" \citep{piller06}.
@@ -220,16 +220,17 @@ Nach \citet{piller06} besitzt ein Konfigurator typischerweise drei Komponenten:
 Konfiguratoren für die Erhebung komplexer Anforderungen technischer Systeme unterschieden müssen von Konfiguration für den Einsatz im \ac{MC} werden \citep{felferning14}. Erstere sind für den Experteneinsatz gedacht oder dienen nach \citet{piller06} als Vertriebskonfiguratoren der Unterstützung des Verkaufsgespräches.   Letztere werden von Kunden in einer Company-to–Customer Beziehung genutzt und werden auch als Mass Customization Toolkit bezeichnet. Die sogenannte Selbstkonfiguration ist wesentlich sie die Verheiratung von kundenindividueller Fertigung und Massenproduktion, indem der zeitkonsumierende Prozess der Erhebung der Kundenbedürfnisse auch die Seite des Kunden verlagert wird\citep{piller06}
 
 Konfiguratoren können bei allen in Abschnit \ref{subssubsection:Produktklassifizierung} genannten Produktionskonzepten zum Einsatz kommen. Je nach Produktionskonzept erfüllen sie für den Anwender eine unterschiedliche Funktion. Bei \ac{PTO} erfüllt der Konfigurator eine Katalogfunktion, indem er den Anwender er den Anwender bei der Auswahl eines fertigen Produktes aus einer Produktpalette unterstützt. Bei \ac{ATO} verhält sich der Konfigurator wie eine Variantengenerator, der den Anwender bei der Auswahl der richtigen, vom Hersteller vordefinierten Variante unterstützt. Der Anwendungsfall \ac{MTO} ist ähnlich, jedoch sind die Varianten vom Anwender definiert. Bei \ac{ETO} können Konfiguratoren durch den erheblichen Neukonstruktionsbedarf nur begrenzten Beitrag leisten. Aus dieser Erläuterung lässt sich Ableiten, dass das Haupteinsatzgebiet von Konfiguratoren im \ac{ATO}/\ac{MTO} Umfeld liegt.
+\pagebreak
 
 \subsection{Webservices}
 
-Das \citet	{w3c04} definiert Web-Services lose als:
+Das \citet	{w3c04} definiert Webservices lose als:
 
 \begin{quote}
 \glqq [...] a software system designed to support interoperable machine-to-machine interaction over a network\grqq
 \end{quote}
 
-Die Definition hebt hervor, dass die Kommunikation zwischen heterogenen Systemen stattfinden kann. \glqq Zwischen Systemen\grqq{} differenziert gleichzeitig klar zur klassischen Verwendung eines Programms, bei der ein (menschlicher) Nutzer mit einem System kommuniziert. \citet{tilkov11} bemerkt, dass Web Service damit sehr weich definiert ist; \glqq nämlich eigentlich gar nicht\grqq{}. Fest steht, dass hier ein Service einen gewissen Dienst anbietet, die von einem Clienten über Webtechnologien angesprochen werden kann. Webservices sind also eine Möglichkeit zur Realisierung von Integrationsszenarien.
+Die Definition schließt die Kommunikation heterogener Systeme ein. \glqq Zwischen Systemen\grqq{} differenziert gleichzeitig klar zur klassischen Verwendung eines Programms, bei der ein (menschlicher) Nutzer mit einem System kommuniziert. \citet{tilkov11} bemerkt, dass Web Service damit sehr weich definiert ist; \glqq nämlich eigentlich gar nicht\grqq{}. Fest steht, dass hier ein Service einen Dienst anbietet, der von einem Clienten über Webtechnologien angesprochen werden kann. Webservices sind demzufolge eine Möglichkeit zur Realisierung von Integrationsszenarien webbasierter Systeme.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -242,45 +243,45 @@ Die Definition hebt hervor, dass die Kommunikation zwischen heterogenen Systemen
 
 Abbildung \ref{fig:clientServerKommunikation.png} entspricht im wesentlichen der klassischen Client-Server Kommunikation im Web. Exemplarisch werden XML-Daten übertragen, was die zugrunde liegende Idee der Web Services illustriert: die Übertragung anderer Daten als Webseiten mittels HTTP.
 
-\citet{wilde11} reden von zwei "Geschmäkern" (flavors) in der Web Service Welt: SOAP und REST. Die erste Geschmacksrichtung bedeutet Web Services \glqq auf Basis von SOAP, WSDL und den WS-*Standards - bzw. mit deren Architektur\grqq{} \citep{tilkov11}. Hier wird also ein Technologiestack beschrieben. REST hingegen ist ein Archikturstil, der 2000 in der Dissertation von \citeauthor{fielding00} vorgestellt wurde. Der Versuch, beide Varianten direkt gegenüberstellen stellen zu wollen, ist ein \glqq [...] klassischer Apfel-Birnenvergleich: ein konkretes XML-Format gegen einen abstrakten Architekturstil\grqq{} \citep{tilkov11}.
+\citet{wilde11} reden von zwei etablierten \glqq Geschmäkern\grqq{} (flavors) in der Webservice Welt: SOAP und REST. Die erste Geschmacksrichtung bedeutet Web Services \glqq auf Basis von SOAP, WSDL und den WS-*Standards - bzw. [...] deren Architektur\grqq{} \citep{tilkov11}. Hier wird also ein XML-basierter Technologiestack beschrieben. REST hingegen ist ein Archikturstil, der 2000 in der Dissertation von \citeauthor{fielding00} vorgestellt wurde. Der Versuch, beide Varianten direkt gegenüberstellen stellen zu wollen, ist ein \glqq [...] klassischer Apfel-Birnenvergleich: ein konkretes XML-Format gegen einen abstrakten Architekturstil\grqq{} \citep{tilkov11}.
 
-Vor einer detailierteren Diskussion von SOAP und REST wird zur Einordnung eine Grundlegende Unterscheidung der Ansätze vorgestellt. Gemeinsam ist beiden, dass HTTP als Transportprotkoll zur Übertragung der Frage (Request) verwendet wird, die vom Server (Response) beantwortert werden soll. HTTP wiederum besteht aus einem Header und einem Entity-Body, in welchem ein Datenformat übertragen werden kann. \citet{richardson07} haben hierbei zwei Leitfragen herausgearbeitet, die von den jeweiligen Ansätzen unterschiedlich beantwortet werden: wo in diesem Paket sagt der Client dem Service, mit welchen Daten (Fokusinformation) was (Methodeninformation) gemacht werden soll?
+Vor einer detaillierteren Diskussion von SOAP und REST wird zur Einordnung eine Grundlegende Unterscheidung der Ansätze vorgestellt. Gemeinsam ist beiden, dass HTTP als Transportprotkoll zur Übertragung der Frage (Request) verwendet wird, die vom Server (Response) beantwortert werden soll. HTTP wiederum besteht aus einem Header und einem Entity-Body zur Übertragung von Daten. \citet{richardson07} haben hierbei zwei Leitfragen herausgearbeitet, die von den jeweiligen Ansätzen unterschiedlich beantwortet werden: wo in diesem Paket sagt der Client dem Service, mit welchen Daten (Fokusinformation) was (Methodeninformation) gemacht werden soll?
 
-Die Fokusinformation besagt, für welche Datenelemente sich der Client interessiert (z.B. ein Artikel eines Onlineshops). Bei REST ist dies der URI zu entnehmen (z.B. http://onlineshop.com/artikel/ski). Bei SOAP steht diese Information in einer XML-Datei, welche im Entity-Body liegt. Die Methodeninformation besagt, was mit dem identifizierten Datenelement geschehen soll (z.B. einen neuen Artikel anlegen). Bei REST steht dies im Methodenfeld der HTTP-Headers, bei SOAP wieder um Entity-Body. Als Ausgangsbasis ist zu bemerken: SOAP verwendet HTTP nur als Transportprotokoll, REST auch dessen Ausdruckskraft \citep{wilde11}.
+Die Fokusinformation besagt, für welche Datenelemente sich der Client interessiert (z.B. ein Artikel eines Onlineshops). Bei REST ist dies der URI zu entnehmen (z.B. http://onlineshop.com/artikel/ski). Bei SOAP steht diese Information in einer XML-Datei, welche im Entity-Body liegt. Die Methodeninformation besagt, was mit dem identifizierten Datenelement geschehen soll (z.B. einen neuen Artikel anlegen). Bei REST steht dies im Methodenfeld der HTTP-Headers, bei SOAP wieder um Entity-Body. Daraus lässt sich als Ausgangsbasis ableiten: SOAP verwendet HTTP nur als Transportprotokoll, REST auch dessen Ausdruckskraft \citep{wilde11}.
 
 \subsubsection{SOAP}
-Bei SOAP-Web Services wird ein \ac{RPC} durchgeführt. Es handelt sich hierbei um eine generelle Technik zur Realisierung von Systemverteilung, bei der ein System die Funktion eines Systems aus einem anderen Adressraum aufruft. SOAP ist ein XML-basiertes Umschlagsformat, welches wiederum die Beschreibung eines Methodenaufrufs in XML Form enthält. Bei SOAP-Web Services werden also im wesentlichen \ac{RPC}s über HTTP getunnelt \citep{wilde11}. Der SOAP-Umschlag ist Transportunabhängig, könnte also auch von anderen Protokollen als HTTP übertragen werden \citep{tilkov11}
+Bei SOAP-Web Services wird ein \ac{RPC} durchgeführt. Dabei handelt es sich um eine generelle Technik zur Realisierung von Systemverteilung. Ein System ruft die Funktion eines Systems aus einem anderen Adressraum auf. SOAP ist ein XML-basiertes Umschlagsformat, welches wiederum die Beschreibung eines Methodenaufrufs in XML Form enthält. Bei SOAP-Web Services werden also im wesentlichen \ac{RPC}s über HTTP getunnelt \citep{wilde11}. Der SOAP-Umschlag ist Transportunabhängig, könnte also auch von anderen Protokollen als HTTP übertragen werden \citep{tilkov11}.
 
-Wie die Beschreibung des Methodenaufrufs aussehen muss, definiert die \ac{WSDL}. Jeder SOAP basierte Service stellt eine machinenverarbeitbare \ac{WSDL}-Datei bereit. Darin werden die aufrufbaren Methoden, deren Argumente und Rückgabetypen beschrieben sowie die Schemata der XML-Dokumente, die der Service akzeptiert und versendet \citep{richardson07}.
+Wie die Beschreibung des Methodenaufrufs aussehen muss, definiert die \ac{WSDL}. Jeder SOAP basierte Service stellt eine machinenverarbeitbare \ac{WSDL}-Datei bereit. Darin werden die aufrufbaren Methoden, deren Argumente und Rückgabetypen beschrieben. Außerdem sind ihr die Schemata der XML-Dokumente zu entnehmen, die der Service akzeptiert und versendet \citep{richardson07}.
 
-Es existieren eine Vielzahl von middleware Interoperabilitätsstandards, die mit dem \glqq WS-\grqq{} Prefix versehen sind. Diese sind XML-Aufkleber für den SOAP-Umschlag, die HTTP-Headern entsprechen \citep{richardson07}. Sie erweitern die Ausdrucksmöglichkeit des SOAP-Formats \citep{wilde11}. Beispielsweise erlaubt WS-Security die Berücksichtigung von Sicherheitsaspekten bei der Client-Server Kommunikation.  Eine Übersicht der existierenden Standards ist dem Wiki für Webservices \citeauthor{webServiceWiki09} zu entnehmen.
+Es existieren eine Vielzahl middleware Interoperabilitätsstandards, die mit dem \glqq WS-\grqq{} Prefix versehen sind. Diese sind \glqq XML-Aufkleber\grqq{} für den SOAP-Umschlag, die HTTP-Headern entsprechen \citep{richardson07}. Sie erweitern die Ausdrucksmöglichkeit des SOAP-Formats \citep{wilde11}. Beispielsweise erlaubt WS-Security die Berücksichtigung von Sicherheitsaspekten bei der Client-Server Kommunikation. Eine Übersicht der existierenden Standards ist dem Wiki für Webservices \citet{webServiceWiki09} zu entnehmen.
 
 \subsubsection{REST}
 \begin{quote}
 \glqq Eine Architektur zu definieren bedeutet zu entscheiden, welche Eigenschaften das System haben soll, und eine Reihe von Einschränkungen vorzugeben, mit denen diese Eigenschaften erreicht werden können.\grqq{} \citep{tilkov11}
 \end{quote}
 
-Dies ist in der Dissertation von \citeauthor{fielding00} geschehen, in derer REST als Architekturstil definiert wird. Ein Architekturstil ist ein stärkerer Abstraktionsgrad als eine Architektur. Beispielsweise ist das Web eine HTTP-Implementierung von REST \citep{tilkov11}. Tatsächlich wurden die Einschränkungen von REST aber dem Web entnommen, indem \citeauthor{fielding00} es post-hoc als lose gekoppeltes, dezentralisiertes Hypermediasystem konzeptualisiert \citep{wilde11} und dann von diesem Konzept abstrahiert hat. Einen Webservice nach dem REST-Architekturstil zu implementieren, bedeutet, sie dem Wesen des Webs anzupassen und damit seine stärken zu nutzen \citep{tilkov11}.
+Dies ist in der Dissertation von \citeauthor{fielding00} geschehen, in welcher REST als Architekturstil definiert wird. Ein Architekturstil ist ein stärkerer Abstraktionsgrad als eine Architektur. Beispielsweise ist das Web eine HTTP-Implementierung von REST \citep{tilkov11}. Tatsächlich wurden die Einschränkungen von REST aber dem Web entnommen, indem \citeauthor{fielding00} es post-hoc als lose gekoppeltes, dezentralisiertes Hypermediasystem konzeptualisiert \citep{wilde11} und dann von diesem Konzept abstrahiert hat. Einen Webservice nach dem REST-Architekturstil zu implementieren, bedeutet, sie dem Wesen des Webs anzupassen und damit seine stärken zu nutzen \citep{tilkov11}.
 
 Entsprechend \citeauthor{tilkov11}s Architekturdefinition werden im Folgenden die Einschränkungen von REST sowie die daraus resultierenden Eigenschaften besprochen.
 
 \textbf{Einschränkungen}\\
-Einschränkungen können auch als Kriterien für die Implementierung betrachtet werden. Während \citeauthor{fielding00} explizit vier Kriterien nennt, basiert die folgende Auflistung auf der praxiserprobten Variante der Sekundärliteratur \citep{wilde11, tilkov11}.
+Einschränkungen sind, anders ausgedrückt, Implementierungskriterien. Während \citeauthor{fielding00} in seiner theoretischen Abhandlung explizit vier solcher Kriterien nennt, basiert die folgende Auflistung auf der praxiserprobten Variante der Sekundärliteratur \citep{wilde11, tilkov11}.
 
 \begin{compactitem}
-\item \textbf{Ressourcen mit eindeutiger Identifikation}: \glqq Eine Ressource ist alles, was wichtig genug ist, um als eigenständiges Etwas referenziert zu werden\grqq{} \citep{richardson07}. Identifiziert werden sie im Web durch URIs, die einen globalen Namensraum darstellen.  Es ist hervorzuheben, dass eine Ressource nicht das gleiche ist wie die Datenelemente aus der Persistenzschicht einer Anwendung. Sie befinden sich auf einem anderen Abstraktionsniveau. Beispiel: eine Warenkorbressource kann ein Aggregat von Artikelelementen sein, welche allerdings nicht einzeln als Ressource zur Verfügung gestellt werden. \citeauthor{tilkov11} nimmt in diesem Zusammenhang eine Typisierung von Ressourcen vor. Im Rahmen dieser Arbeit sind folgende Ressourcentypen interessant:
+\item \textbf{Ressourcen mit eindeutiger Identifikation}: \glqq Eine Ressource ist alles, was wichtig genug ist, um als eigenständiges Etwas referenziert zu werden\grqq{} \citep{richardson07}. Identifiziert werden sie im Web durch URIs, die einen globalen Namensraum darstellen.  Es ist hervorzuheben, dass eine Ressource nicht das gleiche  wie die Datenelemente aus der Persistenzschicht einer Anwendung ist. Sie befinden sich auf einem anderen Abstraktionsniveau. Beispiel: eine Warenkorbressource kann eine Auflistung von Artikeln sein, welche allerdings nicht einzeln als Ressource ansprechbar sind. \citeauthor{tilkov11} nimmt in diesem Zusammenhang eine Typisierung von Ressourcen vor. Von den sieben verschiedene Ressourcentypen sind folgende im Rahmen der Fragestellung interessant:
 \begin{enumerate}[a.]
-\item Bei einer Projektion wird die \textbf{Informationsmenge} verringert, indem eine sinnvolle Untermenge von Attributen eines Objektes gebildet wird. Zweck ist die zur Reduktion der Datenmenge. Beispiel: Weglassen der Beschreibungstexte von Warenkorbartikeln.
+\item Bei einer \textbf{Projektion} wird die Informationsmenge verringert, indem eine sinnvolle Untermenge der Attribute einer abgerufenen Ressource gebildet wird. Zweck ist die Reduktion der Datenmenge. Beispiel: Weglassen des Beschreibungstextes eines Warenkorbartikels.
 \item Die \textbf{Aggregation} ist das Gegenteil. Hier werden Attribute unterschiedlicher Ressourcen zur Reduktion der Anzahl notwendiger Client/Server Interaktionen zusammengefasst. Beispiel: Hinzufügen der Versandkosten beim Abruf der Warenkorbartikel.
-\item \textbf{Aktivitäten} sind Ressourcen, die aus Prozessen ergeben, wie etwa ein Schritt innerhalb einer Verarbeitung. Beispiel: Ein Schritt einer nicht abgeschlossenen Konfiguration.
+\item \textbf{Aktivitäten} sind Ressourcen, die sich aus Prozessen ergeben, wie etwa ein Schritt innerhalb einer Verarbeitung. Beispiel: Ein Schritt einer nicht abgeschlossenen Konfiguration.
 \end{enumerate}
-\item \textbf{Hypermedia}: Beschreibt das Prinzip verknüpfter Ressourcen. Der Service eröffnet so die Möglichkeiten, neue Ressourcen zu entdecken oder bestimmte Prozesse anzustoßen. Beispiel: Zur einer Bestellbestätigungsressource wird ein Stornierungslink für genau dieser Bestellung hinzugefügt.
-\item \textbf{Standardmethoden/uniforme Schnittstelle}: Oben wurde beschreiben, dass jede Ressource durch (mindestens) eine ID identifiziert wird. Jede URI unterstützt dabei den gleichen Satz an Methoden, welche mit den HTTP-Methoden korrespondieren. Übertragen auf die objektorientierte Programmierung bedeutet dies, dass jedes Objekt das gleiche Interface implementiert. Folgende Methoden werden typischerweise unterstützt:
+\item \textbf{Hypermedia} beschreibt das Prinzip verknüpfter Ressourcen. So wird dem Client ermöglicht, neue Ressourcen zu entdecken oder bestimmte Prozesse anzustoßen. Beispiel: Zur einer Bestellbestätigungsressource wird der zugehörige Stornierungslink hinzugefügt.
+\item \textbf{Standardmethoden/uniforme Schnittstelle}: Oben wurde beschreiben, dass jede Ressource durch (mindestens) eine ID identifiziert wird. Jede URI unterstützt dabei den gleichen Methodensatz, welche mit den HTTP-Methoden korrespondieren. Das bedeutet übertragen auf die objektorientierte Programmierung, dass jedes Objekt das gleiche Interface implementiert. Folgende Teilmenge der verfügbaren HTTP-Methoden finden in der Literatur am häufigsten Erwähnung:
 \begin{enumerate}[a.]
-\item \textbf{GET:} abholen einer Ressource
-\item \textbf{PUT:} anlegen einer Ressource unter dieser URI oder deren Aktualisierung, falls unter dieser URI bereist eine Ressource existiert.
+\item \textbf{GET:} abholen einer Ressource.
+\item \textbf{PUT:} anlegen oder aktualisieren einer Ressource, je nachdem, ob unter dieser URI bereits eine Ressource existiert.
 \item \textbf{POST:} bedeutet im engeren Sinne das Anlegen einer Ressource unter einer URI, die vom Service bestimmt. Im weiteren Sinne kann durch Post ein Prozess angestoßen werden.
-\item \textbf{Delete:} löschen einer Ressource
+\item \textbf{Delete:} löschen einer Ressource.
 \end{enumerate}
 
 \vspace{1em}
@@ -288,33 +289,78 @@ Einschränkungen können auch als Kriterien für die Implementierung betrachtet 
 	\centering
 	\includegraphics[width=0.7\linewidth]{Abbildungen/restMethoden.jpg}
 	\captionof{figure}[restMethoden]{HTTP-Methoden und ihre Eigenschaften
-	\footnote{Relevante Attribute im Rahmen der Arbeit: \glqq sicher\grqq{} bedeutet Nebenwirkungsfrei, d.h. kein Ressourcenzustand ändert sich durch diese Methode. \glqq Idempotent\grqq{} bedeutet, dass das Resultat der Methode bei Mehrfachausführung das gleiche ist. \glqq Identifizierbare Ressource\grqq{} bedeutet, dass unter der angegebenen URL in jedem Falle eine Ressource zu erwarten ist.}
+	\footnote{Relevante Attribute im Rahmen der Fragestellung: \glqq sicher\grqq{} bedeutet Nebenwirkungsfrei, d.h. kein Ressourcenzustand ändert sich durch diese Methode. \glqq Idempotent\grqq{} bedeutet, dass das Resultat der Methode bei Mehrfachausführung das gleiche ist. \glqq Identifizierbare Ressource\grqq{} bedeutet, dass die URL garantiert eine Ressource identifiziert.}
 	(Quelle: \citet{tilkov11})}
 	\label{fig:restMethoden}
 \end{minipage}
 \vspace{1em}
 
-Diese Beschreibung sowie die Eigenschaften aus Abbildung \ref{fig:restMethoden} entsprechen der HTTP-Spezifikation. Die Implementierung einer Methode muss dem erwarteten Verhalten aus dieser Spezifikation entsprechen. Die Praxis zeigt, dass nur die Methoden unterstützt werden, die für die jeweilige Ressource sinnvoll sind. Abbildung \ref{fig:restMethoden} macht außerdem klar, dass es für POST keinerlei Garantien gibt. Da nicht eindeutig ist, ob über POST eine Ressource erstellt oder ein Prozess angestoßen wird, sehen \citeauthor{richardson07} und sieht hierin eine Verletzung der uniformen Schnittstelle. Dies bedeutet in der Praxis: was bei einem Post passiert, ist nicht der HTTP-Spezifikation, sondern der Api-Beschreibung des Webservice zu entnehmen.
-\item \textbf{Ressourcen und Repräsentationen:} Beschreibt die Darstellungen einer Ressource in einem definierten Format. Der Client bekommt nie die Ressource selbst, sondern nur eine Repräsentation derer zu sehen. Die Praxis zeigt, dass häufig eine einfache serialisierte Variante eines Objektes als JSON zur Verfügung gestellt wird. Beispielsweise könnte eine Bestellbestätigung auch als zugänglich gemacht werden.
-\item \textbf{statuslose Kommunikation:} Bedeutet die Nichtexistenz eines serverseitig abgelegten, transienten, clientspezifischen Status über die Dauer eines Requests hinweg. Der Service benötigt also nie Contextinformationen zur Bearbeitung eines Requests. Beispiel: Ein Warenkorb wird nicht in einem Sessionobjekt, sondern als persistentes Datenelement gehalten.
+Diese Beschreibung sowie die Eigenschaften aus Abbildung \ref{fig:restMethoden} entsprechen der HTTP-Spezifikation 1.1. Die Implementierung einer Methode muss dem erwarteten Verhalten aus dieser Spezifikation entsprechen. Die Praxis zeigt, dass nur die Methoden unterstützt werden, die für die jeweilige Ressource sinnvoll sind. Abbildung \ref{fig:restMethoden} macht außerdem klar, dass es für POST keinerlei Garantien gibt. Da nicht eindeutig ist, ob über POST eine Ressource erstellt oder ein Prozess angestoßen wird, sehen \citeauthor{richardson07} und sieht hierin eine Verletzung der uniformen Schnittstelle. Dies bedeutet in der Praxis: was bei einem Post passiert, ist nicht der HTTP-Spezifikation, sondern der Api-Beschreibung des Webservice zu entnehmen.
+\item \textbf{Ressourcen und Repräsentationen:} Beschreibt die Darstellungen einer Ressource in einem definierten Format. Der Client bekommt nie die Ressource selbst, sondern nur eine Repräsentation derer zu sehen. In der Praxis wird meist einfach eine  serialisierte Variante eines Objektes als JSON zur Verfügung gestellt wird. Beispielsweise könnte eine Bestellbestätigung auch als PDF zugänglich gemacht werden.
+\item \textbf{statuslose Kommunikation:} Bedeutet die Nichtexistenz eines serverseitig abgelegten, transienten, clientspezifischen Status über die Dauer eines Requests hinweg. Der Service benötigt also nie Kontextinformationen zur Bearbeitung eines Requests. Beispiel: Ein Warenkorb wird nicht in einem Sessionobjekt, sondern als persistentes Datenelement gehalten.
 \end{compactitem}
 
-Diese Auflistung legt folgende die Frage nahe: ist ein Webservice, der nicht jedes Kriterium unterstützt, nicht mehr REST-konform? Was ist mit einem Webservice, der allen Einschränkungen gerecht wird, aber jedoch Ressourcen nur als JSON ausliefert - ein in der Praxis häufig anzutreffender Fall und dennoch ein Verstoß gegen die Forderung nach unterschiedlichen Repräsentationen. Aus diesem Grund existiert das \glqq Richardson Maturity Model\grqq{}, welches eine abgestufte Bewertung eines Webservices dessen REST-konformität erlaubt. Es wird im Auswertungsteil vorgestellt und zur Evaluierung der Implementierung genutzt.
+Diese Auflistung legt folgende Frage nahe: ist ein Webservice nur dann REST-Konform, wenn alle Kriterien erfüllt werden? Was ist mit einem Webservice, der allen Einschränkungen gerecht wird, jedoch Ressourcen nur als JSON ausliefert - ein in der Praxis häufig anzutreffender Fall. Und dennoch ein Verstoß gegen die Forderung nach unterschiedlichen Repräsentationen. Aus diesem Grund existiert das \glqq Richardson Maturity Model\grqq{}, welches eine abgestufte Bewertung eines Webservices nach dessen REST-konformität erlaubt. Es wird im Auswertungsteil vorgestellt und zur Evaluierung der Implementierung genutzt.
 
 \textbf{Eigenschaften}\\
-Aus den vorgestellten Kriterien resultieren folgende Eigenschaften, welche die beabsichtigten Vorteile dieses Architekturstils darstellen \citep{tilkov11}. Dies Vorteile meint Vorteile im Vergleich zu SOAP-basierten Webservices \citep{richardson07}:
+Aus den vorgestellten Kriterien resultieren folgende Eigenschaften \citep{tilkov11},  welche die Vorteile REST-basierter Webservices gegenüber der SOAP-Konkurrenz darstellen \citep{richardson07}:
 
 \begin{compactitem}
-\item \textbf{Lose Kopplung:} Beschreibt isolierte Systeme mit größtmöglicher Unabhängigkeit, die über Schnittstellen miteinander kommunizieren. Wird vor allem  durch die Standardmethoden ermöglicht.
-\item \textbf{Interoperabilität:} Beschreibt die Möglichkeit der Kommunikation von Systemen unabhängig von deren technischen Implementierung. Dieser ergibt sich durch die Festlegung auf Standards, welche bei REST-konformen Webservices die Webstandards (z.B. HTTP, URIs) sind 
+\item \textbf{Lose Kopplung:} Beschreibt isolierte Systeme mit größtmöglicher Unabhängigkeit, die über Schnittstellen miteinander kommunizieren. Dies wird vor allem  durch die uniforme Schnittstelle.
+\item \textbf{Interoperabilität:} Beschreibt die Möglichkeit der Kommunikation von Systemen unabhängig von deren technischen Implementierung. Dies ergibt sich durch die Festlegung auf Standards. Bei der Anwendung von REST auf Webservices sind dies die Webstandards (z.B. HTTP, URIs).
 \item \textbf{Wiederverwendung}: Jeder Client, der die Schnittstelle eines REST-basierten Service verwenden kann, kann auch jeden anderen beliebigen REST-basierten Service nutzen - vorausgesetzt, das Datenformat wird von beiden Seiten verstanden.
 \item \textbf{Performance und Skalierbarkeit}: Befähigt Services zum schnellen antworten, unabhängig von der Anzahl von Anfragen in einem definierten Zeitraum. Dies wird durch Cachebarkeit und Zustandslosigkeit erreicht. Cachebare Antworten ermöglichen die Wiederverwendung von Prozessergebnissen. Da der Service keinen clientspezifischen Kontext aufbauen muss, müssen aufeinanderfolgende Requests nicht vom gleichen System beantwortet werden.
 \end{compactitem}
-
-\subsection{E-Commerce}
-
 \pagebreak
 
+\subsection{Shopsysteme}
+
+Im Folgenden wird durch die Charakterisierung des Begriffs eCommerce ein Andwendungsrahmen für eShops hergestellt. Deren softwaretechnische Umsetzung wird durch eShop-Systeme realisiert. Durch eine Kategorisierung der Systeme nach Anbieterstrategie wird abschließend die Menge der Open-Source-Lösungen für eine Konfiguratorintegration identifiziert.
+
+\subsubsection{Anwendungsrahmen}
+Eshops gehören zur Domäne des elektronischen Handels (eCommerce). Ecommerce ist \glqq die elektronisch unterstützte Abwicklung von Handelsgeschäften auf der Basis der Internet\grqq{} \citep{schwarze02}. Je nachdem, welche Marktpartner an dem Handelsgeschäft teilnehmen, werden verschiedene Formen des eCommerce unterschieden. Die in Abbildung \ref{fig:eCommerceGrundformen} fett hervorgehobenen Varianten werden von \citet{meier12} als \glqq die zwei Geschäftsoptionen des eCommerce\grqq{} bezeichnet: \ac{B2C} und \ac{B2B}. Bei \ac{B2C} erfolgt der Handel von Produkten und Dienstleistungen zwischen Unternehmen and Endverbraucher, bei \ac{B2B} zwischen Unternehmen.
+
+\vspace{1em}
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=0.7\linewidth]{Abbildungen/eCommerceGrundformen.jpg}
+	\captionof{figure}[eCommerceGrundformen]{Grundformen des eCommerce nach Marktpartnern (Quelle: \citet{schwarze02})}
+	\label{fig:eCommerceGrundformen}
+\end{minipage}
+\vspace{1em}
+
+Für die Umsetzung von eCommerce existieren unterschiedliche Geschäftsmodelle. \citet{timmers98} nennt 11 verschiedene Formen. eShops sind eine eine davon. Es handelt sich dabei um ein \glqq Geschäftsmodell der Angebotsveröffentlichung, bei dem ein Anbieter seine Waren oder Dienstleistungen über das Web den Nachfragern offeriert\grqq{} \citep{bartelt00}.
+
+Ein eShop bildet den traditionellen Einkaufsvorgang nach: Kunden können mittels einer Katalog- oder Suchfunktion über den Produktbestand navigieren. Produkte können ausgewählt und ausführliche, mit Medien angereicherte Beschreibungen abgerufen werden. Wunschartikel werden einem virtuellen Warenkorb hinzugefügt. Ist die Produktauswahl abgeschlossen, begibt sich der Kunde zur \glqq Kasse\grqq{}, wo die Zahlungsmodalitäten erledigt werden \citep{boles00}. Ein eShop beschreibt das Geschäftsmodell, jedoch noch nicht dessen Umsetzung als Softwaresystem. Diese wird als eShop-System bezeichnet \citep{boles00} und im Folgenden behandelt.
+
+\subsubsection{eShop-Systeme}
+\glqq eShop-Systeme sind Software-Systeme, die den Aufbau, die Verwaltung und den Einsatz von eShops unterstützen\grqq{} \citep{boles00}. Abbildung \ref{fig:eShopGrobarchitektur} zeigt die Grobarchitektur eines eShop-Systems nach \citeauthor{meier12}. Darin wird die Unterteilung zwischen Storefront und Backfront deutlich, welche in der Terminologie realer Shopsysteme als Front- und Backend bezeichnet werden \citep[vgl.][]{shopwareDoku}. Das Frontend ist der Interaktionsraum der Kunden, das Backend der adminsitrative Bereich des Shopbeitreibers.
+
+\vspace{1em}
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=0.7\linewidth]{Abbildungen/eShopGrobarchitektur.jpg}
+	\captionof{figure}[eShopGrobarchitektur]{Grobarchitektur eines eShop-Systems (Quelle: \citet{meier12})}
+	\label{fig:eShopGrobarchitektur}
+\end{minipage}
+\vspace{1em}
+
+Die Hauptaufgaben eines eShop-Systems sehen \citet{boles00} in den Bereichen Merchandising (z.B. Management von hierarchisch strukturierten Produktkatalogen, Beeinflussung des Shopdesigns), Auftragsbearbeitung (z.B. Festlegung der Abarbeitungs-Pipeline, Integration von Bezahlverfahren) und Sonstiges (z.B. die Kopplung mit externen ERP-Systemen). Der konkrete Funktionsumfang hängt vom  gewählten eShop-System ab.
+
+Die Systeme sind nach Strategie der Anbieter kategorisierbar:
+\begin{compactitem}
+\item \textbf{Open-Source}-Systeme sind kostenlos verfügbar. Sie bieten völlige Gestaltungsfreiheit, aber keinen Herstellersupport. Die Dokumentationen sind schwacher und der Funktionsumfang geringer als bei kostenpflichtigen alternativen. Andererseits existieren Communities, die Unterstützung bieten und die Entwicklung von Erweiterungen vorantreiben \citep{stahl15}. Beim kommerziellen Handel der modularen Erweiterungen auf shopspezifischen Stores liegt auch eine der wesentlichen Erlösquellen der Open-Source Strategie (z.B. der Addon Marketplace der \citeauthor{prestashopAddons} oder das Extensionverzeichnis der \citeauthor{opencartExtensions}).
+\item \textbf{Kauf-Lösungen} können kostenpflichtig lizensiert werden (z.B. \citeauthor{shopwarePricing}). Sie bieten Herstellersupport, zusätzliche Dienstleistungen (z.B. Installation des Shops) und einen höheren Funktionsumfang (z. B. Schnittstellen zu verschiedenen Warenwirtschaftssystemen oder Zahlungsdienstleistern) \citep{stahl15}. Die Hersteller bieten verschiedene Editionen mit teilweise erheblichen Preisunterschieden an (Bsp.: die Preisdifferenz der Magento Enterprise Edition zu Enterprise Premium liegt bei über 35.000 \$, \citealp[vgl][]{fwpShop}).
+\begin{enumerate}[a.]
+\item Im Rahmen eines Dual-License-Modells ist eine Open-Source \textbf{Community Edition} Teil des Editionsspektrums \citep{t3n14} (vgl. das Shopangebot der \citeauthor{magentoShops}, \citeauthor{shopwarePricing} oder \citeauthor{oxidShops}). Durch den offenen Quellcode existiert auch hier der Handel modularer Erweiterungen, von dem auch die kostenpflichtigen Varianten profitieren (vgl. der Plugin Store der \citeauthor{shopwarePluginStore}). Aufgrund der gleichen Codebasis alles Editionen kann zu einer Kauf-Lösung migriert werden, was Flexibilität für  wachsende Shopanforderungen bietet.
+\end{enumerate}
+\item \textbf{Miet-Shops} entsprechen einer Cloud-Lösung als Software-as-a-Service (z.B. \citeauthor{stratoWebshops}, \citeauthor{shopify15}). Die technische Infrastruktur wird vom Provider zur Verfügung gestellt. Systemwartung, Bereitstellung der Shopsoftware und Hosting werden unter dem Mietpreis abgerechnet. \citet{stahl15} bewertet diese Variante als Einstiegslösung mit geringer Gestaltungsfreiheit.
+\item \textbf{Eigenentwicklungen} eignen sich für individuelle Bedürfnisse, wenn die Standardsysteme die Anforderungen nicht mehr erfüllen \citep{stahl15, graf14}.
+\end{compactitem}
+
+Aus der Liste sind die (zumindest initial) kostenfreien Varianten ersichtlich: reine Open-Source eShop-Systeme sowie die Community-Editionen der Dual-License Modelle. Eine Anbieterübersicht ist \citet{t3n14} zu entnehmen. Eine Kategorisierung der Systeme nach Anforderungsklassen ist \citet{graf14} zu entnehmen.
+
+\pagebreak
 \section{Analyse}
 
 \subsection{Tacton Produktkonfigurator}
