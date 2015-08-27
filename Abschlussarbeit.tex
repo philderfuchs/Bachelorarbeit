@@ -130,14 +130,14 @@ Die Schlüsselbegriffe der Definition von \citeauthor{sabin98} sind Komponentent
 
 Zur besseren Nachvollziehbarkeit den weiteren Terminologie ist eine Definition des Variantenbegriffs angebracht. DIN 199 beschreibt Varianten als \glqq Gegenstände ähnlicher Form und/oder Funktion mit einem in der Regel hohen Anteil identischer Gruppen oder Teile\grqq{}. Damit ist also eine Gegenstandsmenge gemeint. Ein Element dieser Menge ist demzufolge eine konkrete Variantenausprägung. Eine Variantenausprägung unterscheidet sich von einer anderen durch mindestens eine Beziehung oder ein Element \citep{lutz11}.
 
-Die Einheit aus Komponententypen sowie das Wissen um deren Kombinierbarkeit in Form von Constraints wird als \textbf{Konfigurationsmodell} bezeichnet. Es bildet die Menge der validen Lösungen und definiert so implizit alle Variantenausprägungen eines Produktes. Dadurch muss nicht jede Variantenausprägung explizit definiert und abgespeichert werden (z.B. in einer Datenbank). Die Anzahl möglicher Kombinationen kann in die Millionen gehen, was die Suche nach einer bestimmten sehr zeitaufwändig machen würde \citep{falkner11}.
+Die Einheit aus Komponententypen sowie das Wissen um deren Kombinierbarkeit in Form von Constraints wird als \textbf{Konfigurationsmodell} bezeichnet. Es bildet die Menge der korrekten Lösungen und definiert so implizit alle Variantenausprägungen eines Produktes \citep{soininen98}. Dadurch muss nicht jede Variantenausprägung explizit definiert und abgespeichert werden (z.B. in einer Datenbank). Die Anzahl möglicher Kombinationen kann in die Millionen gehen, was die Suche nach einer bestimmten sehr zeitaufwändig machen würde \citep{falkner11}.
 
 Die Einheit aus Konfigurationsmodell und den Kundenanforderungen wird als \textbf{Konfigurationsaufgabe} bezeichnet \citep{felferning14}. Diese ist die Eingabe des Konfigurators, welcher als Ausgabe eine Konfiguration und somit eine konkrete Variantenausprägung liefert. Demzufolge ist der Begriff Konfiguration überladen: er bezeichnet sowohl den Prozess als auch dessen Ergebnis. Im Folgenden werden daher die Begriffe Konfigurationsprozess sowie Konfigurationslösung verwendet.
 
 Aus diesem Begriffsüberblick geht hervor, dass die auf dem Konfigurationsmodell basierende Konfigurationsaufgabe der Schlüssel zur Bildung einer kundenspezifischen Variantenausprägung ist. Aus diesem Grunde werden diese Begriffe im Folgenden  genauer erläutert.
 
 \textbf{Konfigurationsmodell}\\
-Das Konfigurationsmodell kapselt das Wissen über die Komponenten eines variierbaren Produktes, sowie deren Beziehungen und Kombinierbarkeit. Es wird auch als Wissensbasis $C_KB$ bezeichnet. Durch dieses Modell kann eine Vorstellung aller abbildbaren Variantenausprägungen gewonnen werden.
+Das Konfigurationsmodell kapselt das Wissen über die Komponententypen, deren Struktur und Kombinierbarkeit. Durch dieses Modell kann eine Vorstellung aller abbildbaren Variantenausprägungen gewonnen werden.
 
 Es gibt verschiedene Formalisierungs- und Visualisierungskonzepte von Konfigurationsmodellen. Für eine vollständige Übersicht sei auf \citet{felferning14} verwiesen. Im Folgenden wird eine UML-basierte Visualisierung vorgestellt, da diese im Bereich der Informatik eine besondere Verbreitung aufweist.
 
@@ -190,7 +190,7 @@ Auf formeller Ebene ist eine Konfigurationsaufgabe auch auf Grundlage eines \ac{
 Eine Konfigurationsaufgabe ist demzufolge ein Tripel $(V, D, C)$, wobei $V = \{v_1, ..., v_n\}$ eine endliche Menge Variablen ,  $D  = \{dom(v_1), ..., dom(v_n)\}$ die Menge der Werte der Variablen und $C = C_{KB} \cup REQ$, wobei $C_{KB}$ die oben beschriebene Wissensbasis und $REQ$ die Menge der Kundenanforderungen ist \citep{felferning14}.
 
 \textbf{Konfigurationslösung}\\
-Auf Grundlage des \ac{CSP} kann eine Konfigurationslösung formell definiert werden. Es handelt sich dabei um eine Insttanziierung $I = \{v_1 = i_1, ..., v_n = i_n\}$, wobei $i_j$ ein Element aus $dom(v_1)$ ist. I ist vollständig (jede Variable bestitzt einen zugewiesenen Wert) und konsistent (erfüllt alle Konfigurationsregeln) \citep{falkner11}. Eine solche Lösung wird im folgenden als valide bezeichnet.
+Auf Grundlage des \ac{CSP} kann eine Konfigurationslösung formell definiert werden. Es handelt sich dabei um eine Insttanziierung $I = \{v_1 = i_1, ..., v_n = i_n\}$, wobei $i_j$ ein Element aus $dom(v_1)$ ist. I ist vollständig (jede Variable bestitzt einen zugewiesenen Wert) und konsistent (erfüllt alle Konfigurationsregeln) \citep{falkner11}. Eine solche Lösung wird als korrekt bezeichnet \citep{soininen98}.
 
 Eine Lösung kann durch ein UML-Instanz-Diagramm visualisiert werden, wie Abbildung \ref{fig:konfigurationsmodellUmlLoesung} darstellt. Anstatt von Komponententypen sind nur noch konkrete Instanzen enthalten.
 
@@ -203,9 +203,12 @@ Eine Lösung kann durch ein UML-Instanz-Diagramm visualisiert werden, wie Abbild
 \end{minipage}
 \vspace{1em}
 
-Eine Konfigurationsaufgabe kann mehr als eine valide Lösung liefern. In diesem Falle ist es Möglich, dem Benutzer als Ergebnis eine Variantenmenge zu präsentieren. Nicht erfüllbare Constraints führen hingegen zu einer leeren Lösungsmenge.
+Eine Konfigurationsaufgabe kann mehr als eine valide Lösung liefern. In diesem Falle ist es Möglich, dem Benutzer als Ergebnis eine Variantenmenge zu präsentieren. Eine nicht erfüllbare Konfigurationsaufgabe führt hingegen zu einer leeren Lösungsmenge.
 
-Diese Beschreibung einer Konfigurationslösung suggeriert, dass zu Beginn des Konfigurationsprozesses einmalig die Kundenanforderungen aufgenommen und daraufhin die Lösungsmenge ermittelt wird. Diese Form ohne interaktive Eingriffsmöglichkeiten wird als statisch bezeichnet. Demgegenüber erlaubt die interaktive Konfiguration das schrittweise Treffen und Revidieren von Entscheidungen \citep{hadzic04}. Dieser Prozess muss durch eine Software unterstützt werden. Sie wird als Konfigurator bezeichnet und wird im Folgenden vorgestellt.
+Diese Beschreibung einer Konfigurationslösung suggeriert, dass zu Beginn des Konfigurationsprozesses einmalig die Kundenanforderungen aufgenommen und daraufhin die Lösungsmenge ermittelt wird. Diese Form als statische Konfigurationsaufgabe bezeichnet. Demgegenüber erlaubt die interaktive Konfiguration das schrittweise Treffen und Revidieren von Entscheidungen \citep{hadzic04}. Dieser Prozess muss durch eine Software unterstützt werden. Sie wird als Konfigurator bezeichnet und wird im Folgenden vorgestellt.
+
+VERMERK: EVENTUELL ERWÄHNEN, DASS DAS MODEL DIE REPRÄSENTATION DES KONFIGURATIONSWISSENS DARSTELLT, , that is, the knowledge
+that people have on configurable products \citep{soininen98}  IST, NUN ABER NOCH 	in eine logische repäsentation übersetzt werden muss, die der Konfigurator versteht \citep{felferning01}.
 
 \subsubsection{Konfigurator}
 Der Konfigurator ist das System, welche die Schnittstelle zum Benutzer darstellt und den Konfigurationsprozess durchführt. Es bekommt die Konfigurationsaufgabe als Eingabe und liefert als Ausgabe die Konfigurationslösung \citep{felferning14}. Sie "[...] führen den Abnehmer durch alle Abstimmungsprozesse, die zur Definition des individuellen Produktes nötig sind und prüfen sogleich die Konsistenz sowie Fertigungsfähigkeit der gewünschten Variante" \citep{piller06}.
@@ -362,12 +365,22 @@ Aus der Liste sind die (zumindest initial) kostenfreien Varianten ersichtlich: r
 
 \pagebreak
 \section{Analyse}
+Auseinandersetzung mit den konkreten Technologien. Es geht um eine Integration. Was wird integriert? Der Tacton Produktkonfigurator. Das wird als erstes vorgestellt. Worin soll es integriert werden? In ein Open-Source Shopsystem. Das wird als zweites vorgestellt. 
 
-\subsection{Tacton Produktkonfigurator}
+\subsection{Tacton Stuff}
+Erst wird Tacton mit der Produktfamilien, dann das Konfigurationsmodell, dann TCSite vorgestellt. Bei TCSite muss der Technologische Background, die KOnfiguration darin sowei die Erweiterbarkeit erwähnt werden.
 
-\subsection{TCsite}
+\subsubsection{Tacton}
+Tacton ist nicht nur ein Konfigurator. Tacton ist ein Hersteller, der eine Produktfamilie verwaltet. 
 
-\subsection{Produktkonfiguration in TCsite}
+
+\subsubsection{Konfigurationsmodell}
+
+\subsubsection{TCSite}
+\textbf{Konfigurationsprozess}
+\textbf{Erweiterbarkeit}
+Analyse Konfigurationsprozess
+Analyse Erweiterbarkeit
 
 \subsection{Shopsystem}
 
