@@ -72,12 +72,11 @@
 
 \section{Grundlagen}
 
-\subsection{Konfiguration}
+\subsection{Bezugsrahmen}
 Im Folgenden Abschnitt wird geklärt: was ist ein Konfigurator und wofür brauchen wir ihn? Aus Gründen der Nachvollziehbarkeit werden diese Fragen allerdings in umgedrehter Reihenfolge bearbeitet.
 Dazu wird zunächst eine marktwirtschaftliche Situation erläutert, welche die Notwendigkeit hybrider Wettbewerbsstrategien begründet. Diese wiederum stellen zu ihrer Umsetzbarkeit Bedingungen an Produktionskonzepte, welche daraufhin vorgestellt werden. Abschließend wird geklärt, welchen Beitrag die Produktkonfiguration dabei leistet und dessen Funktionsweise erläutert.
 
-\subsubsection{Anwendungsrahmen}
- \label{subssubsection:Ausgangssituation}
+\subsubsection{Wirtschaftlicher Bezug}
 Neue Wettbewerbsbedingungen und gesteigerte Kundenansprüche haben den Druck auf Industrieunternehmen zur Produktion individualisierter Produkte erhöht \citep{piller98}. Dies erfordert eine stärkere Leistungsdifferenzierung\citep{lutz11}. Die Differenzierung ist ein der von \citeauthor{porter02} beschriebenen \glqq generischen Wettbewerbsstrategien\grqq{}. Weitere sind die Kostenführerschafts- und Fokussierungsstrategie. Die Kostenführerschaft bezieht sich klassischerweise auf Anbieter von Massenproduktion. Durch die Unterbietung der Konkurrenzpreise wird der Marktanteil erhöht. Dem Gegenüber entspricht die Leistungsdifferenzierung dem Verkauf von Produkten mit höherem individuellen Kundennutzen zu höheren Preisen.
 
 \vspace{1em}
@@ -114,19 +113,20 @@ Die Produktionskonzepte unterscheiden sich hauptsächlich nach dem Kriterium, wa
 In Abschnitt \ref{subssubsection:Produktklassifizierung} wurde dargestellt, wie bestimmte Produktionskonzepte die Herstellung individualisierter Produktvarianten bei gleichzeitiger Lagerfertigung ermöglichen. Produkte werden mit dem Ziel gestaltet, so individuell und auftragsunabhängig wie möglich zu sein. Damit wurde eine der Schlüsselfaktoren für die Ermöglichung der hybriden Wettbewerbsstrategie \ac{MC} erläutert. Diese verbindet die Vorteile effizienter Massenproduktion mit denen
 der kundenspezifischen Einzelfertigung\citep{piller98}.
 
-\subsubsection{Produktkonfiguration}
- \label{subssubsection:Produktkonfiguration}
+\pagebreak
+\subsection{Produktkonfiguration}
+\label{subssubsection:Produktkonfiguration}
  
 Aus der im vorangegangenen Kapitel vorgestellten \ac{MC} resultiert mehr Produktvariabilität und damit mehr Produktkomplexität. Die Produktkonfiguration (Konfiguration) ist ein Werkzeug zur Beherrschung dieser Komplexität. Sie unterstützt das Finden einer Produktvariante, die auf Kundenanforderungen angepasst und gleichzeitig machbar ist \citep{lutz11}. Diese wird von einem Produktkonfigurationssystem (Konfigurator) durchgeführt. Es folgt nun eine Definition der in diesem Zusammenhang wichtigen Begriffe.
 
-\textbf{Begriffsüberblick}\\
-\textbf{Konfiguration} ist eine spezielle Designaktivität, bei der der zu konfigurierende Gegenstand aus Instanzen einer festen Menge wohldefinierter Komponententypen zusammengesetzt wird, welche entsprechend einer Menge von Konfigurationsregeln kombiniert werden können \citep{sabin98}.
+\subsubsection{Begriffsüberblick}
+\textbf{Konfiguration} ist eine spezielle Designaktivität, bei der der zu konfigurierende Gegenstand aus Instanzen einer festen Menge wohldefinierter Komponententypen zusammengesetzt wird, welche entsprechend einer Menge von Constraints kombiniert werden können \citep{sabin98}.
 
 Die Einordnung als Designaktivität erlaubt außerdem die Beschreibung der Konfiguration als ein Designtyp. Es werden das \glqq Routine Design\grqq{}, \glqq Innovative Design\grqq{} und \glqq Creative Design\grqq{} unterschieden. Die Konfiguration entspricht dem \glqq Routine Design\grqq{}. Dabei handelt es sich um ein Problem, bei der die Spezifikation der Objekte, deren Eigenschaften sowie kompositionelle Struktur gegeben sind und die Lösung auf Basis einer bekannten Strategie gefunden wird \citep{brown89}. Damit ist \glqq Routine Design\grqq{} die simpelste der drei Formen. Die anderen Designtypen enthalten hingegen Objekte und Objektbeziehungen, die erst während des Designprozesses entwickelt werden., 
 
-Die Schlüsselbegriffe der Definition von \citeauthor{sabin98} sind Komponententypen und Konfigurationsregeln. \textbf{Komponententypen} sind Kombinationselemente, welche durch Attribute charakterisiert werden und eine Menge alternativer (konkreter) Komponenten repräsentieren. Übertragen auf die objektorientierte Programmierung verhalten sich Komponententypen zu Komponenten wie Klassen zu Instanzen. Komponententypen stehen zueinander in Beziehung. Diese kann entweder eine \glqq Teil-Ganzes\grqq{}-Beziehung oder Generalisierung sein \citep{felferning14}. 
+Die Schlüsselbegriffe der Definition von \citeauthor{sabin98} sind Komponententypen und Constraints. \textbf{Komponententypen} sind Kombinationselemente, welche durch Attribute charakterisiert werden und eine Menge alternativer (konkreter) Komponenten repräsentieren. Übertragen auf die objektorientierte Programmierung verhalten sich Komponententypen zu Komponenten wie Klassen zu Instanzen. Komponententypen stehen zueinander in Beziehung. Diese kann entweder eine \glqq Teil-Ganzes\grqq{}-Beziehung oder Generalisierung sein \citep{felferning14}. 
 
-\textbf{Konfigurationsregeln} (Constraints) im engeren Sinne sind Kombinationsrestriktionen \citep{felferning14}. Weitere Arten werden später vorgestellt.
+\textbf{Constraints} (d.h. Konfigurationsregeln) im engeren Sinne sind Kombinationsrestriktionen \citep{felferning14}. Weitere Arten werden später vorgestellt.
 
 Zur besseren Nachvollziehbarkeit den weiteren Terminologie ist eine Definition des Variantenbegriffs angebracht. DIN 199 beschreibt Varianten als \glqq Gegenstände ähnlicher Form und/oder Funktion mit einem in der Regel hohen Anteil identischer Gruppen oder Teile\grqq{}. Damit ist also eine Gegenstandsmenge gemeint. Ein Element dieser Menge ist demzufolge eine konkrete Variantenausprägung. Eine Variantenausprägung unterscheidet sich von einer anderen durch mindestens eine Beziehung oder ein Element \citep{lutz11}.
 
@@ -136,97 +136,111 @@ Die Einheit aus Konfigurationsmodell und den Kundenanforderungen wird als \textb
 
 Aus diesem Begriffsüberblick geht hervor, dass die auf dem Konfigurationsmodell basierende Konfigurationsaufgabe der Schlüssel zur Bildung einer kundenspezifischen Variantenausprägung ist. Aus diesem Grunde werden diese Begriffe im Folgenden  genauer erläutert.
 
-Die Einheit aus Konfigurator und Werkzeugen zur Entwicklung von Pflege der Konfigurationsmodelle wird als \textbf{Konfigurationsumgebung} bezeichnet \citep{felferning14}. DIES ALLERDINGS STEHT IM WIEDERSPRUCH ZU SPÄTEREN DEFINITIONEN IM BUCH.
-
-\textbf{Wissenrepräsentation}\\
+\subsubsection{Wissenrepräsentation}
 Das Konfigurationswissen ist das gesamte Wissen, welches über eine Konfigurierbares Produkt besteht \citep{soininen98}. Dieses Wissen kann auf unterschiedliche Art und Weise repräsentiert, d.h. dargestellt werden. Die Repräsentation kann zur Definition eines Konfigurationsmodells genutzt werden \citep{felferning14}. Auf konzeptioneller Ebene können die Begriffe Wissensrepräsentation und Konfigurationsmodell äquivalent verwendet werden. Das Konfigurationsmodell bezeichnet jedoch letztendlich das spezifische Format, welches von einem Konfigurator verstanden wird \citep{soininen98}.
 
 Es existieren verschiedene Wissensrepräsentationskonzepte mit unterschiedlicher Ausdruckskraft. Jede hat verschiedene Stärken. Im Folgenden wird ein grafische sowie eine formelle Repräsentationsvariante vorgestellt. Ein Visualisierungskonzept erleichtert den Einstieg und ermöglicht die Bildung einer Vorstellung über die möglichen Varianten eines Produktes. Über die Formalisierung des Konfigurationswissens lässt hingegen eine Definition der Konfigurationsaufgabe ableiten.
 
-\textbf{UML-Konfigurationsmodellvisualisierung}\\
+\textbf{UML-Visualisierung}\\
 Von den bestehenden Visualisierungskonzept wird eine UML-basierte Variante gewählt, da diese Sprache in der Informatikdomäne eine besondere Verbreitung aufweist. Im Folgenden wird eine Notebook-Konfiguration eingeführt, die von späteren Erklärungen wieder aufgegriffen wird. Die Modellierung basiert auf dem Arbeitsbeispiel von \citep{felferning14}.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
-	\includegraphics[width=0.9\linewidth]{Abbildungen/notebookConfigurationUML.pdf}
-	\captionof{figure}[notebookConfigurationUML]{UML-Konfigurationsmodellvisualisierung einer Notebook-Konfiguration)}
+	\includegraphics[width=1\linewidth]{Abbildungen/notebookConfigurationUML.pdf}
+	\captionof{figure}[notebookConfigurationUML]{UML-Visualisierung einer Notebook-Konfiguration\footnote{Das 'iTunes-Music-Package' stellt ein Überraschungspaket mit Musik für iTunes dar.}}
 	\label{fig:notebookConfigurationUML}
 \end{minipage}
 \vspace{1em}
 
-Abbildung \ref{fig:konfigurationsmodellUml} besteht aus einer Strukturdarstellung und einer Regeltabelle. Vor der genauen Beschreibung der Modellierungsmöglichkeiten erfolgt zur besseren Nachvollziehbarkeit eine unformale Beschreibung der Grafik:
+\begin{table}[]
+\centering
+\caption{Constraints des Konfigurationsmodells aus Abbildung \ref{fig:notebookConfigurationUML}}
+\label{tab:notebookConfigurationConstraints}
+\begin{tabularx}{\textwidth}{|l|X|}
+\hline
+{\bf Name} & {\bf Beschreibung}\\
+\hline
+$GC_1$ & Wird das \textbf{iTunes-Music-Package} gewählt, muss auch das Betriebssystem (OS) vom Typ\textbf{OSX Yosemite} gewählt werden. \\
+\hline
+$GC_2$ & Das OS vom Typ \textbf{OSX Yosemite} und der Arbeitsspeicher (RAM) vom Typ \textbf{Small RAM} können nicht gleichzeitig gewählt werden\\
+\hline
+$PRC_1$ & Der Preis des Notebooks ist die Summe der \textbf{price}-Attribute der Storage-, Motherboard-, RAM-, CPU- und iTunes-Music-Package-Komponenten\\
+\hline
+$RESC_1$ & Die Summe der \textbf{needed capacity}-Attribute aller iTunes-Music-Package-Komponenten darf die Summe der \textbf{capacity}-Attribute aller Storage-Komponenten nicht überschreiten\\
+\hline
+$CRC_1$ & Das OS vom Typ \textbf{OSX Yosemite} benötigt mindestens einen \textbf{core}-Wert der CPU-Komponente von 2\\
+\hline
+$COMPC_1$ & Das OS vom Typ \textbf{Windows XP} ist inkompatibel mit dem \textbf{size}-Wert der Notebook-Komponente von 13"\\
+\hline
+\end{tabularx}
+\end{table}
 
-Ein PC besteht aus einem Motherboard (MB) und Betriebssystem (OS). Ein Motherboard besitzt wiederum einen oder zwei CPUs. Ein Motherboard kann in der Ausfertigung "MBDiamond" oder "MBSilver" vorliegen. Ein CPU in den Ausfertigungen "CPUD" oder "CPUS", ein Betriebssystem als OSBETA oder OSALPHA. MBDiamond und CPUS dürfen nicht gleichzeitig gewählt werden. Gleiches gilt für MBSilver und CPUD. Wird OSAlpha gewählt, muss CPUD auch gewählt werden. Der Preis errechnet sich aus der Summer der Einzelkosten des verwendeten Motherboards, Betriebssystems und der CPUs. Er darf das Preislimit des Kunden nicht überschreiten.
-
-Es stehen folgende Modellierungsmöglichkeiten des Strukturteils zur Verfügung:
+Abbildung \ref{fig:notebookConfigurationUML} beschreibt den Strukturteil der Visualisierung. Folgende Spracheinheiten sind enthalten\cite{felferning14}:
 \begin{compactitem}
-\item \textbf{Komponententypen:} Kann mit Klassen aus der Objektorientierten Programmierung verglichen werden. Es besitzt einen eindeutigen Namen (z.B. MB) und wird durch eine Menge Attribute beschrieben (z.B. efficiency und price). Ein Attribute hat einen Datentyp, welcher eine Konstante, ein Wertebereich oder eine Enumeration (z.B. efficiency kann die Werte 'A', 'B' oder 'C' annehmen) sein kann.
-\item \textbf{Assoziationen mit Kardinalität:} Aus UML sind die Associationstypen Aggregation und Komposition bekannt. Im Rahmen der Konfigurationsmodellbeschreibung geschieht eine Beschränkung auf die Komposition. Auf diese Art und Weise steht jede Komponente in einer \glqq Teil-Ganzes\grqq{} Beziehung zu genau einer anderen Komponente. Kardinalitäten beschreiben Assoziationen noch näher, indem sie sie durch Mengeninformationen ergänzen (ein Motherboard hat ein bis zwei CPUs, welche zu genau einem Motherboard gehören).
-\item \textbf{Generalisierung}: Stellt die Verbindungen zwischen einem spezialisierten Subtyp (z.B. OSAlpha) zu einem einem generalisierten Supertyp (z.B. OS) her. Sie ist disjunkt und vollständig. Disjunkt bedeutet, dass ein Supertyp genau einem seiner Subtypen zugewiesen werden kann. Vollständig bedeutet, dass die Subtypen alle Instanzen darstellen, die ein Supertyp annehmen kann.
+\item \textbf{Komponententypen und Komponenten} sind die dargestellten Entitäten. Sie besitzen einen eindeutigen Namen (z.B. 'Storage') und werden durch eine Menge von Attributen beschrieben (z.B. 'price', 'capacity'). Ein Attribute hat einen Datentyp, welcher eine Konstante, ein Wertebereich (z.B. die Zahlen von 50 bis 100 als mögliche Werte des Attributs 'capacity') oder eine Enumeration (z.B. ['gaming', 'media'] als mögliche Werte des Attributes 'usage') sein kann.
+\item \textbf{Generalisierungen} stellen die Verbindungen zwischen einem spezialisierten Subtyp zu einem einem generalisierten Supertyp her. Damit muss der Wertebereich eines Attributs eines Subtypen eine Teilmenge des entsprechenden Attributwertebereichs des Supertypen sein. Angewendet auf das Konfigurationsmodell entsteht so die Unterscheidung zwischen Komponententypen und Komponenten: ein nicht mehr weiter spezialisierter Komponententyp wird als Komponente (unterstrichen dargestellt) bezeichnet. Also sind Generalisierungen die Verbindungen zwischen Komponententypen (z.B. Storage) und Komponenten (z.B. HD). Durch die Zuweisung eines Komponententypen zu einer bestimmten Komponente entsteht eine Instanz. Diese Zuweisung ist disjunkt und vollständig. Disjunkt bedeutet, dass jede Instanz eines Komponententypen nur genau eine der Komponenten entsprechen kann. Beispiel: Eine Instanz eine 'Storage' kann eine 'HD' oder eine 'SSD' sein, aber nicht beides. Vollständig bedeutet, dass die dargestellten Komponenten alle tatsächlich möglichen Instanzen darstellen (es gibt für diese Konfiguration keine Komponente 'DVD' als möglichen Storage).
+\item \textbf{Assoziationen mit Kardinalitäten} beschreiben die Beziehungen zwischen Komponententypen. Die hier verwendete Variante ist die Komposition. Das bedeutet, dass keine Instanz eines Komponententypen Teil von mehr als einer anderen Instanz sein kann. Kardinalitäten beschreiben Assoziationen noch näher, indem sie sie durch Mengeninformationen ergänzen. Beispiel: Eine Notebook-Instanz besitzt ein oder zwei Storage-Instanzen. Eine Storage-Instanz kann nur Teil einer Notebook-Instanz sein.
 \end{compactitem}
 
-Die Darstellung wird ergänzt durch Konfigurationsregeln. Sie gelten zwischen Komponententypen und/oder deren Attribute. Wenn möglich, werden sie direkt im Diagramm dargestellt werden. Anderenfalls werden sie in einer Tabelle aufgelistet. Man unterscheidet unterschiedliche Arten von Konfigurationsregeln \citeauthor{felferning14}:
+Die Darstellung wird ergänzt durch Constraints. Sie gelten zwischen Komponententypen und/oder deren Attribute. Wenn möglich, werden sie direkt im Diagramm dargestellt werden. Anderenfalls werden sie in einer Tabelle aufgelistet (siehe Tabelle \ref{tab:notebookConfigurationConstraints}). Es werden unterschiedliche Constrainttypen unterschieden \citep{felferning14}:
 
 \begin{compactitem}
-\item \textbf{Grafische Konfigurationsregeln $GC$:} Können im Gegensatz zu anderen Regeln direkt im UML-Diagramm dargestellt werden. Ansonsten entsprechen sie einem der folgenden Typen.
-\item \textbf{Preisbildungs-Konfigurationsregeln $PRC$:} Nehmen eine Sonderstellung ein, da sie keinen direkten Einfluss auf die Kombinierbarkeit haben. Stattdessen kann aus der Auswertung dieser Regel eine Preisinformation gewonnen werden. Bei tatsächlichen Konfigurationsanwendungen sind Preisregeln jedoch meistens nicht Teil des Konfigurationsmodells. Der Konfigurator hat dann einen eigenen Mechanismus zur Preisbildung.
-\item \textbf{Ressourcen-Konfigurationsregeln $RESC$:} Beschränken die Produktion und den Verbrauch bestimmter Ressourcen.
-\item \textbf{Abhängigkeits-Konfigurationsregeln $CRC$:} Beschreiben, unter welchen Voraussetzungen zusätzliche Komponenten Teil der Konfiguration sein müssen.
-\item \textbf{Kompatibilitäts-Konfigurationsregeln $COMPC$:} Beschreiben die Kompatibilität  oder Inkompatibilität bestimmter Komponenten. In der Regeln finden sich in einer Regeltabelle entweder erstere oder zweitere Art, je nachdem, was den selteneren Fall darstellt.
+\item \textbf{Grafische Constraints $GC$} können im Gegensatz zu anderen Constraints direkt im UML-Diagramm dargestellt werden. Ansonsten entsprechen sie einem der folgenden Typen.
+\item \textbf{Preisbildungs-Constraints $PRC$} nehmen eine Sonderstellung ein, da sie keinen direkten Einfluss auf die Kombinierbarkeit haben. Stattdessen kann aus der Auswertung dieser Regel eine Preisinformation gewonnen werden. Bei tatsächlichen Konfigurationsanwendungen sind Preisconstraints jedoch meistens nicht Teil des Konfigurationsmodells, sondern werden durch einen eigenen Mechanismus realisiert.
+\item \textbf{Ressourcen-Constraints $RESC$} beschränken die Produktion und den Verbrauch bestimmter Ressourcen. Beispiel:  Jedes 'itunes-Music-Package' verbraucht 5(MB) Festplattenkapazität. Der verfügbare Speicher wird wiederum durch die Storage-Instanzen bestimmt. Wird nur ein Speichermedium in Form einer 'SSD' gewählt, hat das Notebook 250(MB) Festplattenkapazität. Somit die Obergrenze für 'iTunes-Music-Package' Instanzen gleich 50.
+\item \textbf{Abhängigkeits-Constraints $CRC$:} Beschreiben, unter welchen Voraussetzungen zusätzliche Komponenten Teil der Konfiguration sein müssen.
+\item \textbf{Kompatibilitäts-Constraints $COMPC$:} Beschreiben die Kompatibilität  oder Inkompatibilität bestimmter Komponenten.
 \end{compactitem}
 
-Die Menge aller Konfigurationsregeln wird auch als Wissensbasis $C_{KB}$ beschrieben. Es gilt:
+Die Menge aller Constraints wird auch als Wissensbasis $C_{KB}$ beschrieben. Es gilt:
 
  $C_{KB} = GC \cup PRC \cup RESC \cup CRC \cup COMPC$
 
-\textbf{Konfigurationsaufgabe}\\
+\subsubsection{Konfigurationsaufgabe}
 \citet{mittal89} definieren einen Konfigurationsaufgabe wie folgt:
 \begin{quote}
 (A) a fixed, pre-defined set of components, where a component is described by a set of properties, ports for connecting it to other components, constraints at each port that describe the components that can be connected at that port, and other structural constraints; (B) some description of the desired configuration; and (C) possibly some criteria for making optimal selections.
 \end{quote}
-(A) entspricht den Informationen, die aus dem oben vorgestellte Konfigurationsmodell resultieren. (B) und (C) sind als Kundenanforderungen zusammenfassbar. Informell wird daher die Aussage getroffen, dass eine Konfigurationsaufgabe aus den Konfigurationsmodell sowie den Kundenanforderungen besteht \citep{felferning14}.
+(A) ist eine andere Definition für ein Konfigurationsmodell. (B) und (C) sind als Kundenanforderungen zusammenfassbar. Informell entsteht so die im Begriffsüberblick vorgestellte Definition: Die Konfigurationsaufgabe besteht aus dem Konfigurationsmodell sowie den Kundenanforderungen \citep{felferning14}.
 
-Auf formeller Ebene ist eine Konfigurationsaufgabe auch auf Grundlage eines \ac{CSP} als \glqq Regelbasierte Wissensrepräsentation\grqq{} beschreibbar. Eine Diskussion dieser Variante ist sinnvoll, da so die Konfigurationslösung definiert werden kann. Es handelt sich dabei um ein Problem, bei dem für eine gegebene Menge Variablen und deren Wertebereiche unter Berücksichtigung einer Regelmenge versucht wird, eine zulässige Kombination von Werten aus den Wertebereichen der Variablen zu ermitteln. Bei einer Konfigurationsaufgabe wird die Regelmenge um die Menge der Kundenanforderungen erweitert \citep{felferning14}.
+Auf formeller Ebene ist eine Konfigurationsaufgabe auch auf Grundlage eines \ac{CSP} beschreibbar. Eine Vorstellung dieser Variante ist sinnvoll, da so eine Definition der Konfigurationslösung abgeleitet werden kann. Das \ac{CSP} ist ein Problem, bei dem für eine gegebene Menge Variablen und deren Wertebereiche unter Berücksichtigung einer Regelmenge versucht wird, eine zulässige Kombination von Werten aus den Wertebereichen der Variablen zu ermitteln. Bei einer Konfigurationsaufgabe wird die Regelmenge um die Menge der Kundenanforderungen erweitert \citep{felferning14}.
 
 Eine Konfigurationsaufgabe ist demzufolge ein Tripel $(V, D, C)$, wobei $V = \{v_1, ..., v_n\}$ eine endliche Menge Variablen ,  $D  = \{dom(v_1), ..., dom(v_n)\}$ die Menge der Werte der Variablen und $C = C_{KB} \cup REQ$, wobei $C_{KB}$ die oben beschriebene Wissensbasis und $REQ$ die Menge der Kundenanforderungen ist \citep{felferning14}.
 
-\textbf{Konfigurationslösung}\\
-Auf Grundlage des \ac{CSP} kann eine Konfigurationslösung formell definiert werden. Es handelt sich dabei um eine Insttanziierung $I = \{v_1 = i_1, ..., v_n = i_n\}$, wobei $i_j$ ein Element aus $dom(v_1)$ ist. I ist vollständig (jede Variable bestitzt einen zugewiesenen Wert) und konsistent (erfüllt alle Konfigurationsregeln) \citep{falkner11}. Eine solche Lösung wird als korrekt bezeichnet \citep{soininen98}.
+\subsubsection{Konfigurationslösung}
+Auf Grundlage des \ac{CSP} kann eine Konfigurationslösung formell definiert werden. Es handelt sich dabei um eine Insttanziierung $I = \{v_1 = i_1, ..., v_n = i_n\}$, wobei $i_j$ ein Element aus $dom(v_1)$ ist. I ist vollständig (jede Variable bestitzt einen zugewiesenen Wert) und konsistent (erfüllt alle Constraints) \citep{falkner11}. Eine solche Lösung wird als korrekt bezeichnet \citep{soininen98}.
 
-Eine Lösung kann durch ein UML-Instanz-Diagramm visualisiert werden, wie Abbildung \ref{fig:konfigurationsmodellUmlLoesung} darstellt. Anstatt von Komponententypen sind nur noch konkrete Instanzen enthalten.
+Eine korrekte Lösung kann durch ein UML-Instanz-Diagramm visualisiert werden.  Abbildung \ref{fig:notebookInstanceUML} zeigt eine korrekte Lösung der Notebook-Konfiguration. Dargestellt wird also eine mögliche Variantenausprägung. Anstatt der Komponententypen sind nur noch konkrete Instanzen enthalten.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
-	\includegraphics[width=0.9\linewidth]{Abbildungen/konfigurationsmodellUmlLoesung.png}
-	\captionof{figure}[konfigurationsmodellUmlLoesung]{Visualisierung eines Konfigurationsergebnisses als UML-Instanz-Diagramm (Quelle: \cite{felferning14})}
-	\label{fig:konfigurationsmodellUmlLoesung}
+	\includegraphics[width=1\linewidth]{Abbildungen/notebookInstanceUML.pdf}
+	\captionof{figure}[notebookInstanceUML]{Visualisierung einer Konfigurationslösung als UML-Instanz-Diagramm}
+	\label{fig:notebookInstanceUML}
 \end{minipage}
 \vspace{1em}
 
-Eine Konfigurationsaufgabe kann mehr als eine valide Lösung liefern. In diesem Falle ist es Möglich, dem Benutzer als Ergebnis eine Variantenmenge zu präsentieren. Eine nicht erfüllbare Konfigurationsaufgabe führt hingegen zu einer leeren Lösungsmenge.
+Lieferte eine Konfigurationsaufgabe kann mehr als eine korrekte Lösung, ist das Ergebnis eine Variantenmenge. Eine nicht erfüllbare Konfigurationsaufgabe führt hingegen zu einer leeren Lösungsmenge.
 
-Diese Beschreibung einer Konfigurationslösung suggeriert, dass zu Beginn des Konfigurationsprozesses einmalig die Kundenanforderungen aufgenommen und daraufhin die Lösungsmenge ermittelt wird. Diese Form als statische Konfigurationsaufgabe bezeichnet. Demgegenüber erlaubt die interaktive Konfiguration das schrittweise Treffen und Revidieren von Entscheidungen \citep{hadzic04}. Dieser Prozess muss durch eine Software unterstützt werden. Sie wird als Konfigurator bezeichnet und wird im Folgenden vorgestellt.
+Diese Beschreibung einer Konfigurationslösung suggeriert, dass zu Beginn des Konfigurationsprozesses einmalig die Kundenanforderungen aufgenommen und daraufhin die Lösungsmenge ermittelt wird. Diese Form wird als statische Konfigurationsaufgabe bezeichnet. Demgegenüber erlaubt die interaktive Konfiguration das schrittweise Treffen und Revidieren von Entscheidungen \citep{hadzic04}.
 
-VERMERK: EVENTUELL ERWÄHNEN, DASS DAS MODEL DIE REPRÄSENTATION DES KONFIGURATIONSWISSENS DARSTELLT, , that is, the knowledge
-that people have on configurable products \citep{soininen98}  IST, NUN ABER NOCH 	in eine logische repäsentation übersetzt werden muss, die der Konfigurator versteht \citep{felferning01}.
+\subsubsection{Konfigurationssysteme}
+Der Konfigurator ist das System, welche die Schnittstelle zum Benutzer darstellt und den (interaktiven) Konfigurationsprozess durchführt. Es bekommt die Konfigurationsaufgabe als Eingabe und liefert als Ausgabe die Konfigurationslösung \citep{felferning14}. Konfiguratoren "[...] führen den Abnehmer durch alle Abstimmungsprozesse, die zur Definition des individuellen Produktes nötig sind und prüfen sogleich die Konsistenz sowie Fertigungsfähigkeit der gewünschten Variante" \citep{piller06}.
 
-\subsubsection{Konfigurator}
-Der Konfigurator ist das System, welche die Schnittstelle zum Benutzer darstellt und den Konfigurationsprozess durchführt. Es bekommt die Konfigurationsaufgabe als Eingabe und liefert als Ausgabe die Konfigurationslösung \citep{felferning14}. Sie "[...] führen den Abnehmer durch alle Abstimmungsprozesse, die zur Definition des individuellen Produktes nötig sind und prüfen sogleich die Konsistenz sowie Fertigungsfähigkeit der gewünschten Variante" \citep{piller06}.
-
-Nach \citet{piller06} besitzt ein Konfigurator typischerweise drei Komponenten:
+Nach \citet{piller06} besitzt ein Konfigurator drei Komponenten:
 \begin{compactitem}
-\item \textbf{Konfigurationskomponente:} Führt den Konfigurationsprozess durch. \citet{lutz11} bemerkt, dass hierzu eine explizite Wissensbasis (das Konfigurationsmodell, Anmerkung des Authors) und eine Problemlösungskomponente zur Lösungsfindung gehört.
-\item \textbf{Präsentationskomponente:} Erstellte eine Konfiguration in Zielgruppenspezifischer Form. Der Author bemerkt, dass sie gleichzeitig als Schnittstelle zur Aufnahme der Kundenanforderungen dienst.
-\item \textbf{Auswertungskomponente:} Präsentation der Konfiguration in einer Form, welche eine Interpretation der letztendlichen Variantenausprägung außerhalb des Konfigurators erlaubt. Dies können zum Beispiel Stücklisten, Konstruktionszeichnungen oder Arbeitspläne sein.
+\item Die \textbf{Konfigurationskomponente} führt den Konfigurationsprozess durch. Sie wird auch als Konfigurationsengine bezeichnet \citep{tactonProductOverview}.
+\item Die \textbf{Präsentationskomponente} erstellt eine Konfigurationsdarstellung in zielgruppenspezifischer Form. Daraus lässt sich ableiten, dass sie gleichzeitig als Schnittstelle zur Aufnahme der Kundenanforderungen dient.
+\item Die \textbf{Auswertungskomponente} präsentiert der Konfiguration in einer Form, welche eine Interpretation der Variantenausprägung außerhalb des Konfigurators erlaubt. Dies können zum Beispiel Stücklisten, Konstruktionszeichnungen und Arbeitspläne sein.
 \end{compactitem}
 
-Konfiguratoren für die Erhebung komplexer Anforderungen technischer Systeme unterschieden müssen von Konfiguration für den Einsatz im \ac{MC} werden \citep{felferning14}. Erstere sind für den Experteneinsatz gedacht oder dienen nach \citet{piller06} als Vertriebskonfiguratoren der Unterstützung des Verkaufsgespräches.   Letztere werden von Kunden in einer Company-to–Customer Beziehung genutzt und werden auch als Mass Customization Toolkit bezeichnet. Die sogenannte Selbstkonfiguration ist wesentlich sie die Verheiratung von kundenindividueller Fertigung und Massenproduktion, indem der zeitkonsumierende Prozess der Erhebung der Kundenbedürfnisse auch die Seite des Kunden verlagert wird\citep{piller06}
+Konfiguratoren für die Erhebung komplexer Anforderungen technischer Systeme  müssen von Konfiguration für den Einsatz für \ac{MC} unterschieden werden \citep{felferning14}. Erstere sind für den Experteneinsatz gedacht oder dienen nach \citet{piller06} als Vertriebskonfiguratoren der Unterstützung des Verkaufsgespräches.   Letztere werden von Kunden in einer Company-to–Customer Beziehung genutzt und werden auch als Mass Customization Toolkit bezeichnet. Diese sogenannte Selbstkonfiguration ist eine Vorraussetzung für \ac{MC}, indem der zeitkonsumierende Prozess der Erhebung der Kundenbedürfnisse auf die Seite des Kunden verlagert wird\citep{piller06}
 
 Konfiguratoren können bei allen in Abschnit \ref{subssubsection:Produktklassifizierung} genannten Produktionskonzepten zum Einsatz kommen. Je nach Produktionskonzept erfüllen sie für den Anwender eine unterschiedliche Funktion. Bei \ac{PTO} erfüllt der Konfigurator eine Katalogfunktion, indem er den Anwender er den Anwender bei der Auswahl eines fertigen Produktes aus einer Produktpalette unterstützt. Bei \ac{ATO} verhält sich der Konfigurator wie eine Variantengenerator, der den Anwender bei der Auswahl der richtigen, vom Hersteller vordefinierten Variante unterstützt. Der Anwendungsfall \ac{MTO} ist ähnlich, jedoch sind die Varianten vom Anwender definiert. Bei \ac{ETO} können Konfiguratoren durch den erheblichen Neukonstruktionsbedarf nur begrenzten Beitrag leisten. Aus dieser Erläuterung lässt sich Ableiten, dass das Haupteinsatzgebiet von Konfiguratoren im \ac{ATO}/\ac{MTO} Umfeld liegt.
-\pagebreak
 
+\pagebreak
 \subsection{Webservices}
 
 Das \citet	{w3c04} definiert Webservices lose als:
