@@ -136,6 +136,8 @@ Die Einheit aus Konfigurationsmodell und den Kundenanforderungen wird als \textb
 
 Aus diesem Begriffsüberblick geht hervor, dass die auf dem Konfigurationsmodell basierende Konfigurationsaufgabe der Schlüssel zur Bildung einer kundenspezifischen Variantenausprägung ist. Aus diesem Grunde werden diese Begriffe im Folgenden  genauer erläutert.
 
+Die Einheit aus Konfigurator und Werkzeugen zur Entwicklung von Pflege der Konfigurationsmodelle wird als \textbf{Konfigurationsumgebung} bezeichnet \citep{felferning14}. DIES ALLERDINGS STEHT IM WIEDERSPRUCH ZU SPÄTEREN DEFINITIONEN IM BUCH.
+
 \textbf{Konfigurationsmodell}\\
 Das Konfigurationsmodell kapselt das Wissen über die Komponententypen, deren Struktur und Kombinierbarkeit. Durch dieses Modell kann eine Vorstellung aller abbildbaren Variantenausprägungen gewonnen werden.
 
@@ -371,8 +373,15 @@ Auseinandersetzung mit den konkreten Technologien. Es geht um eine Integration. 
 Erst wird Tacton mit der Produktfamilien, dann das Konfigurationsmodell, dann TCSite vorgestellt. Bei TCSite muss der Technologische Background, die KOnfiguration darin sowei die Erweiterbarkeit erwähnt werden.
 
 \subsubsection{Tacton}
-Tacton ist nicht nur ein Konfigurator. Tacton ist ein Hersteller, der eine Produktfamilie verwaltet. 
+Die Tacton Systems AB (Tacton) wurde 1998 Spin-Off des Schwedischen Instituts für Informatik (SICS) gegründet \citep{tactonProductOverview}. In der Forschungseinrichtung wurde als Resultat der Untersuchungen im Bereich Wissensbasierte Systeme und Künstliche Intelligenz der Tacton Produktkonfigurator entwickelt \citep{tactonAbout}. Dieser interaktive Konfigurator ist die Basis der verschiedenen Produkte der Firma.
 
+Neben einer Konfigurationsumgebung bietet Tacton Lösungen im Bereich Vertriebskonfiguration und Design Automation (Automatisierung der Konstruktion in CAD-Systemen). Im Folgenden werden die für die Aufgabenstellung relevanten Produkte vorgestellt
+\begin{compactitem}
+\item \textbf{Tacton Studio} ist die Konfigurationsumgebung. Es ermöglicht das Erstellen, Testen und Pflegen von Konfigurationsmodellen \citep{tactonProductOverview}. Das Modell wird letztendlich in einem XML-Format abgespeichert \citep{felferning14}. Dadurch wird die Modellentwicklung von Tacton Studio unterstützt, ist aber nicht von dieser abhängig.
+\item \textbf{Tacton Configurator Site Application (TCsite)} ist ein webbasierter Vertriebskonfigurator. Er könnte zwar theoretisch von Endkunden genutzt werden, bildet aber nicht die klassischen Geschäftsabläufe eines eShops nach - stattdessen handelt es sich um eine CPQ-Lösung Configure-Price-Quote. Das bedeutet: der Nutzer wird durch den Konfigurationsprozess geführt, was ist einer Preiskalkulation resultiert, woraus ein Angebot erstellt werden kann. Nutzer sind Vertriebsmitarbeiter, Händler oder Partner - der Anwendungsbereich liegt also im B2B. Der Konfigurationsprozess findet im Zusammenhang mit einer Serveranwendung statt, welcher den Produktkonfigurator (die Konfigurationsengine) beherbergt \citep{tactonProductOverview}.
+\end{compactitem}
+
+TCsite ist also webbasiert und beherbergt eine Konfigurationsengine. Grundlegende Idee und Gegenstand der Analyse ist also, ob die Konfiguration als Webservice nutzbar gemacht werden kann. Dafür muss das Zusammenspiel der Webanwendung mit der Konfigurationsengine im C-Teil des CPQ-Prozesses untersucht werden. Ist der Konfigurationsprozess in TCsite verstanden, lässt sich daraus ableiten, wie der Service konzipiert werden muss. Voraussetzung ist jedoch Kenntnis darüber, wie Konfigurationswissen bei Tacton in Form eines Konfigurationsmodells abgebildet wird.
 
 \subsubsection{Konfigurationsmodell}
 
