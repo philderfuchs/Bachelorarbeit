@@ -77,7 +77,7 @@ Im Folgenden wird ein Anwendungsrahmen für Produktkonfigurationssysteme (Konfig
 
 \subsubsection{Ökonomischer Bezug}
 \label{subsubsection:oekonomischerBezug}
-Neue Wettbewerbsbedingungen und gesteigerte Kundenansprüche haben den Druck auf Industrieunternehmen zur Produktion individualisierter Produkte erhöht \citep{piller98}. Dies erfordert eine stärkere Leistungsdifferenzierung\citep{lutz11}. Die Differenzierung ist ein der von \citeauthor{porter02} beschriebenen \glqq generischen Wettbewerbsstrategien\grqq{}. Weitere sind die Kostenführerschafts- und Fokussierungsstrategie. Die Kostenführerschaft bezieht sich klassischerweise auf Anbieter von Massenproduktion. Durch die Unterbietung der Konkurrenzpreise wird der Marktanteil erhöht. Dem Gegenüber entspricht die Leistungsdifferenzierung dem Verkauf von Produkten mit höherem individuellen Kundennutzen zu höheren Preisen.
+Neue Wettbewerbsbedingungen und gesteigerte Kundenansprüche haben den Druck auf Industrieunternehmen zur Produktion individualisierter Produkte erhöht \citep{piller98}. Dies erfordert eine stärkere Leistungsdifferenzierung \citep{lutz11}. Diese ist eine der von \citeauthor{porter02} beschriebenen \glqq generischen Wettbewerbsstrategien\grqq{}. Sie entspricht dem Verkauf von Produkten mit höherem individuellen Kundennutzen zu höheren Preisen. Eine andere Wettbewerbsstrategie ist die  Fokussierungsstrategie. Diese bezieht sich klassischerweise auf Anbieter von Massenproduktion. Durch die Unterbietung der Konkurrenzpreise wird der Marktanteil erhöht. 
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -136,6 +136,7 @@ Die Einheit aus Konfigurationsmodell und den Kundenanforderungen wird als \textb
 Aus diesem Begriffsüberblick geht hervor, dass die auf dem Konfigurationsmodell basierende Konfigurationsaufgabe der Schlüssel zur Bildung einer kundenspezifischen Variantenausprägung ist. Aus diesem Grunde werden diese Begriffe im Folgenden  genauer erläutert.
 
 \subsubsection{Wissenrepräsentation}
+\label{subsubsection:wissenrepraesentation}
 Das Konfigurationswissen beschreibt Wissen, welches über ein konfigurierbares Produkt besteht \citep{soininen98}. Dieses Wissen kann auf unterschiedliche Art und Weise repräsentiert, d.h. dargestellt werden. Die Repräsentation kann zur Definition eines Konfigurationsmodells genutzt werden \citep{felferning14}. Auf konzeptioneller Ebene können die Begriffe Wissensrepräsentation und Konfigurationsmodell äquivalent verwendet werden. Das Konfigurationsmodell bezeichnet jedoch letztendlich das spezifische Format, welches von einem Konfigurator verstanden wird \citep{soininen98}.
 
 Es existieren verschiedene Wissensrepräsentationskonzepte mit unterschiedlicher Ausdruckskraft. Jede hat verschiedene Stärken. Im Folgenden wird ein grafische sowie eine formelle Repräsentationsvariante vorgestellt. Ein Visualisierungskonzept erleichtert den Einstieg und ermöglicht die Bildung einer Vorstellung über die möglichen Varianten eines Produktes. Über die Formalisierung des Konfigurationswissens lässt sich hingegen eine Definition der Konfigurationsaufgabe ableiten.
@@ -387,27 +388,99 @@ Aus der Liste sind die (zumindest initial) kostenfreien Varianten ersichtlich: r
 
 \pagebreak
 \section{Analyse}
-Auseinandersetzung mit den konkreten Technologien. Es geht um eine Integration. Was wird integriert? Der Tacton Produktkonfigurator. Das wird als erstes vorgestellt. Worin soll es integriert werden? In ein Open-Source Shopsystem. Das wird als zweites vorgestellt. 
+----- BETA ----- Auseinandersetzung mit den konkreten Technologien. Es geht um eine Integration. Was wird integriert? Der Tacton Produktkonfigurator. Das wird als erstes vorgestellt. Worin soll es integriert werden? In ein Open-Source Shopsystem. Das wird als zweites vorgestellt. ----- BETA ----- 
 
 \subsection{Tacton Stuff}
-Erst wird Tacton mit der Produktfamilien, dann das Konfigurationsmodell, dann TCSite vorgestellt. Bei TCSite muss der Technologische Background, die KOnfiguration darin sowei die Erweiterbarkeit erwähnt werden.
+----- BETA ----- Erst wird Tacton mit der Produktfamilien, dann das Konfigurationsmodell, dann TCSite vorgestellt. Bei TCSite muss der Technologische Background, die KOnfiguration darin sowei die Erweiterbarkeit erwähnt werden. ----- BETA ----- 
 
 \subsubsection{Tacton}
-Die Tacton Systems AB (Tacton) wurde 1998 Spin-Off des Schwedischen Instituts für Informatik (SICS) gegründet \citep{tactonProductOverview}. In der Forschungseinrichtung wurde als Resultat der Untersuchungen im Bereich Wissensbasierte Systeme und Künstliche Intelligenz der Tacton Produktkonfigurator entwickelt \citep{tactonAbout}. Dieser interaktive Konfigurator ist die Basis der verschiedenen Produkte der Firma.
+Die Tacton Systems AB (Tacton) wurde 1998 als Spin-Off des Schwedischen Instituts für Informatik (SICS) gegründet \citep{tactonProductOverview}. In der Forschungseinrichtung wurde als Resultat der Untersuchungen im Bereich Wissensbasierte Systeme und Künstliche Intelligenz der Tacton Produktkonfigurator entwickelt \citep{tactonAbout}. Dieser interaktive Konfigurator ist die Basis der verschiedenen Produkte der Firma.
 
-Neben einer Konfigurationsumgebung bietet Tacton Lösungen im Bereich Vertriebskonfiguration und Design Automation (Automatisierung der Konstruktion in CAD-Systemen). Im Folgenden werden die für die Aufgabenstellung relevanten Produkte vorgestellt
-\begin{compactitem}
-\item \textbf{Tacton Studio} ist die Konfigurationsumgebung. Es ermöglicht das Erstellen, Testen und Pflegen von Konfigurationsmodellen \citep{tactonProductOverview}. Das Modell wird letztendlich in einem XML-Format abgespeichert \citep{felferning14}. Dadurch wird die Modellentwicklung von Tacton Studio unterstützt, ist aber nicht von dieser abhängig.
-\item \textbf{Tacton Configurator Site Application (TCsite)} ist ein webbasierter Vertriebskonfigurator. Er könnte zwar theoretisch von Endkunden genutzt werden, bildet aber nicht die klassischen Geschäftsabläufe eines eShops nach - stattdessen handelt es sich um eine CPQ-Lösung Configure-Price-Quote. Das bedeutet: der Nutzer wird durch den Konfigurationsprozess geführt, was ist einer Preiskalkulation resultiert, woraus ein Angebot erstellt werden kann. Nutzer sind Vertriebsmitarbeiter, Händler oder Partner - der Anwendungsbereich liegt also im B2B. Der Konfigurationsprozess findet im Zusammenhang mit einer Serveranwendung statt, welcher den Produktkonfigurator (die Konfigurationsengine) beherbergt \citep{tactonProductOverview}.
-\end{compactitem}
+Tacton bietet Lösungen im Bereich Vertriebskonfiguration und Design Automation (Automatisierung der Konstruktion in CAD-Systemen). Relevant für die Fragestellung ist die \textbf{Tacton Configurator Site Application (TCsite)}. TCsite ist ein webbasierter Vertriebskonfigurator. Er könnte zwar theoretisch von Endkunden genutzt werden, bildet aber nicht die Geschäftsprozesse eines eShops nach - stattdessen handelt es sich um eine CPQ-Lösung (Configure-Price-Quote). Das bedeutet: der Nutzer wird durch den Konfigurationsprozess geführt, was in einer Preiskalkulation resultiert, woraus wiederum ein Angebot erstellt werden kann. Nutzer sind Vertriebsmitarbeiter, Händler oder Partner - der Anwendungsbereich liegt also im B2B. Auf technischer Seite findet der C-Teil des CPQ-Prozesses (die Konfiguration) im Zusammenspiel mit einer weiteren Serveranwendung statt. Sie beherbergt den Konfigurator, welche von Tacton als Konfigurationsengine bezeichnet wird.
 
-TCsite ist also webbasiert und beherbergt eine Konfigurationsengine. Grundlegende Idee und Gegenstand der Analyse ist also, ob die Konfiguration als Webservice nutzbar gemacht werden kann. Dafür muss das Zusammenspiel der Webanwendung mit der Konfigurationsengine im C-Teil des CPQ-Prozesses untersucht werden. Ist der Konfigurationsprozess in TCsite verstanden, lässt sich daraus ableiten, wie der Service konzipiert werden muss. Voraussetzung ist jedoch Kenntnis darüber, wie Konfigurationswissen bei Tacton in Form eines Konfigurationsmodells abgebildet wird.
+TCsite ist also webbasiert und beherbergt eine Konfigurationsengine. Grundlegende Idee und damit Gegenstand der Analyse ist also: kann die Engine als Webservice nutzbar gemacht werden? Dafür muss das Zusammenspiel der Webanwendung mit der Konfigurationsengine während des Konigurationsprozesses in TCsite untersucht werden. Ist der Konfigurationsprozess verstanden, lässt sich daraus ein Konzept für einen Konfigurations-Webservice ableiten. Voraussetzung ist jedoch Kenntnis darüber, wie Konfigurationswissen bei Tacton in Form eines Konfigurationsmodells abgebildet wird. Dies wird im Folgenden vorgestellt.
 
 \subsubsection{Konfigurationsmodell}
+Das in Abschnitt \ref{subsubsection:wissenrepraesentation} vorgestellte Visualisierungskonzept abstrahiert Konfigurationswissen in einen Struktur- und einen Regelteil. Im Tacton-Konfigurationsmodell wird ebenfalls abstrahiert, jedoch in andere Domänen \citep{tactonModeling}:
 
+\begin{enumerate}[a.]
+\item \label{strukturinformation} Strukturinformation: welche Teile-Hierarchie hat das Produkt? 
+\item \label{komponenteninformation} Komponenteninformation: welche  Komponententypen stehen für die Teile zur Verfügung?
+\item \label{constraintinformationen} Constraintinformationen: wann ist das Produkt korrekt?
+\item \label{ausfuehrungsinformationen} Ausführungsinformationen: welche Fragen bekommt der Nutzer gestellt? Bekommt er sie in einer bestimmten Reihenfolge gestellt? Welche Optimierungskritieren werden verwendet?
+\end{enumerate}
+
+Dabei sind zwei Dinge festzuhalten:
+
+(1) Typisch für einen modellbasierten Konfigurator wird Produktwissen und Problemlösungswissen bei der Wissensmodellierung separiert. Beispiel: ein Constraint, der die Kompatibilität bestimmter Betriebssystems mit einer bestimmten Anzahl Prozessorkerne ausdrückt, soll wirken, auch ohne die konkreten CPU-Arten (z.B. Intel i7) zu kennen. Darum ist - genauer ausgedrückt - die Rede von generischen Constraints: sie beziehen sich auf alle Komponenten eines Typs \citep{felferning14}.
+
+(2) Im Konfigurationsmodell wird auch die Nutzerinteraktion festgelegt. Es wird also auch definiert, welche Entscheidungen in welcher Reihenfolge getroffen werden können. Damit geht der Funktionsumfang eines Tacton-Modells über die Definition aus Abschnitt \ref{subsubsection:begriffsuberblick} hinaus.
+
+\textbf{(1) Components und Configuration}\\
+Bei der UML-Wissensrepräsentation aus Abschnitt \ref{subsubsection:wissenrepraesentation} wurden die Domänen \ref{komponenteninformation} und \ref{strukturinformation} im Diagramm ausgedrückt,  \ref{constraintinformationen} in der Tabelle und teilweise im Diagramm. Tacton wählt eine andere Aufteilung. \ref{komponenteninformation} wird als \glqq Components\grqq{} konzipiert, \ref{strukturinformation} und \ref{constraintinformationen} als \glqq Configuration\grqq{}.
+
+\vspace{1em}
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=1\linewidth]{Abbildungen/tactonModellHighLevel.pdf}
+	\captionof{figure}[tactonModellHighLevel]{High-Level Architektur des Tacton-Konfigurationsmodells}
+	\label{fig:tactonModellHighLevel}
+\end{minipage}
+\vspace{1em}
+
+Abbildung \ref{fig:tactonModellHighLevel} zeigt das High-Level Konzept der Modellarchitektur. Unter 'configuration' wird die Produktstruktur als hierarchischer Baum  von 'Part'-Objekten dargestellt. Jeder Part kann Constraints enthalten, die sich auf den Knoten selbst und alle seine Kinder beziehen. Ein Part ist ansonsten nur ein Komponentenplatzhalter. Noch ist keine Information darüber hinterlegt, welches Bauteil dort eigentlich verkörpert wird. Abbildung \ref{fig:tactonModellHighLevelNotebook} veranschaulicht das Konzept am Notebook-Beispiel.
+
+\vspace{1em}
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=0.7\linewidth]{Abbildungen/tactonModellHighLevelNotebook.pdf}
+	\captionof{figure}[tactonModellHighLevelNotebook]{Part-Struktur der Notebook-Konfiguration}
+	\label{fig:tactonModellHighLevelNotebook}
+\end{minipage}
+\vspace{1em}
+
+Die Informationen über die eben erwähnten Bauteile wird isoliert unter 'components' definiert (Abbildung \ref{fig:tactonModellHighLevel}). Analog zu den Komponententypen und Komponenten aus Abschnitt \ref{subsubsection:wissenrepraesentation} wird ein Bauteil in 'Component Classes' und 'Components' abstrahiert. Hier wurde einfach eine andere Terminologie gewählt. Eine Component Class (z.B. ein 'RAM') wird durch Eigenschaften beschrieben, die als Features bezeichnet werden. Jedes Feature besitzt einen Namen (z.B. 'memory') und einen Wertebereich (z.B. [2GB, 4GB]), welche als Domain bezeichnet wird. Wertebereiche können Integer, Float, Boolean, andere Component Classes oder selbstdefinierte Enumerationen sein. Components sind das, was eine Component Class konkret sein kann (z.B. ein 'Small RAM'). Sie übernehmen alle Features der übergeordneten Component Class und wählen dabei konkrete Werte ('Values') aus dem jeweiligen Wertebereich.
+
+\vspace{1em}
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=1\linewidth]{Abbildungen/tactonModellLowLevel.pdf}
+	\captionof{figure}[tactonModellLowLevel]{Zuordnung von Parts und Component Classes.}
+	\label{fig:tactonModellLowLevel}
+\end{minipage}
+\vspace{1em}
+
+Abbildung \ref{fig:tactonModellLowLevel} zeigt die Zuordnung zwischen Parts und Component Classes via Verzeigerung. Einem Part wird eine Component Class zugewiesen. Dem Part werden dabei die Eigenschaften (Features) der entsprechenden Component Class vererbt (türkis dargestellt). Nur werden sie zur besseren Differenzierung beim Part nicht mehr als Features, sondern als Attribute bezeichnet. Für einen Part können auch noch zusätzliche Attribute definiert werden ('additional Attributes'), falls notwendig. Die Angabe 'Instances' (grün dargestellt) entspricht den Kardinalitäten in Abschnitt \ref{fig:tactonModellLowLevel}. Constraints (gelb dargestellt) werden als logische Ausdrücke formuliert. Sie bestehen aus Attributwerten, die mit mathematischen Audrücken in Relation gebracht werden.
+
+\vspace{1em}
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=1\linewidth]{Abbildungen/tactonModellLowLevelNotebook.pdf}
+	\captionof{figure}[tactonModellLowLevelNotebook]{Part-Struktur der Notebook-Konfiguration}
+	\label{fig:tactonModellLowLevelNotebook}
+\end{minipage}
+\vspace{1em}
+
+Abbildung \ref{fig:tactonModellLowLevelNotebook} veranschaulicht die 'realized-by' Beziehung an einem Ausschnitt aus der Notebook-Konfiguration.  Der Part übernimmt die Attribute "memory" und "price". Das zusätzliche Attribut "type" kapselt Beispielsweise die Information über das gewählte Component (z.B. Small RAM). Der Constraint veranschaulicht exemplarisch, wie die Inkompatibilität mit dem Betriebssystem vom Typ "OSX Yosemite" formuliert werden würde.
+
+\textbf{(2) Execution}\\
+Es wurde dargestellt, wie das Konfigurationswissen im Tacton Konfigurationsmodell definiert wird. Dadurch ist aber noch nicht gesagt, welche Entscheidungen ein Nutzer während des Konfigurationsprozesses treffen kann. Nicht jeder Part und nicht jedes Attribut muss eine relevante Wahlmöglichkeit darstellen. Vielleicht sollen dem Nutzer sogar Fragen auf einem anderen Abstraktionsniveau als auf Komponentenebene gestellt werden. Statt \glqq Soll eine HD oder eine SSD als Festplatte in das Notebook eingebaut werden?\grqq{} kann auch gefragt werden: \glqq Möchten Sie viel Speicherplatz oder einen schnellen Speicherzugriff?\grqq.
+
+Die Interaktionsspielraum des Nutzers mit der Konfiguration wird unter dem Begriff 'Execution' definiert. Dabei wird nicht einfach nur die Menge der Wahlmöglichkeiten festgelegt, die dem Nutzer am Ende als Liste präsentiert wird. Stattdessen werden die Fragen hierarchisch Strukturiert.
+
+\vspace{1em}
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=1\linewidth]{Abbildungen/tactonModellExecution.pdf}
+	\captionof{figure}[tactonModellExecution]{Generische Executionstruktur}
+	\label{fig:tactonModellExecution}
+\end{minipage}
+\vspace{1em}
+
+Abbildung \ref{fig:tactonModellExecution} zeigt die generische Struktur der Execution.
+
+\pagebreak
 \subsubsection{TCSite}
-\textbf{Konfigurationsprozess}
-\textbf{Erweiterbarkeit}
 Analyse Konfigurationsprozess
 Analyse Erweiterbarkeit
 
