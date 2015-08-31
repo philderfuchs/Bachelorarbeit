@@ -439,7 +439,7 @@ Abbildung \ref{fig:tactonModellHighLevel} zeigt das High-Level Konzept der Model
 \end{minipage}
 \vspace{1em}
 
-Die Informationen über die eben erwähnten Bauteile wird isoliert unter 'components' definiert (Abbildung \ref{fig:tactonModellHighLevel}). Analog zu den Komponententypen und Komponenten aus Abschnitt \ref{subsubsection:wissenrepraesentation} wird ein Bauteil in 'Component Classes' und 'Components' abstrahiert. Hier wurde einfach eine andere Terminologie gewählt. Eine Component Class (z.B. ein 'RAM') wird durch Eigenschaften beschrieben, die als Features bezeichnet werden. Jedes Feature besitzt einen Namen (z.B. 'memory') und einen Wertebereich (z.B. [2GB, 4GB]), welche als Domain bezeichnet wird. Wertebereiche können Integer, Float, Boolean, andere Component Classes oder selbstdefinierte Enumerationen sein. Components sind das, was eine Component Class konkret sein kann (z.B. ein 'Small RAM'). Sie übernehmen alle Features der übergeordneten Component Class und wählen dabei konkrete Werte ('Values') aus dem jeweiligen Wertebereich.
+Die Informationen über die eben erwähnten Bauteile werden isoliert unter 'components' definiert (Abbildung \ref{fig:tactonModellHighLevel}). Analog zu den Komponententypen und Komponenten aus Abschnitt \ref{subsubsection:wissenrepraesentation} wird ein Bauteil in 'Component Classes' und 'Components' abstrahiert. Hier wurde einfach eine andere Terminologie gewählt. Eine Component Class (z.B. ein 'RAM') wird durch Eigenschaften beschrieben, die als Features bezeichnet werden. Jedes Feature besitzt einen Namen (z.B. 'memory') und einen Wertebereich (z.B. [2GB, 4GB]), welche als Domain bezeichnet wird. Wertebereiche können Integer, Float, Boolean, andere Component Classes oder selbstdefinierte Enumerationen sein. Components sind das, was eine Component Class konkret sein kann (z.B. ein 'Small RAM'). Sie übernehmen alle Features der übergeordneten Component Class und besitzen konkrete Werte ('Values') aus dem jeweiligen Wertebereich.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -450,7 +450,7 @@ Die Informationen über die eben erwähnten Bauteile wird isoliert unter 'compon
 \end{minipage}
 \vspace{1em}
 
-Abbildung \ref{fig:tactonModellLowLevel} zeigt die Zuordnung zwischen Parts und Component Classes via Verzeigerung. Einem Part wird eine Component Class zugewiesen. Dem Part werden dabei die Eigenschaften (Features) der entsprechenden Component Class vererbt (türkis dargestellt). Nur werden sie zur besseren Differenzierung beim Part nicht mehr als Features, sondern als Attribute bezeichnet. Für einen Part können auch noch zusätzliche Attribute definiert werden ('additional Attributes'), falls notwendig. Die Angabe 'Instances' (grün dargestellt) entspricht den Kardinalitäten in Abschnitt \ref{fig:tactonModellLowLevel}. Constraints (gelb dargestellt) werden als logische Ausdrücke formuliert. Sie bestehen aus Attributwerten, die mit mathematischen Audrücken in Relation gebracht werden.
+Abbildung \ref{fig:tactonModellLowLevel} zeigt die Zuordnung zwischen Parts und Component Classes via Verzeigerung. Einem Part wird eine Component Class durch eine 'realized-by' Beziehung zugewiesen. Dem Part werden dabei die Eigenschaften (Features) der entsprechenden Component Class vererbt (türkis dargestellt). Nur werden sie zur besseren Differenzierung beim Part nicht mehr als Features, sondern als Attribute bezeichnet. Für einen Part können auch noch zusätzliche Attribute definiert werden ('additional Attributes'), falls notwendig. Die Angabe 'Instances' (grün dargestellt) entspricht den Kardinalitäten in Abschnitt \ref{fig:tactonModellLowLevel}. Constraints (gelb dargestellt) werden als logische Ausdrücke formuliert. Sie bestehen aus Attributwerten, die mit mathematischen Zeichen in Relation gebracht werden.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -461,25 +461,58 @@ Abbildung \ref{fig:tactonModellLowLevel} zeigt die Zuordnung zwischen Parts und 
 \end{minipage}
 \vspace{1em}
 
-Abbildung \ref{fig:tactonModellLowLevelNotebook} veranschaulicht die 'realized-by' Beziehung an einem Ausschnitt aus der Notebook-Konfiguration.  Der Part übernimmt die Attribute "memory" und "price". Das zusätzliche Attribut "type" kapselt Beispielsweise die Information über das gewählte Component (z.B. Small RAM). Der Constraint veranschaulicht exemplarisch, wie die Inkompatibilität mit dem Betriebssystem vom Typ "OSX Yosemite" formuliert werden würde.
+Abbildung \ref{fig:tactonModellLowLevelNotebook} veranschaulicht die 'realized-by' Beziehung an einem Ausschnitt aus der Notebook-Konfiguration.  Der Part übernimmt die Attribute 'memory' und 'price'. Das zusätzliche Attribut 'type' kapselt Beispielsweise die Information über das gewählte Component (z.B. Small RAM). Der Constraint veranschaulicht exemplarisch, wie die Inkompatibilität mit dem Betriebssystem vom Typ 'OSX Yosemite' formuliert werden würde.
 
 \textbf{(2) Execution}\\
-Es wurde dargestellt, wie das Konfigurationswissen im Tacton Konfigurationsmodell definiert wird. Dadurch ist aber noch nicht gesagt, welche Entscheidungen ein Nutzer während des Konfigurationsprozesses treffen kann. Nicht jeder Part und nicht jedes Attribut muss eine relevante Wahlmöglichkeit darstellen. Vielleicht sollen dem Nutzer sogar Fragen auf einem anderen Abstraktionsniveau als auf Komponentenebene gestellt werden. Statt \glqq Soll eine HD oder eine SSD als Festplatte in das Notebook eingebaut werden?\grqq{} kann auch gefragt werden: \glqq Möchten Sie viel Speicherplatz oder einen schnellen Speicherzugriff?\grqq.
+Es wurde dargestellt, wie das Konfigurationswissen im Tacton Konfigurationsmodell definiert wird. Dadurch ist aber noch nicht gesagt, welche Entscheidungen ein Nutzer während des Konfigurationsprozesses treffen kann. Nicht jeder Part und nicht jedes Attribut muss eine relevante Wahl darstellen. Vielleicht sollen dem Nutzer sogar Fragen auf einem anderen Abstraktionsniveau als auf Komponentenebene gestellt werden. Statt \glqq Soll eine HD oder eine SSD als Festplatte in das Notebook eingebaut werden?\grqq{} kann auch gefragt werden: \glqq Möchten Sie viel Speicherplatz oder einen schnellen Speicherzugriff?\grqq.
 
-Die Interaktionsspielraum des Nutzers mit der Konfiguration wird unter dem Begriff 'Execution' definiert. Dabei wird nicht einfach nur die Menge der Wahlmöglichkeiten festgelegt, die dem Nutzer am Ende als Liste präsentiert wird. Stattdessen werden die Fragen hierarchisch Strukturiert.
+Die Interaktionsspielraum des Anwenders mit der Konfiguration wird unter dem Begriff 'Execution' zusammen gefasst. Dabei wird nicht einfach nur eine Menge an Optionen festgelegt, die dem Nutzer am Ende als Liste präsentiert wird. Stattdessen werden die Optionen hierarchisch gegliedert.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
-	\includegraphics[width=1\linewidth]{Abbildungen/tactonModellExecution.pdf}
+	\includegraphics[width=0.8\linewidth]{Abbildungen/tactonModellExecution.pdf}
 	\captionof{figure}[tactonModellExecution]{Generische Executionstruktur}
 	\label{fig:tactonModellExecution}
 \end{minipage}
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=0.8\linewidth]{Abbildungen/tactonModellExecutionNotebook.pdf}
+	\captionof{figure}[tactonModellExecutionNotebook]{Exemplarische Executionstruktur einer Notebook-Konfiguration}
+	\label{fig:tactonModellExecutionNotebook}
+\end{minipage}
 \vspace{1em}
 
-Abbildung \ref{fig:tactonModellExecution} zeigt die generische Struktur der Execution.
+Abbildung \ref{fig:tactonModellExecution} zeigt die generische Struktur der Execution als Baum. Abbildung \ref{fig:tactonModellExecutionNotebook} veranschaulicht das Konzept durch die beispielhafte Umsetzung einer Execution der Notebook-Konfiguration.
+\begin{compactitem}
+\item Die Wurzel wird als \textbf{Applikation} bezeichnet und kapselt den Konfigurationsprozess aus Anwenderperspektive.\\
+Beispiel: Eine Notebook-Konfiguration.
+\item Die nächste Knotenebene wird als \textbf{Steps} bezeichnet. Sie legen fest, in welcher Reihenfolge die Optionen präsentiert werden. Das ist in verschiedenen Fällen sinnvoll. Zum Beispiel dann, wenn komplexe Probleme in mehrere Schritte unterteilt oder Werte für spätere Schritte gesetzt werden sollen.\\
+Beispiel: In Step 1 legt der Anwender eine Preisgrenze fest. In Schritt 2 wird die technische Spezifikation getroffen.
+\item  Nun folgen $1..n$ Knotenebenen, die als \textbf{Groups} bezeichnet werden. Sie fassen Optionen zu logischen Einheiten zusammen. Die in Gruppen angeordneten Optionen müssen nicht in einer bestimmten Reihenfolge beantwortet werden.
+\begin{enumerate}[(a)]
+\item Die oberste Group-Ebene (\textbf{Top-Level-Groups}) ist obligatorisch.\\
+Beispiel: Eine 'Speicher'-Group in Step 2.
+\item Die Unterteilung in weitere Groups ist optional. Es kann beliebig tief geschachtelt werden.\\
+Beispiel: unter 'Speicher' werden die Groups 'Massenspeicher' und 'RAM' angelegt.
+\end{enumerate}
+\item Die tatsächlichen Optionen werden als \textbf{Fields} bezeichnet. Sie bestehen aus einer Beschreibung und einem Interaktionselement, über das der Anwender eine Entscheidung treffen kann. Eine Entscheidung bedeutet: ein Wert aus den Wertebereich von Part-Attributen.\\
+Folgende Interaktionselemente stehen zur Verfügung:
+\begin{enumerate}[(a)]
+\item \textbf{Menu:} Wahl aus einem Wertebereich\\
+Beispiele:\\
+Beschreibung: Massenspeicher / Wertebereich: ['HD', 'SSD']\\
+Beschreibung: Anzahl CPU-Kerne / Wertebereich: [1..4].
+\item \textbf{Number:} Eingabe eines eigenen Wertes in ein Textfeld.\\
+Beispiel: Eingabe der Preisgrenze in Schritt 1.
+\item \textbf{Label:} Anzeige eines Wertes aus Informationsgründen.\\
+Beispiel: Anzeige des Gesamtpreises.
+\end{enumerate}
+\end{compactitem}
 
-\pagebreak
+\textbf{Zwischenfazit}\\
+Das Tacton-Konfigurationsmodell wurde vorgestellt. Neben dem Konfigurationswissen wird darin auch definiert, welche Entscheidungen der Anwender treffen kann. Die Optionen werden durch Steps und Groups logisch gegliedert. So wird festgelegt, welche Struktur die Interaktion des Anwenders mit der Konfiguration hat. Diese Struktur muss jedoch noch dargestellt werden. TCsite realisiert eine entsprechende Darstellung. Dies wird im Folgenden analysiert.
+
 \subsubsection{TCSite}
 Analyse Konfigurationsprozess
 Analyse Erweiterbarkeit
