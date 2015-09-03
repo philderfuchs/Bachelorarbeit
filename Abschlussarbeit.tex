@@ -626,23 +626,25 @@ Nun beginnt die Loop-Phase, dargestellt in Abbildung \ref{fig:tcsiteTCserverComm
 
 Ausgegraute Optionen sind dennoch wählbar. Abbildung \ref{fig:tcsiteConfigurationConflict} zeigt die Configuration-View nach einem Klick auf die Displaygröße 13'' - dennoch wird 15'' als gewählte Option dargestellt. Stattdessen wird am oberen Ende eine Konfliktnachricht angezeigt. Die Konfigurationsengine weißt darauf hin, dass Optionen im Widerspruch stehen und schlägt eine Konfliktlösung vor. Diese kann angenommen oder abgelehnt werden. Im letzteren Fall bleibt die Konfiguration einfach in dem Zustand vor der Wahl der konfliktverursachenden Option. Auch die Eingabe von Werten in ein Textfeld kann zu Konflikten führen. Und zwar dann, wenn diese außerhalb des Wertebereichs des Parameters liegen oder im Widerspruch mit einer anderen Wahl stehen. 
 
+Wird die Konfiguration über die 'Ok' Schaltfläche beendet, kehrt TCsite zum Quotation Modul zurück. Dort erscheint das konfigurierte Produkt in der Liste der QuotationItems.
+
 \subsubsection{Erweiterbarkeit}
 
+Zur Erweiterbarkeit der Funktionalität bietet TCsite ein Pluginkonzept, welches Abbildung \ref{fig:tcsiteLowLevelExtensions} visualisiert. Neben den oben diskutierten Verantwortlichkeiten definiert die Plattformschicht und die Module sogenannte Extensionpoints \citep{tactonTCsiteApiDocu}. Extensionpoints sind das, was in anderen Erweiterungskonzepten als Events bezeichnet wird: Ereignisse imKontrollfluss der Geschäftsprozesse. Plugins können Methoden bereitstellen, die an den entsprechenden Ereignisstellen aufgerufen werden und so erweiterte Funktionalitäten anbieten \citep{tactonTCsiteDevelopmentManual}.
+
+\vspace{1em}
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=0.8\linewidth]{Abbildungen/tcsiteLowLevelExtensions.pdf}
+	\captionof{figure}[tcsiteLowLevelExtensions]{TCsite Pluginkonzept}
+	\label{fig:tcsiteLowLevelExtensions}
+\end{minipage}
+\vspace{1em}
+
+Jedes Plugin hat Zugriff auf das Repository, die Plattform und das Moduls, welchem es eingeordnet ist. Die Plattform stellt außerdem ein paar spezielle Erweiterungspunkte bereit. Sie erlaubt unter anderem die Definition von Webcontrollern. Das bedeutet: Methoden, die auf HTTP-Requests an bestimmte URIs innerhalb der TCsite-Addressraums reagieren.
 
 \textbf{Fazit}\\
-TCsite ist also webbasiert und beherbergt eine Konfigurationsengine. Grundlegende Idee und damit Gegenstand der Analyse ist also: kann die Engine als Webservice nutzbar gemacht werden? Dafür muss das Zusammenspiel der Webanwendung mit der Konfigurationsengine während des Konigurationsprozesses in TCsite untersucht werden. Ist der Konfigurationsprozess verstanden, lässt sich daraus ein Konzept für einen Konfigurations-Webservice ableiten.
-
-Auch das Drumherun, dass es nen TCserver gibt, der ausgelagert werden kann. Dass es in Tomcat läuft und dementsprechend eine Adresse hat.
-
-Man muss wohl sagen, dass es Nutzer gibt. So kann man den Integration user auch erwähnen.
-
-Eventuell das Cite-Concept völlig unter den Tisch fallen lassen.
-
-Also irgendwie Grobe technische Übersicht. Schichtenarchitektur und so.
-
-
-Analyse Konfigurationsprozess
-Analyse Erweiterbarkeit
+In TCsite werden keine Varianten verwaltet, sondern Produkte mit Konfigurationsmodellen, aus denen im Rahmen von Quotations Variantenausprägungen generiert werden. Der Konfigurationsprozess ist im Configuration-Modul gekapselt. In diesem wird eine Nuzerschnittstelle erzeugt, die Verarbeitung der Konfigurationsaufgaben wird allerdings durch den TCserver realisiert. Dadurch ist die Implementierung einer Nutzerschnittstelle in einem anderen System denkbar, während der eigentliche Konfigurationsprozess nach wie vor in der Konfigurationsengine passiert. TCserver ist nicht unmittelbar ansprechbar, jedoch erlaubt das Pluginkonzept die Definition neuer Serviceendpunkte. An diesen können HTTP-Request ausgewertet werden. Das erlaubt die Entwicklung eines Webservices, der eine Produktkonfiguration anbietet. Potentieller Client dieses Services ist jedes System, welches HTTP nutzen kann. Das trifft auf jede Webanwendung zu. eShops-Systeme sind per se Webanwendungen. Somit können Bedingungen an das eShop-System für das Integrationsszenario formuliert werden: (1) es muss modifizierbar sein, (2) die Modifizierung muss einen Webservice in einer Client-Server Architektur nutzen können und (3) die Verwaltung von Varianten muss integraler Bestandteil des Systems sein.
 
 \subsection{Shopsystem}
 
