@@ -25,6 +25,8 @@
 \usepackage{picins}
 \usepackage[subfigure,titles]{tocloft}
 \usepackage[pdfpagelabels=true]{hyperref}
+\usepackage{chngcntr}
+\counterwithin{figure}{section}
 \usepackage{natbib}
 \bibliographystyle{dinat}
 
@@ -224,7 +226,7 @@ Eine korrekte Lösung kann durch ein UML-Instanz-Diagramm visualisiert werden.  
 
 Lieferte eine Konfigurationsaufgabe mehr als eine korrekte Lösung, ist das Ergebnis eine Variantenmenge. Eine nicht erfüllbare Konfigurationsaufgabe führt hingegen zu einer leeren Lösungsmenge.
 
-Diese Beschreibung einer Konfigurationslösung suggeriert, dass zu Beginn des Konfigurationsprozesses einmalig die Kundenanforderungen aufgenommen und daraufhin die Lösungsmenge ermittelt wird. Diese Form wird als statische Konfiguration bezeichnet. Demgegenüber erlaubt die interaktive Konfiguration das schrittweise Treffen und Revidieren von Entscheidungen \citep{hadzic04}.
+Diese Beschreibung einer Konfigurationslösung suggeriert, dass zu Beginn des Konfigurationsprozesses einmalig die Kundenanforderungen aufgenommen und daraufhin die Lösungsmenge ermittelt wird. Diese Form wird als statische Konfiguration bezeichnet. Demgegenüber erlaubt die interaktive Konfiguration das schrittweise Treffen und Revidieren von Entscheidungen \citep{hadzic04}. Bei der Verarbeitung einer Konfigurationsaufgabe dürfen die bisher getroffenen Entscheidungen nicht vergessen werden. Die Menge der Anwenderentscheidungen wird als \textbf{Konfigurationszustand} bezeichnet \citep{tactonTCsiteDevelopmentManual}. Der Konfigurator muss einen Mechanismus besitzen, bei der die Konfigurationsaufgabe in Bezug mit dem Konfigurationszustand gebracht wird.
 
 \subsubsection{Konfigurationssysteme}
 Der Konfigurator ist das System, welche die Schnittstelle zum Benutzer darstellt und den (interaktiven) Konfigurationsprozess durchführt. Es bekommt die Konfigurationsaufgabe als Eingabe und liefert als Ausgabe die Konfigurationslösung \citep{felferning14}. Konfiguratoren "[...] führen den Abnehmer durch alle Abstimmungsprozesse, die zur Definition des individuellen Produktes nötig sind und prüfen sogleich die Konsistenz sowie Fertigungsfähigkeit der gewünschten Variante" \citep{piller06}.
@@ -394,6 +396,7 @@ Die Tacton Systems AB (Tacton) wurde 1998 als Spin-Off des Schwedischen Institut
 Tacton bietet Lösungen im Bereich Vertriebskonfiguration und Design Automation (Automatisierung der Konstruktion in CAD-Systemen).
 
 \subsection{Konfigurationsmodell}
+\label{subsection:Konfigurationsmodell}
 Das in Abschnitt \ref{subsubsection:wissenrepraesentation} vorgestellte Visualisierungskonzept abstrahiert Konfigurationswissen in einen Struktur- und einen Regelteil. Im Tacton-Konfigurationsmodell wird ebenfalls abstrahiert, jedoch in andere Domänen \citep{tactonModeling}:
 
 \begin{enumerate}[a.]
@@ -457,6 +460,7 @@ Abbildung \ref{fig:tactonModellLowLevel} zeigt die Zuordnung zwischen Parts und 
 Abbildung \ref{fig:tactonModellLowLevelNotebook} veranschaulicht die 'realized-by' Beziehung an einem Ausschnitt aus der Notebook-Konfiguration.  Der Part übernimmt die Attribute 'memory' und 'price'. Das zusätzliche Attribut 'type' kapselt Beispielsweise die Information über das gewählte Component (z.B. Small RAM). Der Constraint veranschaulicht exemplarisch, wie die Inkompatibilität mit dem Betriebssystem vom Typ 'OSX Yosemite' formuliert werden würde.
 
 \subsubsection{Execution}
+\label{subsubsection:Execution}
 Es wurde dargestellt, wie das Konfigurationswissen im Tacton Konfigurationsmodell definiert wird. Dadurch ist aber noch nicht gesagt, welche Entscheidungen ein Nutzer während des Konfigurationsprozesses treffen kann. Nicht jeder Part und nicht jedes Attribut muss eine relevante Wahl darstellen. Vielleicht sollen dem Nutzer sogar Fragen auf einem anderen Abstraktionsniveau als auf Komponentenebene gestellt werden. Statt \glqq Soll eine HD oder eine SSD als Festplatte in das Notebook eingebaut werden?\grqq{} kann auch gefragt werden: \glqq Möchten Sie viel Speicherplatz oder einen schnellen Speicherzugriff?\grqq.
 
 Die Interaktionsspielraum des Anwenders mit der Konfiguration wird unter dem Begriff 'Execution' zusammen gefasst. Dabei wird nicht einfach nur eine Menge an Optionen festgelegt, die dem Nutzer am Ende als Liste präsentiert wird. Stattdessen werden die Optionen hierarchisch gegliedert.
@@ -464,7 +468,7 @@ Die Interaktionsspielraum des Anwenders mit der Konfiguration wird unter dem Beg
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
-	\includegraphics[width=0.8\linewidth]{Abbildungen/tactonModellExecution.pdf}
+	\includegraphics[width=1\linewidth]{Abbildungen/tactonModellExecution.pdf}
 	\captionof{figure}[tactonModellExecution]{Generische Executionstruktur}
 	\label{fig:tactonModellExecution}
 \end{minipage}
@@ -489,17 +493,19 @@ Beispiel: Eine 'Speicher'-Group in Step 2.
 \item Die Unterteilung in weitere Groups ist optional. Es kann beliebig tief geschachtelt werden.\\
 Beispiel: unter 'Speicher' werden die Groups 'Massenspeicher' und 'RAM' angelegt.
 \end{enumerate}
-\item Die tatsächlichen Optionen werden als \textbf{Fields} bezeichnet. Sie bestehen aus einer Beschreibung und einem Interaktionselement, über das der Anwender eine Entscheidung treffen kann. Eine Entscheidung bedeutet: ein Wert aus dem Wertebereich von Part-Attributen.\\
+\item Die tatsächlichen Optionen werden als \textbf{Fields} bezeichnet. Aus Sicht der Oberfläche besteht sie aus einer Beschreibung und einem Interaktionselement, über das der Anwender eine Entscheidung treffen kann. Eine Entscheidung bedeutet: ein Wert aus dem Wertebereich eines Part-Attributes. Damit ist ein Feld mit einem Part-Attribut verknüpft, so wie Part-Attribute mit den Features der Component Classes verknüpft sind. Das Attribut, welches über das Feld eingestellt werden kann, wird als Parameter bezeichnet. Die Optionen einen Parameters werden als Values bezeichnet.\\
 Folgende Interaktionselemente stehen zur Verfügung:
 \begin{enumerate}[(a)]
 \item \textbf{Menu:} Wahl aus einem Wertebereich\\
 Beispiele:\\
-Beschreibung: Massenspeicher / Wertebereich: ['HD', 'SSD']\\
-Beschreibung: Anzahl CPU-Kerne / Wertebereich: [1..4].
+Massenspeicher: Parameter = Storage-Part.type,  Wertebereich = ['HD', 'SSD']\\
+Anzahl CPU-Kerne: Parameter = CPU-Part.cores, Domain = [1..4].
 \item \textbf{Number:} Eingabe eines eigenen Wertes in ein Textfeld.\\
-Beispiel: Eingabe der Preisgrenze in Schritt 1.
+Beispiel:\\
+Preisgrenze (Eingabe in Schritt 1): Parameter = Notebook-Part.maxPrice, Wertebereich = [integer]
 \item \textbf{Label:} Anzeige eines Wertes aus Informationsgründen.\\
-Beispiel: Anzeige des Gesamtpreises.
+Beispiel:\\
+Aktueller Preis (Anzeige in Schritt 2): Parameter = Notebook-Part.price, Wertebereich = [integer]
 \end{enumerate}
 \end{compactitem}
 
@@ -542,32 +548,89 @@ Im Folgenden werden die Architekturkomponenten von unten nach oben vorgestellt.
 Das Repository bietet eine Datenbank sowie ein Reihe von Funktionen zum Lesen und Schreiben der TCsite-Objekte. Die Interaktion mit der Datenhaltung wird so für darüber liegende Schichten abstrahiert. Das Repository ist in einen lokalen und einen globalen Speicher strukturiert. Wird ein Objekt erstellt oder geöffnet, geschieht die Bearbeitung immer auf einer Arbeitskopie in dem für jeden Nutzer spezifischen lokalen Speicher. Änderungen sind solange für andere Nutzer unsichtbar. Erst die Übertragung (commit) eines Objektes in den globalen Speicher sorgt für nutzerübergreifende Sichtbarkeit. Bei dieser Übertragung wird eine Revisionshistorie über Objektänderungen geführt, so dass alte Zustande wieder abrufbar sind \citep{tactonTCsiteDevelopmentManual}.
 
 \textbf{Administration}\\
-Über die Administrationsoberfläche werden Einstellungen und Verwaltungsaspekte realisiert. Dazu gehört zum Beispiel die Verwaltung der Nutzergruppen und Produkte. Vorangelegte Nutzergruppen sind Standarduser, Systemadministrator und der Integrationuser. Während der Handlungsspielraum von Standardusern eingeschränkt werden kann, dürfen Administratoren alle Einstellungen an der Installation vornehmen. Der Integration User dient der Authentifizierung bei der Kommunikation mit externen Systemen, zum Beispiel bei einem Integrationsszenario. Anschaulich ist die Vorstellung, dass jede externe Webanfrage einen Gast personifiziert, der die Maske des Integration Users aufgesetzt und dessen Rechtespektrum bekommt. Außerdem wird der Produktkatalog verwaltet. Jedem Produkt wird dabei eine '.tcx'-Modelldatei und so mit der entsprechenden Konfiguration verbunden. Entsprechend der Definition eines Konfigurationsmodells in Kapitel \ref{subssubsection:Produktkonfiguration} steht ein hier angelegtes Produkt nicht im klassischen Sinne für einen bestimmten Artikel, sondern für alle seine Varianten \ref{tactonTCsiteReferenceManual}.
-
-\textbf{Quotation}\\
-Das Quotation-Modul erstellt die Quotation-View (Abbildung x) und verwaltet das zentrale Objekt von TCsite: die Quotation (zu Deutsch: das Angebot). TCsite kann in einer abstrakten Sicht als Liste von Quotations in Verbindung mit Methoden für deren Manipulation, Anzeige und Dokumentengenerierung betrachtet werden. Aus Anwendersicht ist eine Quotation ein Angebot, dass die für ihn konfigurierten Produkte enthält. Diese werden als QuotationItems bezeichnet. Betrachtet man eine Quotation als Warenkorb, sind die QuotationItems die Warenkorbartikel. Abbildung \ref{fig:quotationHighLevel} veranschaulicht das Verhältnis von Quotations zu QuotationItems \citep{tactonTCsiteDevelopmentManual}.
+Dieses Modul bildet die Administrationsoberfläche, dargestellt in Anhang \ref{app:tcsiteAdministration}. Hier können Einstellungen getroffen und Verwaltungsaspekte realisiert werden. Dazu gehört zum Beispiel die Verwaltung der Nutzergruppen und Produkte. Vorangelegte Nutzergruppen sind Standarduser, Systemadministrator und der Integrationuser. Während der Handlungsspielraum von Standardusern eingeschränkt werden kann, können Administratoren alle Einstellungen an der Installation vornehmen. Der Integration User dient der Authentifizierung bei der Kommunikation mit externen Systemen, zum Beispiel bei einem Integrationsszenario. Zur Veranschaulichung ist vorstellbar, dass jede externe Webanfrage einen Gast personifiziert, der die Maske des Integration Users aufgesetzt und dessen Rechtespektrum bekommt.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
-	\includegraphics[width=1\linewidth]{Abbildungen/quotationHighLevel.pdf}
-	\captionof{figure}[quotationHighLevel]{Verbindung von Quotations und QuotationItems}
-	\label{fig:quotationHighLevel}
+	\includegraphics[width=0.6\linewidth]{Abbildungen/tcsiteAdministrationProduct.PNG}
+	\captionof{figure}[tcsiteAdministrationProduct]{Detailsansicht eines Produktes aus dem Produktkatalog}
+	\label{fig:tcsiteAdministrationProduct}
 \end{minipage}
 \vspace{1em}
 
-Quotations haben weiterhin einen Lebenszyklus. Sie befinden sich zu jedem Zeitpunkt in einem bestimmten Zustand, welche über den Administrationsbereich verwaltet werden könnnen. Die Zustände unterscheiden sich in der Sichtbarkeit für verschiedene Nutzergruppen und der Editierbarkeit der QuotationItems. Beispielsweise kann sich eine Quotation in den Zuständen \glqq Design\grqq{} oder \glqq Offered\grqq{} befinden. In letzterem Zustand sind die QuotationItems nicht mehr konfigurierbar, da sonst die Quotation von dem Angebot abweichen würde, das dem Kunden vorliegt \citep{tactonTCsiteReferenceManual}.
+Außerdem wird hier der Produktkatalog verwaltet. Abbildung \ref{fig:tcsiteAdministrationProduct} zeigt die Detailsansicht eines Produktes. Die Darstellung macht deutlich, dass neben Produktbeschreibungen auch Dateien hinterlegbar sind. Es kann eine Modelldatei hochgeladen werden, wodurch das Produkt konfigurierbar wird. Die Konfiguration kann durch Ressourcen (z.B. Bilder) sowie einer Übersetzungsdatei ergänzt werden \ref{tactonTCsiteReferenceManual}. Entsprechend der Definition eines Konfigurationsmodells in Kapitel \ref{subssubsection:Produktkonfiguration} steht ein hier angelegtes Produkt nicht im klassischen Sinne für einen bestimmten Artikel, sondern für alle seine Varianten.
 
-Die Quoation beinhaltet fertig konfigurierte Produkte, also Variantenausprägungen. Die Konfiguration eines Produktes wird vom Quotation Modul aus über die Schaltfläche sowieso gestartet. Daraufhin wählt der Anwender das gewünschte Produkt aus und der Übergang zum Configuration Modul geschieht.
+\textbf{Quotation}\\
+\vspace{1em}
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=0.7\linewidth]{Abbildungen/tcsiteQuotationNumbered.pdf}
+	\captionof{figure}[tcsiteQuotationNumbered]{Quotation-View von TCsite}
+	\label{fig:tcsiteQuotationNumbered}
+\end{minipage}
+\vspace{1em}
+
+Das Quotation-Modul erstellt die Quotation-View, dargestellt in Abbildung \ref{fig:tcsiteQuotationNumbered}. Technisch betrachtet realisiert das Modul Methoden für die Manipulation und Anzeige von Quotations sowie zur Dokumentengenerierung aus der mit ihr im Zusammenhang stehenden Daten. Aus Anwendersicht ist eine Quotation ein Angebot, dass die für ihn konfigurierten Produkte enthält. Diese werden als QuotationItems bezeichnet und unter 'Products' gelistet (siehe [1]) \citep{tactonTCsiteDevelopmentManual}. Betrachtet man eine Quotation als Warenkorb, sind die QuotationItems die Warenkorbartikel. Der Vergleich hinkt insofern, als dass die Artikel eines Warenkorb auch unabhängig von diesem existieren. Ein QuotationItem ist jedoch eine konkrete Variantenausprägung eines konfigurierbaren Produktes, die innerhalb der Quotation lebt.
+
+Die Konfiguration wird über die Schaltfläche 'Add Product' gestartet (siehe [2]). Daraufhin wählt der Anwender das gewünschte Produkt aus einer Liste aus. Ist das Produkt mit einem Konfigurationsmodell verknüpft, geschieht der Übergang zum Configuration Modul \ref{tactonTCsiteReferenceManual}.
+
+Eine Quotation hat weiterhin einen Lebenszyklus, welcher unter der 'Lifecycle State' dargestellt wird (siehe [3]). Sie befindet sich zu jedem Zeitpunkt in einem bestimmten Zustand, welche über den Administrationsbereich verwaltet werden. Es können auch neue Zustände definiert werden. Die Abfolge der Zustände definiert den sogenannten \glqq Workflow\grqq{}. Sie unterscheiden sich in der Sichtbarkeit für verschiedene Nutzergruppen und der Editierbarkeit der QuotationItems. Beispielsweise kann sich eine Quotation in den Zuständen \glqq Design\grqq{} oder \glqq Offered\grqq{} befinden. In letzterem Zustand sind die QuotationItems nicht mehr konfigurierbar, da sonst die Quotation von dem Angebot abweichen würde, das dem Kunden vorliegt \citep{tactonTCsiteReferenceManual}.
+
+Die Box auf der rechten Seite stellt einen Index aller Quotations dar (siehe [4]). Unter dem Suchfeld ist einstellbar, ob nur die Quotations eingeschränkt auf den eingeloggten Nutzer oder nutzerübergreifend gelistet werden sollen. Wie im Administrationsbereich erwähnt, agieren auch externe Systeme als Nutzer - als Integration User. Auch Quotations, die von dieser Nutzergruppe stammen, werden hier gelistet  \citep{tactonTCsiteReferenceManual}.
 
 \textbf{Configuration}\\
-Das Configuration Modul realisiert den C-Teil des CPQ-Prozesses: die Konfiguration. Es rendert die Konfigurationsansicht und verwaltet die mit der Konfiguration im Zusammenhang stehenden Objekte. Im Modul wird zwar die Konfigurationsaufgabe zusammengestellt, aber nicht gelöst. Dies übernimmt der TCserver. Somit ist die Konfiguration als Client-Server Achitektur realisiert. Die Konfigurationsengine wird so oft aufgerufen, bis die Konfiguration beendet ist. 
+Das Configuration Modul realisiert den C-Teil des CPQ-Prozesses: die Konfiguration. Es rendert die Konfigurationsansicht und verwaltet die mit der Konfiguration im Zusammenhang stehenden Objekte. Im Modul wird zwar die Konfigurationsaufgabe zusammengestellt, aber nicht gelöst. Dies übernimmt der TCserver. Somit ist die Konfiguration als Client-Server Architektur realisiert. Eine Konfiguration besteht aus wiederholten Aufrufen der Konfigurationsengine durch das Konfigutationsmodul.
+
+\vspace{1em}
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=1\linewidth]{Abbildungen/tcsiteTCserverCommunication.pdf}
+	\captionof{figure}[tcsiteTCserverCommunication]{Kommunikation zwischen TCsite und TCserver}
+	\label{fig:tcsiteTCserverCommunication}
+\end{minipage}
+\vspace{1em}
+
+Abbildung \label{fig:tcsiteTCserverCommunication} veranschaulicht die Phasen der Kommunikation zwischen TCsite und TCserver zur Realisierung während der Produktkonfiguration. Der initiale Konfigurationsrequest dient dem Aufbau der Configuration-View entsprechend der Spezifikation der Execution aus dem Konfigurationsmodell. Die Konfiguration startet immer in Step 1. Die Steps müssen in der vorgefertigten Reihenfolge abgearbeitet werden. Abbildung {fig:tcsiteConfigurationNumbered} zeigt die Darstellung der Notebook-Konfiguration aus Kapitel \ref{subsubsection:Execution} in Step 2. Unter [1] kann zwsichen den Steps gewechselt werden. [2] erlaubt die Navigation durch die Top-Level-Groups des aktuellen Steps. [3] stellt die der aktuellen Top-Level-Group untergeordneten Felder dar. Anhang \ref{app:tcSiteConfigurationOptionalGroups} zeigt anhand der 'Speicher'-Gruppe die Darstellung der optionalen Groups (siehe Kapitel \label{subsubsection:Execution}). Außerdem wird der Inhalt einer zusätzlichen Top-Level-Group angezeigt: unter [4] wird eine Gruppe dargestellt, die nur Felder vom Typ Label enthält. Dieser Spezialfall einer Top-Level-Group wird als Info-Group bezeichnet.
+
+\vspace{1em}
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=0.8\linewidth]{Abbildungen/tcsiteConfigurationNumbered.pdf}
+	\captionof{figure}[tcsiteConfigurationNumbered]{TCsite Configuration-View einer Notebook-Konfiguration}
+	\label{fig:tcsiteConfigurationNumbered}
+\end{minipage}
+\vspace{1em}
+
+Es fällt auf, dass bei den Feldern bereits Optionen gewählt sind - obwohl der Anwender noch gar keine Entscheidungen getroffen hat. Offensichtlich hat die Konfigurationsengine initial Default-Values gesetzt. Sie sind durch den grauen 'Please Confirm' Hinweis gekennzeichnet.
+
+\vspace{1em}
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=0.8\linewidth]{Abbildungen/tcsiteConfigurationChoice.PNG}
+	\captionof{figure}[tcsiteConfigurationChoice]{TCsite Configuration-View einer Notebook-Konfiguration nach Anwenderwahl}
+	\label{fig:tcsiteConfigurationChoice}
+\end{minipage}
+\vspace{1em}
+
+Nun beginnt die Loop-Phase, dargestellt in Abbildung \ref{fig:tcsiteTCserverCommunication}. Die Konfigurationsengine wird nach jeder Wahl des Anwenders aufgerufen, bis die Konfiguraitonssession im letzten Step beendet wird. Abbildung \ref{fig:tcsiteConfigurationChoice} zeigt die Konfiguration, nachdem der Anwender eine Option gewählt hat (Parameter: OS.type, Value: 'Windows CP'). Die gewählte Option wird unverhandelbar, gekennzeichnet durch das grüne 'Confirmed'. Außerdem wird überprüft, wie die gewählte Option die anderen verfügbaren Optionen beeinflusst. Values, die zu einem Konflikt führen, werden ausgegraut. Beim Feld 'Displaygröße' ist zu beobachten, dass die Wahl der Konfigurationsengine von 13'' auf 15'' geändert wurde. Offensichtlich sind Werte, die nicht vom Anwender gesetzt wurden, verhandelbar. Die Konfigurationsengine hält die Konfiguration folglich immer in einem korrekten Zustand. Durch einen Klick auf 'Confirm' bzw. 'Please Confirm'  können Optionen zwischen verhandelbar und unverhandelbar gewechselt werden..
+
+\vspace{1em}
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=0.8\linewidth]{Abbildungen/tcsiteConfigurationConflict.PNG}
+	\captionof{figure}[tcsiteConfigurationConflict]{TCsite Configuration-View in einer Konfliktsituation}
+	\label{fig:tcsiteConfigurationConflict}
+\end{minipage}
+\vspace{1em}
+
+Ausgegraute Optionen sind dennoch wählbar. Abbildung \ref{fig:tcsiteConfigurationConflict} zeigt die Configuration-View nach einem Klick auf die Displaygröße 13'' - dennoch wird 15'' als gewählte Option dargestellt. Stattdessen wird am oberen Ende eine Konfliktnachricht angezeigt. Die Konfigurationsengine weißt darauf hin, dass Optionen im Widerspruch stehen und schlägt eine Konfliktlösung vor. Diese kann angenommen oder abgelehnt werden. Im letzteren Fall bleibt die Konfiguration einfach in dem Zustand vor der Wahl der konfliktverursachenden Option. Auch die Eingabe von Werten in ein Textfeld kann zu Konflikten führen. Und zwar dann, wenn diese außerhalb des Wertebereichs des Parameters liegen oder im Widerspruch mit einer anderen Wahl stehen. 
 
 \subsubsection{Erweiterbarkeit}
 
 
 \textbf{Fazit}\\
-TCsite ist also webbasiert und beherbergt eine Konfigurationsengine. Grundlegende Idee und damit Gegenstand der Analyse ist also: kann die Engine als Webservice nutzbar gemacht werden? Dafür muss das Zusammenspiel der Webanwendung mit der Konfigurationsengine während des Konigurationsprozesses in TCsite untersucht werden. Ist der Konfigurationsprozess verstanden, lässt sich daraus ein Konzept für einen Konfigurations-Webservice ableiten. Voraussetzung ist jedoch Kenntnis darüber, wie Konfigurationswissen bei Tacton in Form eines Konfigurationsmodells abgebildet wird. Dies wird im Folgenden vorgestellt.
+TCsite ist also webbasiert und beherbergt eine Konfigurationsengine. Grundlegende Idee und damit Gegenstand der Analyse ist also: kann die Engine als Webservice nutzbar gemacht werden? Dafür muss das Zusammenspiel der Webanwendung mit der Konfigurationsengine während des Konigurationsprozesses in TCsite untersucht werden. Ist der Konfigurationsprozess verstanden, lässt sich daraus ein Konzept für einen Konfigurations-Webservice ableiten.
 
 Auch das Drumherun, dass es nen TCserver gibt, der ausgelagert werden kann. Dass es in Tomcat läuft und dementsprechend eine Adresse hat.
 
