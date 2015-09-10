@@ -125,7 +125,7 @@ Aus der im vorangegangenen Kapitel vorgestellten \ac{MC} resultiert mehr Produkt
 
 Die Einordnung als Designaktivität erlaubt außerdem die Beschreibung der Konfiguration als ein Designtyp. Es werden das \glqq Routine Design\grqq{}, \glqq Innovative Design\grqq{} und \glqq Creative Design\grqq{} unterschieden. Die Konfiguration entspricht dem \glqq Routine Design\grqq{}. Dabei handelt es sich um ein Problem, bei der die Spezifikation der Objekte, deren Eigenschaften sowie kompositionelle Struktur gegeben ist und die Lösung auf Basis einer bekannten Strategie gefunden wird \citep{brown89}. Damit ist \glqq Routine Design\grqq{} die simpelste der drei Formen. Die anderen Designtypen enthalten hingegen Objekte und Objektbeziehungen, die erst während des Designprozesses entwickelt werden.
 
-Die Schlüsselbegriffe der Definition von \citeauthor{sabin98} sind Komponententypen und Constraints. \textbf{Komponententypen} sind Kombinationselemente, welche durch Attribute charakterisiert werden und eine Menge alternativer (konkreter) Komponenten repräsentieren. Übertragen auf die objektorientierte Programmierung verhalten sich Komponententypen zu Komponenten wie Klassen zu Instanzen. Komponententypen stehen zueinander in Beziehung. Diese kann entweder eine \glqq Teil-Ganzes\grqq{}-Beziehung oder Generalisierung sein \citep{felferning14}. 
+Die Schlüsselbegriffe der Definition von \citeauthor{sabin98} sind Komponententypen und Constraints. \textbf{Komponententypen} sind Kombinationselemente, welche durch Attribute charakterisiert werden und eine Menge alternativer (konkreter) Instanzen repräsentieren. Übertragen auf die objektorientierte Programmierung verhalten sich Komponententypen zu Instanzen wie Klassen zu Objekten. Komponententypen stehen zueinander in Beziehung. Diese kann entweder eine \glqq Teil-Ganzes\grqq{}-Beziehung oder Generalisierung sein \citep{felferning14}. 
 
 \textbf{Constraints} (d.h. Konfigurationsregeln) im engeren Sinne sind Kombinationsrestriktionen \citep{felferning14}. Weitere Arten werden später vorgestellt.
 
@@ -141,12 +141,9 @@ Aus diesem Begriffsüberblick geht hervor, dass die auf dem Konfigurationsmodell
 
 \subsubsection{Wissenrepräsentation}
 \label{subsubsection:wissenrepraesentation}
-Das Konfigurationswissen beschreibt Wissen, welches über ein konfigurierbares Produkt besteht \citep{soininen98}. Dieses Wissen kann auf unterschiedliche Art und Weise repräsentiert, d.h. dargestellt werden. Die Repräsentation kann zur Definition eines Konfigurationsmodells genutzt werden \citep{felferning14}. Auf konzeptioneller Ebene können die Begriffe Wissensrepräsentation und Konfigurationsmodell äquivalent verwendet werden. Das Konfigurationsmodell bezeichnet jedoch letztendlich das spezifische Format, welches von einem Konfigurator verstanden wird \citep{soininen98}.
+Das Konfigurationswissen beschreibt Wissen, welches über ein konfigurierbares Produkt besteht \citep{soininen98}. Dieses Wissen kann auf unterschiedliche Art und Weise repräsentiert, d.h. dargestellt werden. Die Repräsentation kann zur Definition eines Konfigurationsmodells genutzt werden \citep{felferning14}. Auf konzeptioneller Ebene werden die Begriffe Wissensrepräsentation und Konfigurationsmodell äquivalent verwendet. Auf technischer Ebene bezeichnet das Konfigurationsmodell jedoch das spezifische Format, welches ein Konfigurator versteht \citep{soininen98}.
 
-Es existieren verschiedene Wissensrepräsentationskonzepte mit unterschiedlicher Ausdruckskraft. Im Folgenden wird ein grafische sowie eine formelle Repräsentationsvariante vorgestellt. Ein Visualisierungskonzept erleichtert den Einstieg und ermöglicht die Bildung einer Vorstellung über die möglichen Varianten eines Produktes. Über die Formalisierung des Konfigurationswissens lässt sich hingegen eine Definition der Konfigurationsaufgabe ableiten.
-
-\textbf{UML-Visualisierung}\\
-Von den bestehenden Visualisierungskonzepten wird eine UML-basierte Variante besprochen, da diese Sprache in der Informatikdomäne eine besondere Verbreitung aufweist. Im Folgenden wird eine Notebook-Konfiguration eingeführt und von späteren Erklärungen wieder aufgegriffen. Die Modellierung basiert auf dem Arbeitsbeispiel von \citep{felferning14}.
+Im Folgenden wird ein grafische Wissensrepräsentation vorgestellt, die auf UML basiert. Die grafische Variante wird gewählt, da sie die Bildung einer Vorstellung über die Problemdomäne zulässt. Sie ist UML-basiert, da die Sprache in der Informatik zur Wissensmodellierung bekannt ist. Im Folgenden wird eine Notebook-Konfiguration eingeführt und von späteren Erklärungen wieder aufgegriffen. Die Modellierung basiert auf dem Arbeitsbeispiel von \citep{felferning14}.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -175,16 +172,16 @@ $RESC_1$ & Die Summe der \textbf{needed capacity}-Attribute aller iTunes-Music-P
 \hline
 $CRC_1$ & Das OS vom Typ \textbf{OSX Yosemite} benötigt mindestens einen \textbf{core}-Wert der CPU-Komponente von 2\\
 \hline
-$COMPC_1$ & Das OS vom Typ \textbf{Windows XP} ist inkompatibel mit dem \textbf{size}-Wert der Notebook-Komponente von 13"\\
+$COMPC_1$ & Das OS vom Typ \textbf{Windows XP} ist inkompatibel mit dem \textbf{size}-Wert des Notebooks von 13"\\
 \hline
 \end{tabularx}
 \end{table}
 
-Abbildung \ref{fig:notebookConfigurationUML} beschreibt den Strukturteil der Visualisierung. Folgende Spracheinheiten sind enthalten \citep{felferning14}:
+Abbildung \ref{fig:notebookConfigurationUML} beschreibt den Strukturteil der Visualisierung. Folgende Sprachelemente sind enthalten \citep{felferning14}:
 \begin{compactitem}
-\item \textbf{Komponententypen} sind die dargestellten Entitäten. Sie besitzen einen eindeutigen Namen (z.B. 'Storage') und werden durch eine Menge von Attributen beschrieben (z.B. 'price', 'capacity'). Ein Attribute hat einen Datentyp, welcher eine Konstante, ein Wertebereich (z.B. die Zahlen von 50 bis 100 als mögliche Werte des Attributs 'capacity') oder eine Enumeration (z.B. ['gaming', 'media'] als mögliche Werte des Attributes 'usage') sein kann.
-\item \textbf{Generalisierungen} stellen die Verbindungen zwischen einem spezialisierten Subtyp zu einem einem generalisierten Supertyp her. Damit muss der Wertebereich eines Attributs eines Subtypen eine Teilmenge des entsprechenden Attributwertebereichs des Supertypen sein. Angewendet auf das Konfigurationsmodell entsteht so die Unterscheidung zwischen Komponententypen und Komponenten: ein nicht mehr weiter spezialisierter Komponententyp wird als Komponente (unterstrichen dargestellt) bezeichnet. Also sind Generalisierungen die Verbindungen zwischen Komponententypen (z.B. 'Storage') und Komponenten (z.B. 'HD‘). Durch die Zuweisung eines Komponententypen zu einer Komponente entsteht eine Instanz. Diese Zuweisung ist disjunkt und vollständig. Disjunkt bedeutet, dass jede Instanz eines Komponententypen nur genau eine der Komponenten entsprechen kann. Beispiel: Eine Instanz eine 'Storage' kann eine 'HD' oder eine 'SSD' sein, aber nicht beides. Vollständig bedeutet, dass die dargestellten Komponenten alle tatsächlich möglichen Instanzen darstellen (z.B. gibt es für diese Konfiguration keine Komponente 'DVD' als möglichen Storage).
-\item \textbf{Assoziationen mit Kardinalitäten} beschreiben die Beziehungen zwischen Komponententypen. Die hier verwendete Variante ist die Komposition. Das bedeutet, dass keine Instanz eines Komponententypen Teil von mehr als einer anderen Instanz sein kann. Kardinalitäten beschreiben Assoziationen noch näher, indem sie sie durch Mengeninformationen ergänzen. Beispiel: Eine Notebook-Instanz besitzt ein oder zwei Storage-Instanzen. Eine Storage-Instanz kann nur Teil einer Notebook-Instanz sein.
+\item \textbf{Komponententypen} sind die dargestellten Entitäten. Sie besitzen einen eindeutigen Namen (z.B. 'Storage') und werden durch eine Menge von Attributen beschrieben (z.B. 'price', 'capacity'). Ein Attribute hat einen Datentyp, welcher eine Konstante, ein Wertebereich (z.B. [50...100]) oder eine Enumeration (z.B. ['gaming', 'media']) sein kann. Ein Komponententyp beschreibt ein abstraktes Konzept eines Bauteils. Beispielsweise ist ein 'CPU' etwas, was ein bis vier Kerne haben kann. Werden Attributewerte eines Komponententypen fest gewählt, wird daraus eine Instanz, d.h. ein konkretes Bauteil (z.B. ein Vierkernprozessor).
+\item \textbf{Generalisierungen} stellen die Verbindungen zwischen einem spezialisierten Subtyp zu einem einem generalisierten Supertyp her. Damit muss der Wertebereich eines Attributs eines Subtypen eine Teilmenge des entsprechenden Attributwertebereichs des Supertypen sein. Komponententypen (z.B. 'Storage') werden so weiter spezialisiert (z.B. 'HD‘). Die Beziehung ist disjunkt und vollständig. Disjunkt bedeutet, dass jede Instanz eines Komponententypen nur genau eine seiner Subtypen entsprechen kann. Beispiel: Die Instanz eines 'Storage' kann eine 'HD' oder eine 'SSD' sein, aber nicht beides. Vollständig bedeutet, dass die Subtypen alle tatsächlich möglichen Instanzen darstellen (z.B. gibt es für diese Konfiguration keine Komponente 'DVD' als möglichen Storage).
+\item \textbf{Assoziationen mit Kardinalitäten} beschreiben die Teil-Ganzes-Beziehungen zwischen Komponententypen. Die hier verwendete Variante ist die Komposition. Das bedeutet, dass keine Instanz eines Komponententypen Teil von mehr als einer anderen Instanz sein kann. Kardinalitäten beschreiben Assoziationen noch näher, indem sie sie durch Mengeninformationen ergänzen. Beispiel: Eine Notebook-Instanz besitzt ein oder zwei Storage-Instanzen. Eine Storage-Instanz kann nur Teil einer Notebook-Instanz sein.
 \end{compactitem}
 
 Die Darstellung wird ergänzt durch Constraints. Sie gelten zwischen Komponententypen und/oder deren Attribute. Wenn möglich, werden sie direkt im Diagramm dargestellt. Anderenfalls werden sie in einer Tabelle aufgelistet (siehe Tabelle \ref{tab:notebookConfigurationConstraints}). Es werden folgende Constrainttypen unterschieden \citep{felferning14}:
@@ -193,13 +190,9 @@ Die Darstellung wird ergänzt durch Constraints. Sie gelten zwischen Komponenten
 \item \textbf{Grafische Constraints $GC$} können im Gegensatz zu anderen Constraints direkt im UML-Diagramm dargestellt werden. Ansonsten entsprechen sie einem der folgenden Typen.
 \item \textbf{Preis-Constraints $PRC$} beziehen sich auf die Preisbildung der Konfiguration. Bei Tatsächliche Konfigurationssoftware sind diese jedoch meistens nicht Teil des Konfigurationsmodells. Stattdessen wird die Preisbildung durch einen eigenen Mechanismus realisiert.
 \item \textbf{Ressourcen-Constraints $RESC$} beschränken die Produktion und den Verbrauch bestimmter Ressourcen. Beispiel:  Jedes 'iTunes-Music-Package' verbraucht 5(MB) Festplattenkapazität. Der verfügbare Speicher wird wiederum durch die Storage-Instanzen bestimmt. Wird nur ein Speichermedium in Form einer 'SSD' gewählt, hat das Notebook 250(MB) Festplattenkapazität. Somit die Obergrenze für 'iTunes-Music-Package' Instanzen gleich 50.
-\item \textbf{Abhängigkeits-Constraints $CRC$} beschreiben, unter welchen Voraussetzungen zusätzliche Komponenten Teil der Konfiguration sein müssen.
-\item \textbf{Kompatibilitäts-Constraints $COMPC$:} Beschreiben die Kompatibilität  oder Inkompatibilität bestimmter Komponenten.
+\item \textbf{Abhängigkeits-Constraints $CRC$} beschreiben, unter welchen Voraussetzungen bestimmte Instanzen Teil der Konfigurationslösung sein müssen.
+\item \textbf{Kompatibilitäts-Constraints $COMPC$:} Beschreiben die Kompatibilität  oder Inkompatibilität bestimmter Komponententypen bzw. Instanzen.
 \end{compactitem}
-
-Die Menge aller Constraints wird auch als Wissensbasis $C_{KB}$ beschrieben. Es gilt:
-
- $C_{KB} = GC \cup PRC \cup RESC \cup CRC \cup COMPC$
 
 \subsubsection{Konfigurationsaufgabe}
 \citet{mittal89} definieren einen Konfigurationsaufgabe wie folgt:
@@ -208,13 +201,9 @@ Die Menge aller Constraints wird auch als Wissensbasis $C_{KB}$ beschrieben. Es 
 \end{quote}
 (A) ist eine andere Definition für ein Konfigurationsmodell. (B) und (C) sind als Kundenanforderungen zusammenfassbar. Informell entsteht so die im Begriffsüberblick vorgestellte Definition: Die Konfigurationsaufgabe besteht aus dem Konfigurationsmodell sowie den Kundenanforderungen \citep{felferning14}.
 
-Auf formeller Ebene ist eine Konfigurationsaufgabe auch auf Grundlage eines \ac{CSP} beschreibbar. Eine Vorstellung dieser Variante ist sinnvoll, da so eine Definition der Konfigurationslösung abgeleitet werden kann. Das \ac{CSP} ist ein Problem, bei dem für eine gegebene Menge Variablen und deren Wertebereiche unter Berücksichtigung einer Regelmenge versucht wird, eine zulässige Wertekombination ermitteln. Bei einer Konfigurationsaufgabe wird die Regelmenge um die Menge der Kundenanforderungen erweitert \citep{felferning14}.
-
-Eine Konfigurationsaufgabe ist demzufolge ein Tripel $(V, D, C)$, wobei $V = \{v_1, ..., v_n\}$ eine endliche Menge Variablen,  $D  = \{dom(v_1), ..., dom(v_n)\}$ die Menge der Werte der Variablen und $C = C_{KB} \cup REQ$, wobei $C_{KB}$ die oben beschriebene Wissensbasis und $REQ$ die Menge der Kundenanforderungen ist \citep{felferning14}.
-
 \subsubsection{Konfigurationslösung}
 \label{subsubsection:Konfigurationslösung}
-Auf Grundlage des \ac{CSP} kann eine Konfigurationslösung formell definiert werden. Es handelt sich dabei um eine Instanziierung $I = \{v_1 = i_1, ..., v_n = i_n\}$, wobei $i_j$ ein Element aus $dom(v_1)$ ist. I ist vollständig (jede Variable bestitzt einen zugewiesenen Wert) und konsistent (erfüllt alle Constraints) \citep{falkner11}. Eine solche Lösung wird als korrekt bezeichnet \citep{soininen98}.
+Die Lösung einer Konfigurationsaufgabe ist vollständig (Jeder Komponententyp ist instanziiert) und konsistent (erfüllt alle Constraints) \citep[angelehnt an][]{falkner11}. Eine solche Lösung wird als korrekt bezeichnet \citep{soininen98}.
 
 Eine korrekte Lösung kann durch ein UML-Instanz-Diagramm visualisiert werden.  Abbildung \ref{fig:notebookInstanceUML} zeigt eine korrekte Lösung der Notebook-Konfiguration. Dargestellt wird also eine mögliche Variante. Anstatt der Komponententypen sind nur noch konkrete Instanzen enthalten.
 
@@ -226,8 +215,6 @@ Eine korrekte Lösung kann durch ein UML-Instanz-Diagramm visualisiert werden.  
 	\label{fig:notebookInstanceUML}
 \end{minipage}
 \vspace{1em}
-
-Lieferte eine Konfigurationsaufgabe mehr als eine korrekte Lösung, ist das Ergebnis eine Variantenmenge. Eine nicht erfüllbare Konfigurationsaufgabe führt hingegen zu einer leeren Lösungsmenge.
 
 \subsubsection{Konfigurationssysteme}
 \label{subsubsection:Konfigurationssysteme}
@@ -440,7 +427,7 @@ Abbildung \ref{fig:tactonModellHighLevel} zeigt das High-Level-Konzept der Model
 \end{minipage}
 \vspace{1em}
 
-Die Informationen über die eben erwähnten Bauteile (d.h. Komponententypen) werden isoliert unter 'components' definiert (Abbildung \ref{fig:tactonModellHighLevel}). ????Analog zu den Komponententypen und Komponenten aus Abschnitt \ref{subsubsection:wissenrepraesentation} wird ein Bauteil in 'Component Classes' und 'Components' abstrahiert. Hier wurde einfach eine andere Terminologie gewählt????. Eine Component Class (z.B. ein 'RAM') wird durch Eigenschaften beschrieben, die als Features bezeichnet werden. Jedes Feature besitzt einen Namen (z.B. 'memory') und einen Wertebereich (z.B. [2GB, 4GB]), welche als Domain bezeichnet wird. Wertebereiche können Integer, Float, Boolean, andere Component Classes oder selbstdefinierte Enumerationen sein. Components (z.B. eine 'SSD') sind das, was eine Component Class (z.B. ein 'Storage') konkret sein kann. Sie übernehmen alle Features der übergeordneten Component Class und besitzen konkrete Werte ('Values') aus dem jeweiligen Wertebereich.
+Die Informationen über die eben erwähnten Bauteile (d.h. Komponententypen) werden isoliert unter 'components' definiert (Abbildung \ref{fig:tactonModellHighLevel}). Ein Bauteil in 'Component Classes' und 'Components' abstrahiert. Das ist analog zu  Komponententypen, die in einer Generalisierungsbeziehung zueinander stehen (siehe Kapitel \ref{subsubsection:wissenrepraesentation}). Hier wurde eine Terminologie gewählt, die Supertyp und Subtyp unterscheidbar macht. Eine Component Class (z.B. ein 'RAM') wird durch Eigenschaften beschrieben, die als Features bezeichnet werden. Jedes Feature besitzt einen Namen (z.B. 'memory') und einen Wertebereich (z.B. [2GB, 4GB]), welche als Domain bezeichnet wird. Wertebereiche können Integer, Float, Boolean, andere Component Classes oder selbstdefinierte Enumerationen sein. Components (z.B. eine 'SSD') sind das, was eine Component Class (z.B. ein 'Storage') konkret sein kann. Sie übernehmen alle Features der übergeordneten Component Class und besitzen konkrete Werte ('Values') aus dem jeweiligen Wertebereich.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -707,7 +694,8 @@ Beispiel: Abrufen des Artikels mit der ID 167.
 Der Großteil der Logik ist jedoch nicht in den Actions, sondern den sogenannten core-Klassen implementiert \citep{shopware4Docs}. Beispielsweise wird der Request zum Hinzufügen eines Warenkorbartikels vom Checkout-Controller entgegen genommen, die notwendigen Geschäftsprozesse finden aber in der Serviceklasse 'sBasket' statt.
 
 \subsubsection{Erweiterbarkeit}
-vDer Quellcode der Community-Edition liegt offen. Theoretisch ist eine Erweiterung der Funktionalität über ein direktes Eingreifen in den Shopware-Kern denkbar. Der Hersteller sieht jedoch eine Anpassung über Plugins vor. Entsprechend der \ac{MVC}-Architektur wird in logische (Controller), Daten- (Model) und Template- (View) Erweiterungen unterschieden \citep{shopware5Docs}.
+\label{subsubsection:Erweiterbarkeit}
+Der Quellcode der Community-Edition liegt offen. Theoretisch ist eine Erweiterung der Funktionalität über ein direktes Eingreifen in den Shopware-Kern denkbar. Der Hersteller sieht jedoch eine Anpassung über Plugins vor. Entsprechend der \ac{MVC}-Architektur wird in logische (Controller), Daten- (Model) und Template- (View) Erweiterungen unterschieden \citep{shopware5Docs}.
 
 \textbf{Logische Erweiterungen}\\
 Logische Erweiterungen werden über Events und Hooks realisiert. Events sind \glqq definierte Ereignisse, die im Workflow des Shops auftreten\grqq{} \citep{shopware4Docs}. Plugins können Code registrieren, welcher an den Ereignispunkten ausgeführt wird. Steht kein Event für die geplante Modifikation zur Verfügung, kann Plugin-Code über das Hooksystem unmittelbar auf Funktionen des Shopware-Kerns registriert werden\citep{shopware5Docs}. Damit ist das Erweiterungskonzept flexibler als das von TCsite.
