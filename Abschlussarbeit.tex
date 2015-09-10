@@ -133,7 +133,9 @@ Zur besseren Nachvollziehbarkeit der weiteren Terminologie ist eine Definition d
 
 Die Einheit aus Komponententypen sowie das Wissen um deren Kombinierbarkeit in Form von Constraints wird als \textbf{Konfigurationsmodell} bezeichnet. Es bildet die Menge der korrekten Lösungen ab und definiert so implizit alle Varianten eines Produktes \citep{soininen98}. Dadurch muss nicht jede Variante explizit definiert und abgespeichert werden (z.B. in einer Datenbank). Die Anzahl möglicher Kombinationen kann in die Millionen gehen, was die Suche nach einer bestimmten sehr zeitaufwändig machen würde \citep{falkner11}.
 
-Die Einheit aus Konfigurationsmodell und den Kundenanforderungen wird als \textbf{Konfigurationsaufgabe} bezeichnet \citep{felferning14}. Auf dessen Grundlage kann die gewünschte Konfiguration errechnet werden. Demzufolge ist der Begriff Konfiguration überladen: er bezeichnet sowohl den Prozess als auch dessen Ergebnis. Im Folgenden werden daher die Begriffe Konfigurationsprozess sowie Konfigurationslösung verwendet. Der Konfigurationsprozess, der zur Konfigurationslösung führt, wird von einem System durchgeführt. Dieses wird als \textbf{Konfigurator} bezeichnet.
+Die Einheit aus Konfigurationsmodell und den Kundenanforderungen wird als \textbf{Konfigurationsaufgabe} bezeichnet \citep{felferning14}. Auf dessen Grundlage kann die gewünschte Konfiguration errechnet werden. Demzufolge ist der Begriff Konfiguration überladen: er bezeichnet sowohl den Prozess als auch dessen Ergebnis. Im Folgenden werden daher die Begriffe \textbf{Konfigurationsprozess} sowie \textbf{Konfigurationslösung} verwendet. Der Konfigurationsprozess, der zur Konfigurationslösung führt, wird von einem System durchgeführt. Dieses wird als \textbf{Konfigurator} bezeichnet.
+
+Diese Beschreibung einer Konfigurationslösung suggeriert, dass zu Beginn des Konfigurationsprozesses einmalig die Konfigurationsaufgabe formuliert und daraufhin die Konfigurationslösung ermittelt wird. Diese Form wird als \textbf{statische Konfiguration} bezeichnet. Demgegenüber erlaubt die \textbf{interaktive Konfiguration} das schrittweise Treffen und Revidieren von Entscheidungen \citep{hadzic04}. Die Menge aller bisher getroffenen Entscheidungen wird als \textbf{Konfigurationszustand} bezeichnet \citep{tactonTCsiteDevelopmentManual}. Der Konfigurator muss beim Konfigurationsprozess einen Mechanismus besitzen, der die Konfigurationsaufgabe in Bezug mit dem Konfigurationszustand bringt.
 
 Aus diesem Begriffsüberblick geht hervor, dass die auf dem Konfigurationsmodell basierende Konfigurationsaufgabe der Schlüssel zur Bildung einer kundenspezifischen Variante ist. Aus diesem Grunde werden diese Begriffe im Folgenden  genauer erläutert.
 
@@ -226,8 +228,6 @@ Eine korrekte Lösung kann durch ein UML-Instanz-Diagramm visualisiert werden.  
 \vspace{1em}
 
 Lieferte eine Konfigurationsaufgabe mehr als eine korrekte Lösung, ist das Ergebnis eine Variantenmenge. Eine nicht erfüllbare Konfigurationsaufgabe führt hingegen zu einer leeren Lösungsmenge.
-
-Diese Beschreibung einer Konfigurationslösung suggeriert, dass zu Beginn des Konfigurationsprozesses einmalig die Kundenanforderungen aufgenommen und daraufhin die Lösungsmenge ermittelt wird. Diese Form wird als statische Konfiguration bezeichnet. Demgegenüber erlaubt die interaktive Konfiguration das schrittweise Treffen und Revidieren von Entscheidungen \citep{hadzic04}. Bei der Verarbeitung einer Konfigurationsaufgabe dürfen die bisher getroffenen Entscheidungen nicht vergessen werden. Die Menge der Anwenderentscheidungen wird als \textbf{Konfigurationszustand} bezeichnet \citep{tactonTCsiteDevelopmentManual}. Der Konfigurator muss einen Mechanismus besitzen, bei der die Konfigurationsaufgabe in Bezug mit dem Konfigurationszustand gebracht wird.
 
 \subsubsection{Konfigurationssysteme}
 \label{subsubsection:Konfigurationssysteme}
