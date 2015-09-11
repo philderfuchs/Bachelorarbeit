@@ -248,7 +248,7 @@ Das \citet	{w3c04} definiert Webservices lose als:
 \glqq [...] a software system designed to support interoperable machine-to-machine interaction over a network\grqq
 \end{quote}
 
-Die Definition schließt die Kommunikation heterogener Systeme ein. \glqq Zwischen Systemen\grqq{} differenziert gleichzeitig klar zur klassischen Verwendung eines Programms, bei der ein (menschlicher) Nutzer mit einem System kommuniziert. \citet{tilkov11} bemerkt, dass Web Service damit sehr weich definiert ist; \glqq nämlich eigentlich gar nicht\grqq{}. Fest steht, dass hier ein Service einen Dienst anbietet, der von einem Clienten über Webtechnologien angesprochen werden kann. Webservices sind demzufolge eine Möglichkeit zur Realisierung von Integrationsszenarien webbasierter Systeme.
+Die Definition schließt die Kommunikation heterogener Systeme ein. \glqq Zwischen Systemen\grqq{} differenziert gleichzeitig klar zur klassischen Verwendung eines Programms, bei der ein (menschlicher) Anwender mit einem System kommuniziert. \citet{tilkov11} bemerkt, dass Web Service damit sehr weich definiert ist; \glqq nämlich eigentlich gar nicht\grqq{}. Fest steht, dass hier ein Service einen Dienst anbietet, der von einem Clienten über Webtechnologien angesprochen werden kann. Webservices sind demzufolge eine Möglichkeit zur Realisierung von Integrationsszenarien webbasierter Systeme.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -509,8 +509,8 @@ Das Tacton-Modellierungskonzept wurde vorgestellt. Neben dem Konfigurationswisse
 
 Das Konfigurationsmodell definiert die Interaktionsstruktur. Diese muss jedoch noch in Form eine Konfigurationsoberfläche dargestellt werden. TCsite stellt eine solche Oberfläche zur Verfügung. Die Anwendung wird im folgenden analysiert.
 
-\subsection{TCSite}
-
+\subsection{TCsite}
+\label{subsection:TCsite}
 \textbf{TCsite} ist ein webbasierter Vertriebskonfigurator. Er könnte theoretisch von Endkunden genutzt werden, bildet aber nicht die Prozesse eines eShops nach. Stattdessen handelt es sich um eine CPQ-Lösung (Configure-Price-Quote). Das bedeutet: der Anwender wird durch den Konfigurationsprozess geführt, was in einer Preiskalkulation resultiert, woraus wiederum ein Angebot erstellt wird. Eine unmittelbare Bestellung mit Zahlungsabwicklung ist nicht vorgesehen. Der Anwendungsbereich liegt also im B2B \citep{tactonAbout}.
 
 Technisch betrachtet ist TCsite eine Webanwendung. Im Lieferumfang sind 'Apache Tomcat' als Application Server sowie der \textbf{TCserver} enthalten. TCserver ist das, was gemäß Kapitel \ref{subssubsection:Produktkonfiguration} als eigentlicher Konfigurator bezeichnet wird. Er beherbergt die Konfigurationsengine. Damit ist das System gemeint, welches Konfigurationsaufgaben verarbeitet und Ergebnisse in unterschiedlicher Form präsentiert \citep{tactonTCsiteHandbook}. Abbildung \ref{fig:tcsiteHighLevel} veranschaulicht die High-Level-Architektur des Standardsetups.
@@ -750,6 +750,33 @@ Nach diesem Grobkonzept der jeweiligen Verantwortungsbereiche wird in der folgen
 \pagebreak
 
 \section{Anforderungen}
+Ziel der Arbeit ist die Entwicklung eines Systems. Dieses System wird in Abbildung \ref{fig:systemcontext} in eine Beziehung mit den Elementen gebracht, welche aus der Analyse des vorherigen Kapitels hervorgehen. Der Systemkontext stellt die Umgebung dar, der die für die Entwicklung relevanten Aspekte beinhaltet. Was das System hingegen nicht beeinflusst, ist Teil der irrelevanten Umgebung.
+In Kapitel \ref{fig:systemcontext} wurde erwähnt, dass die Kommunikation mit dem TCserver vom Configuration-Modul abstrahiert wird. Von außen ist also also nicht ersichtlich, dass der Konfigurationsprozess durch eine Serveranwendung realisiert wird. TCserver ist also Teil der irrelevanten Umgebung.
+Zum Systemkontext gehört TCsite, da es das Configuration-Modul beherbergt. Außerdem verwaltet die Anwendung die Konfigurationsmodelle und -zustände. Weiterhin ist Shopware teil des Kontexts. Dort soll eine Konfigurationsoberfläche integriert und die resultierenden Varianten in den Einkausfsvorgang integriert werden. Der Shopkunde und -administrator sind die relevanten Stakeholder von Shopware. Sie werden mit dem Plugin interagieren.
+Im Zentrum des Systemkontexts befindet sich das zu entwickelnde System selbst.
+
+\vspace{1em}
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=0.8\linewidth]{Abbildungen/systemcontext.pdf}
+	\captionof{figure}[systemcontext]{Systemkontext}
+	\label{fig:systemcontext}
+\end{minipage}
+\vspace{1em}
+
+Ausgehend von dem Fazit des vorherigen Kapitels kann das System feingranularer bestimmt werden, wie Abbildung \ref{fig:systemcontextErweitert} darstellt. Es wurde beschrieben, dass sowohl für TCsite als auch für Shopware Plugins entwickelt werden müssen. Das TCsite-Plugin stellt eine Schnittstelle als Webservice bereit, welche vom Shopware-Plugin zum rendern der Konfigurationsoberfläche genutzt wird. Darum besteht eine Verbindung zwischen beiden Plugins.
+In Kapitel \ref{subsection:Webservices} wurde besprochen, dass Webservices nicht direkt von menschlichen Anwendern genutzt werden. Darum steht keiner der Stakeholder in Verbindung zum TCsite-Plugin. Hingegen werden Shopkunden im Frontend und der Administrator im Backend mit dem Shop-Plugin interagieren.
+
+\vspace{1em}
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=0.8\linewidth]{Abbildungen/systemcontextErweitert.pdf}
+	\captionof{figure}[systemcontextErweitert]{Systemkontext}
+	\label{fig:systemcontextErweitert}
+\end{minipage}
+\vspace{1em}
+
+Basierend auf den Systemkontext werden nun Anforderungen spezifiziert, die sich auf das System und die Aspekte des Systemkontexts beziehen. Es wird in funktionale und nicht-funktionale Anforderungen unterschieden.
 
 \subsection{Funktionale Anforderungen}
 
