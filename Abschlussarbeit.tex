@@ -485,8 +485,7 @@ Beispiel: Eine 'Speicher'-Group in Step 2.
 \item Die Unterteilung in weitere Groups ist optional. Es kann beliebig tief geschachtelt werden.\\
 Beispiel: unter 'Speicher' wird die Group 'Massenspeicher' angelegt, um sie vom 'RAM' zu unterscheiden.
 \end{enumerate}
-\item Die tatsächlichen Optionen werden als \textbf{Fields} bezeichnet. Aus Sicht des Anwenders besteht ein Field aus einer Beschreibung und einem Interaktionselement, über das eine Wahl getroffen werden kann. Eine Wahl aus Anwendungssicht bedeutet: der Wert eines Part-Attributs. Damit ist ein Feld mit einem Part-Attribut verknüpft, so wie Part-Attribute mit den Features der Component Classes verknüpft sind. In der Terminologie der Execution ist das Attribut der \textbf{Parameter}, sein Wert der \textbf{Value}. Ein intuitiver Begriff für Value ist Option.\\
-Je nach Interaktionselement wird in unterschiedliche Feldtypen unterschieden:
+\item \textbf{Fields} sind das, womit eine Entscheidung über die Konfiguration getroffen wird. Aus Anwendersicht besteht ein Field aus einer Beschreibung und einem Interaktionselement. Eine technischer Sicht kapselt ein Field einen Parameter mit einem Wertebereich (Domain), aus welchem ein Wert (Value) gewählt wird. Die Parameter stammen aus den Attributen der Parts. Damit ist ein Parameter mit einem Part-Attribute verknüpft, wie ein Part-Attribute mit einem Features der Component Class verknüpft sind. Je nach Interaktionselement wird in unterschiedliche Feldtypen unterschieden:
 \begin{enumerate}[(a)]
 \item \textbf{Menu:} Wahl aus einem Wertebereich, z.B. über ein Dropdownmenü realisiert.\\
 Beispiel Massenspeicher:\\
@@ -502,10 +501,12 @@ Parameter = Notebook-Part.price, Domain = [integer]
 \end{enumerate}
 \end{compactitem}
 
+Die Feldtypen (a) und (b) haben gemein, dass der Anwender einen Wert aus einem Wertebereich festlegt. Bei (a) ist der Wertebereich eine Menge ausdefinierter Optionen, bei (b) ein Zahlenbereich, wobei er selbst eine Eingabe tätigt. Um die Formulierung kurz zu halten, wird das, was vom Anwender festgelegt wird, im Folgenden unter dem Begriff \glqq gewählte Option\grqq{} zusammen gefasst.
+
 Das Modell wird in einer XML-basierten Format mit der Dateiendung '.tcx' abgelegt. Die Entwicklung einer solchen Datei wird von entsprechenden Programmen unterstützt. Hierfür kann zum Beispiel \glqq TCstudio\grqq{} genutzt werden, welches eine grafische Oberfläche zur Modellentwicklung bietet \citep{tactonAbout}.
 
 \textbf{Zwischenfazit}\\
-Das Tacton-Modellierungskonzept wurde vorgestellt. Neben dem Konfigurationswissen werden darin auch die Optionen des Anwenders definiert. Diese werden durch Steps in eine Reihenfolge gebracht und durch Groups logisch gegliedert. Über Felder trifft der Anwender Entscheidungen. Der Feldtyp Number ermöglicht die Eingabe eines eigenen Werten abseits vordefinierter Optionen. So können Komponenten definiert werden, die nach Kundenanforderung Konstruiert werden müssen. Entsprechend der vorgestellten Produktklassifizierung in Kapitel \ref{subssubsection:Produktklassifizierung} werden so auch \ac{MTO} Produkte abgebildet.
+Das Tacton-Modellierungskonzept wurde vorgestellt. Neben dem Konfigurationswissen werden darin auch die Optionen des Anwenders definiert. Diese werden durch Steps in eine Reihenfolge gebracht und durch Groups logisch gegliedert. Über Felder wählt der Anwender Optionen. Der Feldtyp Number ermöglicht die Eingabe eines eigenen Wertes. So werden Komponenten definiert, die nach Kundenanforderung Konstruiert werden müssen. Entsprechend der vorgestellten Produktklassifizierung in Kapitel \ref{subssubsection:Produktklassifizierung} werden so auch \ac{MTO} Produkte abgebildet.
 
 Das Konfigurationsmodell definiert die Interaktionsstruktur. Diese muss jedoch noch in Form eine Konfigurationsoberfläche dargestellt werden. TCsite stellt eine solche Oberfläche zur Verfügung. Die Anwendung wird im folgenden analysiert.
 
@@ -590,11 +591,11 @@ Das Configuration-Modul realisiert den C-Teil des CPQ-Prozesses: die Konfigurati
 \end{minipage}
 \vspace{1em}
 
-Abbildung \ref{fig:tcsiteTCserverCommunication} veranschaulicht die Kommunikation zwischen TCsite und TCserver während der Konfiguration. Das Configuration-Modul führt wiederholt zustandslose Aufrufe ('configure‘) der Konfigurationsengine durch, welche eine Antwort produziert ('result') \citep{tactonTCsiteDevelopmentManual}. Dabei weicht die Semantik von 'configure‘ und ‘result' von den Definitionen der Konfigurationsaufgabe und -lösung aus Kapitel \ref{subsubsection:begriffsuberblick} ab. Laut Kapitel \ref{subsubsection:Konfigurationslösung} müssen interaktive Konfiguratoren einen Mechanismus zum Merken aller bisher gewählten Optionen, d.h. den Konfigurationszustand, besitzen. Eben wurde bemerkt, dass die Aufrufe zustandslos sind. Also wird kein serverseitiger Kontext aufgebaut, der den Konfigurationszustand enthält. Die Alternative ist die Übertragung des Zustands in jedem Aufruf. Demzufolge enthält der 'configure'-Aufruf (1) das Konfigurationsmodell (2) die aktuell gewählte Option oder Eingabe des Anwenders und (3) den Konfigurationszustand \citep{tactonTCsiteApiDocu}. Diese Bestandteile werden ab jetzt unter dem Begriff Konfigurationsengine-Input (KE-Input) zusammengefasst. Die Antwort liefert neben der Konfigurationslösung auch die Datengrundlage zum Rendern der Konfigurationsoberfläche \citep{tactonTCsiteApiDocu}. Dementsprechend wird diese Bestandteile des 'result' ab jetzt  unter dem Begriff Konfigurationsengine-Output (KE-Output) zusammengefasst.
+Abbildung \ref{fig:tcsiteTCserverCommunication} veranschaulicht die Kommunikation zwischen TCsite und TCserver während der Konfiguration. Das Configuration-Modul führt wiederholt zustandslose Aufrufe ('configure‘) der Konfigurationsengine durch, welche eine Antwort produziert ('result') \citep{tactonTCsiteDevelopmentManual}. Dabei weicht die Semantik von 'configure‘ und ‘result' von den Definitionen der Konfigurationsaufgabe und -lösung aus Kapitel \ref{subsubsection:begriffsuberblick} ab. Laut Kapitel \ref{subsubsection:Konfigurationslösung} müssen interaktive Konfiguratoren einen Mechanismus zum Merken aller bisher gewählten Optionen, d.h. den Konfigurationszustand, besitzen. Eben wurde bemerkt, dass die Aufrufe zustandslos sind. Also wird kein serverseitiger Kontext aufgebaut, der den Konfigurationszustand enthält. Die Alternative ist die Übertragung des Zustands in jedem Aufruf. Demzufolge enthält der 'configure'-Aufruf (1) das Konfigurationsmodell (2) die aktuell gewählte Option oder Eingabe des Anwenders und (3) den Konfigurationszustand \citep{tactonTCsiteApiDocu}. Diese Bestandteile werden ab jetzt unter dem Begriff Konfigurationsengine-Input (KE-Input) zusammengefasst. Die Antwort liefert neben der Konfigurationslösung auch die Datengrundlage zum Rendern der Konfigurationsoberfläche \citep{tactonTCsiteApiDocu}. Dementsprechend werden diese Bestandteile des 'result' ab jetzt unter dem Begriff Konfigurationsengine-Output (KE-Output) zusammengefasst.
 
 Die Kommunikation läuft in drei Phasen ab. Der erste KE-Input beinhaltet noch keine Wahl des Anwenders. Sie dient dem initialen Aufbau der Konfigurationsoberfläche entsprechend der Execution, die im Konfigurationsmodell definiert wurde. Die Konfiguration startet immer in Step 1. Die Steps müssen in der vordefinierten Reihenfolge abgearbeitet werden. Nun beginnt die Loop-Phase. Nach jeder Wahl einer Option wird die Konfigurationsengine aufgerufen und daraufhin die Oberfläche neu gerendert. Die Oberfläche spiegelt dabei den Konfigurationszustand wieder, d.h. die bisher gewählten Optionen und Eingaben werden hervorgehoben. Wird die Konfiguration im letzten Step vom Anwender abgeschlossen, erfolgt eine letzter Aufruf der Konfigurationsengine. Aus dem KE-Output ist die Konfigurationslösung, d.h. die finale Instanziierung, extrahierbar \citep{tactonTCsiteDevelopmentManual}.
 
-Der Vorgang wird anhand des Notebook-Beispiels aus Kapitel \ref{subsubsection:Execution} veranschaulicht. Abbildung \ref{fig:tcsiteConfigurationNumbered} zeigt die Konfigurationsoberfläche in TCsite. Die befindet sich im zweiten Step gezeigt. Mittels [1] wird zwsichen den Steps gewechselt. [2] erlaubt die Navigation durch die Top-Level-Groups des aktuellen Steps. [3] stellt die Felder der aktuellen Top-Level-Group dar. Anhang \ref{app:tcSiteConfigurationOptionalGroups} zeigt anhand der 'Speicher'-Gruppe die Darstellung tieferer Group-Ebenen (siehe Kapitel \ref{subsubsection:Execution}). Außerdem wird bei [4] noch eine Top-Level-Group angezeigt: die sogenannte Info-Group. Allerdings wurde bei der Execution in Kapitel \ref{subsubsection:Execution} gar keine Info-Group explizit definiert. Offensichtlich wird eine Top-Level-Group dann als Info-Group dargestellt, wenn sie nur Felder vom Typ Label enthält.
+Der Vorgang wird anhand des Notebook-Beispiels aus Kapitel \ref{subsubsection:Execution} veranschaulicht. Abbildung \ref{fig:tcsiteConfigurationNumbered} zeigt die Konfigurationsoberfläche in TCsite. Die befindet sich im zweiten Step gezeigt. Mittels [1] wird zwsichen den Steps gewechselt. [2] erlaubt die Navigation durch die Top-Level-Groups des aktuellen Steps. [3] stellt die Felder der aktuellen Top-Level-Group dar. Anhang \ref{app:tcSiteConfigurationOptionalGroups} zeigt anhand der 'Speicher'-Gruppe die Darstellung tieferer Group-Ebenen (siehe Kapitel \ref{subsubsection:Execution}). Außerdem wird bei [4] noch eine weitere Top-Level-Group angezeigt: die sogenannte Info-Group. Allerdings wurde bei der Execution in Kapitel \ref{subsubsection:Execution} gar keine Info-Group explizit definiert. Offensichtlich wird eine Top-Level-Group dann als Info-Group dargestellt, wenn sie nur Felder vom Typ Label enthält. Die Schlussfolgerung ist, dass die Oberfläche nicht nur präsentiert, sondern auch Darstellungslogik enthält.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -605,7 +606,7 @@ Der Vorgang wird anhand des Notebook-Beispiels aus Kapitel \ref{subsubsection:Ex
 \end{minipage}
 \vspace{1em}
 
-Es fällt auf, dass bereits Optionen gewählt sind - obwohl der Anwender noch gar keine Wahl getroffen hat. Offensichtlich hat die Konfigurationsengine initial Default-Values gesetzt. Sie sind durch den grauen 'Please Confirm'-Hinweis gekennzeichnet.
+Es fällt auf, dass bereits Optionen gewählt sind - obwohl der Anwender noch gar nichts Entschieden hat. Offensichtlich hat die Konfigurationsengine initial Default-Values gesetzt. Sie sind durch den grauen 'Please Confirm'-Hinweis gekennzeichnet.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -616,7 +617,7 @@ Es fällt auf, dass bereits Optionen gewählt sind - obwohl der Anwender noch ga
 \end{minipage}
 \vspace{1em}
 
-Abbildung \ref{fig:tcsiteConfigurationChoice} zeigt die Konfiguration, nachdem der Anwender eine Option gewählt hat (Parameter: OS.type, Value: 'Windows CP'). Die gewählte Option wird unverhandelbar, gekennzeichnet durch das grüne 'Confirmed'. Außerdem wird überprüft, wie die gewählte Option die anderen verfügbaren Optionen beeinflusst. Values, die zu einem Konflikt führen, werden ausgegraut. Beim Feld 'Displaygröße' ist zu beobachten, dass die Wahl der Konfigurationsengine von '13' auf '15' geändert wurde. Offensichtlich sind Werte, die nicht vom Anwender gesetzt wurden, verhandelbar. Die Konfigurationsengine hält die Konfiguration folglich immer in einem korrekten Zustand. Durch einen Klick auf 'Confirm' bzw. 'Please Confirm'  können Optionen zwischen verhandelbar und unverhandelbar wechseln.
+Abbildung \ref{fig:tcsiteConfigurationChoice} zeigt die Konfiguration, nachdem der Anwender eine Option gewählt hat (Parameter: OS.type, Value: 'Windows CP'). Die gewählte Option wird \glqq unverhandelbar\grqq{}. Das wird gekennzeichnet durch das grüne 'Confirmed'. Außerdem wird überprüft, wie die gewählte Option die anderen verfügbaren Optionen beeinflusst. Was zu einem Konflikt führt, wird ausgegraut. Beim Feld 'Displaygröße' ist zu beobachten, dass die Wahl der Konfigurationsengine von '13' auf '15' geändert wurde. Offensichtlich sind Werte, die nicht vom Anwender gesetzt wurden, \glqq verhandelbar\grqq{}. Die Konfigurationsengine hält die Konfiguration folglich immer in einem korrekten Zustand. Durch einen Klick auf 'Confirm' bzw. 'Please Confirm'  können Optionen zwischen verhandelbar und unverhandelbar wechseln.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -627,7 +628,7 @@ Abbildung \ref{fig:tcsiteConfigurationChoice} zeigt die Konfiguration, nachdem d
 \end{minipage}
 \vspace{1em}
 
-Ausgegraute Optionen sind dennoch wählbar. Abbildung \ref{fig:tcsiteConfigurationConflict} zeigt die Configuration-View nach einem Klick auf die Displaygröße '13'. Dennoch ist '15' immer noch die aktive Option. Gleichzeitig wird am oberen Ende eine Konflikthinweis angezeigt. Die Konfigurationsengine weißt darauf hin, dass Optionen im Widerspruch stehen und schlägt eine Konfliktlösung vor. Diese kann angenommen oder abgelehnt werden. Im letzteren Fall bleibt die Konfiguration einfach in dem Zustand vor der Wahl der konfliktverursachenden Option. Auch die Eingabe von Werten in ein Textfeld kann zu Konflikten führen. Beispielsweise dann, wenn diese außerhalb der Domain des Parameters liegen oder im Widerspruch mit einer anderen Wahl stehen. 
+Ausgegraute Optionen sind dennoch wählbar. Abbildung \ref{fig:tcsiteConfigurationConflict} zeigt die Configuration-View nach einem Klick auf die Displaygröße '13'. Dennoch ist '15' immer noch die aktive Option. Gleichzeitig wird am oberen Ende eine Konflikthinweis angezeigt. Die Konfigurationsengine weist darauf hin, dass Optionen im Widerspruch stehen und schlägt eine Konfliktlösung vor. Diese kann angenommen oder abgelehnt werden. Im letzteren Fall bleibt die Konfiguration einfach in dem Zustand vor der Wahl der konfliktverursachenden Option. Auch die Eingabe von Werten in ein Textfeld kann zu Konflikten führen. Beispielsweise dann, wenn diese außerhalb der Domain des Parameters liegen oder im Widerspruch mit einer anderen Wahl stehen. 
 
 Wird die Konfiguration über die Schaltfläche 'Ok' beendet, kehrt TCsite zum Quotation Modul zurück. Dort erscheint das konfigurierte Produkt in der Liste der QuotationItems.
 
@@ -649,13 +650,13 @@ Jedes Plugin hat Zugriff auf das Repository, die Plattform und das Moduls, zu de
 
 \subsubsection{Fazit}
 \label{subsubsection:tcsiteFazit}
-Der Produktkatalog von TCsite besteht nicht aus explizit ausdefinierten Varianten, sondern Produkten mit Konfigurationsmodellen. Erst innerhalb einer Quotation werden aus den Konfigurationsmodellen kundenspezifische Varianten generiert. Dies passiert im Configuration-Modul. Es führt die Konfiguration durch, indem es KE-Inputs definiert, die Konfigurationsengine aufruft und mittels des KE-Outputs die Konfigurationsoberfläche rendert.
+Der Produktkatalog von TCsite besteht nicht aus explizit ausdefinierten Varianten, sondern Produkten mit Konfigurationsmodellen. Erst innerhalb einer Quotation werden aus den Konfigurationsmodellen kundenspezifische Varianten generiert. Dies passiert im Configuration-Modul. Die Konfiguration geschieht durch die Definition von KE-Inputs, die mit KE-Outputs beantwortet werden. Ein KE-Input wird im Configuration-Modul zusammengestellt. Es besteht aus dem Konfigurationsmodell, der gewählten Option und allen vergangenen gewählten Optionen (Konfigurationszustand). Das Configuration-Modul nimmt den KE-Output entgegen und rendert die Konfigurationsoberfläche auf dessen Grundlage neu.
 
-Auch ein externes System kann den Inhalt des KE-Outputs auslesen und eine Konfigurationsoberfläche aufbauen. Über diese kann der Anwender Optionen wählen, die dann an das Configuration-Modul weitergeleitet werden. Dort wird in Verbindung mit dem Konfigurationsmodell und dem Konfigurationszustand ein KE-Input definiert. Über den KE-Output kann der Konfigurationsoberfläche im externen System wiederum aktualisiert werden. Die für diesen Vorgang relevanten Informationen müssen nur irgendwie zwischen dem externen System und dem Configuration-Modul transportiert werden. Das Pluginkonzept erlaubt die Definition von Serviceendpunkten über Webcontroller. An diesen können HTTP-Requests ausgewertet und beantwortet werden. Dadurch kann ein Webservice implementiert werden, der eine Schnittstelle für externe Konfigurationsoberflächen bereitstellt.
+Die Daten aus dem KE-Output, die zum Rendern der Konfigurationsoberfläche genutzt werden, können auch einem externen System zur Verfügung gestellt werden, um dort eine entsprechende Oberfläche zu erstellen. Über diese kann der Anwender Optionen wählen, die dann an das Configuration-Modul zurückgegeben werden. Dort wird in Verbindung mit dem Konfigurationsmodell und dem Konfigurationszustand ein KE-Input definiert. Über den KE-Output kann die Konfigurationsoberfläche im externen System wiederum aktualisiert werden. Die für diesen Vorgang relevanten Informationen müssen nur irgendwie zwischen dem externen System und dem Configuration-Modul transportiert werden. Das Pluginkonzept erlaubt die Definition von Serviceendpunkten über Webcontroller. An diesen können HTTP-Requests ausgewertet und beantwortet werden. Dadurch kann ein Webservice implementiert werden, der eine Schnittstelle für externe Konfigurationsoberflächen bereitstellt.
 
 Potentieller Client dieses Services ist jedes System, welches HTTP nutzen kann. Das trifft auf jede Webanwendung zu. eShops-Systeme sind per se Webanwendungen. Somit können technische Bedingungen an das eShop-System für das Integrationsszenario formuliert werden: (1) das System muss modifizierbar sein, (2) die Modifizierung muss einen Webservice in einer Client-Server Architektur nutzen können und (3) die Verwaltung von Varianten muss integraler Bestandteil des Systems sein.
 
-??????????Jedes Shopsystem, welches diese technischen Bedingungen erfüllt, käme für das Integrationsszenario in Frage. Ein internen Evaluierungsprozess der Lino GmbH, bei dem zusätzlich ökonomische Faktoren bewertet wurden, hat zu Shopware als System für die prototypische Entwicklung geführt.??????
+??????????Jedes Shopsystem, welches diese technischen Bedingungen erfüllt, kommt für das Integrationsszenario in Frage. Ein internen Evaluierungsprozess der Lino GmbH, bei dem zusätzlich ökonomische Faktoren bewertet wurden, hat zu Shopware als System für die prototypische Entwicklung geführt.??????
 
 \subsection{Shopsystem}
 
@@ -778,11 +779,27 @@ In Kapitel \ref{subsection:Webservices} wurde besprochen, dass Webservices nicht
 \end{minipage}
 \vspace{1em}
 
-Basierend auf den Systemkontext werden nun Anforderungen spezifiziert, die sich auf das System und die Aspekte des Systemkontexts beziehen. Es wird in funktionale und nicht-funktionale Anforderungen unterschieden.
+Basierend auf den Systemkontext werden nun Anforderungen spezifiziert, die sich auf das System und die Aspekte des Systemkontexts beziehen. Es wird in funktionale und nichtfunktionale Anforderungen unterschieden.
 
 \subsection{Funktionale Anforderungen}
 
+Funktionale Anforderungen beschreiben das \glqq was\grqq{}, d.h. welche Funktionalitäten und Dienste das System erfüllen soll. Es werden zunächst die funktionalen Anforderungen des Shopware-Plugins erwähnt. Aus diesen ergibt sich, was das TCsite-Plugin, welches einen Webservice repräsentiert, liefern muss.
+
+\subsubsection{Shopware-Plugin}
+Die Analyse des Einkaufsvorgangs hat ergeben, dass die Konfiguration eines Artikels auf dessen Detailseite stattfindet. Daraus ergibt sich die funktionale Anforderung SW.F01:
+\begin{enumerate}[SW.F01:]\bfseries
+\item Das Shop-Plugin muss auf der Detailseite eine Konfigurationsoberfläche bieten.
+\end{enumerate}
+Die Funktionalität der Konfigurationsoberfläche kann näher beschreiben werden. Aus der Analyse des Konfigurationsprozesses in Kapitel \ref{subsubsection:tcsiteArchitektur} ergibt sich die funktionale Anforderung SW.F02:
+\begin{enumerate}[SW.F02:]\bfseries
+\item Die Konfigurationsoberfläche muss einen Konfigurationprozess äquivalent zu TCsite ermöglichen. 
+\end{enumerate}
+Das beinhaltet: Aktualisierung der Oberfläche nach jeder Wahl des Anwenders; Darstellung von Steps, Toplevel-Groups, optionalen Gruppen, allen Feldtypen, Hervorhebung der verhandelbar/nichtverhandelbar gesetzten Optionen; Navigation durch die Execution-Struktur (Steps in vordefinierter Reihenfolge, Toplevel-Groups); Wählen von Optionen, Eingabe von Werten; Wechsel zwischen verhandelbar/nichtverhandelbar gesetzten Optionen; Konfliktbehebung
+
+
 \subsection{Nichtfunktionale Anforderungen}
+
+Nichtfunktionale Anforderungen beschreiben das \glqq wie\grqq{}, d.h. welche Eigenschaften das System besitzen soll.
 
 \pagebreak
 
