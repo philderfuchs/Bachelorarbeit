@@ -8,7 +8,7 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{fancyhdr}
-\usepackage{tabularx}
+\usepackage{multirow, tabularx}
 \usepackage{geometry}
 \usepackage{setspace}
 \usepackage[right]{eurosym}
@@ -656,6 +656,7 @@ Potentieller Client dieses Services ist jedes System, welches HTTP nutzen kann. 
 ??????????Jedes Shopsystem, welches diese technischen Bedingungen erfüllt, kommt für das Integrationsszenario in Frage. Ein internen Evaluierungsprozess der Lino GmbH, bei dem zusätzlich ökonomische Faktoren bewertet wurden, hat zu Shopware als System für die prototypische Entwicklung geführt.??????
 
 \subsection{Shopsystem}
+\label{subsection:Shopsystem}
 
 Shopware wird von der shopware AG in Schöppingen entwickelt. Das eShop-System ist aus einer Individuallösung gewachsen, welche 2003 von den heutigen Geschäftsführern entwickelt wurde. Infolgedessen wurde das Unternehmen 2008 als Vertriebsgesellschaft für die Software gegründet. Aktuell liegt die fünfte Version vor. Shopware wird in einem Dual-License Modell vertrieben. Die Community Edition wird unter der \citeauthor{gnuAGPLv3} Open-Source Lizenz \glqq AGPLv3\grqq{} angeboten. Außerdem existieren drei kommerzielle Versionen \citep{shopwareUnternehmen}.
 
@@ -918,11 +919,60 @@ In Kapitel \ref{subsection:TCsite} wurde erwähnt, dass die Architektur in Java 
 
 \pagebreak
 
-\section{Integrationskonzept}
+\section{Konzeption}
+
+Zu Beginn der Konzeption wird betrachet, wie sich Artikel, Varianten, Warenkorbartikel etc. zueinander im Datenbankschema von Shopware verhalten. Daraus wird abgeleitet, wie die per Plugin konfigurierten Varianten in den Einkaufsvorgang integriert werden. Müssen also neue Klassen bzw. Tabellen erzeugt oder können Strukturen werden? Daraus lässt sich ein neues Aktivitätsdiagramm entwerfen, welches die Grundlage der weiteren Konzeption darstellen wird.
+
+\vspace{1em}
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=0.6\linewidth]{Abbildungen/shopwareArtikelRelationenModell.pdf}
+	\captionof{figure}[shopwareArtikelRelationenModell]{Ausschnitt des Relationenmodells in Shopware}
+	\label{fig:shopwareArtikelRelationenModell}
+\end{minipage}
+\vspace{1em}
+
+Abbildung \ref{fig:shopwareArtikelRelationenModell} zeigt den für die Konzeption wichtigen Ausschnitt des Shopware-Datenbankschemas als Relationenmodell. Eine vollständige Übersicht ist Quelle ist \citet{shopwareDatabaseScheme} zu entnehmen. Auf der Abbildung sind die Begrifflichkeiten aus dem Analysekapitel \ref{subsection:Shopsystem} rot zugeordnet. Dem Relationenmodell ist zu entnehmen, dass Artikel (\emph{s\_articles}) und deren Varianten (\emph{s\_articles\_details}) in unterschiedlichen Tabellen gespeichert werden. Eine Sachverhalt, den das Relationenschema nicht ausdrücken kann, ist, dass auch zu einem Artikel ohne Varianten zumindest eine Zeile in \emph{s\_articles\_details} angelegt wird. Die Varianten kennen den jeweiligen Basisartikel, aber nicht umgekehrt. Es lässt ableiten, dass in \emph{s\_articles} Informationen stehen, die für alle Varianten gelten (zum Beispiel die allgemeine Produktbeschreibung \emph{description}) und in \emph{s\_articles\_details} detailiertere Informationen (z.B. der jeweilige Lagerbestand \emph{instock}).
+
+Dem Relationenmodell ist des weiteren zu entnehmen, dass eine Verbindung zwischen einer Variante und den Optionen (\emph{s_article_configurator_options }), aus denen es generiert wurde, erst über die Tabelle \emph{s\_article\_configurator\_option\_relations} hergestellt wird. Eine Variante weiß also nicht, wie sie ins Leben gerufen wurde. Sie ist existentiell nicht auf die Kopplung an Optionen angewiesen. Daraus wird geschlussfolgert, dass im Einkaufsprozess Varianten dynamisch, d.h. bei Bedarf, generiert werden können.
+
+Ein Warenkorbartikel (\empf{s_order_basket}) hat jedoch in jedem Fall einen Fremdschlüsselverweis auf eine Variante. Damit ist eine Warenkorbartikel von der Existenz einer Variante abhängig. Es wird geschlussfolgert, dass eine Variante noch nicht zum Beginn des Einkaufsvorgangs, aber spätestens beim Ablegen in den Warenkorb erstellt werden muss.
+
+\textbf{Einkaufsvorgang}\\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\begin{table}[]
+\centering
+\caption{My caption}
+\label{my-label}
+\begin{tabularx}{\textwidth}{|X|X|X|X|X|X|}
+\hline
+\multirow{2}{*}{{\bf Methode}} & \multirow{2}{*}{{\bf Bechreibung}} & \multicolumn{1}{l|}{{\bf Parameter}} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} &                                                                                                                           \\ \cline{3-6} 
+                               &                                    & {\bf id}                             & {\bf product}         & {\bf operation}       & \multicolumn{1}{c|}{{\bf \begin{tabular}[c]{@{}c@{}}action,\\ parameter,\\ value,\\ currentGroup,\\ accept\end{tabular}}} \\ \hline
+{\bf GET}                      & conf. holen                & x                                    &                       & \multicolumn{1}{l|}{} &                                                                                                                           \\ \hline
+{\bf DELETE}                   & conf. löschen              & x                                    &                       & \multicolumn{1}{l|}{} &                                                                                                                           \\ \hline
+{\bf POST}                     & conf. erstellen            &                                      & x                     & create                &                                                                                                                           \\ \hline
+                               & conf. kopieren             & x                                    &                       & copy                  &                                                                                                                           \\ \hline
+                               & conf. verändern            & x                                    &                       & change                & \multicolumn{1}{c|}{x}                                                                                                    \\ \hline
+\end{tabularx}
+\end{table}
 
 \pagebreak
 
-\section{Integrationsumsetzung}
+\section{Umsetzung}
 
 \pagebreak
 
