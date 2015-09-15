@@ -742,7 +742,7 @@ Ausgehend von dieser Analyse ist der Einkaufsvorgang eines Varianten-Artikels un
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=1\linewidth]{Abbildungen/shopwareKonfigurationFlussdiagramm.pdf}
-	\captionof{figure}[shopwareKonfigurationFlussdiagramm]{Fussdiagramm der Einkaufsvorgangs eines Varianten-Artikels in Shopware}
+	\captionof{figure}[shopwareKonfigurationFlussdiagramm]{Aktivitätsdiagramm der Einkaufsvorgangs eines Varianten-Artikels in Shopware}
 	\label{fig:shopwareKonfigurationFlussdiagramm}
 \end{minipage}
 \vspace{1em}
@@ -998,7 +998,7 @@ Stattdessen startet nun der Konfigurationsprozess über das Shopware-Plugin. Daz
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=1\linewidth]{Abbildungen/konzeptCreate.pdf}
-	\captionof{figure}[konzeptCreate]{Erstellen \& Laden einer \emph{configuration}-Ressource}
+	\captionof{figure}[konzeptCreate]{Erstellen \& Laden einer neuen \emph{configuration}-Ressource}
 	\label{fig:konzeptCreate}
 \end{minipage}
 \vspace{1em}
@@ -1023,10 +1023,28 @@ Das Shopware-Plugin übermittelt die gewählte Option an das TCsite-Plugin. Auß
 \end{minipage}
 \vspace{1em}
 
-Nun klickt der Anwender den \glqq In den Warenkorb\grqq{}-Button, was im Falle einer neuen Konfiguration zum Anlegen einer Warenkorbposition führen soll. Standardmäßig wird durch den Button die \emph{ajaxAddArticleCart}-Action des Checkout-Controllers ausgelöst (die Controller-Terminologie wurde in Kapitel \ref{subsubsection:shopwareArchitektur} vorgestellt). In der Action wird die Warenkorbposition angelegt und der Warenkorb angezeigt. Die Besprechung des Datenbank-Relationenmodells (siehe Abbildung \ref{fig:shopwareArtikelRelationenModell} hat gezeigt, dass eine Warenkorbposition auf einen Variante verweist. Diese Variante existiert aber noch nicht, sondern muss noch dynamisch erzeugt werden. Die Analyse der Shopware-Erweiterbarkeit in Kapitel \ref{subsubsection:shopwareErweiterbarkeit} hat ergeben, dass Controller-Actions überschreibbar sind. \emph{ajaxAddArticleCart} wird also durch eine vom Shopware-Plugin bereitgestellt Funktion überschrieben. Diese neue Funktion legt zunächst eine Variante an, d.h. sie erzeugt eine neue Zeile in der Tabelle \emph{s\_articles\_details}, siehe Abbildung \ref{fig:shopwareArtikelRelationenModell}. Für die Variante wird die entsprechende \emph{configurationID} in der Tabelle \emph{s\_articles\_details} hinterlegt. So ist die Variante mit der \emph{configuration}-Ressource verknüpft, durch die sie konfiguriert wurde. Danach wird die entsprechende Warenkorbposition erzeugt.
+Nun klickt der Anwender den \glqq In den Warenkorb\grqq{}-Button, was im Falle einer neuen Konfiguration zum Anlegen einer Warenkorbposition führen soll. Standardmäßig wird durch den Button die \emph{ajaxAddArticleCart}-Action des Checkout-Controllers ausgelöst (die Controller-Terminologie wurde in Kapitel \ref{subsubsection:shopwareArchitektur} vorgestellt). In der Action wird die Warenkorbposition angelegt und der Warenkorb angezeigt. Die Besprechung des Datenbank-Relationenmodells (siehe Abbildung \ref{fig:shopwareArtikelRelationenModell} hat gezeigt, dass eine Warenkorbposition auf einen Variante verweist. Diese Variante existiert aber noch nicht, sondern muss noch dynamisch erzeugt werden. Die Analyse der Shopware-Erweiterbarkeit in Kapitel \ref{subsubsection:shopwareErweiterbarkeit} hat ergeben, dass Controller-Actions überschreibbar sind. \emph{ajaxAddArticleCart} wird also durch eine vom Shopware-Plugin bereitgestellt Funktion überschrieben.
 
-\textbf{Konfigurationsprozess}\\
+Diese neue Funktion legt zunächst eine Variante an. Das heißt, sie erzeugt eine neue Zeile in der Tabelle \emph{s\_articles\_details}, siehe Abbildung \ref{fig:shopwareArtikelRelationenModell}. Für die Variante wird die entsprechende \emph{configurationID} in der Tabelle \emph{s\_articles\_details} hinterlegt. So ist die Variante mit der \emph{configuration}-Ressource verknüpft, durch die sie konfiguriert wurde. Der Preis der Variante wird in der Tabelle \emph{s\_articles\_details} hinterlegt.  Jetzt kann die entsprechende Warenkorbposition erzeugt werden. Der Name der Warenkorbposition wird nachträglich zu einer Kurzbeschreibung der Variante geändert (z.B. Notebook OSX Yosemite 4GB RAM). Die Kurzbeschreibung stammt ebenfalls aus der \emph{configuration}-Ressource. Zusammengefasst müssen der überschriebenen \emph{ajaxAddArticleCart}-Action drei zusätzliche Informationen übermittelt werden -- die \emph{configurationID}, der Preis und die Kurzbeschreibung.
 
+\textbf{Warenkorb}\\
+Die aktuelle Station des Einkaufsvorgangs ist der Warenkorb (siehe Abbildung \ref{fig:konzeptionEinkausvorgang1}). Möchte der Anwender weitere Artikel konfigurieren, schließt er den Warenkorb und beginnt mit der Auswahl der Wunschartikel. Damit wiederholt sich der bisher beschriebene Prozess. Ist der Anwender mit einer Warenkorbposition unzufrieden, kann er diese Löschen und Umkonfigurieren.
+
+Im Gegensatz zum ursprünglichen Einkaufsvorgang (siehe Abbildung \ref{fig:shopwareKonfigurationFlussdiagramm}) hat das Löschen einer Warenkorbposition nun weitere Löschungen zur Folge. Eine Variante wurde nur erstellt, um als Bezugspunkt einer Warenkorbposition zu dienen. Das Löschen einer Position macht auch die zugehörige Variante obsolet. Dementsprechend wird diese aus der Datenbank entfernt. Durch die in Abbildung dargestellten \ref{fig:shopwareArtikelRelationenModell} Fremdschlüsselverweise werden in dessen Folge die entsprechenden Zeilen aus \emph{s\_articles\_prices} und \emph{s\_articles\_details} ebenfalls gelöscht. Auch die zugehörige \emph{configuration}-Ressource ist dadurch funktionslos. Ein Löschbefehl wird an das TCsite-Plugin abgesetzt.
+
+Die letzte Möglichkeit ist das Umkonfigurieren einer Warenkorbposition. Dies wird im Folgenden konzipiert.
+
+\textbf{Umkonfiguration}\\
+Durch einen Klick auf eine Warenkorbposition gelangt der Anwender zur Detailsansicht der Variante. Beim Anlegen der Variante wurde in eine \emph{configurationID} hinterlegt. Über diese wird die \emph{configuration} geladen, wodurch der letzte Stand der Konfigurationsoberfläche wieder hergestellt wird. Abbildung \ref{fig:konzeptCopy} zeigt den Vorgang im Detail. 
+
+\vspace{1em}
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=1\linewidth]{Abbildungen/konzeptCopy.pdf}
+	\captionof{figure}[konzeptCopy]{Kopieren \& Laden einer bestehenden \emph{configuration}}
+	\label{fig:konzeptCopy}
+\end{minipage}
+\vspace{1em}
 
 \subsection{anker}
 
