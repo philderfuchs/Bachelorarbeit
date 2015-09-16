@@ -267,7 +267,7 @@ Die Fokusinformation sagt aus, für welche Datenelemente sich der Client interes
 \subsubsection{SOAP}
 Bei SOAP-Web Services wird ein \ac{RPC} durchgeführt. Dabei handelt es sich um eine generelle Technik zur Realisierung von Systemverteilung. Ein System ruft die Funktion eines Systems aus einem anderen Adressraum auf. SOAP ist ein XML-basiertes Umschlagsformat, welches wiederum die Beschreibung eines Methodenaufrufs in XML-Form enthält. Bei SOAP-Web Services werden also \ac{RPC}s über HTTP getunnelt \citep{wilde11}. Das ist Konvention, aber keine Notwendigkeit: der SOAP-Umschlag ist Transportunabhängig, könnte also auch von anderen Protokollen als HTTP übertragen werden \citep{tilkov11}. Solange es sich bei dem Transportprotokoll um eine Webtechnologie handelt, wird die Webservicedefinition nicht verletzt.
 
-Wie die Beschreibung des \ac{RPC} aussehen muss, definiert die \ac{WSDL}. Jeder SOAP basierte Service stellt eine machinenverarbeitbare \ac{WSDL}-Datei bereit. Darin werden die aufrufbaren Methoden, deren Argumente und Rückgabetypen beschrieben. Außerdem werden Schemata der XML-Dokumente festgehalten, die der Service akzeptiert und versendet \citep{richardson07}.
+Wie die Beschreibung des \ac{RPC} aussehen muss, definiert die \ac{WSDL}. Jeder SOAP basierte Service stellt eine maschinenverarbeitbare \ac{WSDL}-Datei bereit. Darin werden die aufrufbaren Methoden, deren Argumente und Rückgabetypen beschrieben. Außerdem werden Schemata der XML-Dokumente festgehalten, die der Service akzeptiert und versendet \citep{richardson07}.
 
 Es existieren eine Vielzahl von Middleware-Interoperabilitätsstandards, die mit dem \glqq WS-\grqq{} Prefix versehen sind. Diese sind \glqq XML-Aufkleber\grqq{} für den SOAP-Umschlag, die HTTP-Headern entsprechen \citep{richardson07}. Sie erweitern die Ausdrucksmöglichkeit des SOAP-Formats \citep{wilde11}. Beispielsweise erlaubt WS-Security die Berücksichtigung von Sicherheitsaspekten bei der Client-Server Kommunikation. Eine Übersicht der existierenden Standards ist dem Wiki für Webservices \citet{webServiceWiki09} zu entnehmen.
 
@@ -327,6 +327,9 @@ Aus den vorgestellten Kriterien resultieren folgende Eigenschaften \citep{tilkov
 \item \textbf{Performance und Skalierbarkeit}: Webservices sollen schnell antworten, unabhängig von der Anzahl von Anfragen in einem definierten Zeitraum. Dies wird durch Cachebarkeit (siehe HTTP-Methodenspezifikation) und Zustandslosigkeit erreicht. Da der Service keinen clientspezifischen Kontext aufbauen muss, müssen aufeinanderfolgende Requests nicht vom gleichen System beantwortet werden.
 \end{compactitem}
 \pagebreak
+
+\textbf{Kurzfazit}\\
+In der generellen Ausrichtung ist REST Ressourcenorientiert während SOAP aufgrund von \ac{RPC}s Methodenorientiert ist. Um REST zu implementieren, müssen Kriterien erfüllt werden. Die einzige technische Voraussetzung ist das Bereitstellen von Funktionen, die auf verschiedene URIs reagieren und HTTP verarbeiten können. Bei SOAP ist HTTP nur das Transportprotokoll. Die Verarbeitung des Inhalts erfordert einen weiteren Technologiestack.
 
 \subsection{eCommerce}
 
@@ -940,12 +943,17 @@ In Kapitel \ref{subsection:TCsite} wurde erwähnt, dass die Architektur in Java 
 \begin{enumerate}[TC.NF02:]\bfseries
 \item Das TCsite-Plugin muss unter der Verwendung von Java erstellt werden.
 \end{enumerate}
+Aus dem Erweiterungskonzept von TCsite (siehe Kapitel \ref{subsubsection:Erweiterbarkeit})
+ kann schon jetzt das zu verwendende Webservice-Paradigma abgeleitet werden. Im Fazit des vorangegenen Kapitels wurde festgelegt, dass Web-Controller genutzt werden. Entsprechend des Kurfazits in Kapitel \ref{subsection:Webservices} steht damit das Werkzeug zur Implementierung eines REST-Websservices zur Verfügung. Es resultiert die Anforderung:
+\begin{enumerate}[TC.NF04:]\bfseries
+\item Die Konfigurationsschnittstelle wird als Webservice entsprechend des REST-Architekturstils implementiert.
+\end{enumerate}
 
 \pagebreak
 
 \section{Konzeption}
 \textbf{Vorgehensweise}\\
-Aus der Anforderungsanalyse ist hervorgegangen, dass zwei Plugins konzipiert werden müssen. Es wird die Vorgehensweise gewählt, zuerst das Shopware-Plugin und danach das TCsite-Plugin zu behandeln. Grund dafür ist, dass das TCsite-Plugin einen Service darstellen wird, den das Shopware-Plugin als Client nutzt. Indem der Client zuerst konzipiert wird, ergeben sich daraus die Daten und Prozesse, die vom Service bereitgestellt werden müssen. Auf dieser Grundlage kann dann das TCsite-Plugin konzipiert werden. Das bedeutet: welches Webservice-Paradigma wird gewählt, und welche Serviceendpunkte zur Verfügung gestellt werden müssen.
+Aus der Anforderungsanalyse ist hervorgegangen, dass zwei Plugins konzipiert werden müssen. Es wird erst das Shopware-Plugin und danach das TCsite-Plugin behandelt. Grund dafür ist, dass das TCsite-Plugin einen Service darstellt, den das Shopware-Plugin als Client nutzt. Indem der Client zuerst konzipiert wird, ergeben sich daraus die Ressourcen und Prozesse, die vom Service bereitgestellt werden müssen.
 
 \subsection{Shopware-Plugin}
 Vor der Konzeption des Shopware-Plugins wird betrachtet, wie sich Artikel, Varianten, Warenkorbpositionen etc. zueinander im Datenbankschema von Shopware verhalten. Daraus wird abgeleitet, wie die per Plugin konfigurierten Varianten in den Einkaufsvorgang integriert werden. Es geht um die Frage: müssen dazu neue Klassen bzw. Tabellen erzeugt oder können bestehende Strukturen verwendet werden? Daraus lässt sich ein neues Aktivitätsdiagramm entwerfen, welches die Grundlage der weiteren Konzeption darstellen wird.
