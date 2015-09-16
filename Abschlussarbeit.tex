@@ -953,13 +953,13 @@ Vor der Konzeption des Shopware-Plugins wird betrachtet, wie sich Artikel, Varia
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
-	\includegraphics[width=0.6\linewidth]{Abbildungen/shopwareArtikelRelationenModell.pdf}
+	\includegraphics[width=0.7\linewidth]{Abbildungen/shopwareArtikelRelationenModell.pdf}
 	\captionof{figure}[shopwareArtikelRelationenModell]{Ausschnitt des Relationenmodells in Shopware}
 	\label{fig:shopwareArtikelRelationenModell}
 \end{minipage}
 \vspace{1em}
 
-Abbildung \ref{fig:shopwareArtikelRelationenModell} zeigt den für die Konzeption wichtigen Ausschnitt des Shopware-Datenbankschemas als Relationenmodell. Eine vollständige Übersicht ist Quelle ist \citet{shopwareDatabaseScheme} zu entnehmen. Auf der Abbildung sind die Analysekapitel \ref{subsection:Shopsystem} verwendeten Begriffe rot zugeordnet. Dem Relationenmodell ist zu entnehmen, dass Artikel (\emph{s\_articles}) und deren Varianten (\emph{s\_articles\_details}) in unterschiedlichen Tabellen gespeichert werden. Außerdem wird zu einem Artikel ohne Varianten zumindest eine Zeile in \emph{s\_articles\_details} angelegt wird, der Artikel und die Variante stehen dann in einer 1-zu-1 Beziehung (kann im Relationenschema nicht ausgedrückt werden). Die Varianten kennen den jeweiligen Basisartikel, aber nicht umgekehrt. Es lässt sich ableiten, dass in \emph{s\_articles} Informationen stehen, die für alle Varianten gelten (zum Beispiel die allgemeine Produktbeschreibung \emph{description}) und in \emph{s\_articles\_details} detailliertere Informationen (z.B. der jeweilige Lagerbestand \emph{instock}).
+Abbildung \ref{fig:shopwareArtikelRelationenModell} zeigt den für die Konzeption wichtigen Ausschnitt des Shopware-Datenbankschemas als Relationenmodell. Eine vollständige Übersicht ist Quelle ist \citet{shopwareDatabaseScheme} zu entnehmen. Auf der Abbildung sind die Analysekapitel \ref{subsection:Shopsystem} verwendeten Begriffe rot zugeordnet. Dem Relationenmodell ist zu entnehmen, dass Artikel (\emph{s\_articles}) und deren Varianten (\emph{s\_articles\_details}) in unterschiedlichen Tabellen gespeichert werden. Außerdem wird zu einem Artikel ohne Varianten zumindest eine Zeile in \emph{s\_articles\_details} angelegt wird, der Artikel und die Variante stehen dann in einer 1-zu-1 Beziehung (kann im Relationenschema nicht ausgedrückt werden). Die Varianten kennen den jeweiligen Basisartikel, aber nicht umgekehrt. Es lässt sich ableiten, dass in \emph{s\_articles} Informationen stehen, die für alle Varianten gelten (zum Beispiel die allgemeine Produktbeschreibung \emph{description}) und in \emph{s\_articles\_details} detailliertere Informationen (z.B. der jeweilige Lagerbestand \emph{instock}). Es ist hervorzuheben, dass \emph{s\_articles\_details} zwei Primärschlüssel besitzt, die jeweils eindeutig sein müssen -- \emph{articledetailsID} und \emph{ordernumber}. Die \emph{articledetailsID} wird vom System vergeben, während die \emph{ordernumber} vom Administrator bestimmt werden kann. Somit wird die \emph{ordernumber} als menschenlesbarer Identifikator verwendet, die der Vertrieb einer Variante zurodnen kann.
 
 Dem Relationenmodell ist des weiteren zu entnehmen, dass eine Verbindung zwischen einer Variante und den Optionen (\emph{s\_article\_configurator\_options }), aus denen es generiert wurde, erst über die Tabelle \emph{s\_article\_configurator\_option\_relations} hergestellt wird. Eine Variante weiß also nicht, wie sie ins Leben gerufen wurde. Sie ist existentiell nicht auf die Kopplung an Optionen angewiesen. Daraus wird geschlussfolgert, dass im Einkaufsprozess Varianten dynamisch, d.h. bei Bedarf, generiert werden können.
 
@@ -1007,7 +1007,7 @@ Abbildung \ref{fig:konzeptCreate} zeigt, wie das Erstellen \& Laden der \emph{co
 
 Das \emph{configurable} verwaltet ab jetzt den Konfigurationszustands dieser Konfiguration. In der Antwort des TC-Site-Plugins muss also eine Information darüber enthalten sein, wie das Shop-Plugin genau die \emph{configuration}-Ressource wiederfinden kann, die mit dem \emph{configurable} im Zusammenhang steht. Diese Information wird von nun an als \emph{configurationID} bezeichnet. Dementsprechend wird die Datenbanktabelle \emph{s\_articles\_details} um eine weitere Spalte \emph{configurationID} ergänzt. Damit sind alle notwendigen Datenbank-Erweiterungen abgeschlossen. Zusammenfassend wird die Tabelle \emph{s\_articles\_details} um zwei neue Spalten ergänzt -- \emph{correspondingTcsiteProduct} und \emph{configurationID}. Die \emph{configurationID} wird jedoch erst in die Datenbank eingetragen, wenn die entsprechende Variante nach Abschluss der Konfiguration in den Warenkorb gelegt wird.
 
-Die Beschreibung des Aktivitätsdiagramms (Abbildung \ref{fig:konzeptionEinkausvorgang1}) wird fortgeführt. Oben wurde der Punkt \glqq neue configuration erstellen \& laden\grqq behandelt. Die Erläuterung von \glqq bestehende configuration kopieren \& laden\grqq folgt zu einem späteren Zeitpunkt. Es folgt das initiale Rendern der Konfigurationsoberfläche und die Aktualisierung der Preisanzeige mittels der Daten aus der \emph{configuration}-Ressource. Hierfür werden Template-Erweiterungen genutzt. Der Smarty-Block \emph{frontend\_detail\_index\_detail} zeichnet den Bereich der Detailseite aus, der das Artikelbild enthält (siehe Abbildung \ref{app:shopwareNotebookDetail}). Unterhalb wird die Konfigurationsoberfläche angehangen. Die original Preisanzeige wird per DOM-Manipulation aktualisiert.
+Die Beschreibung des Aktivitätsdiagramms (Abbildung \ref{fig:konzeptionEinkausvorgang1}) wird fortgeführt. Oben wurde der Punkt \glqq neue configuration erstellen \& laden\grqq behandelt. Die Erläuterung von \glqq bestehende configuration kopieren \& laden\grqq folgt zu einem späteren Zeitpunkt. Es folgt das initiale Rendern der Konfigurationsoberfläche und die Aktualisierung der Preisanzeige mittels der Daten aus der \emph{configuration}-Ressource. Hierfür werden Template-Erweiterungen genutzt. Der Smarty-Block \emph{frontend\_detail\_index\_detail} zeichnet den Bereich der Detailseite aus, der das Artikelbild enthält (siehe Abbildung \ref{app:shopwareNotebookDetail}). Unterhalb wird die Konfigurationsoberfläche angehangen. Die original Preisanzeige wird per DOM-Manipulation aktualisiert. Sowohl für die DOM-Manipulation als auch für das Rendern der Konfigurationsoberfläche wird clientseitige Logik, d.h. Javascript, benötigt. Für das Einbinden eigener Javascript-Dateien steht der Smarty-Block \emph{frontend\_index\_header\_javascript} zur Verfügung.
 
 \textbf{Konfigurationsprozess}\\
 Es folgt der Konfigurationsprozess. Der Anwender wählt über die Konfigurationsoberfläche Optionen, tätigt Eingaben und wechselt Steps. Abbildung \ref{fig:konzeptChange} stellt die Kommunikation zwischen dem Shopware-Plugin und dem TCsite-Plugin nach jeder Nutzerinteraktion dar.
@@ -1032,10 +1032,14 @@ Die aktuelle Station des Einkaufsvorgangs ist der Warenkorb (siehe Abbildung \re
 
 Im Gegensatz zum ursprünglichen Einkaufsvorgang (siehe Abbildung \ref{fig:shopwareKonfigurationFlussdiagramm}) hat das Löschen einer Warenkorbposition nun weitere Löschungen zur Folge. Eine Variante wurde nur erstellt, um als Bezugspunkt einer Warenkorbposition zu dienen. Das Löschen einer Position macht auch die zugehörige Variante obsolet. Dementsprechend wird diese aus der Datenbank entfernt. Durch die in Abbildung dargestellten \ref{fig:shopwareArtikelRelationenModell} Fremdschlüsselverweise werden in dessen Folge die entsprechenden Zeilen aus \emph{s\_articles\_prices} und \emph{s\_articles\_details} ebenfalls gelöscht. Auch die zugehörige \emph{configuration}-Ressource ist dadurch funktionslos. Ein Löschbefehl wird an das TCsite-Plugin abgesetzt.
 
+Der standardmäßige Löschvorgang einer Warenkorbposition wird von der Methode \emph{sDeleteArticle} der Moduls \emph{sBasket} realisiert (siehe Abbildung \ref{fig:tcsiteLowLevel}). Es handelt sich nicht um eine Controller-Action und die Funktion enthält auch keine Notify-Events. Entsprechend der Erläuterung logischer Erweiterungen in Kapitel \ref{subsubsection:shopwareErweiterbarkeit} muss also auf das Hooksystem zurückgegriffen werden. Eine Plugin-Funktion wird der \emph{sDeleteArticle} \glqq angehangen\grqq{}, worin das Löschen der entsprechenden Variante und \emph{configuration} implementiert wir.
+
 Die letzte Möglichkeit ist das Umkonfigurieren einer Warenkorbposition. Dies wird im Folgenden konzipiert.
 
 \textbf{Umkonfiguration}\\
-Durch einen Klick auf eine Warenkorbposition gelangt der Anwender zur Detailsansicht der Variante. Beim Anlegen der Variante wurde in eine \emph{configurationID} hinterlegt. Über diese wird die \emph{configuration} geladen, wodurch der letzte Stand der Konfigurationsoberfläche wieder hergestellt wird. Abbildung \ref{fig:konzeptCopy} zeigt den Vorgang im Detail. 
+Durch einen Klick auf eine Warenkorbposition gelangt der Anwender zur Detailsansicht der Variante. Beim Anlegen der Variante wurde für diese eine \emph{configurationID} hinterlegt. Die zugehörige \emph{configuration} wird geladen, wodurch der letzte Stand der Konfigurationsoberfläche wieder hergestellt wird. Abbildung \ref{fig:konzeptCopy} zeigt den Vorgang im Detail.
+
+Das Vorgehen entspricht insofern dem "Erstellen \& Laden einer neuen \emph{configuration}" (siehe Abbildung \ref{fig:konzeptCreate}), als dass der KE-Input ohne eine gewählte Option verarbeitet wird. Dementsprechend ist der Konfigurationszustand vor und nach dem Aufruf der Konfigurationsengine der selbe. Jedoch geschieht die Umkonfigurationsprozess auf einer Arbeitskopie und nicht auf dem \emph{configurable}, welches im Zusammenhang mit der \emph{configurationID} steht. Grund dafür ist Anforderung SW.F11. Gemäß dieser Anforderung muss die Umkonfiguration erst abschließend vom Anwender bestätigt werden. Es ist also möglich, dass der Anwender zunächst andere Optionen wählt, die Änderungen aber verwerfen möchte (z.B. in dem er die Detailseite ohne Bestätigung der Umkonfiguration verlässt). Ohne das Anfertigen einer Arbeitskopie würde im Falle des Verwerfens die \emph{configuration}-Ressource nicht mehr dem Konfigurationszustand entsprechen, mit dem mit die Variante in Shopware ursprünglich angelegt wurde.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -1045,6 +1049,40 @@ Durch einen Klick auf eine Warenkorbposition gelangt der Anwender zur Detailsans
 	\label{fig:konzeptCopy}
 \end{minipage}
 \vspace{1em}
+
+Die Beschriftung des \glqq In den Warenkorb\grqq{}-Buttons muss auf \glqq Neue Konfiguration Speichern\grqq geändert werden. So wird darauf Hingewiesen, dass das Verhalten des Buttons ein anderes ist. Inwiefern, wird im Folgenden beschrieben.
+
+Die entsprechende Warenkorbposition muss nicht inkrementiert (entspricht dem Verhalten aus Abbildung \ref{subsubsection:shopwareKonfiguration}), sondern aktualisiert werden. Das Betrifft den Preis (Spalte: \emph{price}; Tabelle \emph{s\_articles\_prices}), die Beschreibung (Spalte: \emph{articlename}; Tabelle \emph{s\_order\_basket}) und die Anzahl (Spalte: \emph{quantity}; Tabelle \emph{s\_order\_basket}). Außerdem muss die \emph{configurationID} dieser Variante aktualisiert werden, da die Änderungen auf einer Arbeitskopie stattfanden.
+
+Zur Implementierung des neuen Verhalten wird die bereits überschriebene \emph{ajaxAddArticleCart}-Action genutzt. Zwar wurde die Beschriftung des \glqq In den Warenkorb\grqq{}-Buttons geändert, er triggert aber immer noch die gleiche Controllerfunktion. In der überschriebenen Action muss Unterschieden werden, ob es sich um eine neue Konfiguration oder eine Umkonfiguration handelt. Letzteres in dann der Fall, wenn für die Variante bereits eine \emph{configurationID} hinterlegt ist.
+
+\textbf{Bestellung}\\
+Die Erstellten Varianten gehen als normale Artikel in den Bestellprozess ein. Im Eingang dieses Kapitels wurde erwähnt, dass über die \emph{ordnernumber} einer Variante (Tabelle \emph{s\_articles\_details}) die bestellte Warenkorbposition vom Vertrieb zugeordnet werden kann. Die Varianten wurden im eben dargestellten Ablauf jedoch automatisiert während Einkaufsvorgang generiert. Die \emph{ordernumber} gibt also keine Auskunft über die vorliegende Variante. Entweder ist die Beschreibung der Variante aussagekräftig genug, oder die \emph{configurationID} ermöglicht die Auswertung der Daten, die bei TCsite mit dieser Bestellung im Zusammenhang stehen. Genaueres zur letzteren Vorgehensweise wird in der Konzeption des TCsite-Plugins besprochen.
+
+\textbf{Zusammenfassung}\\
+Vorausgehend wurden alle notwendigen Erweiterungen des Shopware-Plugins beschrieben und begründet, wobei der Einkaufsvorgang in Abbildung \ref{fig:konzeptionEinkausvorgang1}
+ als Strukturierungsvorlage der Darstellung diente. Im Folgenden werden die notwendigen Erweiterungen nach Typen zusammengefasst:
+ 
+\begin{enumerate}
+\item \textbf{Daten-Erweiterungen:}
+\begin{enumerate}[(a)]
+\item Hinzufügen von Variantenattributen\\
+Spalten: \emph{correspondingTcsiteProduct} / \emph{configurationID}, Tabelle \emph{s\_articles\_details}
+\end{enumerate}
+\item \textbf{Template-Erweiterungen:}
+\begin{enumerate}[(a)]
+\item Ersetzen des Preises im Artikellisting\\Block: \emph{frontend\_listing\_box\_article\_price\_default}
+\item Einfügen der Konfigurationsoberfläche in der Detailseite\\Block: \emph{frontend\_detail\_index\_detail}
+\item Einfügen von clientseitiger Logik mittels Einbindung von Javascript-Dateien in der Detailseite\\Block: \emph{frontend\_index\_header\_javascript}
+\end{enumerate}
+\item \textbf{logische Erweiterungen:}
+\begin{enumerate}[(a)]
+\item Überschreiben der Controller-Action zum Hinzufügen von Warenkorbpositionen\\
+Action: \emph{ajaxAddArticleCart}, Controller: \emph{Checkout}
+\item \glqq Hooken\grqq{} der Methode zum Löschen von Warenkorbartikeln\\
+Methode: \emph{sDeleteArticle}, Modul: \emph{sBasket}
+\end{enumerate}
+\end{enumerate}
 
 \subsection{anker}
 
