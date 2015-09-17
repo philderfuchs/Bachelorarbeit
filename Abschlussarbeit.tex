@@ -272,6 +272,7 @@ Wie die Beschreibung des \ac{RPC} aussehen muss, definiert die \ac{WSDL}. Jeder 
 Es existieren eine Vielzahl von Middleware-Interoperabilitätsstandards, die mit dem \glqq WS-\grqq{} Prefix versehen sind. Diese sind \glqq XML-Aufkleber\grqq{} für den SOAP-Umschlag, die HTTP-Headern entsprechen \citep{richardson07}. Sie erweitern die Ausdrucksmöglichkeit des SOAP-Formats \citep{wilde11}. Beispielsweise erlaubt WS-Security die Berücksichtigung von Sicherheitsaspekten bei der Client-Server Kommunikation. Eine Übersicht der existierenden Standards ist dem Wiki für Webservices \citet{webServiceWiki09} zu entnehmen.
 
 \subsubsection{REST}
+\label{subsubsection:REST}
 \begin{quote}
 \glqq Eine Architektur zu definieren bedeutet zu entscheiden, welche Eigenschaften das System haben soll, und eine Reihe von Einschränkungen vorzugeben, mit denen diese Eigenschaften erreicht werden können.\grqq{} \citep{tilkov11}
 \end{quote}
@@ -1116,36 +1117,77 @@ Es wird die Entwurfsentscheidung getroffen, zu jedem \emph{Configurable} -- welc
 \item In der Quotation-View von TCsite (Abbildung \ref{fig:tcsiteQuotationNumbered}) existiert ein Index, der alle \emph{Quotations} auflistet. Wird eine Variante in Shopware bestellt, kann über die hinterlegte \emph{configurationID} die zugehörige \emph{Quotation} in diesem Index gefunden werden. In der \emph{Quotation} befindet sich nur ein \emph{QuotationItem} -- und zwar die Variante, die der Shopwarekunde bestellt hat. So wird das Problem gelöst, welches im Abschnitt \glqq Bestellung\grqq{} der Konzeption des Shopware-Plugins angesprochen wurde. Der Vertrieb kann zuordnen, welche Varianten in Shopware eigentlich bestellt wurden.
 \end{enumerate}
 
-\subsubsection{anker}
+Durch Anforderung TC.NF03 ist bereits klar, dass das TCsite-Plugin einen Webservice implementiert, der den Einschränkungen des REST-Architekturstils gerecht werden soll. Entsprechend Kapitel \ref{subsubsection:REST} muss Entworfen werden, welche Ressourcen mit welchen Repräsentationen und Verknüpfungen (Hypermedia) bereitgestellt werden. Gleichzeitig wird Entschieden, unter welcher URI mit welchen Methoden die Interaktion mit einer Ressource stattfinden kann.
 
+\subsubsection{Ressourcen}
+Im Entwurf des Shopware-Plugins wurde bereits die Ressource \emph{configuration} modelliert. Entsprechend der Ressourcentypisierung, die in Kapitel \ref{subsubsection:REST} vorgestellt wurde, handelt es sich um ein Aggregat. Mit einem Serveraufruf bekommt das Shopware-Plugin so verschiedene Informationen mitgeteilt -- Preisinformationen, eine Kurzbeschreibung der Warenkorbpositionen und Daten zum Rendern der Konfigurationsoberfläche. Diese Informationen könnten auch in mehrere Ressourcen unterteilt werden. Da das vorliegende Konzept des Shopware-Plugins aber alle diese Informationen zum gleichen Zeitpunkt benötigt, würde eine feingranularere Ressourcenmodellierung nur zu mehr Serveraufrufen führen.
 
+Außerdem wurde festgestellt, dass eine \emph{configuration} die eigene ID enthalten muss. Das spielt in den Fällen \glqq neue \emph{configuration} erstellen \& laden\grqq{}  sowie \glqq bestehende \emph{configuration} kopieren \& laden\grqq{} eine Rolle. Hier erfährt das Shopware-Plugin erst in der Antwort des Service die ID der \emph{configuration} für die weitere Kommunkation. Somit wird die REST-Einschränkung \glqq Hypermedia\grqq{} erfüllt.
 
+In der Konzeption des Shopware-Plugins wurde begründet, dass die Repräsentation der Ressourcen als JSON ausfällt. Listing \ref{lst:configuration} skizziert die Form der Ressource am Notebook-Beispiel mit exemplarischen Werten. Die Daten für die Konfigurationsoberfläche (\emph{ui-data}) sind ein komplexes Konstrukt. TCsite stellt Methoden bereit, die den \emph{KE-Output} auslesen und die \emph{ui-data} durch die Ineinanderschachtelung von JSON-Objekten als serialisierten Baum darstellen. Die dabei stattfindenden Prozesse sind für den Plugin-Entwickler nicht einsehbar und werden in der Arbeit nicht weiter ausgeführt. Letztendlich muss das Shopware-Plugin diesen Baum traversieren und so die Konfigurationsoberfläche aufbauen.
 
+\vspace{1em}
+\begin{lstlisting}[caption=Beispiel einer \emph{configuration}, label=lst:configuration]
+{
+	"price": 420,
+	"summary": "hallo"
+	"ui-data": {
+			steps: [...],
+			groups: [...],
+			...
+	 },
+	"configurationID": "1024"
+}
+\end{lstlisting}
 
+\subsubsection{Serviceendpunkte}
+Nun müssen die Serviceendpunkte konzipiert werden, d.h. die Festlegung der URIs und HTTP-Methoden zur Interaktion mit der Ressource.
 
-Gemäß Anforderung TC.NF03 ist bereits klar, dass das TCsite-Plugin einen Webservice darstellen wird, der den Einschränkungen des REST-Architekturstils gerecht werden soll. Dementsprechend müssen die Ressourcen mit deren Repräsentationen und Verknüpfungen (Hypermedia) konzipiert werden. Außerdem muss festgelegt werden, unter welcher URI mit welchen Methoden mit einer Ressource interagiert werden kann.
+Der Identifikator einer Ressource gehört zum Pfad. Laut \citet{tilkov11} ist es Geschmackssache, ob die ID als Pfad-Parameter (z.B. \glqq http://tcsite-uri.de/path-to-the-plugin/configuration/1024\grqq{}) oder Query-Parameter (z.B. \glqq http://tcsite-uri.de/path-to-the-plugin/configuration?id=1024\grqq{}) übergeben wird. Es wird letztere Variante gewählt, da im Folgenden noch weitere Query-Parameter benötigt werden.
 
+Nun müssen die HTTP-Methoden definiert werden, die die Ressource unterstützt. Die Wolken in Abbildung \ref{fig:konzeptionEinkausvorgang1} zeigen alle Operationen, die vom Service implementiert werden müssen. Im Folgenden wird unter Berücksichtigung der HTTP Spezifikation (siehe Abbildung \ref{fig:restMethoden}) besprochen, auf welche HTTP-Methode die jeweilige Operation abgebildet werden muss und ob weitere Query-Paramter übergeben werden müssen.
 
+\begin{enumerate}
+\item \textbf{\emph{configuration} löschen}: entspricht semantisch der HTTP-Methode \emph{DELETE}. 
+\begin{addmargin}[25pt]{0pt} 
+Anwendungsbeispiel: Ein \emph{DELETE}-Request an\\
+\glqq http://tcsite-uri.de/path-to-the-plugin/configuration?id=1024\grqq{}
+\\löscht die \emph{Quotation} mit der ID 1024.
+\end{addmargin}
+\item \textbf{neue \emph{configuration} erstellen \& laden}: Das Anlegen einer Ressource entspricht semantisch der HTTP-Methode \emph{PUT}. Allerdings fordert die Methode, dass die Ressource künftig durch die selbe URI identifiziert wird, an die der \emph{PUT}-Request abgesetzt wurde. Zum Zeitpunkt des Anlegens kennt der Client die URI der entstehenden \emph{configuration} aber noch nicht. Diese wird ihm erst in der Antwort mitgeteilt. Die Operation entspricht also eher der Methode \emph{POST}, d.h. das Anlegen einer Ressource unter einer vom Service bestimmten URI.\\Da im Folgenden noch weitere Operationen auf \emph{POST} abgebildet, wird ein Query-Parameter \emph{operation} eingeführt. Das erstellen einer \emph{configuration} bekommt das Schlüsselwort \emph{create} zugeordnet. Durch diesen wird dem Webservice mitgeteilt, welche Operation im Falle eines \emph{POST} erwünscht ist. die Weiterhin muss kommuniziert werden, für welches TCsite-Produkt eine \emph{configuration} erstellt werden soll. Hierfür wird der Query-Parameter \emph{product} eingeführt.
+\begin{addmargin}[25pt]{0pt} 
+Anwendungsbeispiel:
+\\Ein \emph{POST}-Request an \glqq http://tcsite-uri.de/path-to-the-plugin/
+\\configuration?operation=create\&product=notebook\grqq{}\\
+erstellt eine neue Notebook-Konfiguration.
+\end{addmargin}
+\item \textbf{bestehende \emph{configuration} kopieren \& laden}: Es existiert keine HTTP-Methode, die der Semantik kopieren gerecht wird. Die Operation muss also auf \emph{POST} abgebildet werden, da sie die einzige Methode ohne sichtbare Semantik ist. Für den \emph{operation}-Parameter wird das Schlüsselwort \emph{copy} gewählt.
+\begin{addmargin}[25pt]{0pt} 
+Anwendungsbeispiel:\\
+Ein \emph{POST}-Request an \glqq http://tcsite-uri.de/path-to-the-plugin/
+\\configuration?id=1024\&operation=copy\grqq{}
+\\kopiert die \emph{Quotation} mit der ID 1024.
+\end{addmargin}
+\item \textbf{bestehende \emph{configuration} ändern \& laden}: Entspricht der Verarbeitung einer gewählten Option des Anwenders im Konfigurationsprozess. Semantisch wird dadurch ein Prozess ausgedrückt. Prozesse werden (im weiteren Sinne) der Methode \emph{POST} zugeordnet. Für den \emph{operation}-Parameter wird das Schlüsselwort \emph{change} gewählt, da sich bei der Verarbeitung Konfigurationszustand innerhalb der zugehörigen \emph{Quotation} ändert. Weiterhin muss der Methode mitgeteilt werden, welche Option der Anwender gewählt wird. Wie die gewählte Option codiert wird, ist ein Implementierungsdetail und wird in der Arbeit nicht weiter besprochen. Die entsprechenden Informationen können beispielsweise als JSON verpackt und im Entity-Body des HTTP-Requests mitgeschickt werden.
+\begin{addmargin}[25pt]{0pt} 
+Anwendungsbeispiel:\\
+Ein \emph{POST}-Request an \glqq http://tcsite-uri.de/path-to-the-plugin/
+\\configuration?id=1024\&operation=change\grqq{}
+\\mit einer JSON-Payload, in welcher die Wahl des Betriebssystems \emph{OSX Yosemite} codiert wird, setzt diese Option unverhandelbar im Konfigurationszustand (falls sie nicht im Konflikt mit einer anderen Option steht).
+\end{addmargin}
+\end{enumerate}
 
+\subsubsection{Zusammenfassung}
+Abbildung \ref{fig:konzeptRestZusammenfassung} fasst die Spezifikation des Endpunkts der \emph{configuration}-Ressource tabellarisch zusammen.
 
-
-
-\newpage
-\begin{table}[]
-\centering
-\caption{My caption}
-\label{my-label}
-\begin{tabularx}{\textwidth}{|X|X|X|X|X|X|}
-\hline
-\multirow{2}{*}{{\bf Methode}} & \multirow{2}{*}{{\bf Bechreibung}} & \multicolumn{1}{l|}{{\bf Parameter}} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} &                                                                                                                           \\ \cline{3-6} 
-                               &                                    & {\bf id}                             & {\bf product}         & {\bf operation}       & \multicolumn{1}{c|}{{\bf \begin{tabular}[c]{@{}c@{}}action,\\ parameter,\\ value,\\ currentGroup,\\ accept\end{tabular}}} \\ \hline
-{\bf GET}                      & conf. holen                & x                                    &                       & \multicolumn{1}{l|}{} &                                                                                                                           \\ \hline
-{\bf DELETE}                   & conf. löschen              & x                                    &                       & \multicolumn{1}{l|}{} &                                                                                                                           \\ \hline
-{\bf POST}                     & conf. erstellen            &                                      & x                     & create                &                                                                                                                           \\ \hline
-                               & conf. kopieren             & x                                    &                       & copy                  &                                                                                                                           \\ \hline
-                               & conf. verändern            & x                                    &                       & change                & \multicolumn{1}{c|}{x}                                                                                                    \\ \hline
-\end{tabularx}
-\end{table}
+\vspace{1em}
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=1\linewidth]{Abbildungen/konzeptRestZusammenfassung.png}
+	\captionof{figure}[konzeptRestZusammenfassung]{Zusammenfassung der REST-Schnittstelle}
+	\label{fig:konzeptRestZusammenfassung}
+\end{minipage}
+\vspace{1em}
 
 \pagebreak
 
