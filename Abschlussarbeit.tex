@@ -1236,14 +1236,12 @@ Zunächst wurde eine Grundlage für die Kommunikation von TCsite mit externen Sy
 
 \section{Fazit}
 \label{section:Fazit}
-Im Folgenden findet eine Diskussion der Ergebnisse statt. Dies geschieht sowohl aus einem technischen, als auch einem anwendungsbezogenen Standpunkt. Dabei werden Alternativen und Potentiale für die zukünftige Entwicklung aufgezeigt.
-
-Hier erstmal kicken, dass alles geklappt hat und dass Shopware nur exemplarisch verwendet wurde
+Während der Umsetzung konnten alle funktionalen und nichtfunktionalen Anforderungen erfüllt werden. Resultat dieser Arbeit sind zwei Plugins. Nach deren Installation in den jeweiligen Systemen sowie geringem Einstellungsaufwand (Eintragung der Serviceadresse im Shopware-Plugin, CORS-Aktivierung bei TCsite) ermöglichen sie die Tacton-Produktkonfiguration in einem Open-Source Shopsystem. Damit war die Integration erfolgreich. Der Kunde merkt während des Einkaufsvorgangs nicht, dass der Konfigurationsprozess durch einen externen Dienst begleitet wird. Im Folgenden findet eine Diskussion des Ergebnisses statt. Dies geschieht sowohl aus einem technischen, als auch einem anwendungsbezogenen Standpunkt. Dabei werden Alternativen und Potentiale für die zukünftige Entwicklung aufgezeigt.
 
 Es wird mit der Bewertung des Webservices begonnen. In Kapitel \ref{subsection:TCsite-Plugin} wurde die Behauptung aufgestellt, dass dieser nach dem REST-Architekturmuster entworfen wurde. Im Grundlagenteil der Arbeit (Kapitel \ref{subsubsection:REST}) wurde erwähnt, dass das \glqq Richardson Maturity Model\grqq{} zur abgestuften Bewertung der REST-Konformität existiert \citep{wilde11}. Je nachdem, welche Kriterien erfüllt werden, unterscheidet es vier aufeinander aufbauende Stufen:
 \begin{enumerate}
 \item[\textbf{Level 0:}] Dokumentenaustausch via HTTP. Auch SOAP würde dieses Kriterium erfüllen.
-\item[\textbf{Level 1:}] Exponierung addressierbarer Ressourcen. Die Interaktion mit dem Webservice findet dabei nur über diese Ressourcen statt.
+\item[\textbf{Level 1:}] Exponierung adressierbarer Ressourcen. Die Interaktion mit dem Webservice findet dabei nur über diese Ressourcen statt.
 \item[\textbf{Level 2:}] Einhaltung der uniformen Schnittstelle, d.h. die Implementierung der Methoden entsprechend der HTTP-Spezifikation.
 \item[\textbf{Level 3:}] Verknüpfung der Ressourcen untereinander, d.h. Hypermedia.
 \end{enumerate}
@@ -1257,7 +1255,7 @@ Im Folgenden wird das Bewertungsmodell auf die Implementierung des TCsite-Plugin
 
 Der Implementierung des REST-Webservice entspricht also Level 1 des \glqq Richardson Maturity Models\grqq{}. Die Implementierung ist an der Einhaltung der uniformen Schnittstelle gescheitert. Verarbeitungsschritte sind aber inhärenter Bestandteil des Konfigurationsprozesses. Damit wird klar, dass sich eine Produktkonfiguration nicht problemlos auf einen REST-Webservice übertragen lässt. Das Erweiterungskonzept von TCsite hat durch die Bereitstellung von Webcontrollern einen leichten Zugang zum REST-Ansatz ermöglicht. Es ist zu überprüfen, ob ein Konfigurationsprozess bei Integrationsszenarien nicht besser über die RPCs des SOAP-Ansatzes vereinbar sind.
 
-Sicherheitsaspekte müssen aus dem Buch entnommen werden...
+Durch die momentane CORS-Aktivierung würde die Inbetriebnahme des TCsite-Plugins dem Anbieten einer öffentlichen Web-API gleichkommen. Dafür berücksichtigt die Lösung noch nicht ausreichend nichtfunktionale Aspekte. Dazu gehören zum Beispiel der Umgang mit Denial-of-Service (DoS-)Attacken oder anderen Angriffen. Ein Überblick von Best Practices für Web-APIs ist \citet{tilkov11} zu entnehmen.
 
 In der momentan entworfenen Lösung wird jedes mal, wenn die Detailseite eines konfigurierbaren Artikels in Shopware aufgerufen wird, eine Quotation in TCsite angelegt. Zu keinem Zeitpunkt wird überprüft, welche der Quotations mit einer Variante im Zusammenhang steht, die tatsächlich bestellt wurde. Wird eine Detailseite nur aus Interesse geöffnet, die Konfiguration abgebrochen oder der Warenkorb nie in eine Bestellung umgesetzt, werden \glqq \emph{Quotation}-Leichen\grqq{} in der Datenbank von TCsite akkumuliert. Damit wirkt sich der Entwurf negativ auf die Performance von TCsite aus, was nicht im Sinne eines Integrationskonzepts sein kann. Allerdings wurde in Kapitel \ref{subsection:TCsite-Plugin} begründet, dass das Erstellen von \emph{Quotations} nicht vermieden werden kann. Ein Lösungsansatz ist die Entwicklung eines Mechanismus zur Garbage-Collection, der unnötige \emph{Quotations} post hoc entfernt. Außerdem ist zur Reduktion der Anzahl angelegter \emph{Quotations} zu überlegen, ob das Verhältnis von \emph{Configurables} respektive \emph{QuotationItems} zu \emph{Quotations} überarbeitet wird. Intuitiver als die bisherige Lösung wäre die Registrierung einer \emph{Quotation} pro Warenkorb in Shopware. Innerhalb der \emph{Quotation} gäbe es dann für jede Warenkorbposition ein \emph{QuotationItem}.
 
