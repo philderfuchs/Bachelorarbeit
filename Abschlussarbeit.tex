@@ -86,16 +86,16 @@ Die Produktkonfiguration findet Anwendung in einem breiten Aufgabenfeld. Das kan
 Die Arbeit entsteht im Rahmen der Tätigkeit bei der Lino GmbH. Diese vertreibt als autorisierter Reseller Produkte der Tacton Systems AB (Tacton), welche eine softwaretechnische Lösung für die Produktkonfiguration in Form des Tacton Produktkonfigurators anbietet. In dieser Arbeit geht es um eine Entwicklung zur Verheiratung dieses Konfigurators mit einem Open-Source Shopsystem.
 
 \subsection{Ziel der Arbeit}
-Am Ende der Arbeit soll der Anwender ein Produkt in einem Open-Source Shopsystem konfigurieren und bestellen können, wobei die Konfiguration technisch durch den Tacton Produktkonfigurator realisiert wird. Dabei müssen zwei Systeme betrachet werden -- das Shopsystem und das Konfigurationssystem. Um letzteres in einer neuen Systemumgebung verfügbar zu machen, muss ein entsprechendes Integrationskonzept entworfen werden. Dabei wird geklärt, welche Daten auf welchem Wege auszutauschen sind. Wie weiterhin das Resultat einer Konfiguration in den Bestellprozess integriert werden kann, wird von der konkreten Wahl des Shopsystems abhängig gemacht. Letztendlich wird ein Plugin für das Konfigurtionssystem und ein Plugin für das Shopsystem entwickelt, welche durch deren Zusammenarbeit das Integrationsszenario bewältigen.
+Am Ende der Arbeit soll der Anwender ein Produkt in einem Open-Source Shopsystem konfigurieren und bestellen können, wobei die Konfiguration technisch durch den Tacton Produktkonfigurator realisiert wird. Dabei müssen zwei Systeme betrachet werden -- das Shopsystem und das Konfigurationssystem. Um letzteres in einer neuen Systemumgebung verfügbar zu machen, muss ein entsprechendes Integrationskonzept entworfen werden. Dabei wird geklärt, welche Daten auf welchem Wege auszutauschen sind. Wie weiterhin das Resultat einer Konfiguration in den Bestellprozess integriert werden kann, wird von der konkreten Wahl des Shopsystems abhängig gemacht. Letztendlich werden ein Plugin für das Konfigurtionssystem und ein Plugin für das Shopsystem entwickelt, welche durch deren Zusammenarbeit das Integrationsszenario bewältigen.
 
 \subsection{Aufbau der Arbeit}
 Im Grundlagenteil (Kapitel 2) wird zunächst ein Bezugsrahmen für das Thema Produktkonfiguration geschaffen. Dabei wird geklärt, welche ökonomischen Rahmenbedingungen deren Einsatz motivieren und auf welche Produkte sie anwendbar sind. Das weitere theoretische Fundament leitet sich aus dem Arbeitstitel \glqq \textbf{Integration} des Tacton \textbf{Produktkonfigurators} in ein Open-Source \textbf{Shopsystem}\grqq{} ab. Zunächst werden die Themen Produktkonfiguration sowie die Softwaresysteme, die diese realisieren, behandelt. Unter der Annahme, dass sowohl das Shopsystem als aus der Konfigurationssystem webfähig sind, werden danach Webservices als Integrationsinstrument erläutert. Abschließend werden Online-Shops in einen ökonomischen Rahmen eingeordnet und typisiert. 
 
-Im Analyseteil (Kapitel 3) werden die konkreten Systeme analysiert. Dabei wird zunächst der Tacton Produktkonfigurator besprochen. Aus dessen Analyse werden Anforderungen an das Shopsystem abgeleitet. Die Evaluierung der möglichen Kandidaten ist nicht Bestandteil der Arbeit. Es wird Shopware als Shopsystem festgelegt und einer Detailbetrachtung unterzogen. Aus dem Kapitel resultieren die Erweiterungsmöglichkeiten und grundlegenden Verantwortungsbereiche der Systeme im Integrationsszenario.
+Im Analyseteil (Kapitel 3) werden die konkreten Systeme betrachtet. Dabei wird zunächst der Tacton Produktkonfigurator besprochen. Aus dessen Analyse werden Anforderungen an das Shopsystem abgeleitet. Die Evaluierung der möglichen Kandidaten ist nicht Bestandteil der Arbeit. Es wird Shopware als Shopsystem festgelegt und einer Detailbetrachtung unterzogen. Aus dem Kapitel resultieren die Erweiterungsmöglichkeiten und grundlegenden Verantwortungsbereiche der Systeme im Integrationsszenario.
 
-Aufbauend auf die Analyse werden in Kapitel 4 die funktionalen und nichtfunktionalen Anforderungen der Integration formuliert. Diese dienen als Orientierungspunkte für die Folgende Entwicklung eines Integrationskonzepts in Kapitel 5. Dabei wird klar, dass das Integrationsszenario eine Menge kleinteiliger Veränderungen im Shopsystem erfordert. Darum skizziert Kapitel 6 die Herangehensweise und den Ablauf der Implementierung.
+Aufbauend auf die Analyse werden in Kapitel 4 die funktionalen und nichtfunktionalen Anforderungen der Integration formuliert. Diese dienen als Orientierungspunkte für die folgende Entwicklung eines Integrationskonzepts in Kapitel 5. Dabei wird klar, dass das Integrationsszenario eine Menge kleinteiliger Veränderungen im Shopsystem erfordert. Darum skizziert Kapitel 6 die Herangehensweise und den Ablauf der Implementierung.
 
-In Kapitel 7 wird die Lösung diskutiert und dabei Potentiale für eine zukünftige Entwicklungsarbeit aufgezeigt. Die Arbeit schließt mit einer anwendungsbezogenen Einordnung des Resultats in den ökonomischen Kontext, der am Anfang der Arbeit umrissen wurde.
+In Kapitel 7 wird die Lösung diskutiert, wobei Potentiale für eine zukünftige Entwicklungsarbeit aufgezeigt werden. Die Arbeit schließt mit einer anwendungsbezogenen Einordnung des Resultats in den ökonomischen Kontext ab, der am Anfang der Arbeit umrissen wurde.
 
 
 \pagebreak
@@ -112,7 +112,7 @@ Neue Wettbewerbsbedingungen und gesteigerte Kundenansprüche haben den Druck auf
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
-	\includegraphics[width=0.7\linewidth]{Abbildungen/unvereinbarkeitshypothese.jpg}
+	\includegraphics[width=0.7\linewidth]{Abbildungen/unvereinbarkeitshypothese.png}
 	\captionof{figure}[Unvereinbarkeitshypothese]{Unvereinbarkeitshypothese nach \cite{porter80}, zitiert von \cite{schuh05}}
 	\label{fig:unvereinbarkeitshypothese}
 \end{minipage}
@@ -331,9 +331,8 @@ Einschränkungen sind - in eigenen Worten - Implementierungskriterien. Während 
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
-	\includegraphics[width=0.7\linewidth]{Abbildungen/restMethoden.jpg}
-	\captionof{figure}[restMethoden]{HTTP-Methoden und ihre Eigenschaften
-	\footnote{Relevante Attribute im Rahmen der Fragestellung: \glqq sicher\grqq{} bedeutet nebenwirkungsfrei, d.h. kein Ressourcenzustand ändert sich durch diese Methode. \glqq Idempotent\grqq{} bedeutet, dass das Resultat der Methode bei Mehrfachausführung das gleiche ist. \glqq Identifizierbare Ressource\grqq{} bedeutet, dass die URI garantiert eine Ressource identifiziert.}
+	\includegraphics[width=0.7\linewidth]{Abbildungen/restMethoden.png}
+	\captionof{figure}[restMethoden]{HTTP-Methoden und ihre Eigenschaften\footnote{Relevante Attribute im Rahmen der Fragestellung: \glqq sicher\grqq{} bedeutet nebenwirkungsfrei, d.h. kein Ressourcenzustand ändert sich durch diese Methode. \glqq Idempotent\grqq{} bedeutet, dass das Resultat der Methode bei Mehrfachausführung das gleiche ist. \glqq Identifizierbare Ressource\grqq{} bedeutet, dass die URI garantiert eine Ressource identifiziert.}
 	(Quelle: \citet{tilkov11})}
 	\label{fig:restMethoden}
 \end{minipage}
@@ -370,7 +369,7 @@ eShops gehören zur Domäne des elektronischen Handels (eCommerce). eCommerce is
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
-	\includegraphics[width=0.7\linewidth]{Abbildungen/eCommerceGrundformen.jpg}
+	\includegraphics[width=0.7\linewidth]{Abbildungen/eCommerceGrundformen.png}
 	\captionof{figure}[eCommerceGrundformen]{Grundformen des eCommerce nach Marktpartnern (Quelle: \citet{schwarze02})}
 	\label{fig:eCommerceGrundformen}
 \end{minipage}
@@ -386,7 +385,7 @@ Ein eShop bildet den traditionellen Einkaufsvorgang nach: Kunden können mittels
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
-	\includegraphics[width=0.7\linewidth]{Abbildungen/eShopGrobarchitektur.jpg}
+	\includegraphics[width=0.7\linewidth]{Abbildungen/eShopGrobarchitektur.png}
 	\captionof{figure}[eShopGrobarchitektur]{Grobarchitektur eines eShop-Systems (Quelle: \citet{meier12})}
 	\label{fig:eShopGrobarchitektur}
 \end{minipage}
@@ -1298,8 +1297,6 @@ Abschließend wird das Ergebnis der Entwicklung in den ökonomischen Bezugsrahme
 Im B2B-Bereich ist der entscheidende Faktor der Implementierung, dass Artikel, die im Shop konfiguriert wurden, in TCsite geöffnet werden können. Damit wird dem CPQ-Prozess eine neue Dimension gegeben. Mitarbeiter des Kundenunternehmens können Artikel selbst konfigurieren, welche daraufhin die Basis zur Angebotserstellung im verkaufenden Unternehmen darstellen. So können die einzelnen CPQ-Bestandteile noch stärker auf die jeweiligen Verantwortungsbereichen aufgeteilt werden. Der Kunde drückt seine Vorstellungen im Konfigurationsprozess aus (C..) während der Anbieter die Preiskalkulation und Angebotserstellung (..PQ) durchführt.
 
 Im B2C-Bereich wurde während der Arbeit ein Mass Customization Tookit umgesetzt. Durch die Verwendung von Open-Source-Technologie berücksichtigt die Implementierung die Grundwerte des \ac{MC}, die sich in der Individualisierung bei gleichzeitiger Kostenreduktion ausdrücken. Die Verwendung frei zugänglicher Software ist eine eindeutige Einsparmaßnahme. Somit wird eine Weiterverfolgung der Entwicklung nicht nur von technischem, sondern auch wirtschaftlichem Interesse sein.
-
-;;;;;;;;;;;;;;;;;;;;;; Nun Bezug auf den Einleitungsgang, falls es gelingt... erwähnen, dass Konfigurationsmodelle von Tacton sind nicht auf eine bestimmte Domäne beschränkt sind...
 
 \pagebreak
 
