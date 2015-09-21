@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper,bibliography=totocnumbered,listof=totoc]{scrartcl}
+\documentclass[11pt, a4paper, titlepage, listof=totoc, bibliography=totoc, index=totoc, twoside, openright, headings=normal, draft]{scrreprt}
 \usepackage[ngerman]{babel}
 \usepackage[T1]{fontenc}% wichtig für Trennung von Wörtern mit Umlauten
 \usepackage{microtype}% verbesserter Randausgleich
@@ -9,7 +9,6 @@
 \usepackage{graphicx}
 \usepackage{fancyhdr}
 \usepackage{multirow, tabularx}
-\usepackage{geometry}
 \usepackage{setspace}
 \usepackage[right]{eurosym}
 \usepackage[printonlyused]{acronym}
@@ -26,7 +25,7 @@
 \usepackage[subfigure,titles]{tocloft}
 \usepackage[pdfpagelabels=true]{hyperref}
 \usepackage{chngcntr}
-\counterwithin{figure}{section}
+\counterwithin{figure}{chapter}
 \usepackage{natbib}
 \bibliographystyle{dinat}
 
@@ -36,7 +35,7 @@
 \def\l@lstlisting#1#2{\@dottedtocline{1}{0em}{1em}{\hspace{1,5em} Lst. #1}{#2}}
 \makeatother
 
-\geometry{a4paper, top=27mm, left=30mm, right=30mm, bottom=35mm, headsep=10mm, footskip=12mm}
+\usepackage[left=40mm, right=20mm, top=30mm, bottom=30mm]{geometry}
 
 \hypersetup{unicode=false, pdftoolbar=true, pdfmenubar=true, pdffitwindow=false, pdfstartview={FitH},
 	pdftitle={Abschlussarbeit},
@@ -57,14 +56,14 @@
 
 \include{Titelseite}
 
-\include{Abstract}
+%\include{Abstract}
 
 \include{Verzeichnisse}
 
 \include{Formatierung}
 
 
-\section{Einleitung}
+\chapter{Einleitung}
 \begin{quote}
 \glqq I'd like a plain omelette, no potatoes, tomatoes instead, a cup of coffee and toast.\grqq{}
 \begin{addmargin}[25pt]{0pt} 
@@ -74,9 +73,8 @@
 \begin{addmargin}[25pt]{0pt} 
 \glqq Only what's on the menu. You can have a number 2 -- a plain omelette. It comes with cottage fries and rolls.\grqq{}
 \end{addmargin}
-\glqq I know what it comes with but it's not what I want.\grqq{}\\
+\glqq I know what it comes with but it's not what I want.\grqq{}
 \end{quote}
-
 Diese Unterhaltung stammt aus der \glqq Diner Scene\grqq{} des Films \glqq Five Easy Pieces\grqq{} (1970). Darin versucht Schauspieler Jack Nicolson verzweifelt, sich ein individuelles Essen aus den Zutaten der Gerichte in der Karte zusammenzustellen. Die Szene endet mit der Explosion des angestauten Frusts über diese umständliche Bestellung, indem er das gesamte Geschirr mit dem Arm vom Tisch fegt.
 
 Diese Situation illustriert auf humorvolle Weise das Problemfeld der Produktkonfiguration. In diesem möchte sich der Kunde ein individuelles Produkt zusammenstellen, da keiner der Standardartikel seinen Vorstellungen entspricht. Gleichzeitig muss die Zusammenstellung vom Anbieter auch machbar sein. Im obigen Beispiel wäre ein Omelett mit Tomaten sicherlich noch realisierbar gewesen. Hätte sich Jack Nicolson zum Nachtisch noch eine fachmännisch zubereitete Crème brûlée gewünscht, würde das Diner vor einer echten Problematik stehen.
@@ -85,10 +83,10 @@ Die Produktkonfiguration findet Anwendung in einem breiten Aufgabenfeld. Das kan
 
 Die Arbeit entsteht im Rahmen der Tätigkeit bei der Lino GmbH. Diese vertreibt als autorisierter Reseller Produkte der Tacton Systems AB (Tacton), welche eine softwaretechnische Lösung für die Produktkonfiguration in Form des Tacton Produktkonfigurators anbietet. In dieser Arbeit geht es um eine Entwicklung zur Verheiratung dieses Konfigurators mit einem Open-Source Shopsystem.
 
-\subsection{Ziel der Arbeit}
+\section{Ziel der Arbeit}
 Am Ende der Arbeit soll der Anwender ein Produkt in einem Open-Source Shopsystem konfigurieren und bestellen können, wobei die Konfiguration technisch durch den Tacton Produktkonfigurator realisiert wird. Dabei müssen zwei Systeme betrachet werden -- das Shopsystem und das Konfigurationssystem. Um letzteres in einer neuen Systemumgebung verfügbar zu machen, muss ein entsprechendes Integrationskonzept entworfen werden. Dabei wird geklärt, welche Daten auf welchem Wege auszutauschen sind. Wie weiterhin das Resultat einer Konfiguration in den Bestellprozess integriert werden kann, wird von der konkreten Wahl des Shopsystems abhängig gemacht. Letztendlich werden ein Plugin für das Konfigurtionssystem und ein Plugin für das Shopsystem entwickelt, welche durch deren Zusammenarbeit das Integrationsszenario bewältigen.
 
-\subsection{Aufbau der Arbeit}
+\section{Aufbau der Arbeit}
 Im Grundlagenteil (Kapitel 2) wird zunächst ein Bezugsrahmen für das Thema Produktkonfiguration geschaffen. Dabei wird geklärt, welche ökonomischen Rahmenbedingungen deren Einsatz motivieren und auf welche Produkte sie anwendbar sind. Das weitere theoretische Fundament leitet sich aus dem Arbeitstitel \glqq \textbf{Integration} des Tacton \textbf{Produktkonfigurators} in ein Open-Source \textbf{Shopsystem}\grqq{} ab. Zunächst werden die Themen Produktkonfiguration sowie die Softwaresysteme, die diese realisieren, behandelt. Unter der Annahme, dass sowohl das Shopsystem als aus der Konfigurationssystem webfähig sind, werden danach Webservices als Integrationsinstrument erläutert. Abschließend werden Online-Shops in einen ökonomischen Rahmen eingeordnet und typisiert. 
 
 Im Analyseteil (Kapitel 3) werden die konkreten Systeme betrachtet. Dabei wird zunächst der Tacton Produktkonfigurator besprochen. Aus dessen Analyse werden Anforderungen an das Shopsystem abgeleitet. Die Evaluierung der möglichen Kandidaten ist nicht Bestandteil der Arbeit. Es wird Shopware als Shopsystem festgelegt und einer Detailbetrachtung unterzogen. Aus dem Kapitel resultieren die Erweiterungsmöglichkeiten und grundlegenden Verantwortungsbereiche der Systeme im Integrationsszenario.
@@ -100,9 +98,9 @@ In Kapitel 7 wird die Lösung diskutiert, wobei Potentiale für eine zukünftige
 
 \pagebreak
 
-\section{Grundlagen}
+\chapter{Grundlagen}
 
-\subsection{Bezugsrahmen}
+\section{Bezugsrahmen}
 Im Folgenden wird ein Bezugsrahmen für Produktkonfigurationssysteme (Konfiguratoren) geschaffen. Dazu wird zunächst die marktwirtschaftliche Situation erläutert, welche die Notwendigkeit hybrider Wettbewerbsstrategien begründet. Diese wiederum stellen zu ihrer Umsetzbarkeit Bedingungen an Produktionskonzepte, welche daraufhin vorgestellt werden.
 
 \subsubsection{Ökonomischer Bezug}
@@ -406,8 +404,7 @@ Die Systeme sind nach Strategie der Anbieter kategorisierbar:
 
 Aus dieser Darstellung sind die (zumindest initial) kostenfreien Varianten ersichtlich: reine Open-Source eShop-Systeme sowie die Community-Editionen der Dual-License Modelle. Eine Anbieterübersicht ist \citet{t3n14} zu entnehmen. Eine Kategorisierung der Systeme nach Anforderungsklassen ist \citet{graf14} zu entnehmen.
 
-\pagebreak
-\section{Analyse}
+\chapter{Analyse}
 \label{section:Analyse}
 
 Die Tacton Systems AB (Tacton) wurde 1998 als Spin-Off des Schwedischen Instituts für Informatik (SICS) gegründet \citep{tactonProductOverview}. In der Forschungseinrichtung wurde als Resultat der Untersuchungen im Bereich Wissensbasierte Systeme und Künstliche Intelligenz der Tacton Produktkonfigurator entwickelt. Dieser interaktive Konfigurator ist die Basis der verschiedenen Produkte der Firma. Tacton bietet Lösungen im Bereich Vertriebskonfiguration und Design Automation (Automatisierung der Konstruktion in CAD-Systemen) \citep{tactonAbout}.

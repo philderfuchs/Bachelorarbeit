@@ -7,15 +7,15 @@
 \titlespacing{\subsubsection}{0pt}{12pt plus 4pt minus 2pt}{-1pt plus 2pt minus 2pt}
 
 % Kopfzeile
-\renewcommand{\sectionmark}[1]{\markright{#1}}
+\renewcommand{\chaptermark}[1]{\markright{#1}}
+\renewcommand{\sectionmark}[1]{}
 \renewcommand{\subsectionmark}[1]{}
 \renewcommand{\subsubsectionmark}[1]{}
-\lhead{Kapitel \thesection}
+\lhead{Kapitel \thechapter}
 \rhead{\rightmark}
 
 \onehalfspacing
-\renewcommand{\thesection}{\arabic{section}}
-\renewcommand{\theHsection}{\arabic{section}}
-\setcounter{section}{0}
+\renewcommand{\thechapter}{\arabic{chapter}}
+\setcounter{chapter}{0}
 \pagenumbering{arabic}
 \setcounter{page}{1}

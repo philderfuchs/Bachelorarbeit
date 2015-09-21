@@ -7,12 +7,9 @@
 \settowidth{\cfttabnumwidth}{Abb. 10\quad}
 \settowidth{\cftfignumwidth}{Abb. 10\quad}
 
-\titlespacing{\section}{0pt}{12pt plus 4pt minus 2pt}{2pt plus 2pt minus 2pt}
-\singlespacing
-\phantomsection
-
-\addtocounter{section}{1}
 \rhead{Inhaltsverzeichnis}
+\setcounter{secnumdepth}{3} 
+\setcounter{tocdepth}{3}
 \tableofcontents
 \pagebreak
 \rhead{Verzeichnisse}
@@ -27,7 +24,8 @@
 % ----------------------------------------------------------------------------------------------------------
 % Abkürzungen
 % ----------------------------------------------------------------------------------------------------------
-\section*{Abkürzungsverzeichnis}
+\chapter*{Abkürzungsverzeichnis}
+\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis} 
 \begin{acronym}[WSDL] % längste Abkürzung steht in eckigen Klammern
 	\setlength{\itemsep}{-\parsep} % geringerer Zeilenabstand
 	\acro{AJAX}{asynchronous JavaScript and XML}
