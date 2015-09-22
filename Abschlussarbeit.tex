@@ -398,6 +398,7 @@ REST ist Ressourcenorientiert während SOAP aufgrund von \ac{RPC}s Methodenorien
 Im Folgenden wird durch die Charakterisierung des Begriffs \emph{eCommerce} ein Anwendungsrahmen für Onlineshops (\emph{eShops}) hergestellt. Deren softwaretechnische Umsetzung wird durch \emph{eShop-Systeme} realisiert. Durch eine Kategorisierung der Systeme nach Anbieterstrategie wird abschließend die Menge der Open-Source-Lösungen für eine Konfiguratorintegration identifiziert.
 
 \subsection{Anwendungsrahmen}
+\label{eCommerce:Anwendungsrahmen}
 eShops gehören zur Domäne des elektronischen Handels (eCommerce). eCommerce ist \glqq die elektronisch unterstützte Abwicklung von Handelsgeschäften auf der Basis des Internet\grqq{} \citep{schwarze02}. Je nachdem, welche Marktpartner an dem Handelsgeschäft teilnehmen, werden verschiedene Formen des eCommerce unterschieden. Die in Abbildung \ref{fig:eCommerceGrundformen} fett hervorgehobenen Varianten werden von \citet{meier12} als \glqq die zwei Geschäftsoptionen des eCommerce\grqq{} bezeichnet -- \emph{\ac{B2C}} und \emph{\ac{B2B}}. Bei \ac{B2C} erfolgt der Handel von Produkten und Dienstleistungen zwischen Unternehmen und Endverbraucher, bei \ac{B2B} zwischen Unternehmen.
 
 \vspace{1em}
@@ -588,7 +589,7 @@ Parameter = 'Notebook-Part.price', Domain = [integer]
 \end{enumerate}
 \end{enumerate}
 
-Die Feldtypen \emph{Menu} und \emph{Number} haben gemein, dass der Anwender einen Wert aus einem Wertebereich festlegt. Beim \emph{Menu} ist dieser Wertebereich eine Menge vordefinierter Optionen, bei \emph{Number} ein Zahlenbereich, wobei der konkrete Wert vom Anwender selbst eingegeben wird. Um die Formulierung kurz zu halten, werden im Folgenden sowohl die Auswahl einer Option als auch die Eingabe eines Wertes unter dem Begriff \glqq gewählte Option\grqq{} zusammengefasst.
+Die Feldtypen \emph{Menu} und \emph{Number} haben gemein, dass der Anwender einen Wert aus einem Wertebereich festlegt. Beim \emph{Menu} ist dieser Wertebereich eine Menge vordefinierter Optionen, bei \emph{Number} ein Zahlenbereich, wobei der konkrete Wert vom Anwender selbst eingegeben wird. Um die Formulierung kurz zu halten, werden im Folgenden sowohl die ausgewählte Option als auch der eingegebene Wert unter dem Begriff \emph{Eingabeparameter} zusammengefasst.
 
 \begin{minipage}{\linewidth}
 	\centering
@@ -606,22 +607,22 @@ Das Tacton-Modellierungskonzept wurde vorgestellt. Neben dem Konfigurationswisse
 Das Konfigurationsmodell definiert die Interaktionsstruktur. Diese muss jedoch noch in Form eine Konfigurationsoberfläche dargestellt werden. Neben anderen Funktionalitäten realisiert TCsite eine solche Darstellung. Die Anwendung wird im folgenden analysiert.
 
 \subsection{TCsite}
-\label{subsection:TCsite}
-\textbf{TCsite} ist ein webbasierter Vertriebskonfigurator. Er könnte theoretisch von Endkunden genutzt werden, bildet aber nicht die Prozesse eines eShops nach. Stattdessen handelt es sich um eine CPQ-Lösung (Configure-Price-Quote). Das bedeutet: der Anwender wird durch die Konfiguration geführt, was in einer Preiskalkulation resultiert, woraus wiederum ein Angebot erstellt wird. Eine unmittelbare Bestellung mit Zahlungsabwicklung ist nicht vorgesehen. Der Anwendungsbereich liegt also im B2B \citep{tactonAbout}.
+\label{TCsite}
+\emph{TCsite} ist ein webbasierter Vertriebskonfigurator. Er könnte theoretisch von Endkunden genutzt werden, bildet aber nicht den Einkaufsprozess eines eShops gemäß Kapitel \ref{eCommerce:Anwendungsrahmen} nach. Stattdessen handelt es sich um eine \textbf{CPQ}-Lösung (\textbf{C}onfigure-\textbf{P}rice-\textbf{Q}uote). Das bedeutet: der Anwender wird durch die Konfiguration geführt, was in einer Preiskalkulation resultiert, woraus wiederum ein Angebot erstellt wird. Eine unmittelbare Bestellung und Zahlungsabwicklung ist nicht vorgesehen. Der Anwendungsbereich liegt also im B2B \citep{tactonAbout}.
 
-Technisch betrachtet ist TCsite eine Webanwendung. Der serverseitige Programmcode ist in Java verfasst. Im Lieferumfang sind 'Apache Tomcat' als Application Server sowie der \textbf{TCserver} enthalten. TCserver ist das, was gemäß Kapitel \ref{Produktkonfiguration} als eigentlicher Konfigurator bezeichnet wird. Er beherbergt die Konfigurationsengine. Damit ist das System gemeint, welches den technischen Konfigurationsprozess durchführt \citep{tactonTCsiteHandbook}. Abbildung \ref{fig:tcsiteHighLevel} veranschaulicht die High-Level-Architektur des Standardsetups.
+Technisch betrachtet ist TCsite eine Webanwendung. Der serverseitige Programmcode ist in Java verfasst. Im Lieferumfang sind \emph{Apache Tomcat} als Application Server sowie \emph{TCserver} enthalten. TCserver ist das, was gemäß Kapitel \ref{Produktkonfiguration} als eigentlicher Konfigurator bezeichnet wird. Er beherbergt die \emph{Konfigurationsengine}. Damit ist das System gemeint, welches Konfigurationsaufgaben verarbeitet \citep{tactonTCsiteHandbook}. Abbildung \ref{fig:tcsiteHighLevel} veranschaulicht die High-Level-Architektur des Standardsetups.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=1\linewidth]{Abbildungen/tcsiteHighLevel.pdf}
-	\captionof{figure}[tcsiteHighLevel]{High-Level-Architektur von TCsite}
+	\captionof{figure}[High-Level-Architektur von TCsite]{High-Level-Architektur von TCsite}
 	\label{fig:tcsiteHighLevel}
 \end{minipage}
-\vspace{1em}
+\vspace{0.3em}
 
 \subsubsection{Architektur}
-\label{subsubsection:tcsiteArchitektur}
+\label{TCsiteArchitektur}
 
 Abbildung \ref{fig:tcsiteLowLevel} visualisiert die offene Schichtenarchitektur von TCsite. Offen bedeutet, dass jede Schicht mit allen darunter liegenden Schichten kommunizieren kann. Das Fundament bildet die Persistenzschicht. Sie realisiert die Datenhaltung. Die Plattform bildet ein \ac{API} mit den Basisfunktionalitäten für die darüber liegenden Schichten. Die Module realisieren jeweils eine der drei Oberflächenbereiche der Anwendung. Außerdem bieten sie Services und Erweiterungspunkte für die oberste Schicht -- die Plugins. Durch diese kann die Funktionalität von TCsite individuell erweitert werden \citep{tactonTCsiteDevelopmentManual}.
 
@@ -629,125 +630,133 @@ Abbildung \ref{fig:tcsiteLowLevel} visualisiert die offene Schichtenarchitektur 
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=1\linewidth]{Abbildungen/tcsiteLowLevel.pdf}
-	\captionof{figure}[tcsiteLowLevel]{Schichtenarchitektur von TCsite}
+	\captionof{figure}[Schichtenarchitektur von TCsite]{Schichtenarchitektur von TCsite}
 	\label{fig:tcsiteLowLevel}
 \end{minipage}
-\vspace{1em}
+\vspace{0.3em}
 
 Im Folgenden werden die Architekturkomponenten einzeln vorgestellt.
 
 \textbf{Repository}\\
-Das Repository bietet eine Datenbank sowie ein Reihe von Funktionen zum Lesen und Schreiben der TCsite-Objekte. Das Repository ist in einen lokalen und einen globalen Speicher strukturiert. Wird ein Objekt erstellt oder geöffnet, geschieht die Bearbeitung immer auf einer Arbeitskopie in dem für jeden Nutzer spezifischen lokalen Speicher. Änderungen sind solange für andere Nutzer unsichtbar. Erst ein Commit sorgt für die nutzerübergreifende Sichtbarkeit im globalen Speicher. Bei dieser Übertragung wird eine Revisionshistorie über Objektänderungen geführt, so dass alte Zustande wieder abrufbar sind \citep{tactonTCsiteDevelopmentManual}.
+Das \emph{Repository} bietet eine Datenbank sowie ein Reihe von Funktionen zum Lesen und Schreiben der TCsite-Objekte. Es ist in einen lokalen und einen globalen Speicher strukturiert. Wird ein Objekt erstellt oder geöffnet, geschieht die Bearbeitung immer auf einer Arbeitskopie in dem für jeden Nutzer spezifischen lokalen Speicher. Änderungen sind solange für andere Nutzer unsichtbar. Erst ein \glqq Commit\grqq{} sorgt für die nutzerübergreifende Sichtbarkeit im globalen Speicher. Bei dieser Übertragung wird eine Revisionshistorie über Objektänderungen geführt, so dass alte Zustande wieder abrufbar sind \citep{tactonTCsiteDevelopmentManual}.
+
+\textbf{Plattform}\\
+Die Plattform bietet keine eigene Oberfläche, sondern bildet eine \ac{API} mit grundlegenden Funktionalitäten für die darüberliegenden Schichten.
 
 \textbf{Administration}\\
 Dieses Modul bildet die Administrationsoberfläche, dargestellt in Anhang \ref{app:tcsiteAdministration}. Hier werden Einstellungen getroffen und Verwaltungsaspekte realisiert. Dazu gehört zum Beispiel die Verwaltung der Nutzergruppen und Produkte.
 
-Die Nutzergruppen definieren, welche Rechte ein TCsite-User hat. Standardmäßig verfügbar sind die Nutzergruppen \glqq Standarduser\grqq{}, \glqq Systemadministrator\grqq{} und \glqq Integrationsuser\grqq{}. Letzterer Typ dient der Authentifizierung bei der Kommunikation mit externen Systemen, zum Beispiel bei einem Integrationsszenario. Bildlich personifiziert jede externe Webanfrage einen Gast, der die Maske des Integrationsusers aufgesetzt und dessen Rechte bekommt.
+Die Nutzergruppen definieren, welche Rechte ein TCsite-User hat. Standardmäßig verfügbar sind die Nutzergruppen \glqq Standarduser\grqq{}, \glqq Systemadministrator\grqq{} und \glqq Integrationsuser\grqq{}. Letzterer Typ dient der Authentifizierung bei der Kommunikation mit externen Systemen, zum Beispiel bei einem Integrationsszenario. Bildlich gesprochen personifiziert jede externe Webanfrage einen Gast, der die Maske des Integrationsusers aufgesetzt und dessen Rechte bekommt.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
-	\includegraphics[width=0.6\linewidth]{Abbildungen/tcsiteAdministrationProduct.PNG}
-	\captionof{figure}[tcsiteAdministrationProduct]{Detailsansicht eines Produktes aus dem Produktkatalog}
+	\includegraphics[width=1\linewidth]{Abbildungen/tcsiteAdministrationProduct.PNG}
+	\captionof{figure}[Detailsansicht eines Produktes aus dem Produktkatalog]{Detailsansicht eines Produktes aus dem Produktkatalog}
 	\label{fig:tcsiteAdministrationProduct}
 \end{minipage}
-\vspace{1em}
+\vspace{0.3em}
 
-Außerdem wird hier der Produktkatalog verwaltet. Abbildung \ref{fig:tcsiteAdministrationProduct} zeigt die Detailsansicht eines Produktes. Die Darstellung macht deutlich, dass neben Produktbeschreibungen auch Dateien hinterlegt werden. Wird eine Modelldatei hochgeladen, ist das Produkt konfigurierbar. Ressourcen, wie z.B. Bilder, oder eine Übersetzungsdatei können ergänzend hinzugefügt werden \citep{tactonTCsiteReferenceManual}. Entsprechend der Definition eines Konfigurationsmodells in Kapitel \ref{Produktkonfiguration} wird so kein bestimmtes Produkt, sondern implizit alle seine Varianten angelegt.
+Außerdem wird hier der Produktkatalog verwaltet. Abbildung \ref{fig:tcsiteAdministrationProduct} zeigt die Detailansicht eines Produkts. Die Darstellung macht deutlich, dass neben Produktbeschreibungen auch Dateien hinterlegt werden. Wird eine Modelldatei hochgeladen, ist das Produkt konfigurierbar. Ressourcen, wie z.B. Bilder oder eine Übersetzungsdatei können ergänzend hinzugefügt werden \citep{tactonTCsiteReferenceManual}. Entsprechend der Definition eines Konfigurationsmodells in Kapitel \ref{Produktkonfiguration} werden so nicht alle Produktvarianten explizit ausdefiniert und angelegt, sondern implizit definiert.
 
 \textbf{Quotation}\\
-Das Quotation-Modul erstellt die Quotation-View, dargestellt in Abbildung \ref{fig:tcsiteQuotationNumbered}. Technisch betrachtet realisiert das Modul Methoden für die Manipulation und Anzeige von \textbf{Quotations} sowie zur Dokumentengenerierung aus den mit ihr im Zusammenhang stehenden Daten. Aus Anwendersicht ist eine Quotation ein Angebot, dass die konfigurierten Produkte enthält. Diese werden als \textbf{QuotationItems} bezeichnet und unter 'Products' gelistet (siehe [1]) \citep{tactonTCsiteDevelopmentManual}. Betrachtet man eine Quotation als einen (realen) Warenkorb, sind die QuotationItems die Artikel darin. Der Vergleich hinkt insofern, als dass die Artikel im Warenkorb auch unabhängig von diesem existieren. Sie stehen zum Beispiel im Warenregal. Ein QuotationItem ist jedoch eine konkrete Variante eines konfigurierbaren Produktes, die innerhalb der Quotation existiert.
+Das Quotation-Modul erstellt die \emph{Quotation-View}, dargestellt in Abbildung \ref{fig:tcsiteQuotationNumbered}. Technisch betrachtet realisiert das Modul Methoden für die Manipulation und Anzeige von \emph{Quotations} sowie zur Dokumentengenerierung aus den mit ihr im Zusammenhang stehenden Dateien. Aus Anwendersicht ist eine Quotation ein Angebot, dass die fertig konfigurierten Produkte enthält. Diese werden als \emph{QuotationItems} bezeichnet und unter 'Products' gelistet (siehe [1]) \citep{tactonTCsiteDevelopmentManual}. Betrachtet man eine Quotation als einen (realen) Warenkorb, sind die QuotationItems die Artikel darin. Der Vergleich hinkt insofern, als dass die Artikel im Warenkorb auch unabhängig von diesem existieren. Sie stehen zum Beispiel im Warenregal. Ein QuotationItem ist jedoch eine konkrete Variante eines konfigurierbaren Produktes, die nur innerhalb der Quotation existiert.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=1\linewidth]{Abbildungen/tcsiteQuotationNumbered.pdf}
-	\captionof{figure}[tcsiteQuotationNumbered]{Quotation-View von TCsite}
+	\captionof{figure}[Quotation-View von TCsite]{Quotation-View von TCsite}
 	\label{fig:tcsiteQuotationNumbered}
 \end{minipage}
 \vspace{1em}
 
 Der Konfigurationsprozess wird über die Schaltfläche 'Add Product' gestartet (siehe [2]). Daraufhin wählt der Anwender das gewünschte Produkt aus einer Liste aus. Im Anschluss erfolgt der Übergang zum Configuration-Modul \citep{tactonTCsiteReferenceManual}.
 
-Eine Quotation hat weiterhin einen Lebenszyklus, welcher unter 'Lifecycle State' dargestellt wird (siehe [3]). Das Angebot befindet sich zu jedem Zeitpunkt in einem bestimmten Zustand, welche über den Administrationsbereich verwaltet werden. Die Zustandsabfolge definiert den sogenannten \glqq Workflow\grqq{}. Zustände unterscheiden sich in der Sichtbarkeit für verschiedene Nutzergruppen und deren Editierbarkeit. Beispielsweise kann sich eine Quotation in den Zuständen \glqq Design\grqq{} oder \glqq Offered\grqq{} befinden. In letzterem Zustand ist sie nicht mehr änderbar, damit keine Inkonsistenz zum herausgegebenen Angebot entstehen kann \citep{tactonTCsiteReferenceManual}.
+Eine Quotation hat weiterhin einen Lebenszyklus, welcher unter 'Lifecycle State' dargestellt wird (siehe [3]). Das Angebot befindet sich zu jedem Zeitpunkt in einem bestimmten Zustand, welche über den Administrationsbereich verwaltet werden. Die Zustandsabfolge definiert den sogenannten \emph{Workflow}. Zustände unterscheiden sich in der Sichtbarkeit für verschiedene Nutzergruppen und deren Editierbarkeit. Beispielsweise kann sich eine Quotation in den Zuständen \glqq Design\grqq{} oder \glqq Offered\grqq{} befinden. In letzterem Zustand ist sie nicht mehr änderbar, damit keine Inkonsistenz zum herausgegebenen Angebot entstehen kann \citep{tactonTCsiteReferenceManual}.
 
 Die Box auf der rechten Seite stellt den Index aller Quotations dar (siehe [4]). Unter dem Suchfeld ist einstellbar, ob nur die Quotations des eingeloggten Nutzers gezeigt werden, oder ob nutzerübergreifend gelistet werden sollen. Wie im Administrationsbereich erwähnt, agieren auch externe Systeme als Nutzer, nämlich als Integrationsuser. Auch Quotations, die von dieser Nutzergruppe stammen, werden hier gelistet \citep{tactonTCsiteReferenceManual}.
-
+\newpage
 \textbf{Configuration}\\
-Das Configuration-Modul realisiert den C-Teil des CPQ-Prozesses -- die Konfiguration. Es rendert die Konfigurationsoberfläche und verwaltet die mit der Konfiguration im Zusammenhang stehenden Objekte \citep{tactonTCsiteDevelopmentManual}. Der technische Teil des Konfigurationsprozesses passiert jedoch im TCserver. Somit ist die Konfiguration als Client-Server Architektur implementiert. Das Configuration-Modul präsentiert Services, die die Kommunikation mit der Konfigurationsengine abstrahieren \citep{tactonTCsiteApiDocu}. Ansonsten ist der TCserver nicht unmittelbar ansprechbar.
+Das Configuration-Modul realisiert den C-Teil des CPQ-Prozesses -- die Konfiguration. Es rendert die Konfigurationsoberfläche und verwaltet die mit der Konfiguration im Zusammenhang stehenden Objekte \citep{tactonTCsiteDevelopmentManual}. Die  technischen Verarbeitungsschritte des Konfigurationsprozesses geschehen jedoch im TCserver. Somit ist die Konfiguration als Client-Server Architektur implementiert. Das Configuration-Modul besitzt Serviceklassen, die die Kommunikation mit der Konfigurationsengine abstrahieren \citep{tactonTCsiteApiDocu}. Ansonsten ist der TCserver nicht unmittelbar ansprechbar.
 
 \subsubsection{Konfigurationsprozess}
-\label{subsubsection:tcsiteKonfigurationsprozess}
+\label{TCsiteKonfigurationsprozess}
 
-Abbildung \ref{fig:tcsiteTCserverCommunication} veranschaulicht die Kommunikation zwischen TCsite und TCserver während der Konfiguration. Das Configuration-Modul führt wiederholt zustandslose Aufrufe ('configure‘) der Konfigurationsengine durch, welche eine Antwort produzieren ('result') \citep{tactonTCsiteDevelopmentManual}. Dabei weicht die Semantik von 'configure‘ und ‘result' von den Definitionen der Konfigurationsaufgabe und -lösung aus Kapitel \ref{begriffsuberblick} ab.
-
-Um zu verstehen inwiefern, muss rekapituliert werden, dass interaktive Konfiguratoren einen Mechanismus zum merken des Konfigurationszustands besitzen. Ein Konfigurationszustand beinhaltet bei Tacton, welche Optionen eines Konfigurationsmodells in welchem Step gewählt wurden. Oben wurde festgestellt, dass die Aufrufe zustandslos sind. Also wird kein serverseitiger Kontext aufgebaut, der den Konfigurationszustand enthält. Die Alternative ist die Übertragung des Zustands in jedem Aufruf. Demzufolge enthält der 'configure'-Aufruf (1) das Konfigurationsmodell (2) den Konfigurationszustand und fakultativ (3), die aktuell gewählte Option des Anwenders \citep{tactonTCsiteApiDocu}. Diese Bestandteile werden ab jetzt unter dem Begriff Konfigurationsengine-Input (KE-Input) zusammengefasst. Die Antwort (\emph{result}) liefert primär den neuen Konfigurationszustand. Außerdem beinhaltet das \textbf{result} neben Informationen wie die Konfigurationslösung, dem Endpreis etc. auch die Datengrundlage zum Rendern der Konfigurationsoberfläche \citep{tactonTCsiteApiDocu}. Diese Bestandteile werden ab jetzt unter dem Begriff Konfigurationsengine-Output (KE-Output) zusammengefasst.
+Abbildung \ref{fig:tcsiteTCserverCommunication} veranschaulicht die Kommunikation zwischen TCsite und TCserver während des Konfigurationsprozesses. Das Configuration-Modul führt wiederholt zustandslose Aufrufe (\emph{configure}) der Konfigurationsengine durch, welche jeweils eine Antwort produzieren (\emph{result}) \citep{tactonTCsiteDevelopmentManual}. Dabei weichen \emph{configure} und \emph{result} semantisch von den Definitionen der Konfigurationsaufgabe und -lösung aus Kapitel \ref{begriffsuberblick} ab.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=1\linewidth]{Abbildungen/tcsiteTCserverCommunication.pdf}
-	\captionof{figure}[tcsiteTCserverCommunication]{Kommunikation zwischen TCsite und TCserver}
+	\captionof{figure}[Kommunikation zwischen TCsite und TCserver]{Kommunikation zwischen TCsite und TCserver}
 	\label{fig:tcsiteTCserverCommunication}
 \end{minipage}
-\vspace{1em}
+\vspace{0.3em}
 
-Der Konfigurationszustand und das Konfigurationsmodell, auf dass sich der Konfigurationszustand bezieht, werden in der Klasse \emph{Configurable} zusammengefasst und persistiert. Der Konfigurationszustand in spezifisch für jedes \emph{Configurable} (entspricht der UML-Vebindung \glqq Komposition\grqq), das Konfigurationsmodell für verschiedene \emph{Configurables} gültig (entspricht der UML-Vebindung \glqq Aggregation\grqq). Das \emph{QuotationItem} (vorgestellt in Kapitel  \label{subsubsection:tcsiteArchitektur}) steht in einer 1-zu-1 Beziehung mit einem \emph{Configurable}.
+Um diese Abweichung zu verstehen, muss rekapituliert werden, dass interaktive Konfiguratoren einen Mechanismus zum merken des Konfigurationszustands besitzen (siehe Kapitel \ref{begriffsuberblick}). Ein Konfigurationszustand beinhaltet bei Tacton, welche Eingabeparameter in welchem Step gewählt wurden. Oben wurde festgestellt, dass die Aufrufe zustandslos sind. Also wird kein serverseitiger Kontext aufgebaut, der den Konfigurationszustand enthält. Die Alternative ist die Übertragung des Zustands in jedem Aufruf. Demzufolge enthält der \emph{configure}-Aufruf (1.) das Konfigurationsmodell, (2.) den Konfigurationszustand und fakultativ (3.), den aktuellen Eingabeparameter \citep{tactonTCsiteApiDocu}. Diese Bestandteile werden ab jetzt unter dem Begriff \emph{Konfigurationsengine-Input} (KE-Input) zusammengefasst. Die Antwort (\emph{result}) beinhaltet primär den neuen Konfigurationszustand. Aus dem result können weiterhin diverse Informationen extrahiert werden --  die finale Instanziierung (Konfigurationslösung), der Endpreis sowie auch die Datengrundlage zum Rendern der Konfigurationsoberfläche \citep{tactonTCsiteApiDocu}. Diese Bestandteile werden ab jetzt unter dem Begriff \emph{Konfigurationsengine-Output} (KE-Output) zusammengefasst.
 
-Die Kommunikation läuft in drei Phasen ab. Der erste KE-Input beinhaltet noch keine Wahl des Anwenders. Sie dient dem initialen Aufbau der Konfigurationsoberfläche entsprechend der Execution, die im Konfigurationsmodell definiert wurde. Der Konfigurationsprozess startet immer in Step 1. Die Steps müssen in der vordefinierten Reihenfolge abgearbeitet werden. Nun beginnt die Loop-Phase. Nach jeder Wahl einer Option wird die Konfigurationsengine aufgerufen und daraufhin die Oberfläche neu gerendert. Die Oberfläche spiegelt dabei den Konfigurationszustand wieder, d.h. die bisher gewählten Optionen werden hervorgehoben. Wird die Konfiguration im letzten Step vom Anwender abgeschlossen, erfolgt ein finaler Aufruf der Konfigurationsengine. Aus dem KE-Output ist die Konfigurationslösung, d.h. die Variante, extrahierbar \citep{tactonTCsiteDevelopmentManual}.
+Der Konfigurationszustand und ein Verweis auf das Konfigurationsmodell, auf dass sich der Konfigurationszustand bezieht, werden in der Klasse \emph{Configurable} zusammengefasst und persistiert. Das \emph{QuotationItem} (vorgestellt in Kapitel  \ref{TCsiteArchitektur}) steht in einer 1-zu-1 Beziehung mit einem \emph{Configurable}.
 
-Der Konfigurationsprozess wird anhand des Notebook-Beispiels aus Kapitel \ref{Execution} veranschaulicht. Abbildung \ref{fig:tcsiteConfigurationNumbered} zeigt die Konfigurationsoberfläche in TCsite. Diese befindet sich im zweiten Step. Mittels [1] wird zwischen den Steps gewechselt. [2] erlaubt die Navigation durch die Top-Level-Groups des aktuellen Steps. [3] stellt die Felder der aktuellen Top-Level-Group dar. Anhang \ref{app:tcSiteConfigurationOptionalGroups} zeigt anhand der 'Speicher'-Gruppe die Darstellung tieferer Group-Ebenen (siehe Kapitel \ref{Execution}). Außerdem wird bei [4] noch eine weitere Top-Level-Group angezeigt: die sogenannte Info-Group. Sie wird im Konfigurationsmodell durch die Bezeichnung \glqq Info\grqq{} festgelegt. Sie wird parallel zur gerade aktiven Top-Level-Group im jeweiligen Step dargestellt.
+Die Kommunikation läuft in drei Phasen ab (siehe Abbildung \ref{fig:tcsiteTCserverCommunication}):
+\begin{enumerate}
+\item[\textbf{initiate configuration}:]Der erste KE-Input beinhaltet noch keinen Eingabeparameter. Er dient dem initialen Aufbau der Konfigurationsoberfläche entsprechend der festgelegten Struktur in der Execution aus dem Konfigurationsmodell. Der Konfigurationsprozess startet immer in Step 1. Die Steps müssen in der vordefinierten Reihenfolge abgearbeitet werden.
+\item[\textbf{loop}:] Nach jeder Wahl einer Option wird die Konfigurationsengine mit dem Eingabeparameter aufgerufen und daraufhin die Oberfläche neu gerendert. Die Oberfläche spiegelt dabei den Konfigurationszustand wieder, d.h. die bisher gewählten Optionen werden hervorgehoben.
+\item[\textbf{finish configuration}:] Wird die Konfiguration im letzten Step vom Anwender abgeschlossen, erfolgt ein finaler Aufruf der Konfigurationsengine. Aus dem KE-Output ist die finale Instanziierung (Konfigurationslösung), extrahierbar \citep{tactonTCsiteDevelopmentManual}.
+\end{enumerate}
+
+Der Konfigurationsprozess in TCsite wird anhand der exemplarischen Notebook-Konfiguration veranschaulicht. Abbildung \ref{fig:tcsiteConfigurationNumbered} zeigt die Konfigurationsoberfläche in TCsite. Diese befindet sich im zweiten Step. Mittels [1] wird zwischen den Steps gewechselt. [2] erlaubt die Navigation durch die Top-Level-Groups des aktuellen Steps. [3] stellt die Felder der aktuellen Top-Level-Group dar. Anhang \ref{app:tcSiteConfigurationOptionalGroups} zeigt anhand der 'Speicher'-Gruppe die Darstellung der Unterteilung in weitere Gruppen. Außerdem wird unter [4] noch eine weitere Top-Level-Group angezeigt -- die sogenannte \emph{Info-Group}. Sie wird im Konfigurationsmodell durch die Bezeichnung \glqq Info\grqq{} ausgezeichnet. Sie wird parallel zur gerade aktiven Top-Level-Group im jeweiligen Step dargestellt.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=1\linewidth]{Abbildungen/tcsiteConfigurationNumbered.pdf}
-	\captionof{figure}[tcsiteConfigurationNumbered]{TCsite Configuration-View einer Notebook-Konfiguration}
+	\captionof{figure}[Configuration-View in TCsite einer exemplarischen Notebook-Konfiguration]{Configuration-View in TCsite einer exemplarischen Notebook-Konfiguration}
 	\label{fig:tcsiteConfigurationNumbered}
 \end{minipage}
-\vspace{1em}
+\vspace{0.3em}
 
-Es fällt auf, dass bereits Optionen gewählt sind - obwohl der Anwender noch gar nichts entschieden hat. Offensichtlich hat die Konfigurationsengine initial Default-Values gesetzt. Sie sind durch den grauen 'Please Confirm'-Hinweis gekennzeichnet.
+Es fällt auf, dass bereits Optionen gewählt sind - obwohl der Anwender noch gar nichts entschieden hat. Offensichtlich hat die Konfigurationsengine initial \emph{Default-Values} gesetzt. Sie sind durch den grauen 'Please Confirm'-Hinweis gekennzeichnet.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=1\linewidth]{Abbildungen/tcsiteConfigurationChoice.PNG}
-	\captionof{figure}[tcsiteConfigurationChoice]{TCsite Configuration-View einer Notebook-Konfiguration nach Anwenderwahl}
+	\captionof{figure}[Configuration-View in TCsite einer exemplarischen Notebook-Konfiguration nach Anwenderwahl]{Configuration-View in TCsite einer exemplarischen Notebook-Konfiguration nach Anwenderwahl}
 	\label{fig:tcsiteConfigurationChoice}
 \end{minipage}
-\vspace{1em}
+\vspace{0.3em}
 
-Abbildung \ref{fig:tcsiteConfigurationChoice} zeigt die Konfigurationsoberfläche, nachdem der Anwender eine Option gewählt hat (Parameter: OS.type, Value: 'Windows XP'). Die gewählte Option wird \glqq unverhandelbar\grqq{}. Das wird gekennzeichnet durch das grüne 'Confirmed'. Außerdem wird überprüft, wie die gewählte Option die anderen verfügbaren Optionen beeinflusst. Was zu einem Konflikt führt, wird ausgegraut. Beim Feld 'Displaygröße' ist zu beobachten, dass die Wahl der Konfigurationsengine von '13' auf '15' geändert wurde. Offensichtlich sind Werte, die nicht vom Anwender gesetzt wurden, \glqq verhandelbar\grqq{}. Die Konfigurationsengine sorgt folglich immer für einen konfliktfreien Zustand. Durch einen Klick auf 'Confirm' bzw. 'Please Confirm' können Optionen zwischen verhandelbar und unverhandelbar gewechselt werden.
+Abbildung \ref{fig:tcsiteConfigurationChoice} zeigt die Konfigurationsoberfläche, nachdem der Anwender eine Option gewählt hat (Parameter: 'OS.type', Value: 'Windows XP'). Die gewählte Option wird \emph{unverhandelbar}. Das wird gekennzeichnet durch das grüne 'Confirmed'. Außerdem wird überprüft, wie die gewählte Option die anderen verfügbaren Optionen beeinflusst. Was bei der Auswahl zu einem Konflikt führen würde, wird ausgegraut. Beim Feld 'Displaygröße' ist zu beobachten, dass die Wahl der Konfigurationsengine von '13' auf '15' geändert wurde. Offensichtlich sind Werte, die nicht vom Anwender gesetzt wurden, \emph{verhandelbar}. Die Konfigurationsengine sorgt folglich immer für einen konfliktfreien Zustand. Durch einen Klick auf 'Confirm' bzw. 'Please Confirm' können Optionen zwischen verhandelbar und unverhandelbar gewechselt werden.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
-	\includegraphics[width=0.8\linewidth]{Abbildungen/tcsiteConfigurationConflict.PNG}
-	\captionof{figure}[tcsiteConfigurationConflict]{TCsite Configuration-View in einer Konfliktsituation}
+	\includegraphics[width=1\linewidth]{Abbildungen/tcsiteConfigurationConflict.PNG}
+	\captionof{figure}[Configuration-View in TCsite während einer Konfliktsituation]{Configuration-View in TCsite während einer Konfliktsituation}
 	\label{fig:tcsiteConfigurationConflict}
 \end{minipage}
-\vspace{1em}
+\vspace{0.3em}
 
-Ausgegraute Optionen sind dennoch wählbar. Abbildung \ref{fig:tcsiteConfigurationConflict} zeigt die Konfigurationsoberfläche nach einem Klick auf die Displaygröße '13'. Dennoch ist '15' immer noch die aktive Option. Gleichzeitig wird am oberen Ende eine Konflikthinweis angezeigt. Die Konfigurationsengine weist darauf hin, dass Optionen im Widerspruch stehen und schlägt eine Konfliktlösung vor. Diese kann angenommen oder abgelehnt werden. Im letzteren Fall bleibt die Konfiguration einfach in dem Zustand vor der Wahl der konfliktverursachenden Option. Auch die Eingabe von Werten in ein Textfeld kann zu Konflikten führen. Beispielsweise dann, wenn diese außerhalb der Domain des Parameters liegen oder im Widerspruch mit einer anderen Wahl stehen. 
+Ausgegraute Optionen sind dennoch wählbar. Abbildung \ref{fig:tcsiteConfigurationConflict} zeigt die Konfigurationsoberfläche nach einem Klick auf die Displaygröße '13'. Dennoch ist '15' noch immer die aktive Option. Gleichzeitig wird am oberen Ende eine Konflikthinweis angezeigt. Die Konfigurationsengine weist darauf hin, dass Optionen im Widerspruch stehen und schlägt eine Konfliktlösung vor. Diese kann angenommen oder abgelehnt werden. Im letzteren Fall bleibt die Konfiguration einfach in dem Zustand vor der Wahl der konfliktverursachenden Option. Auch die Eingabe von Werten in ein Textfeld kann zu Konflikten führen. Beispielsweise dann, wenn diese außerhalb der Domain des Parameters liegen oder im Widerspruch mit einer anderen Wahl stehen. 
 
 Wird der Konfigurationsprozess über die Schaltfläche 'Ok' beendet, kehrt TCsite zum Quotation-Modul zurück. Dort erscheint die Variante in der Liste der QuotationItems.
 
 \subsubsection{Erweiterbarkeit}
-\label{subsubsection:Erweiterbarkeit}
+\label{TCsiteErweiterbarkeit}
 
-Zur Erweiterung der Funktionalität bietet TCsite ein Pluginkonzept, welches Abbildung \ref{fig:tcsiteLowLevelExtensions} visualisiert. Neben den oben diskutierten Verantwortlichkeiten definieren die Plattform und die Module sogenannte Extensionpoints \citep{tactonTCsiteApiDocu}. Extensionpoints sind das, was in anderen Erweiterungskonzepten als Events bezeichnet wird: Ereignisse im Kontrollfluss der Geschäftsprozesse. Plugins können Methoden bereitstellen, die an den entsprechenden Ereignisstellen aufgerufen werden  \citep{tactonTCsiteDevelopmentManual}.
+Zur Erweiterung der Funktionalität bietet TCsite ein Pluginkonzept, welches Abbildung \ref{fig:tcsiteLowLevelExtensions} visualisiert. Neben den oben diskutierten Verantwortlichkeiten definieren die Plattform und die Module sogenannte \emph{Extensionpoints} \citep{tactonTCsiteApiDocu}. Extensionpoints sind das, was in anderen Erweiterungskonzepten als Events bezeichnet wird -- Ereignisse im Kontrollfluss der Geschäftsprozesse. Plugins können Methoden bereitstellen, die an den entsprechenden Ereignisstellen aufgerufen werden  \citep{tactonTCsiteDevelopmentManual}.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=0.8\linewidth]{Abbildungen/tcsiteLowLevelExtensions.pdf}
-	\captionof{figure}[tcsiteLowLevelExtensions]{TCsite Pluginkonzept}
+	\captionof{figure}[TCsite Pluginkonzept]{TCsite Pluginkonzept}
 	\label{fig:tcsiteLowLevelExtensions}
 \end{minipage}
-\vspace{1em}
+\vspace{0.3em}
 
-Jedes Plugin hat Zugriff auf das Repository, die Plattform und das Moduls, zu dem es gehört. Die Plattform stellt außerdem ein paar spezielle Erweiterungspunkte bereit. Sie erlaubt unter anderem die Definition von Webcontrollern. Das sind Methoden, die auf HTTP-Requests an bestimmte URIs innerhalb des TCsite-Addressraums reagieren.
+Jedes Plugin hat Zugriff auf das Repository, die Plattform und das Modul, zu dem es gehört. Die Plattform stellt außerdem ein paar spezielle Erweiterungspunkte bereit. Sie erlaubt unter anderem die Definition von \emph{Webcontrollern}. Das sind Methoden, die auf HTTP-Requests an bestimmte URIs innerhalb des TCsite-Addressraums reagieren.
 
 \textbf{Zusammenfassung}\\
 Der Produktkatalog von TCsite besteht nicht aus explizit ausdefinierten Varianten, sondern Produkten mit Konfigurationsmodellen. Erst innerhalb einer \emph{Quotation} werden kundenspezifische Varianten durch einen Konfigurationsprozess generiert, welche als \emph{QuotationItems} bezeichnet werden. Der Konfigurationsprozess ist die Führung des Anwenders durch die in einem Konfigurationsmodell definierte \emph{execution}, bei dem in jedem Step Optionen gewählt werden. Alle gewählten Optionen eines Konfigurationsmodells sind dessen Konfigurationszustand. Die Einheit aus Konfigurationsmodell und Konfigurationszustand wird als \emph{Configurable} persistiert und mit dem \emph{QuotationItem} verbunden.
@@ -755,7 +764,7 @@ Der Produktkatalog von TCsite besteht nicht aus explizit ausdefinierten Variante
 Der Konfigurationsprozess passiert im Configuration-Modul. Technisch betrachtet werden dabei \emph{KE-Inputs} verarbeitet, die mit \emph{KE-Outputs} beantwortet werden. Ein KE-Input besteht aus dem Konfigurationsmodell, dessen Konfigurationszustand und (fakultativ) der gewählten Option des Anwenders. Das Konfigurationsmodell und der Konfigurationszustand stammen aus dem \emph{Configurable}, die gewählte Option des Anwenders wird über die Konfigurationsoberfläche erhoben. Die Konfigurationsoberfläche wird aus den Daten des \emph{KE-Outputs} erstellt.
 
 \subsubsection{Zwischenfazit}
-\label{subsubsection:tcsiteFazit}
+\label{subTCsiteFazit}
 
 Die Daten aus dem KE-Output können auch einem externen System zum Aufbau einer Konfigurationsoberfläche zur Verfügung gestellt werden. Über die Oberfläche wählt der Anwender Optionen, die an TCsite zurückgegeben werden. Dort wird in Verbindung mit dem entsprechenden \emph{Configurable} ein KE-Input definiert. Über den KE-Output kann die Konfigurationsoberfläche im externen System wiederum aktualisiert werden und der Prozess beginnt von neuem. Die für diesen Vorgang relevanten Informationen müssen nur irgendwie zwischen dem externen System und TCsite transportiert werden. Das Pluginkonzept erlaubt die Definition von Serviceendpunkten über Webcontroller. An diesen können HTTP-Requests ausgewertet und beantwortet werden. Dadurch ist es möglich, einen Webservice zu implementieren, der eine Schnittstelle für externe Konfigurationsoberflächen bereitstellt.
 
@@ -808,7 +817,7 @@ Der Quellcode der Community-Edition liegt offen. Theoretisch ist eine Erweiterun
 \textbf{Logische Erweiterungen}\\
 Logische Erweiterungen werden über Events und Hooks realisiert. Events sind \glqq definierte Ereignisse, die im Workflow des Shops auftreten\grqq{} \citep{shopware4Docs}. Plugins können Code registrieren, welcher an den Ereignispunkten ausgeführt wird. Steht kein Event für die geplante Modifikation zur Verfügung, kann Plugin-Code über das Hooksystem unmittelbar auf Funktionen des Shopware-Kerns registriert werden \citep{shopware5Docs}. Damit ist das Erweiterungskonzept flexibler als das von TCsite.
 
-Events werden in Controller-Events und Notify-Events unterschieden \citep{shopware4Docs}. \textbf{Controller-Events} sind an den Dispatch-Vorgang gekoppelt. Der shopware-Entwickler \citet{noegel15Diaspatch} definiert Dispatching als einen Prozess, bei dem das Request-Objekt gehandhabt, daraus das relevante Modul, der Controller und die Action extrahiert, der entsprechende Controller instanziiert und dieser zur Behandlung des Request gebracht werden. Leitet ein Controller den Request zu einem anderen Controller weiter, wiederholt sich dieser Vorgang. Plugins können auszuführenden Code registrieren, der vor (\textbf{PreDispatch}) oder nach dem Dispatching (\textbf{PostDispatch}) ausgeführt werden soll. Außerdem können sie den Dispatch-Prozess auf eigene Funktionen umleiten und so ganze Controller-Methoden ersetzen. \textbf{Notify-Events} entsprechen hingegen den in Kapitel \ref{subsubsection:Erweiterbarkeit} erwähnten Extension-Points von TCsite. Sie finden beispielsweise in den Core-Klassen Verwendung. So kann abseits der Controller in den Programmablauf eingegriffen werden \citep{shopware4Docs}.
+Events werden in Controller-Events und Notify-Events unterschieden \citep{shopware4Docs}. \textbf{Controller-Events} sind an den Dispatch-Vorgang gekoppelt. Der shopware-Entwickler \citet{noegel15Diaspatch} definiert Dispatching als einen Prozess, bei dem das Request-Objekt gehandhabt, daraus das relevante Modul, der Controller und die Action extrahiert, der entsprechende Controller instanziiert und dieser zur Behandlung des Request gebracht werden. Leitet ein Controller den Request zu einem anderen Controller weiter, wiederholt sich dieser Vorgang. Plugins können auszuführenden Code registrieren, der vor (\textbf{PreDispatch}) oder nach dem Dispatching (\textbf{PostDispatch}) ausgeführt werden soll. Außerdem können sie den Dispatch-Prozess auf eigene Funktionen umleiten und so ganze Controller-Methoden ersetzen. \textbf{Notify-Events} entsprechen hingegen den in Kapitel \ref{TCsiteErweiterbarkeit} erwähnten Extension-Points von TCsite. Sie finden beispielsweise in den Core-Klassen Verwendung. So kann abseits der Controller in den Programmablauf eingegriffen werden \citep{shopware4Docs}.
 
 Hooks bieten einen generischeren Ansatz. Events sind auf den Dispatchprozess und alle sonstigen Punkte beschränkt, an denen ein Shopware-Entwickler Erweiterbarkeit vorgedacht hat. Das Hooksystem bezeichnet die Möglichkeit, jede public und protected-Funktion von Shopware zu erweitern. Sie erlauben die Modifizierung der Eingangsparameter und Rückgabewerte der Originalfunktion sowie deren komplette Ersetzung \citep{noegel15Hooks}.
 
@@ -849,13 +858,13 @@ Ausgehend von dieser Analyse ist der Einkaufsvorgang eines Varianten-Artikels un
 
 Mittels der Katalog- oder Suchfunktion wählt der Kunde einen konfigurierbaren Artikel aus - d.h., er wurde im Backend als \emph{Varianten-Artikel} gekennzeichnet. Nun wird auf der Detailseite die erste Variante des Artikels angezeigt. Dazu muss angemerkt werden, dass im Backend eingestellt werden wird, welche Variante initial geladen werden soll. Diese Variante ab jetzt als Basisvariante bezeichnet. Neben beschreibenden Texten und Bildern befindet sich auf der Detailseite die Konfigurationsoberfläche (siehe Abbildung \ref{app:shopwareNotebookDetail}). Zu jeder Gruppe wird ein Menü mit den entsprechenden Optionen angezeigt. Die Auswahl einer Option führt zum Reload der Seite mit der aktuellen Variante. Dieser Vorgang wiederholt sich so lange, bis der Artikel den Vorstellungen des Kunden entspricht. Außerdem wird die Anzahl eingestellt. Über den \glqq In den Warenkorb\grqq{}-Button wird der Artikel in den Warenkorb gelegt. Ist diese Variante bereits im Warenkorb, wird die Anzahl der entsprechenden Warenkorbposition inkrementiert. Anderenfalls entsteht eine neue Warenkorbposition. An der jeweiligen Bezeichnung der Warenkorbposition ist ablesbar, welche Optionskombination vorliegt (siehe Abbildung \ref{app:shopwareNotebookWarenkorb}). Nun überprüft der Kunde den Warenkorb. Möchte er weitere Artikel hinzufügen, beginnt der Prozess mit der Auswahl des Wunschartikels von vorne. Ist der Kunde mit der Konfiguration einer Warenkorbposition noch nicht zufrieden, kann er diese löschen oder ändern. Möchte er sie ändern, kommt er über einen Klick auf die entsprechende Position zur Detailansicht dieser Variante zurück. Nun können andere Optionen gewählt werden. Ein erneuter klick auf \glqq In den Warenkorb\grqq{} aktualisiert nicht etwa die zugehörige Warenkorbposition, sondern erzeugt einen neue. Die alte Variante verbleibt zusätzlich im Warenkorb. Ist der Nutzer mit allen Positionen im Warenkorb zufrieden, wird der Bestellvorgang über den Checkout-Prozess abgeschlossen.
 
-Dieser Vorgang stellt den Lebenszyklus einer Variante in Shopware dar. Er beginnt mit dem Anlegen der Variante im Backend. Das ist ein Unterschied zu der Umsetzung in TCsite, welche in Kapitel \ref{subsubsection:tcsiteArchitektur}
+Dieser Vorgang stellt den Lebenszyklus einer Variante in Shopware dar. Er beginnt mit dem Anlegen der Variante im Backend. Das ist ein Unterschied zu der Umsetzung in TCsite, welche in Kapitel \ref{TCsiteArchitektur}
  besprochen wurde. Hier beginnt der Lebenszyklus erst mit der Konfiguration.
 
 \subsection{Fazit}
 Shopware bietet in der Standardinstallation keine Funktionalität, die der Definition eines Konfigurationsprozesses gerecht wird. Stattdessen wird eine Variantenselektion durchgeführt. Da alle Varianten expliziert vordefiniert sind, werden dadurch die in Kapitel \ref{Produktklassifizierung} beschriebenen \ac{ATO}-Produkte abgebildet. Die Analyse in Kapitel \ref{subsection:Konfigurationsmodell} hat ergeben, dass das TCsite-Konfigurationsmodells auch \ac{MTO}-Produkte abbilden kann. Eine Integration des Tacton-Produktkonfigurators in Shopware würde somit dessen Angebotsspektrum in Bezug auf Produktionskonzepte erweitern.
  
-Im Fazit der TCsite-Analyse (Kapitel \ref{subsubsection:tcsiteFazit}) wurde
+Im Fazit der TCsite-Analyse (Kapitel \ref{subTCsiteFazit}) wurde
 geschlussfolgert, dass eine Konfigurationsoberfläche auch in einem externen System umsetzbar ist. Über Webcontroller kann ein Webservice implementiert werden, mit dem die Konfigurationsoberfläche kommuniziert. Webcontroller werden per Plugin definiert. Für die Arbeit bedeutet dies, dass ein Plugin zu erstellen ist, welches eine Schnittstelle für externe Konfigurationsoberflächen anbietet.
 
 In Kapitel \ref{subsubsection:shopwareErweiterbarkeit} wurde das Plugin-Konzept von Shopware vorgestellt. Die logischen Komponenten, Datenhaltung und Templates sind erweiterbar. Letzteres ermöglicht das Rendern einer Konfigurationsoberfläche in Shopware. Die Analyse des Einkaufsvorgangs von konfigurierbaren Artikeln in Kapitel \ref{subsubsection:shopwareKonfiguration} hat ergeben, wie die Varianten, die aus dem Konfigurationsprozess resultieren, ihren Lebenszyklus im Warenkorb fortsetzen. Das impliziert Änderungen über die reine Integration einer Konfigurationsoberfläche hinaus. Für die Arbeit bedeutet das, dass ein Shopware-Plugin zu erstellen ist, welches (1) eine Konfigurationsoberfläche bereitstellt und (2) die konfigurierten Artikel in den Einkaufsvorgang integriert.
@@ -903,7 +912,7 @@ Die Analyse des Einkaufsvorgangs hat ergeben, dass die Konfiguration eines Artik
 \begin{enumerate}[SW.F01:]\bfseries
 \item Das Shop-Plugin muss auf der Detailseite eine Konfigurationsoberfläche bieten.
 \end{enumerate}
-Die Funktionalität der Konfigurationsoberfläche kann näher beschrieben werden. Aus der Analyse des Konfigurationsprozesses in TCsite (siehe Kapitel \ref{subsubsection:tcsiteArchitektur}) ergibt sich die Anforderung SW.F02:
+Die Funktionalität der Konfigurationsoberfläche kann näher beschrieben werden. Aus der Analyse des Konfigurationsprozesses in TCsite (siehe Kapitel \ref{TCsiteArchitektur}) ergibt sich die Anforderung SW.F02:
 \begin{enumerate}[SW.F02:]\bfseries
 \item Die Konfigurationsoberfläche muss einen Konfigurationsprozess äquivalent zu TCsite ermöglichen. 
 \end{enumerate}
@@ -923,7 +932,7 @@ Von der Detailseite aus kommt die Variante in den Warenkorb. Daraus ergibt sich 
 \end{enumerate}
 In Shopware wird dabei die auf der Detailseite eingestellte Anzahl berücksichtigt. Gleiches gilt implizit für Anforderung SW.F05.
 
-In Kapitel \ref{subsubsection:tcsiteArchitektur} wurde bei der Analyse des Konfigurationsprozesses in TCsite festgestellt, dass diese erst im letzten Step abgeschlossen werden kann. Äquivalent resultiert für das Shopszenario die Anforderung SW.F06, die eine detailiertere Beschreibung der Anforderung SW.F05 darstellt:
+In Kapitel \ref{TCsiteArchitektur} wurde bei der Analyse des Konfigurationsprozesses in TCsite festgestellt, dass diese erst im letzten Step abgeschlossen werden kann. Äquivalent resultiert für das Shopszenario die Anforderung SW.F06, die eine detailiertere Beschreibung der Anforderung SW.F05 darstellt:
 \begin{enumerate}[SW.F06:]\bfseries
 \item Die Variante muss erst im letzten Step in den Warenkorb legbar sein.
 \end{enumerate}
@@ -1003,7 +1012,7 @@ Weiterhin muss das Shopware-Plugin wissen, wie es diese persistenten Information
 \begin{enumerate}[TC.F03:]\bfseries
 \item Das TCsite-Plugin muss Informationen zum späteren Aufbau der Konfigurationsoberfläche bereitstellen.
 \end{enumerate}
-Im Fazit aus Kapitel \ref{subsubsection:tcsiteFazit} wurde festgelegt, dass über die Oberfläche die gewählten Optionen des Shopkunden erfasst werden, der technische Konfigurationsprozess aber durch das TCsite-Plugin realisiert wird. Daraus ergibt sich Anforderung TC.04:
+Im Fazit aus Kapitel \ref{subTCsiteFazit} wurde festgelegt, dass über die Oberfläche die gewählten Optionen des Shopkunden erfasst werden, der technische Konfigurationsprozess aber durch das TCsite-Plugin realisiert wird. Daraus ergibt sich Anforderung TC.04:
 \begin{enumerate}[TC.F04:]\bfseries
 \item Das TCsite-Plugin führt den technischen Konfigurationsprozess durch.
 \end{enumerate}
@@ -1034,11 +1043,11 @@ Die nichtfunktionalen Anforderungen des TCsite-Plugins fallen äquivalent aus. T
 \begin{enumerate}[TC.NF01:]\bfseries
 \item Die Konfigurationsschnittstelle muss über ein TCsite-Plugin umgesetzt werden.
 \end{enumerate}
-In Kapitel \ref{subsection:TCsite} wurde erwähnt, dass die Architektur in Java implementiert ist. Daraus resultiert für die Anforderung TC.NF02:
+In Kapitel \ref{TCsite} wurde erwähnt, dass die Architektur in Java implementiert ist. Daraus resultiert für die Anforderung TC.NF02:
 \begin{enumerate}[TC.NF02:]\bfseries
 \item Das TCsite-Plugin muss unter der Verwendung von Java erstellt werden.
 \end{enumerate}
-Aus dem Erweiterungskonzept von TCsite (siehe Kapitel \ref{subsubsection:Erweiterbarkeit})
+Aus dem Erweiterungskonzept von TCsite (siehe Kapitel \ref{TCsiteErweiterbarkeit})
  kann schon jetzt das zu verwendende Webservice-Paradigma abgeleitet werden. Im Fazit des vorangegenen Kapitels wurde festgelegt, dass Web-Controller genutzt werden. Entsprechend des Kurfazits in Kapitel \ref{Webservices} steht damit das Werkzeug zur Implementierung eines REST-Websservices zur Verfügung. Es resultiert die Anforderung:
 \begin{enumerate}[TC.NF03:]\bfseries
 \item Die Konfigurationsschnittstelle wird als Webservice entsprechend des REST-Architekturstils implementiert.
@@ -1209,7 +1218,7 @@ Methode: \emph{sDeleteArticle}, Modul: \emph{sBasket}
 Anforderung SW.F19 schlägt die Brücke zur folgenden Konzeption des TCsite-Plugins. Dieses ist ein Webservice. Webservices haben eine Adresse im Web. Die Adresse muss dem Shopware-Plugin noch bekannt gegeben werden. Shopware erlaubt dem Administrator im Backend neben der Aktivierung und Deaktivierung von Plugins auch dessen \glqq Konfiguration\grqq{} über Formularfelder \citep{shopwarePluginKonfiguration}. Durch die Einrichtung eines Textfeldes \glqq Webadresse des TCsite-Plugins\grqq{} kann auch SW.F19 erfüllt werden. Alle funktionalen Anforderungen wurden somit entworfen.
 
 \subsection{TCsite-Plugin}
-\label{subsection:TCsite-Plugin}
+\label{TCsite-Plugin}
 Äquivalent zur Konzeption des Shopware-Plugins findet zunächst eine technische Vorbetrachtung statt. Während der Besprechung des neuen Einkaufsvorgangs wurde dargestellt, dass jeder Prozess im TCsite-Plugin mit der Verarbeitung eines {Configurable}-Objekts verbunden ist. Im Folgenden wird untersucht, wie der Zugriff auf das Objekt realisiert wird. Daraus resultieren Erkenntnisse, die Entscheidend für die Konzeption der Serviceendpunkte sind.
 
 \textbf{Vorbetrachtung}\\
@@ -1312,7 +1321,7 @@ Abbildung \ref{fig:konzeptRestZusammenfassung} fasst die Spezifikation des  \emp
 \label{section:Umsetzung}
 Im Folgenden findet ein Überblick über die Umsetzung und deren Herangehensweise statt. Der Ablauf der Implementierung wird episodisch besprochen. Währenddessen werden ausgewählte Umsetzungsdetails vorgestellt. Jeder Abschnitts schließt mit einer Zusammenfassung des jeweiligen Ergebnisses ab. Voraussetzung zum Verständnis dieses Kapitels sind Kenntnisse über die Grundlagen der Webprogrammierung.
 
-Im Gegensatz zur Konzeptionsreihenfolge wurde die Entwicklung mit dem TCsite-Plugin begonnen. Zunächst wurde eine Webcontroller-Erweiterung zum Testen der Verbindung geschrieben. Um den Zugriff auf TCsite-Funktionalitäten zu ermöglichen, musste der in Kapitel \ref{subsubsection:tcsiteArchitektur} erwähnte \emph{Integrationsuser} angelegt und dem Plugin zugewiesen werden. Als Testclient diente eine einfache HTML-Seite, die XMLHttpRequests (d.h. HTTP-Kommunikation mit Javascript) via  \emph{AJAX} an den Webcontroller absetzt. Hierbei hat sich herausgestellt, dass  \ac{CORS} beachtet werden muss. Im Folgenden wird die Problematik näher erläutert.
+Im Gegensatz zur Konzeptionsreihenfolge wurde die Entwicklung mit dem TCsite-Plugin begonnen. Zunächst wurde eine Webcontroller-Erweiterung zum Testen der Verbindung geschrieben. Um den Zugriff auf TCsite-Funktionalitäten zu ermöglichen, musste der in Kapitel \ref{TCsiteArchitektur} erwähnte \emph{Integrationsuser} angelegt und dem Plugin zugewiesen werden. Als Testclient diente eine einfache HTML-Seite, die XMLHttpRequests (d.h. HTTP-Kommunikation mit Javascript) via  \emph{AJAX} an den Webcontroller absetzt. Hierbei hat sich herausgestellt, dass  \ac{CORS} beachtet werden muss. Im Folgenden wird die Problematik näher erläutert.
 
 Browser implementieren ein Sicherheitskonzept namens \ac{SOP}. Dieses verhindert XMLHttpRequests an eine andere Domain als diejenige, von welcher der Request stammt. Beispielsweise würde eine Anfrage von der Domain \glqq http://shopware-test.de\grqq{} an \glqq http://tcsite-test.de\grqq{} blockiert werden. Die Serverantwort kommt zwar an, jedoch wird vom Browser vor dessen Auswertung der HTTP-Header \emph{Access-Control-Allow-Origin} kontrolliert. Durch diesen wird signalisiert, welche Domains mit der angeforderten Ressource interagieren dürfen. Ist die Domain des Clienten nicht eingetragen, wirft der Browser einen Fehler \citep{mozillaCORS}. Eine genauere Darstellung des Sachverhalts ist Abbildung \ref{app:mozillaCORS} zu entnehmen. Da Sicherheitsaspekte im Prototypen noch keine Rolle spielen, wurde der Tomcat von TCsite so eingestellt, dass er Requests von allen Domains akzeptiert. Das Ergebnis dieses Abschnitts ist die Herstellung einer Client-Server Kommunikation aus unterschiedlichen Domains.
 
@@ -1320,7 +1329,7 @@ Nachdem die Kommunikation zwischen dem Testclienten und dem TCsite-Plugin erfolg
 
 Danach wurde das Wählen von Optionen innerhalb des TCsite-Plugins simuliert. Dabei wurde mit verschiedenen Werten für die Attribute der \emph{ConfigurationActionBean} experimentiert. Im Testclient konnte anhand der Serverantwort beobachtet werden, ob der \emph{KE-Input} erfolgreich von der Konfigurationsengine verarbeitet werden konnte, welche Optionen gesetzt wurden und welche Auswirkungen das auf den \emph{grouptree} hat. Nun wurde im Testclienten eine sporadische Eingabemaske eingerichtet, die das Wählen von Optionen ermöglicht und diese zur Verarbeitung an den Service schickt. Das Ergebnis dieses Abschnitts ist das Wählen von Optionen über einen Clienten.
 
-Bis jetzt wurde die \emph{Quotation} mit den dazugehörigen Objekten nach der Generierung der Serverantwort -- welche bis dahin nur aus dem \emph{grouptree} bestand -- sofort wieder vergessen. Mittels der Serviceklasse \emph{ResourceService} des Repository-Moduls wurde das Speichern und Laden von \emph{Quotations} erprobt. In Kapitel \ref{subsubsection:tcsiteArchitektur} wurde der Unterschied zwischen dem globalen und lokalen Speicher erklärt. Da die Anforderungsanalyse keine weiteren Detailbedingungen an die Persistierung des Konfigurationszustands stellt (TC.F02), wurde immer mit dem globalen Repository gearbeitet. Entitäten im globalen Speicher sind nutzerübergreifend sichtbar, was das Öffnen und Überprüfen der im Plugin gespeicherten \emph{Quotations} in der Nutzerobefläche von TCsite erlaubt. Um zu gewährleisten, dass bei aufeinanderfolgenden Optionen immer die gleiche \emph{Quotation} geladen wird, musste die \emph{configuration}-Ressource um die \emph{configurationID} ergänzt werden. Diese wurde von nun an bei jedem Request mitgeschickt und die entsprechende \emph{Quotation} geladen. Das Ergebnis dieses Abschnitts ist das sukzessive Wählen von Optionen per Client und das Speichern der sich ändernden Konfigurationszustände in TCsite. Somit konnte der Konfigurationsprozess über eine externe Domain gesteuert werden -- wenn auch ohne Konfigurationsoberfläche.
+Bis jetzt wurde die \emph{Quotation} mit den dazugehörigen Objekten nach der Generierung der Serverantwort -- welche bis dahin nur aus dem \emph{grouptree} bestand -- sofort wieder vergessen. Mittels der Serviceklasse \emph{ResourceService} des Repository-Moduls wurde das Speichern und Laden von \emph{Quotations} erprobt. In Kapitel \ref{TCsiteArchitektur} wurde der Unterschied zwischen dem globalen und lokalen Speicher erklärt. Da die Anforderungsanalyse keine weiteren Detailbedingungen an die Persistierung des Konfigurationszustands stellt (TC.F02), wurde immer mit dem globalen Repository gearbeitet. Entitäten im globalen Speicher sind nutzerübergreifend sichtbar, was das Öffnen und Überprüfen der im Plugin gespeicherten \emph{Quotations} in der Nutzerobefläche von TCsite erlaubt. Um zu gewährleisten, dass bei aufeinanderfolgenden Optionen immer die gleiche \emph{Quotation} geladen wird, musste die \emph{configuration}-Ressource um die \emph{configurationID} ergänzt werden. Diese wurde von nun an bei jedem Request mitgeschickt und die entsprechende \emph{Quotation} geladen. Das Ergebnis dieses Abschnitts ist das sukzessive Wählen von Optionen per Client und das Speichern der sich ändernden Konfigurationszustände in TCsite. Somit konnte der Konfigurationsprozess über eine externe Domain gesteuert werden -- wenn auch ohne Konfigurationsoberfläche.
 
 Nun begann die Entwicklung des Shopware-Plugins. Mittels der im Konzeptionsteil vorgestellten Template-Erweiterungen wurde die sporadische Eingabemaske des Testclienten in die Detailseite von Shopware übertragen. So wurde zunächst sichergestellt, dass die Kommunikation mit TCsite auch aus Shopware funktioniert. Als nächstes wurde die Konfigurationsoberfläche zum Ersatz der bisherigen Eingabemaske implementiert. Dafür wurde ein jQuery-Plugin geschrieben, welches mit einem rekursivem Algorithmus den \emph{grouptree} parst und währenddessen die entsprechenden DOM-Elemente generiert und verkettet. Die resultierende HTML-Struktur wurde in den \emph{DOM-tree} der Detailseite einhängt. Per CSS wurde die Darstellung der Oberfläche an das Shopware-Design angepasst. Als nächstes wurde über die Registrierung von Eventhandlern die Funktionalität der Interaktionselemente (Steps, Felder vom Typ \emph{Menu} und \emph{Number}) hergestellt. Außerdem wurde der Mechanismus zum Wechseln des Optionszustände zwischen verhandelbar/unverhandelbar implementiert. Jede Nutzerinteraktion wurde via \emph{AJAX} an den Server übertragen, darauf hin der neue \emph{grouptree} entgegen genommen und die Konfigurationsoberfläche aktualisiert. Somit läuft der Konfigurationsprozess wie eine Single-Page-Application ab, d.h. ohne Seitenreload. Ergebnis dieses Abschnitts ist die Erstellung der Konfigurationsoberfläche, die einen Konfigurationsprozess äquivalent zu TCsite ermöglicht (entspricht Anforderung SW.F02). Dieser Teil der Umsetzung hat den größten Teil der praktischen Bearbeitungszeit ausgemacht.
 
@@ -1335,7 +1344,7 @@ Zunächst wurde eine Grundlage für die Kommunikation von TCsite mit externen Sy
 \label{section:Fazit}
 Während der Umsetzung konnten alle funktionalen und nichtfunktionalen Anforderungen erfüllt werden. Resultat dieser Arbeit sind zwei Plugins. Nach deren Installation in den jeweiligen Systemen sowie geringem Einstellungsaufwand (Eintragung der Serviceadresse im Shopware-Plugin, CORS-Aktivierung bei TCsite) ermöglichen sie die Tacton-Produktkonfiguration in einem Open-Source Shopsystem. Damit war die Integration erfolgreich. Der Kunde merkt während des Einkaufsvorgangs nicht, dass der Konfigurationsprozess durch einen externen Dienst begleitet wird. Im Folgenden findet eine Diskussion des Ergebnisses statt. Dies geschieht sowohl aus einem technischen, als auch einem anwendungsbezogenen Standpunkt. Dabei werden Alternativen und Potentiale für die zukünftige Entwicklung aufgezeigt.
 
-Es wird mit der Bewertung des Webservices begonnen. In Kapitel \ref{subsection:TCsite-Plugin} wurde die Behauptung aufgestellt, dass dieser nach dem REST-Architekturmuster entworfen wurde. Im Grundlagenteil der Arbeit (Kapitel \ref{REST}) wurde erwähnt, dass das \glqq Richardson Maturity Model\grqq{} zur abgestuften Bewertung der REST-Konformität existiert \citep{wilde11}. Je nachdem, welche Kriterien erfüllt werden, unterscheidet es vier aufeinander aufbauende Stufen:
+Es wird mit der Bewertung des Webservices begonnen. In Kapitel \ref{TCsite-Plugin} wurde die Behauptung aufgestellt, dass dieser nach dem REST-Architekturmuster entworfen wurde. Im Grundlagenteil der Arbeit (Kapitel \ref{REST}) wurde erwähnt, dass das \glqq Richardson Maturity Model\grqq{} zur abgestuften Bewertung der REST-Konformität existiert \citep{wilde11}. Je nachdem, welche Kriterien erfüllt werden, unterscheidet es vier aufeinander aufbauende Stufen:
 \begin{enumerate}
 \item[\textbf{Level 0:}] Dokumentenaustausch via HTTP. Auch SOAP würde dieses Kriterium erfüllen.
 \item[\textbf{Level 1:}] Exponierung adressierbarer Ressourcen. Die Interaktion mit dem Webservice findet dabei nur über diese Ressourcen statt.
@@ -1354,7 +1363,7 @@ Der Implementierung des REST-Webservice entspricht also Level 1 des \glqq Richar
 
 Durch die momentane CORS-Aktivierung würde die Inbetriebnahme des TCsite-Plugins dem Anbieten einer öffentlichen Web-API gleichkommen. Dafür berücksichtigt die Lösung noch nicht ausreichend nichtfunktionale Aspekte. Dazu gehören zum Beispiel der Umgang mit Denial-of-Service (DoS-)Attacken oder anderen Angriffen. Ein Überblick von Best Practices für Web-APIs ist \citet{tilkov11} zu entnehmen.
 
-In der momentan entworfenen Lösung wird jedes mal, wenn die Detailseite eines konfigurierbaren Artikels in Shopware aufgerufen wird, eine Quotation in TCsite angelegt. Zu keinem Zeitpunkt wird überprüft, welche der Quotations mit einer Variante im Zusammenhang steht, die tatsächlich bestellt wurde. Wird eine Detailseite nur aus Interesse geöffnet, die Konfiguration abgebrochen oder der Warenkorb nie in eine Bestellung umgesetzt, werden \glqq \emph{Quotation}-Leichen\grqq{} in der Datenbank von TCsite akkumuliert. Damit wirkt sich der Entwurf negativ auf die Performance von TCsite aus, was nicht im Sinne eines Integrationskonzepts sein kann. Allerdings wurde in Kapitel \ref{subsection:TCsite-Plugin} begründet, dass das Erstellen von \emph{Quotations} nicht vermieden werden kann. Ein Lösungsansatz ist die Entwicklung eines Mechanismus zur Garbage-Collection, der unnötige \emph{Quotations} post hoc entfernt. Außerdem ist zur Reduktion der Anzahl angelegter \emph{Quotations} zu überlegen, ob das Verhältnis von \emph{Configurables} respektive \emph{QuotationItems} zu \emph{Quotations} überarbeitet wird. Intuitiver als die bisherige Lösung wäre die Registrierung einer \emph{Quotation} pro Warenkorb in Shopware. Innerhalb der \emph{Quotation} gäbe es dann für jede Warenkorbposition ein \emph{QuotationItem}.
+In der momentan entworfenen Lösung wird jedes mal, wenn die Detailseite eines konfigurierbaren Artikels in Shopware aufgerufen wird, eine Quotation in TCsite angelegt. Zu keinem Zeitpunkt wird überprüft, welche der Quotations mit einer Variante im Zusammenhang steht, die tatsächlich bestellt wurde. Wird eine Detailseite nur aus Interesse geöffnet, die Konfiguration abgebrochen oder der Warenkorb nie in eine Bestellung umgesetzt, werden \glqq \emph{Quotation}-Leichen\grqq{} in der Datenbank von TCsite akkumuliert. Damit wirkt sich der Entwurf negativ auf die Performance von TCsite aus, was nicht im Sinne eines Integrationskonzepts sein kann. Allerdings wurde in Kapitel \ref{TCsite-Plugin} begründet, dass das Erstellen von \emph{Quotations} nicht vermieden werden kann. Ein Lösungsansatz ist die Entwicklung eines Mechanismus zur Garbage-Collection, der unnötige \emph{Quotations} post hoc entfernt. Außerdem ist zur Reduktion der Anzahl angelegter \emph{Quotations} zu überlegen, ob das Verhältnis von \emph{Configurables} respektive \emph{QuotationItems} zu \emph{Quotations} überarbeitet wird. Intuitiver als die bisherige Lösung wäre die Registrierung einer \emph{Quotation} pro Warenkorb in Shopware. Innerhalb der \emph{Quotation} gäbe es dann für jede Warenkorbposition ein \emph{QuotationItem}.
 
 Weiterhin kann der Lebenszyklus von \emph{Quotations}\footnote{Der Quotation-Lebenszyklus wurde in Kapitel \ref{subsubsection:tcsiteArchitektur} vorgestellt} genutzt werden, um neben der Container-Funktionalität auch die Ausdruckskraft einer \emph{Quotation} zu nutzen. Die Einrichtung weiterer Zustände, wie z.B. \glqq Bestellung im Shop ausgelöst\grqq würde Vertriebsmitarbeitern die Verwaltung der Bestellungen erleichtern.
 
