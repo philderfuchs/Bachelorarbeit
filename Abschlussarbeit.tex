@@ -1,4 +1,4 @@
-\documentclass[11pt, a4paper, titlepage, listof=totoc, bibliography=totoc, index=totoc, twoside, openright, headings=normal]{scrreprt}
+\documentclass[11pt, a4paper, titlepage, listof=totoc, bibliography=totoc, index=totoc, twoside, openright, headings=normal, draft]{scrreprt}
 \usepackage[ngerman]{babel}
 \usepackage[T1]{fontenc}% wichtig für Trennung von Wörtern mit Umlauten
 \usepackage{microtype}% verbesserter Randausgleich
@@ -122,7 +122,7 @@ Die Beobachtung der Unternehmensrealität zeichnet ein anderes Bild. Neue Organi
 
 \ac{MC} ist die \glqq Produktion von Gütern und Leistungen für einen (relativ) großen Absatzmarkt, welche die unterschiedlichen Bedürfnisse jedes einzelnen Nachfragers dieser Produkte treffen, zu Kosten, die ungefähr denen einer massenhaften Fertigung vergleichbarer Standardgüter entsprechen\grqq{} \citep{piller98}. Mit anderen Worten: Preisvorteil (\ac{i.d.R.} durch Massenfertigung) wird mit Individualisierung (\ac{i.d.R.} durch Variantenvielfalt) vereint.
 
-Ein Beispiel für einen Anwendungsbereich von \ac{MC} ist die Automobilindustrie. Hersteller bieten  Modelle in verschiedenen Ausführungen an, die der Kunde beim Online-Bestellprozess weiter individualisieren kann. Beispiele hierfür sind Opel\footnote{http:\/\/www.opel.de\/tools\/konfigurator\/personenwagen.html} und BMW\footnote{http:\/\/bmw.de\/BMW\_Konfigurator}.
+Ein Beispiel für einen Anwendungsbereich von \ac{MC} ist die Automobilindustrie. Hersteller bieten  Modelle in verschiedenen Ausführungen an, die der Kunde beim Online-Bestellprozess weiter individualisieren kann. Beispiele hierfür sind Opel\footnote{http://www.opel.de/tools/konfigurator/personenwagen.html} und BMW\footnote{http://bmw.de/BMW\_Konfigurator}.
 
 \subsection{Produktklassifizierung}
 \label{Produktklassifizierung}
@@ -392,52 +392,66 @@ Aus den vorgestellten Kriterien resultieren folgende Eigenschaften \citep{tilkov
 \textbf{Zusammenfassung}\\
 REST ist Ressourcenorientiert während SOAP aufgrund von \ac{RPC}s Methodenorientiert ist. Die Umsetzung von REST ist nicht an technische Voraussetzungen gebunden, vielmehr müssen eine Reihe von Kriterien erfüllt werden. Das Implementierungswerkzeug von REST sind Funktionen, die auf verschiedene URIs reagieren sowie HTTP verarbeiten und beantworten können. Bei SOAP ist HTTP nur das Transportprotokoll. Die Verarbeitung des Inhalts erfordert einen weiteren Technologiestack.
 
-\subsection{eCommerce}
+\section{eCommerce}
+\label{eCommerce}
 
-Im Folgenden wird durch die Charakterisierung des Begriffs eCommerce ein Andwendungsrahmen für eShops hergestellt. Deren softwaretechnische Umsetzung wird durch eShop-Systeme realisiert. Durch eine Kategorisierung der Systeme nach Anbieterstrategie wird abschließend die Menge der Open-Source-Lösungen für eine Konfiguratorintegration identifiziert.
+Im Folgenden wird durch die Charakterisierung des Begriffs \emph{eCommerce} ein Anwendungsrahmen für Onlineshops (\emph{eShops}) hergestellt. Deren softwaretechnische Umsetzung wird durch \emph{eShop-Systeme} realisiert. Durch eine Kategorisierung der Systeme nach Anbieterstrategie wird abschließend die Menge der Open-Source-Lösungen für eine Konfiguratorintegration identifiziert.
 
-\subsubsection{Anwendungsrahmen}
-eShops gehören zur Domäne des elektronischen Handels (eCommerce). eCommerce ist \glqq die elektronisch unterstützte Abwicklung von Handelsgeschäften auf der Basis des Internet\grqq{} \citep{schwarze02}. Je nachdem, welche Marktpartner an dem Handelsgeschäft teilnehmen, werden verschiedene Formen des eCommerce unterschieden. Die in Abbildung \ref{fig:eCommerceGrundformen} fett hervorgehobenen Varianten werden von \citet{meier12} als \glqq die zwei Geschäftsoptionen des eCommerce\grqq{} bezeichnet: \ac{B2C} und \ac{B2B}. Bei \ac{B2C} erfolgt der Handel von Produkten und Dienstleistungen zwischen Unternehmen and Endverbraucher, bei \ac{B2B} zwischen Unternehmen.
+\subsection{Anwendungsrahmen}
+eShops gehören zur Domäne des elektronischen Handels (eCommerce). eCommerce ist \glqq die elektronisch unterstützte Abwicklung von Handelsgeschäften auf der Basis des Internet\grqq{} \citep{schwarze02}. Je nachdem, welche Marktpartner an dem Handelsgeschäft teilnehmen, werden verschiedene Formen des eCommerce unterschieden. Die in Abbildung \ref{fig:eCommerceGrundformen} fett hervorgehobenen Varianten werden von \citet{meier12} als \glqq die zwei Geschäftsoptionen des eCommerce\grqq{} bezeichnet -- \emph{\ac{B2C}} und \emph{\ac{B2B}}. Bei \ac{B2C} erfolgt der Handel von Produkten und Dienstleistungen zwischen Unternehmen und Endverbraucher, bei \ac{B2B} zwischen Unternehmen.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=0.7\linewidth]{Abbildungen/eCommerceGrundformen.png}
-	\captionof{figure}[eCommerceGrundformen]{Grundformen des eCommerce nach Marktpartnern (Quelle: \citet{schwarze02})}
+	\captionof{figure}[Grundformen des eCommerce]{Grundformen des eCommerce nach Marktpartnern (Quelle: \citet{schwarze02})}
 	\label{fig:eCommerceGrundformen}
 \end{minipage}
-\vspace{1em}
+\vspace{0.1em}
 
-Für die Umsetzung von eCommerce existieren unterschiedliche Geschäftsmodelle. \citet{timmers98} nennt elf verschiedene Formen. eShops sind eine eine davon. Es handelt sich dabei um ein \glqq Geschäftsmodell der Angebotsveröffentlichung, bei dem ein Anbieter seine Waren oder Dienstleistungen über das Web den Nachfragern offeriert\grqq{} \citep{bartelt00}.
+Für die Umsetzung von eCommerce existieren unterschiedliche Geschäftsmodelle. \citet{timmers98} nennt elf verschiedene Formen, wobei eShops eine davon sind. Es handelt sich dabei um ein \glqq Geschäftsmodell der Angebotsveröffentlichung, bei dem ein Anbieter seine Waren oder Dienstleistungen über das Web den Nachfragern offeriert\grqq{} \citep{bartelt00}.
 
-Ein eShop bildet den traditionellen Einkaufsvorgang nach: Kunden können mittels einer Katalog- oder Suchfunktion über den Produktbestand navigieren. Produkte können ausgewählt und ausführliche, mit Medien angereicherte Beschreibungen abgerufen werden. Wunschartikel werden einem virtuellen Warenkorb hinzugefügt. Ist die Produktauswahl abgeschlossen, begibt sich der Kunde zur \glqq Kasse\grqq{}, wo die Zahlungsmodalitäten erledigt werden \citep{boles00}. Ein eShop beschreibt das Geschäftsmodell, jedoch noch nicht dessen Umsetzung als Softwaresystem. Diese wird als eShop-System bezeichnet \citep{boles00} und im Folgenden behandelt.
+Ein eShop bildet den traditionellen Einkaufsvorgang nach: Kunden können mittels einer Katalog- oder Suchfunktion über den Produktbestand navigieren (\emph{Artikellisting}). Produkte können ausgewählt und ausführliche, mit Medien angereicherte Beschreibungen abgerufen werden (\emph{Detailseite}). Wunschartikel werden einem virtuellen \emph{Warenkorb} hinzugefügt. Ist die Produktauswahl abgeschlossen, begibt sich der Kunde zur \glqq Kasse\grqq{}, wo die Zahlungsmodalitäten erledigt werden (\emph{Bestellung}) \citep{boles00}.
 
-\subsubsection{eShop-Systeme}
-\glqq eShop-Systeme sind Software-Systeme, die den Aufbau, die Verwaltung und den Einsatz von eShops unterstützen\grqq{} \citep{boles00}. Abbildung \ref{fig:eShopGrobarchitektur} zeigt die Grobarchitektur eines eShop-Systems nach \citeauthor{meier12}. Darin wird die Unterteilung zwischen Storefront und Backfront deutlich, welche in der Terminologie realer Shopsysteme als Front- und Backend bezeichnet werden \citep[vgl.][]{shopwareDoku}. Das Frontend ist der Interaktionsraum der Kunden, das Backend der administrative Bereich des Shopbetreibers.
+Ein eShop beschreibt das Geschäftsmodell, jedoch noch nicht dessen Umsetzung als Softwaresystem. Dieses wird als eShop-System bezeichnet \citep{boles00} und im Folgenden behandelt.
+
+\subsection{eShop-Systeme}
+\label{eShop-Systeme}
+\glqq eShop-Systeme sind Software-Systeme, die den Aufbau, die Verwaltung und den Einsatz von eShops unterstützen\grqq{} \citep{boles00}. Abbildung \ref{fig:eShopGrobarchitektur} zeigt die Grobarchitektur eines eShop-Systems nach \citet{meier12}. Darin wird die Unterteilung zwischen Storefront und Backfront deutlich, welche in der Terminologie realer Shopsysteme als Front- und Backend bezeichnet werden \citep[vgl.][]{shopwareDoku}. Das Frontend ist der Interaktionsraum der Kunden, das Backend der administrative Bereich des Shopbetreibers.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=0.7\linewidth]{Abbildungen/eShopGrobarchitektur.png}
-	\captionof{figure}[eShopGrobarchitektur]{Grobarchitektur eines eShop-Systems (Quelle: \citet{meier12})}
+	\captionof{figure}[Grobarchitektur eines eShop-Systems]{Grobarchitektur eines eShop-Systems (Quelle: \citet{meier12})}
 	\label{fig:eShopGrobarchitektur}
 \end{minipage}
-\vspace{1em}
+\vspace{0.2em}
 
-Die Hauptaufgaben eines eShop-Systems sehen \citet{boles00} in den Bereichen Merchandising (z.B. Management von hierarchisch strukturierten Produktkatalogen, Beeinflussung des Shopdesigns), Auftragsbearbeitung (z.B. Festlegung der Abarbeitungs-Pipeline, Integration von Bezahlverfahren) und Sonstiges (z.B. die Kopplung mit externen ERP-Systemen). Der konkrete Funktionsumfang hängt vom  gewählten eShop-System ab.
+Die Hauptaufgaben eines eShop-Systems sehen \citet{boles00} in den Bereichen \emph{Merchandising} (z.B. Management von hierarchisch strukturierten Produktkatalogen, Beeinflussung des Shopdesigns), \emph{Auftragsbearbeitung} (z.B. Festlegung der Abarbeitungs-Pipeline, Integration von Bezahlverfahren) und \emph{Sonstiges} (z.B. die Kopplung mit externen ERP-Systemen). Der konkrete Funktionsumfang hängt vom gewählten eShop-System ab.
 
-Die Systeme sind nach Strategie der Anbieter kategorisierbar:
-\begin{compactitem}
-\item Der Quellcode von \textbf{Open-Source}-Systemen ist kostenlos verfügbar. Daher bieten sie völlige Gestaltungsfreiheit, aber keinen Herstellersupport. Die Dokumentationen sind schwächer und der Funktionsumfang geringer als bei kostenpflichtigen Alternativen. Andererseits existieren Communities, die Unterstützung bieten und die Entwicklung von Erweiterungen vorantreiben \citep{stahl15}. Beim kommerziellen Handel der modularen Erweiterungen auf shopspezifischen Stores liegt auch eine der wesentlichen Erlösquellen der Open-Source Strategie (z.B. der Addon Marketplace der \citeauthor{prestashopAddons} oder das Extensionverzeichnis der \citeauthor{opencartExtensions}).
-\item \textbf{Kauf-Lösungen} können kostenpflichtig lizensiert werden (z.B. \citeauthor{shopwarePricing}). Sie bieten Herstellersupport, zusätzliche Dienstleistungen (z.B. Installation des Shops) und einen höheren Funktionsumfang (z. B. Schnittstellen zu verschiedenen Warenwirtschaftssystemen oder Zahlungsdienstleistern) \citep{stahl15}. Die Hersteller bieten verschiedene Editionen mit teilweise erheblichen Preisunterschieden an (Bsp.: die Preisdifferenz der Magento Enterprise Edition zu Enterprise Premium liegt bei über 35.000 \$, \citealp[vgl][]{fwpShop}).
-\begin{enumerate}[a.]
-\item Im Rahmen eines Dual-License-Modells ist eine Open-Source \textbf{Community Edition} Teil des Editionsspektrums \citep{t3n14} (vgl. das Shopangebot der \citeauthor{magentoShops}, \citeauthor{shopwarePricing} oder \citeauthor{oxidShops}). Durch den offenen Quellcode existiert auch hier der Handel modularer Erweiterungen, von dem auch die kostenpflichtigen Varianten profitieren (vgl. der Plugin Store der \citeauthor{shopwarePluginStore}). Die Codebasis aller Editionen ist gleich. Daher kann später zu einer Kauf-Lösung migriert werden. Das bietet Flexibilität für wachsende Shopanforderungen.
-\end{enumerate}
-\item \textbf{Miet-Shops} entsprechen einer Cloud-Lösung als Software-as-a-Service (z.B. \citeauthor{stratoWebshops}, \citeauthor{shopify15}). Die technische Infrastruktur wird vom Provider zur Verfügung gestellt. Systemwartung, Bereitstellung der Shopsoftware und Hosting werden unter dem Mietpreis abgerechnet. \citet{stahl15} bewertet diese Variante als Einstiegslösung mit geringer Gestaltungsfreiheit.
-\item \textbf{Eigenentwicklungen} eignen sich für individuelle Bedürfnisse, wenn die Standardsysteme die Anforderungen nicht erfüllen \citep{stahl15, graf14}.
-\end{compactitem}
+Die Systeme sind nach Strategie der Anbieter kategorisierbar, wie im Folgenden dargestellt wird.
+\newpage
+\textbf{Open-Source}\\
+Der Quellcode von Open-Source-Systemen ist kostenlos verfügbar. Daher bieten sie völlige Gestaltungsfreiheit, aber keinen Herstellersupport. Die Dokumentationen sind schwächer und der Funktionsumfang geringer als bei kostenpflichtigen Alternativen. Andererseits existieren Communities, die Unterstützung bieten und die Entwicklung von Erweiterungen vorantreiben \citep{stahl15}.
+
+Open-Source bedeutet nicht per se, dass die Systeme ohne Kostenaufwand einsetzbar sind. Beim kommerziellen Handel der modularen Erweiterungen auf shopspezifischen Stores liegt eine der Erlösquellen der Open-Source-Strategie (vgl. der \emph{Addon Marketplace} der \emph{PrestShop SA}\footnote{http://addons.prestashop.com} oder das Extensionverzeichnis der \emph{Opencart Limited}\footnote{http://www.opencart.com/index.php?route=extension/extension}).
+
+\textbf{Kauf-Lösungen}\\
+Kauf-Lösungen werden kostenpflichtig lizensiert \citep[z.B.][]{shopwarePricing}. Sie bieten Herstellersupport, zusätzliche Dienstleistungen (z.B. Installation des Shops) und einen höheren Funktionsumfang (z. B. Schnittstellen zu verschiedenen Warenwirtschaftssystemen oder Zahlungsdienstleistern) \citep{stahl15}. Die Hersteller bieten verschiedene Editionen mit teilweise erheblichen Preisunterschieden an\footnote{Beispiel: die Preisdifferenz der \emph{Magento Enterprise Edition} zu \emph{Enterprise Premium} liegt bei über 35.000 \$ \citep[vgl][]{fwpShop}}.
+
+Im Rahmen eines Dual-License-Modells ist eine Open-Source \textbf{Community Edition} Teil des Editionsspektrums \citep{t3n14} (vgl. das Shopangebot der \citet{magentoShops}, \citet{shopwarePricing} oder \citet{oxidShops}). Durch den offenen Quellcode existiert auch hier der Handel modularer Erweiterungen, von dem auch die kostenpflichtigen Varianten profitieren (vgl. der \emph{Plugin Store} der shopware AG\footnote{http://store.shopware.com/}). Die Codebasis aller Editionen ist gleich. Daher kann später zu einer Kauf-Lösung migriert werden. Das bietet Flexibilität für wachsende Shopanforderungen.
+
+\textbf{Miet-Shops}\\
+Miet-Shops entsprechen einer Cloud-Lösung als \emph{Software-as-a-Service} (z.B. \citet{stratoWebshops}, \citet{shopify15}). Die technische Infrastruktur wird vom Provider zur Verfügung gestellt. Systemwartung, Bereitstellung der Shopsoftware und Hosting werden unter dem Mietpreis abgerechnet. \citet{stahl15} bewertet diese Variante als Einstiegslösung mit geringer Gestaltungsfreiheit.
+
+\textbf{Eigenentwicklungen}\\
+Wenn die Standardsysteme die Anforderungen nicht erfüllen, eignen sich Eigenentwicklungen für individuelle Bedürfnisse \citep{stahl15, graf14}.
 
 Aus dieser Darstellung sind die (zumindest initial) kostenfreien Varianten ersichtlich: reine Open-Source eShop-Systeme sowie die Community-Editionen der Dual-License Modelle. Eine Anbieterübersicht ist \citet{t3n14} zu entnehmen. Eine Kategorisierung der Systeme nach Anforderungsklassen ist \citet{graf14} zu entnehmen.
+
+\textbf{Zusammenfassung}
+Im vorangegangenen Kapitel wurde das theoretische Fundament für die Arbeit gelegt. Durch die Aufstellung eines Anwendungsrahmens wurde ein wirtschaftlicher Kontext für Konfiguratoren im Allgemeinen geschaffen. Im Zusammenhang mit den Geschäftsoptionen des eCommerce lässt sich eine genauere Aussage über den Anwendungsbezug von Konfiguratoren in eShops machen. Die Konfiguration im B2C wird durch den Endverbraucher durchgeführt, entspricht also der Selbstkonfiguration. Im B2B ist beispielsweise im Rahmen des Einsatzes von Vertriebskonfiguratoren durch ausgebildetes Personal die Konfiguration komplexerer Systeme möglich. REST und SOAP ermöglichen die Instrumentierung des Webs für Integrationsszenarien.
 
 \chapter{Analyse}
 \label{section:Analyse}
