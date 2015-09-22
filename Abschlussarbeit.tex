@@ -48,6 +48,10 @@
 	colorlinks=true,linkcolor=black,citecolor=black,filecolor=magenta,urlcolor=black}
 \pdfinfo{/CreationDate (D:20110620133321)}
 
+
+\makeatletter
+\def\l@lstlisting#1#2{\@dottedtocline{1}{1.5em}{3em}{#1}{#2}}
+\makeatother
 \begin{document}
 
 \include{Header}
@@ -876,17 +880,17 @@ Dieser Vorgang stellt den Lebenszyklus einer Variante in Shopware dar. Er beginn
 \label{analyseFazit}
 Shopware bietet in der Standardinstallation keine Funktionalität, die der Definition eines Konfigurationsprozesses gerecht wird. Stattdessen wird eine \emph{Variantenselektion} durchgeführt. Da alle Varianten expliziert vordefiniert sind, werden dadurch die in Kapitel \ref{Produktklassifizierung} beschriebenen \ac{ATO}-Produkte abgebildet. Die Analyse in Kapitel \ref{tactonKonfigurationsmodell} hat ergeben, dass das Tacton-Konfigurationsmodell auch \ac{MTO}-Produkte abbilden kann. Eine Integration des Tacton-Produktkonfigurators in Shopware würde somit dessen Angebotsspektrum in Bezug auf Produktionskonzepte erweitern.
 
-In Kapitel \ref{shopwareErweiterbarkeit} wurde das Plugin-Konzept von Shopware vorgestellt. Template-Erweiterungen erlauben einen Eingriff in die Oberfläche. Damit ist eine Konfigurationsoberfläche in Shopware darstellbar. Die Analyse des Einkaufsvorgangs von konfigurierbaren Artikeln in Kapitel \ref{shopwareEinkaufsvorgang} impliziert jedoch Änderungen über die reine Integration einer Konfigurationsoberfläche hinaus. Nach dem Konfigurationsprozess absolvieren Varianten weitere Stationen im Einkaufsvorgang. Für die Arbeit bedeutet dies, dass ein Shopware-Plugin zu erstellen ist, welches (1.) eine Konfigurationsoberfläche bereitstellt und (2.) die resultierenden Varianten in den Einkaufsvorgang integriert.
+In Kapitel \ref{shopwareErweiterbarkeit} wurde das Plugin-Konzept von Shopware vorgestellt. Template-Erweiterungen erlauben einen Eingriff in die Oberfläche. Damit ist eine Konfigurationsoberfläche in Shopware darstellbar. Die Analyse des Einkaufsvorgangs von konfigurierbaren Artikeln in Kapitel \ref{shopwareEinkaufsvorgang} impliziert jedoch Änderungen über die reine Integration einer Konfigurationsoberfläche hinaus. Nach dem Konfigurationsprozess absolvieren Varianten weitere Stationen im Einkaufsvorgang. Für die Arbeit bedeutet dies, dass ein Shopware-Plugin (Shop-Plugin) zu erstellen ist, welches (1.) eine Konfigurationsoberfläche bereitstellt und (2.) die resultierenden Varianten in den Einkaufsvorgang integriert.
 
 Im Zwischenfazit der TCsite-Analyse (Kapitel \ref{TCsiteFazit}) wurde
-geschlussfolgert, dass eine Konfigurationsoberfläche auch in einem externen System umsetzbar ist. Über Webcontroller kann ein Webservice implementiert werden, mit dem die Konfigurationsoberfläche kommuniziert. Webcontroller werden via Plugin definiert. Zusätzlich wurde oben festgestellt, dass das Shopware-Plugin nicht nur eine Konfigurationsoberfläche bereitstellen, sondern auch die resultierenden Varianten in den Einkaufsvorgang integrieren muss. Für die Arbeit bedeutet dies, dass ein Plugin zu erstellen ist, welches (1.) eine Schnittstelle für externe Konfigurationsoberflächen anbietet und (2.) alle sonstigen Daten zur Integration einer Variante in den Einkaufsvorgang zur Verfügung stellt. 
+geschlussfolgert, dass eine Konfigurationsoberfläche auch in einem externen System umsetzbar ist. Über Webcontroller kann ein Webservice implementiert werden, mit dem die Konfigurationsoberfläche kommuniziert. Webcontroller werden via Plugin definiert. Zusätzlich wurde oben festgestellt, dass das Shopware-Plugin nicht nur eine Konfigurationsoberfläche bereitstellen, sondern auch die resultierenden Varianten in den Einkaufsvorgang integrieren muss. Für die Arbeit bedeutet dies, dass ein TCsite-Plugin zu erstellen ist, welches (1.) eine Schnittstelle für externe Konfigurationsoberflächen anbietet und (2.) alle sonstigen Daten zur Integration einer Variante in den Einkaufsvorgang zur Verfügung stellt. 
 
 Nach diesem Grobkonzept der Verantwortungsbereiche wird in der folgenden Anforderungsanalyse definiert, was die beiden Plugins im Detail leisten müssen.
 
-\section{Anforderungsanalyse}
-Ziel der Arbeit ist die Entwicklung eines Systems, dass die Verbindung zwischen TCsite und Shopware herstellt. Dieses System wird in Abbildung \ref{fig:systemcontext} in eine Beziehung mit den Elementen gebracht, welche aus der Analyse des vorherigen Kapitels hervorgehen. Der Systemkontext stellt die Umgebung dar, der die für die Entwicklung relevanten Aspekte beinhaltet. Was das System hingegen nicht beeinflusst, ist Teil der irrelevanten Umgebung.
+\chapter{Anforderungsanalyse}
+Es ist ein System zu entwickeln, welches die Verbindung zwischen TCsite und Shopware herstellt. Dieses System wird in Abbildung \ref{fig:systemcontext} in eine Beziehung mit den Elementen gebracht, welche aus der Analyse des vorherigen Kapitels hervorgehen. Der Systemkontext stellt die Umgebung dar, der die für die Entwicklung relevanten Aspekte beinhaltet. Was das System hingegen nicht beeinflusst, ist Teil der irrelevanten Umgebung.
 
-In Kapitel \ref{fig:systemcontext} wurde erwähnt, dass die Kommunikation mit dem TCserver vom Configuration-Modul abstrahiert wird. Von außen ist also also nicht ersichtlich, dass der Konfigurationsprozess durch eine Serveranwendung realisiert wird. TCserver ist also Teil der irrelevanten Umgebung.
+In Kapitel \ref{TCsiteArchitektur} wurde erwähnt, dass die Kommunikation mit dem TCserver vom Configuration-Modul abstrahiert wird. Von außen ist also nicht ersichtlich, dass der Konfigurationsprozess durch eine Serveranwendung realisiert wird. TCserver ist also Teil der irrelevanten Umgebung.
 
 Zum Systemkontext gehört TCsite, da es das Configuration-Modul beherbergt. Außerdem verwaltet die Anwendung die Konfigurationsmodelle und -zustände. Weiterhin ist Shopware teil des Kontexts. Dort soll eine Konfigurationsoberfläche zur Verfügung gestellt und die resultierenden Varianten in den Einkausfsvorgang integriert werden. Der Shopkunde und -administrator sind die relevanten Stakeholder von Shopware. Sie werden mit dem Plugin interagieren.
 Im Zentrum des Systemkontexts befindet sich das zu entwickelnde System selbst.
@@ -895,12 +899,13 @@ Im Zentrum des Systemkontexts befindet sich das zu entwickelnde System selbst.
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=0.8\linewidth]{Abbildungen/systemcontext.pdf}
-	\captionof{figure}[systemcontext]{Systemkontext}
+	\captionof{figure}[Systemkontext]{Systemkontext}
 	\label{fig:systemcontext}
 \end{minipage}
-\vspace{1em}
+\vspace{0.3em}
 
-Ausgehend von dem Fazit des vorherigen Kapitels kann das System feingranularer bestimmt werden, wie Abbildung \ref{fig:systemcontextErweitert} darstellt. Es wurde beschrieben, dass sowohl für TCsite als auch für Shopware Plugins entwickelt werden müssen. Das TCsite-Plugin stellt eine Schnittstelle als Webservice bereit, welche vom Shopware-Plugin zum Rendern der Konfigurationsoberfläche genutzt wird. Darum besteht eine Verbindung zwischen beiden Plugins.
+Ausgehend von dem Fazit des vorherigen Kapitels kann das System feingranularer bestimmt werden, wie Abbildung \ref{fig:systemcontextErweitert} darstellt. Im Fazit des vorangegangenen Kapitels wurde beschrieben, dass sowohl für TCsite als auch für Shopware Plugins entwickelt werden müssen. Das TCsite-Plugin stellt eine Schnittstelle als Webservice bereit, welche vom Shopware-Plugin genutzt wird. Darum besteht eine Verbindung zwischen beiden Plugins.
+
 In Kapitel \ref{Webservices} wurde besprochen, dass Webservices nicht direkt von menschlichen Anwendern genutzt werden. Darum steht keiner der Stakeholder in Verbindung zum TCsite-Plugin. Hingegen werden Shopkunden im Frontend und der Administrator im Backend mit dem Shop-Plugin interagieren.
 
 \vspace{1em}
@@ -1262,7 +1267,7 @@ Außerdem wurde festgestellt, dass eine \emph{configuration} die eigene ID entha
 In der Konzeption des Shopware-Plugins wurde festgelegt, dass die Ressourcen als JSON repräsentiert werden. Listing \ref{lst:configuration} skizziert die Form der \emph{configuration} am Notebook-Beispiel mit exemplarischen Werten. Die Daten für die Konfigurationsoberfläche (\emph{ui-data}) sind ein komplexes Konstrukt. TCsite stellt Methoden bereit, die den \emph{KE-Output} auslesen und die \emph{ui-data} durch die Ineinanderschachtelung von JSON-Objekten als serialisierten Baum darstellen. Die dabei stattfindenden Prozesse sind für den Plugin-Entwickler nicht einsehbar und werden in der Arbeit nicht weiter ausgeführt. Letztendlich muss das Shopware-Plugin diesen Baum traversieren und so die Konfigurationsoberfläche aufbauen.
 
 \vspace{1em}
-\begin{lstlisting}[caption=Beispiel einer \emph{configuration}, label=lst:configuration]
+\begin{lstlisting}[caption=Beispiel einer configuration, label=lst:configuration]
 {
 	"price": 420,
 	"summary": "hallo"
