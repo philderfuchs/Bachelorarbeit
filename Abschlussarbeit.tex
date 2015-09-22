@@ -390,7 +390,7 @@ Aus den vorgestellten Kriterien resultieren folgende Eigenschaften \citep{tilkov
 \pagebreak
 
 \textbf{Zusammenfassung}\\
-REST ist Ressourcenorientiert während SOAP aufgrund von \ac{RPC}s Methodenorientiert ist. Die Umsetzung von REST ist nicht an technische Voraussetzungen gebunden, vielmehr müssen eine Reihe von Kriterien erfüllt werden. Das Implementierungswerkzeug von REST sind Funktionen, die auf verschiedene URIs reagieren sowie HTTP verarbeiten und beantworten können. Bei SOAP ist HTTP nur das Transportprotokoll. Die Verarbeitung des Inhalts erfordert einen weiteren Technologiestack.
+REST ist Ressourcenorientiert, während SOAP aufgrund von \ac{RPC}s Methodenorientiert ist. Die Umsetzung von REST ist nicht an technische Voraussetzungen gebunden, vielmehr müssen eine Reihe von Kriterien erfüllt werden. Das Implementierungswerkzeug von REST sind Funktionen, die auf HTTP-Requests an definierte URIs reagieren, diese verarbeiten und mit einer HTTP-Nachricht beantworten können. Bei SOAP ist HTTP nur das Transportprotokoll. Die Verarbeitung des Inhalts erfordert einen weiteren Technologiestack.
 
 \section{eCommerce}
 \label{eCommerce}
@@ -756,21 +756,23 @@ Zur Erweiterung der Funktionalität bietet TCsite ein Pluginkonzept, welches Abb
 \end{minipage}
 \vspace{0.3em}
 
-Jedes Plugin hat Zugriff auf das Repository, die Plattform und das Modul, zu dem es gehört. Die Plattform stellt außerdem ein paar spezielle Erweiterungspunkte bereit. Sie erlaubt unter anderem die Definition von \emph{Webcontrollern}. Das sind Methoden, die auf HTTP-Requests an bestimmte URIs innerhalb des TCsite-Addressraums reagieren.
+Jedes Plugin hat Zugriff auf das Repository, die Plattform und das Modul, zu dem es gehört. Die Plattform stellt außerdem ein paar spezielle Erweiterungspunkte bereit. Sie erlaubt unter anderem die Definition von \emph{Webcontrollern}. Das sind Methoden, die auf HTTP-Requests an bestimmte URIs innerhalb des TCsite-Addressraums reagieren, diese verarbeiten und mit einer HTTP-Nachricht beantworten.
 
 \textbf{Zusammenfassung}\\
-Der Produktkatalog von TCsite besteht nicht aus explizit ausdefinierten Varianten, sondern Produkten mit Konfigurationsmodellen. Erst innerhalb einer \emph{Quotation} werden kundenspezifische Varianten durch einen Konfigurationsprozess generiert, welche als \emph{QuotationItems} bezeichnet werden. Der Konfigurationsprozess ist die Führung des Anwenders durch die in einem Konfigurationsmodell definierte \emph{execution}, bei dem in jedem Step Optionen gewählt werden. Alle gewählten Optionen eines Konfigurationsmodells sind dessen Konfigurationszustand. Die Einheit aus Konfigurationsmodell und Konfigurationszustand wird als \emph{Configurable} persistiert und mit dem \emph{QuotationItem} verbunden.
+Der Produktkatalog von TCsite besteht nicht aus explizit ausdefinierten Varianten, sondern Produkten mit Konfigurationsmodellen. Erst innerhalb einer \emph{Quotation} werden kundenspezifische Varianten durch einen Konfigurationsprozess generiert, welche als \emph{QuotationItems} bezeichnet werden. Der Konfigurationsprozess ist die Führung des Anwenders durch die in einem Konfigurationsmodell definierte \emph{Execution}, bei dem in jedem Step Optionen gewählt und Eingaben getätigt werden.
 
-Der Konfigurationsprozess passiert im Configuration-Modul. Technisch betrachtet werden dabei \emph{KE-Inputs} verarbeitet, die mit \emph{KE-Outputs} beantwortet werden. Ein KE-Input besteht aus dem Konfigurationsmodell, dessen Konfigurationszustand und (fakultativ) der gewählten Option des Anwenders. Das Konfigurationsmodell und der Konfigurationszustand stammen aus dem \emph{Configurable}, die gewählte Option des Anwenders wird über die Konfigurationsoberfläche erhoben. Die Konfigurationsoberfläche wird aus den Daten des \emph{KE-Outputs} erstellt.
+Der Konfigurationsprozess passiert im Configuration-Modul. Technisch betrachtet werden dabei \emph{KE-Inputs} verarbeitet, die mit \emph{KE-Outputs} beantwortet werden. Ein KE-Input besteht aus dem Konfigurationsmodell, dessen Konfigurationszustand und (fakultativ) einem Eingabeparameter. Der Konfigurationszustand bezeichnet die Menge aller bisherigen Eingabeparameter. Das Konfigurationsmodell und der Konfigurationszustand werden durch das \emph{Configurable} gekapselt, der Eingabeparameter resultiert aus den Nutzerinteraktionen mit der Konfigurationsoberfläche. Die Konfigurationsoberfläche wird aus den Daten des \emph{KE-Outputs} erstellt.
 
 \subsubsection{Zwischenfazit}
-\label{subTCsiteFazit}
+\label{TCsiteFazit}
 
-Die Daten aus dem KE-Output können auch einem externen System zum Aufbau einer Konfigurationsoberfläche zur Verfügung gestellt werden. Über die Oberfläche wählt der Anwender Optionen, die an TCsite zurückgegeben werden. Dort wird in Verbindung mit dem entsprechenden \emph{Configurable} ein KE-Input definiert. Über den KE-Output kann die Konfigurationsoberfläche im externen System wiederum aktualisiert werden und der Prozess beginnt von neuem. Die für diesen Vorgang relevanten Informationen müssen nur irgendwie zwischen dem externen System und TCsite transportiert werden. Das Pluginkonzept erlaubt die Definition von Serviceendpunkten über Webcontroller. An diesen können HTTP-Requests ausgewertet und beantwortet werden. Dadurch ist es möglich, einen Webservice zu implementieren, der eine Schnittstelle für externe Konfigurationsoberflächen bereitstellt.
+Die Daten aus dem KE-Output können auch einem externen System zum Aufbau einer Konfigurationsoberfläche zur Verfügung gestellt werden. Über die Oberfläche wählt der Anwender Optionen und tätigt Eingaben, woraufhin die Eingabeparameter an TCsite zurückgegeben werden. Dort wird in Verbindung mit dem entsprechenden \emph{Configurable} ein KE-Input definiert. Über den KE-Output kann die Konfigurationsoberfläche im externen System wiederum aktualisiert werden und der Prozess wiederholt sich. Die für diesen Vorgang relevanten Informationen müssen nur irgendwie zwischen dem externen System und TCsite transportiert werden.
+
+Das Pluginkonzept erlaubt die Definition von Webcontrollern. Die in Kapitel \ref{TCsiteErweiterbarkeit} vorgestellte Definition eines Webcontrollers entspricht dem  Umsetzungswerkzeug von REST, welches im Fazit des Kapitels \ref{REST} genannt wurde. Dadurch ist es möglich, einen Webservice zu implementieren, der eine Schnittstelle für externe Konfigurationsoberflächen bereitstellt.
 
 Potentieller Client dieses Services ist jedes System, welches HTTP nutzen kann. Das trifft auf jede Webanwendung zu. eShop-Systeme für den Endverbrauchermarkt sind per se Webanwendungen. Somit können technische Bedingungen an das eShop-System für das Integrationsszenario formuliert werden: (1) das System muss modifizierbar sein, (2) die Modifizierung muss einen Webservice in einer Client-Server Architektur nutzen können und (3) die Verwaltung von Varianten muss integraler Bestandteil des Systems sein.
 
-Jedes Shopsystem, für welches auf Grundlage dieser Bedingungen eine Daten- und Workflowschnittstelle entwickelt werden kann, kommt für das Integrationsszenario in Frage. Ein interner Evaluierungsprozess der Lino GmbH, bei dem zusätzlich ökonomische Faktoren bewertet wurden, hat zur Favorisierung von Shopware für die weitere Entwicklungsarbeit geführt.
+Jedes Shopsystem, für welches auf Grundlage dieser Bedingungen eine Daten- und Workflowschnittstelle entwickelt werden kann, kommt für das Integrationsszenario in Frage. Ein interner Evaluierungsprozess der Lino GmbH, bei dem zusätzlich ökonomische Faktoren bewertet wurden, hat zur Favorisierung von \emph{Shopware} für die weitere Entwicklungsarbeit geführt.
 
 \subsection{Shopsystem}
 \label{subsection:Shopsystem}
@@ -864,7 +866,7 @@ Dieser Vorgang stellt den Lebenszyklus einer Variante in Shopware dar. Er beginn
 \subsection{Fazit}
 Shopware bietet in der Standardinstallation keine Funktionalität, die der Definition eines Konfigurationsprozesses gerecht wird. Stattdessen wird eine Variantenselektion durchgeführt. Da alle Varianten expliziert vordefiniert sind, werden dadurch die in Kapitel \ref{Produktklassifizierung} beschriebenen \ac{ATO}-Produkte abgebildet. Die Analyse in Kapitel \ref{subsection:Konfigurationsmodell} hat ergeben, dass das TCsite-Konfigurationsmodells auch \ac{MTO}-Produkte abbilden kann. Eine Integration des Tacton-Produktkonfigurators in Shopware würde somit dessen Angebotsspektrum in Bezug auf Produktionskonzepte erweitern.
  
-Im Fazit der TCsite-Analyse (Kapitel \ref{subTCsiteFazit}) wurde
+Im Fazit der TCsite-Analyse (Kapitel \ref{TCsiteFazit}) wurde
 geschlussfolgert, dass eine Konfigurationsoberfläche auch in einem externen System umsetzbar ist. Über Webcontroller kann ein Webservice implementiert werden, mit dem die Konfigurationsoberfläche kommuniziert. Webcontroller werden per Plugin definiert. Für die Arbeit bedeutet dies, dass ein Plugin zu erstellen ist, welches eine Schnittstelle für externe Konfigurationsoberflächen anbietet.
 
 In Kapitel \ref{subsubsection:shopwareErweiterbarkeit} wurde das Plugin-Konzept von Shopware vorgestellt. Die logischen Komponenten, Datenhaltung und Templates sind erweiterbar. Letzteres ermöglicht das Rendern einer Konfigurationsoberfläche in Shopware. Die Analyse des Einkaufsvorgangs von konfigurierbaren Artikeln in Kapitel \ref{subsubsection:shopwareKonfiguration} hat ergeben, wie die Varianten, die aus dem Konfigurationsprozess resultieren, ihren Lebenszyklus im Warenkorb fortsetzen. Das impliziert Änderungen über die reine Integration einer Konfigurationsoberfläche hinaus. Für die Arbeit bedeutet das, dass ein Shopware-Plugin zu erstellen ist, welches (1) eine Konfigurationsoberfläche bereitstellt und (2) die konfigurierten Artikel in den Einkaufsvorgang integriert.
@@ -1012,7 +1014,7 @@ Weiterhin muss das Shopware-Plugin wissen, wie es diese persistenten Information
 \begin{enumerate}[TC.F03:]\bfseries
 \item Das TCsite-Plugin muss Informationen zum späteren Aufbau der Konfigurationsoberfläche bereitstellen.
 \end{enumerate}
-Im Fazit aus Kapitel \ref{subTCsiteFazit} wurde festgelegt, dass über die Oberfläche die gewählten Optionen des Shopkunden erfasst werden, der technische Konfigurationsprozess aber durch das TCsite-Plugin realisiert wird. Daraus ergibt sich Anforderung TC.04:
+Im Fazit aus Kapitel \ref{TCsiteFazit} wurde festgelegt, dass über die Oberfläche die gewählten Optionen des Shopkunden erfasst werden, der technische Konfigurationsprozess aber durch das TCsite-Plugin realisiert wird. Daraus ergibt sich Anforderung TC.04:
 \begin{enumerate}[TC.F04:]\bfseries
 \item Das TCsite-Plugin führt den technischen Konfigurationsprozess durch.
 \end{enumerate}
