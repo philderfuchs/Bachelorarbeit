@@ -99,7 +99,7 @@ In Kapitel 7 wird die Lösung diskutiert, wobei Potentiale für eine zukünftige
 \pagebreak
 
 \chapter{Grundlagen}
-
+\label{Grundlagen}
 \section{Bezugsrahmen}
 Im Folgenden wird ein Bezugsrahmen für Produktkonfigurationssysteme (Konfiguratoren) geschaffen. Dazu wird zunächst die marktwirtschaftliche Situation erläutert, welche die Notwendigkeit \emph{hybrider Wettbewerbsstrategien} begründet. Diese wiederum stellen zu ihrer Umsetzbarkeit Bedingungen an \emph{Produktionskonzepte}, welche daraufhin vorgestellt werden.
 
@@ -456,26 +456,34 @@ Im vorangegangenen Kapitel wurde das theoretische Fundament für die Arbeit gele
 \chapter{Analyse}
 \label{section:Analyse}
 
-Die Tacton Systems AB (Tacton) wurde 1998 als Spin-Off des Schwedischen Instituts für Informatik (SICS) gegründet \citep{tactonProductOverview}. In der Forschungseinrichtung wurde als Resultat der Untersuchungen im Bereich Wissensbasierte Systeme und Künstliche Intelligenz der Tacton Produktkonfigurator entwickelt. Dieser interaktive Konfigurator ist die Basis der verschiedenen Produkte der Firma. Tacton bietet Lösungen im Bereich Vertriebskonfiguration und Design Automation (Automatisierung der Konstruktion in CAD-Systemen) \citep{tactonAbout}.
+Nachdem in Kapitel \ref{Grundlagen} Konfiguratoren und eShop-Systeme unabhängig von konkreten Systemumsetzungen betrachtet wurden, findet nun eine Analyse von existierenden softwaretechnischen Implementierungen statt. Festgelegt durch die \emph{Lino GmbH} kommt der \emph{Tacton Produktkonfigurator} zum Einsatz. Im Folgenden wird dessen herstellerspezifisches Konfigurationsmodell analysiert. Daraufhin wird eine Konfiguratoranwendung in Form des Vertriebskonfigurators \emph{TCsite} vorgestellt. Aus der Analyse dieses Systems kann eine genauere Aussage über die in Frage kommenden eShop-Systeme für die Integration gemacht werden. Daraufhin wird ein System festgelegt und mit dessen Betrachtung fortgefahren. Davon ausgehend findet im Fazit des Kapitels ein Grobkonzept der jeweiligen Verantwortungsbereiche der Systeme im Integrationsszenario statt.
+
+\section{Tacton-Produktkonfigurator}
+
+Die \emph{Tacton Systems AB} (Tacton) wurde 1998 als Spin-Off des \emph{Schwedischen Instituts für Informatik} (SICS) gegründet \citep{tactonProductOverview}. In der Forschungseinrichtung wurde als Resultat der Untersuchungen im Bereich \emph{Wissensbasierte Systeme} und \emph{Künstliche Intelligenz} der Tacton Produktkonfigurator entwickelt. Dieser interaktive Konfigurator ist die Basis der verschiedenen Produkte der Firma. Tacton bietet Lösungen im Bereich \emph{Vertriebskonfiguration} und \emph{Design Automation} (Automatisierung der Konstruktion in CAD-Systemen) \citep{tactonAbout}.
 
 \subsection{Konfigurationsmodell}
 \label{subsection:Konfigurationsmodell}
 Das in Abschnitt \ref{wissenrepraesentation} vorgestellte Visualisierungskonzept abstrahiert Konfigurationswissen in einen Struktur- und einen Regelteil. Im Tacton-Konfigurationsmodell wird ebenfalls abstrahiert, jedoch in andere Domänen \citep{tactonModeling}:
 
 \begin{enumerate}[(a)]
-\item \label{strukturinformation} Strukturinformation: Wie ist das Produkt hierarchisch aufgebaut?
-\item \label{komponenteninformation} Komponenteninformation: Aus was ist es aufgebaut?
-\item \label{constraintinformationen} Constraintinformationen: Wann ist das Produkt korrekt?
-\item \label{ausfuehrungsinformationen} Ausführungsinformationen: Welche Fragen bekommt der Nutzer in welcher Reihenfolge gestellt?
+\item \label{strukturinformation} \textbf{Strukturinformation}: Wie ist das Produkt hierarchisch aufgebaut?
+\item \label{komponenteninformation} \textbf{Komponenteninformation}: Aus was ist es aufgebaut?
+\item \label{constraintinformationen} \textbf{Constraint-Informationen}: Wann ist das Produkt korrekt?
+\item \label{ausfuehrungsinformationen} \textbf{Ausführungsinformationen}: Welche Fragen bekommt der Nutzer während des Konfigurationsprozesses in welcher Reihenfolge gestellt?
 \end{enumerate}
 
 Dabei sind zwei Sachverhalte feststellbar:
 \begin{enumerate}[(1)]
-\item \label{enum:componentsConfiguration} Typisch für einen modellbasierten Konfigurator wird Produktwissen und Problemlösungswissen bei der Wissensmodellierung separiert. Beispiel: Win Constraint, der die Kompatibilität bestimmter Betriebssysteme mit einer bestimmten Anzahl Prozessorkerne ausdrückt, soll wirken, auch ohne die konkreten CPU-Typen (z.B. Intel i7) zu kennen. Darum ist die Rede von generischen Constraints: Sie beziehen sich auf alle Komponenten eines Typs \citep{felferning14}.
-\item \label{enum:execution} Im Konfigurationsmodell wird auch die Nutzerinteraktion festgelegt. Damit geht der Funktionsumfang eines Tacton-Modells über die Definition aus Abschnitt \ref{begriffsuberblick} hinaus.
+\item \label{enum:componentsConfiguration} Typisch für einen modellbasierten Konfigurator wird Produktwissen und Problemlösungswissen bei der Wissensmodellierung separiert \citep{felferning14}.
+
+Beispiel: Ein Constraint, der die Kompatibilität bestimmter Betriebssysteme mit einer bestimmten Anzahl Prozessorkerne ausdrückt, soll wirken, auch ohne die konkreten CPU-Typen (z.B. \emph{Intel i7}) zu kennen.
+
+Darum ist die Rede von \emph{generischen Constraints} -- sie beziehen sich auf alle \emph{Komponenten} (erläutert im folgenden Kapitel) eines Typs \citep{felferning14}.
+\item \label{enum:execution} Gemäß \eqref{ausfuehrungsinformationen} wird im Konfigurationsmodell auch die Nutzerinteraktion festgelegt. Damit geht der Funktionsumfang eines Tacton-Modells über die Definition aus Abschnitt \ref{begriffsuberblick} hinaus.
 \end{enumerate}
 
-Bei der UML-Wissensrepräsentation aus Abschnitt \ref{wissenrepraesentation} wurden die Domänen \eqref{komponenteninformation} und \eqref{strukturinformation} als Diagramm sowie \eqref{constraintinformationen} als Tabelle ausgedrückt. Tacton wählt eine andere Aufteilung. \eqref{komponenteninformation} wird unter dem Begriff \glqq Components\grqq{} umgesetzt, \eqref{strukturinformation} und \eqref{constraintinformationen} unter dem Begriff \glqq Configuration\grqq{}. Components und Configuration setzen gemeinsam den Sachverhalt \eqref{enum:componentsConfiguration} um und werden im Folgenden besprochen. Daraufhin wird die \glqq Execution\grqq{} besprochen, welche Sachverhalt \eqref{enum:execution} umsetzt.
+Bei der UML-Wissensrepräsentation aus Abschnitt \ref{wissenrepraesentation} wurden die Domänen  \eqref{strukturinformation} und \eqref{komponenteninformation} als Diagramm sowie \eqref{constraintinformationen} als Tabelle ausgedrückt. Tacton wählt eine andere Aufteilung. \eqref{komponenteninformation} wird unter dem Begriff  \emph{Components} umgesetzt, \eqref{strukturinformation} und \eqref{constraintinformationen} werden unter dem Begriff \emph{Configuration} zusammengefasst. Components und Configuration setzen gemeinsam den Sachverhalt \eqref{enum:componentsConfiguration} um und werden im Folgenden besprochen. Daraufhin wird die \emph{Execution} besprochen, welche Sachverhalt \eqref{enum:execution} darstellt.
 
 
 \subsubsection{Components und Configuration}
@@ -484,48 +492,47 @@ Bei der UML-Wissensrepräsentation aus Abschnitt \ref{wissenrepraesentation} wur
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=1\linewidth]{Abbildungen/tactonModellHighLevel.pdf}
-	\captionof{figure}[tactonModellHighLevel]{High-Level Architektur des Tacton-Konfigurationsmodells}
+	\captionof{figure}[High-Level-Architektur des Tacton-Konfigurationsmodells]{High-Level-Architektur des Tacton-Konfigurationsmodells}
 	\label{fig:tactonModellHighLevel}
 \end{minipage}
-\vspace{1em}
+\vspace{0.3em}
 
-Abbildung \ref{fig:tactonModellHighLevel} zeigt das High-Level-Konzept der Modellarchitektur. Unter 'configuration' wird die Produktstruktur als hierarchischer Baum  von 'Part'-Objekten dargestellt. Jeder Part kann Constraints enthalten, die sich auf den Knoten selbst und alle seine Kinder beziehen. Ein Part ist ansonsten nur ein Komponentenplatzhalter. Noch ist keine Information darüber hinterlegt, welches Bauteil dort eigentlich verkörpert wird. Abbildung \ref{fig:tactonModellHighLevelNotebook} veranschaulicht das Konzept am Notebook-Beispiel.
+Abbildung \ref{fig:tactonModellHighLevel} zeigt das High-Level-Konzept der Modellarchitektur. Unter \emph{configuration} wird die Produktstruktur als hierarchischer Baum von \emph{Part}-Objekten dargestellt. Jeder Part kann Constraints enthalten, die sich auf den Knoten selbst und alle seine Kinder beziehen. Ein Part ist ansonsten nur ein Komponentenplatzhalter. Noch ist keine Information darüber hinterlegt, welches Bauteil dort eigentlich verkörpert wird. Abbildung \ref{fig:tactonModellHighLevelNotebook} veranschaulicht das Konzept am Notebook-Beispiel.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=0.7\linewidth]{Abbildungen/tactonModellHighLevelNotebook.pdf}
-	\captionof{figure}[tactonModellHighLevelNotebook]{Part-Struktur der Notebook-Konfiguration}
+	\captionof{figure}[Part-Struktur einer exemplarischen Notebook-Konfiguration]{Part-Struktur einer exemplarischen Notebook-Konfiguration}
 	\label{fig:tactonModellHighLevelNotebook}
 \end{minipage}
-\vspace{1em}
+\vspace{0.3em}
 
-Die Informationen über die eben erwähnten Bauteile (d.h. Komponententypen) werden isoliert unter 'components' definiert (Abbildung \ref{fig:tactonModellHighLevel}). Ein Bauteil wird in 'Component Classes' und 'Components' abstrahiert. Das ist analog zu  Komponententypen, die in einer Generalisierungsbeziehung zueinander stehen (siehe Kapitel \ref{wissenrepraesentation}). Hier wurde eine Terminologie gewählt, die Supertyp und Subtyp unterscheidbar macht. Eine Component Class (z.B. ein 'RAM') wird durch Eigenschaften beschrieben, die als Features bezeichnet werden. Jedes Feature besitzt einen Namen (z.B. 'memory') und einen Wertebereich (z.B. [2GB, 4GB]), welche als Domain bezeichnet wird. Wertebereiche können Integer, Float, Boolean, andere Component Classes oder selbstdefinierte Enumerationen sein. Components (z.B. eine 'SSD') sind das, was eine Component Class (z.B. ein 'Storage') konkret sein kann. Sie übernehmen alle Features der übergeordneten Component Class und besitzen konkrete Werte ('Values') aus dem jeweiligen Wertebereich.
+Die Informationen über die eben erwähnten Bauteile (d.h. Komponententypen) werden isoliert unter \emph{components} definiert (siehe Abbildung \ref{fig:tactonModellHighLevel}). Ein Bauteil wird in \emph{Component Classes} und \emph{Components} abstrahiert. Das ist analog zu Komponententypen, die in einer Generalisierungsbeziehung zueinander stehen (siehe Kapitel \ref{wissenrepraesentation}). Hier wurde eine Terminologie gewählt, die Supertyp und Subtyp unterscheidbar macht. Eine \emph{Component Class} (z.B. ein 'RAM') wird durch Eigenschaften beschrieben, die als \emph{Features} bezeichnet werden. Jedes Feature besitzt einen Namen (z.B. 'memory') und einen Wertebereich (z.B. ['2GB', '4GB']), welche als \emph{Domain} bezeichnet wird. Wertebereiche können Integer, Float, Boolean, andere Component Classes oder selbstdefinierte Enumerationen sein. \emph{Components} (z.B. eine 'SSD') sind das, was eine Component Class (z.B. ein 'Storage') konkret sein kann. Sie übernehmen alle Features der übergeordneten Component Class und besitzen konkrete Werte (\emph{Values}) aus dem jeweiligen Wertebereich.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
-	\includegraphics[width=1\linewidth]{Abbildungen/tactonModellLowLevel.pdf}
-	\captionof{figure}[tactonModellLowLevel]{Zuordnung von Parts und Component Classes.}
+	\includegraphics[width=0.8\linewidth]{Abbildungen/tactonModellLowLevel.pdf}
+	\captionof{figure}[Zuordnung von Parts und Component Classes]{Zuordnung von Parts und Component Classes}
 	\label{fig:tactonModellLowLevel}
 \end{minipage}
-\vspace{1em}
+\vspace{0.2em}
 
-Abbildung \ref{fig:tactonModellLowLevel} zeigt die Zuordnung zwischen Parts und Component Classes via Verzeigerung. Einem Part wird eine Component Class durch eine 'realized-by' Beziehung zugeordnet. Dem Part werden dabei die Features der entsprechenden Component Class vererbt (türkis dargestellt). Nur werden sie zur besseren Differenzierung beim Part nicht mehr als Features, sondern als Attribute bezeichnet. Für einen Part können auch noch zusätzliche Attribute definiert werden ('additional Attributes'), falls notwendig. Die Angabe 'Instances' (grün dargestellt) entspricht den Kardinalitäten in Abschnitt \ref{fig:tactonModellLowLevel}. Constraints (gelb dargestellt) werden als logische Ausdrücke formuliert. Sie bestehen aus Attributwerten, die mit mathematischen Zeichen in Relation gebracht werden.
+Abbildung \ref{fig:tactonModellLowLevel} zeigt die Zuordnung zwischen Parts und Component Classes via Verzeigerung. Dabei wird einem Part wird eine Component Class durch eine \emph{realyzed by}-Beziehung zugeordnet. Dem Part werden dabei die Features der entsprechenden Component Class vererbt (türkis dargestellt). Nur werden sie zur besseren Differenzierung beim Part nicht mehr als Features, sondern als \emph{Attributes} bezeichnet. Für einen Part können auch noch zusätzliche Attribute definiert werden (als 'additional Attributes' dargestellt), falls notwendig. Die Angabe \emph{Instances} (grün dargestellt) entspricht den Kardinalitäten in Abschnitt \ref{fig:tactonModellLowLevel}. \emph{Constraints} (gelb dargestellt) werden als logische Ausdrücke formuliert. Sie bestehen aus Attributwerten, die mit mathematischen Zeichen in Relation gebracht werden.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
-	\includegraphics[width=1\linewidth]{Abbildungen/tactonModellLowLevelNotebook.pdf}
-	\captionof{figure}[tactonModellLowLevelNotebook]{Part-Struktur der Notebook-Konfiguration}
+	\includegraphics[width=0.9\linewidth]{Abbildungen/tactonModellLowLevelNotebook.pdf}
+	\captionof{figure}[Zuordnung von Part und Component Class einer exemplarischen Notebook-Konfiguration]{Zuordnung von Part und Component Class einer exemplarischen Notebook-Konfiguration}
 	\label{fig:tactonModellLowLevelNotebook}
 \end{minipage}
-\vspace{1em}
 
-Abbildung \ref{fig:tactonModellLowLevelNotebook} veranschaulicht die 'realized-by' Beziehung anhand eines Ausschnitt aus der Notebook-Konfiguration.  Der Part übernimmt die Attribute 'memory' und 'price'. Das zusätzliche Attribut 'type' kapselt beispielsweise die Information über die jeweiligen Components (z.B. Small RAM). Der Constraint veranschaulicht exemplarisch, wie die Inkompatibilität mit dem Betriebssystem vom Typ 'OSX Yosemite' formuliert werden würde.
+Abbildung \ref{fig:tactonModellLowLevelNotebook} veranschaulicht den Sachverhalt anhand eines Ausschnitts der exemplarischen Notebook-Konfiguration.  Der Part übernimmt die Attribute 'memory' und 'price'. Das zusätzliche Attribut 'type' kapselt beispielsweise die Bezeichnungen über die jeweiligen Components als Enumeration (z.B. ['Small RAM', ‘Big RAM']). Der Constraint veranschaulicht exemplarisch, wie die Inkompatibilität mit dem Betriebssystem vom Typ 'OSX Yosemite' formuliert werden würde.
 
 \subsubsection{Execution}
-\label{subsubsection:Execution}
+\label{Execution}
 Es wurde dargestellt, wie das Konfigurationswissen im Tacton Konfigurationsmodell definiert wird. Dadurch ist aber noch nicht gesagt, welche Entscheidungen ein Nutzer während der Konfiguration treffen kann. Nicht jeder Part und nicht jedes Attribut muss eine relevante Wahl darstellen. Vielleicht sollen dem Nutzer sogar Fragen auf einem anderen Abstraktionsniveau als auf Komponentenebene gestellt werden. Statt \glqq Soll eine HD oder eine SSD als Festplatte in das Notebook eingebaut werden?\grqq{} kann auch gefragt werden: \glqq Möchten Sie viel Speicherplatz oder einen schnellen Speicherzugriff?\grqq.
 
 Der Abstimmungsprozess durch den Anwender wird unter dem Begriff \glqq Execution\grqq{} definiert. Dabei wird nicht einfach nur eine Menge an Optionen festgelegt, die dem Nutzer am Ende als Liste präsentiert werden. Stattdessen werden die Optionen hierarchisch strukturiert.
@@ -533,19 +540,13 @@ Der Abstimmungsprozess durch den Anwender wird unter dem Begriff \glqq Execution
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
-	\includegraphics[width=1\linewidth]{Abbildungen/tactonModellExecution.pdf}
-	\captionof{figure}[tactonModellExecution]{Generische Execution-Struktur}
+	\includegraphics[width=0.8\linewidth]{Abbildungen/tactonModellExecutionShort.pdf}
+	\captionof{figure}[Ausschnitt der generischen Execution-Struktur]{Ausschnitt der generischen Execution-Struktur}
 	\label{fig:tactonModellExecution}
 \end{minipage}
-\begin{minipage}{\linewidth}
-	\centering
-	\includegraphics[width=0.8\linewidth]{Abbildungen/tactonModellExecutionNotebook.pdf}
-	\captionof{figure}[tactonModellExecutionNotebook]{Exemplarische Exection-Struktur einer Notebook-Konfiguration}
-	\label{fig:tactonModellExecutionNotebook}
-\end{minipage}
-\vspace{1em}
+\vspace{0.3em}
 
-Abbildung \ref{fig:tactonModellExecution} zeigt die generische Struktur der Execution als Baum. Abbildung \ref{fig:tactonModellExecutionNotebook} veranschaulicht das Konzept durch die exemplarische Umsetzung der Execution der Notebook-Konfiguration.
+Abbildung \ref{fig:tactonModellExecution} zeigt einen Ausschnitt der generischen Struktur der Execution als Baum. Die vollständige Darstellung ist Abbildung \ref{app:tactonModellExecutionLong} zu entnehmen. Abbildung \ref{fig:tactonModellExecutionNotebook} veranschaulicht das Konzept durch die exemplarische Umsetzung der Execution der Notebook-Konfiguration.
 \begin{compactitem}
 \item Die Wurzel wird als \textbf{Applikation} bezeichnet und kapselt den Vorgang der Konfiguration aus Anwenderperspektive.\\
 Beispiel: Eine Notebook-Konfiguration.
@@ -575,6 +576,14 @@ Parameter = Notebook-Part.price, Domain = [integer]
 \end{compactitem}
 
 Die Feldtypen (a) und (b) haben gemein, dass der Anwender einen Wert aus einem Wertebereich festlegt. Bei (a) ist der Wertebereich eine Menge ausdefinierter Optionen, bei (b) ein Zahlenbereich, wobei er selbst eine Eingabe tätigt. Um die Formulierung kurz zu halten, wird das, was vom Anwender festgelegt wird, im Folgenden unter dem Begriff \glqq gewählte Option\grqq{} zusammengefasst.
+
+\begin{minipage}{\linewidth}
+	\centering
+	\includegraphics[width=0.8\linewidth]{Abbildungen/tactonModellExecutionNotebook.pdf}
+	\captionof{figure}[tactonModellExecutionNotebook]{Exemplarische Exection-Struktur einer Notebook-Konfiguration}
+	\label{fig:tactonModellExecutionNotebook}
+\end{minipage}
+\vspace{1em}
 
 Das Modell wird in einer XML-basierten Format mit der Dateiendung '.tcx' abgelegt. Die Entwicklung einer solchen Datei wird von entsprechenden Programmen unterstützt. Hierfür kann zum Beispiel \glqq TCstudio\grqq{} genutzt werden, welches eine grafische Oberfläche zur Modellentwicklung bietet \citep{tactonAbout}.
 
@@ -674,7 +683,7 @@ Der Konfigurationszustand und das Konfigurationsmodell, auf dass sich der Konfig
 
 Die Kommunikation läuft in drei Phasen ab. Der erste KE-Input beinhaltet noch keine Wahl des Anwenders. Sie dient dem initialen Aufbau der Konfigurationsoberfläche entsprechend der Execution, die im Konfigurationsmodell definiert wurde. Der Konfigurationsprozess startet immer in Step 1. Die Steps müssen in der vordefinierten Reihenfolge abgearbeitet werden. Nun beginnt die Loop-Phase. Nach jeder Wahl einer Option wird die Konfigurationsengine aufgerufen und daraufhin die Oberfläche neu gerendert. Die Oberfläche spiegelt dabei den Konfigurationszustand wieder, d.h. die bisher gewählten Optionen werden hervorgehoben. Wird die Konfiguration im letzten Step vom Anwender abgeschlossen, erfolgt ein finaler Aufruf der Konfigurationsengine. Aus dem KE-Output ist die Konfigurationslösung, d.h. die Variante, extrahierbar \citep{tactonTCsiteDevelopmentManual}.
 
-Der Konfigurationsprozess wird anhand des Notebook-Beispiels aus Kapitel \ref{subsubsection:Execution} veranschaulicht. Abbildung \ref{fig:tcsiteConfigurationNumbered} zeigt die Konfigurationsoberfläche in TCsite. Diese befindet sich im zweiten Step. Mittels [1] wird zwischen den Steps gewechselt. [2] erlaubt die Navigation durch die Top-Level-Groups des aktuellen Steps. [3] stellt die Felder der aktuellen Top-Level-Group dar. Anhang \ref{app:tcSiteConfigurationOptionalGroups} zeigt anhand der 'Speicher'-Gruppe die Darstellung tieferer Group-Ebenen (siehe Kapitel \ref{subsubsection:Execution}). Außerdem wird bei [4] noch eine weitere Top-Level-Group angezeigt: die sogenannte Info-Group. Sie wird im Konfigurationsmodell durch die Bezeichnung \glqq Info\grqq{} festgelegt. Sie wird parallel zur gerade aktiven Top-Level-Group im jeweiligen Step dargestellt.
+Der Konfigurationsprozess wird anhand des Notebook-Beispiels aus Kapitel \ref{Execution} veranschaulicht. Abbildung \ref{fig:tcsiteConfigurationNumbered} zeigt die Konfigurationsoberfläche in TCsite. Diese befindet sich im zweiten Step. Mittels [1] wird zwischen den Steps gewechselt. [2] erlaubt die Navigation durch die Top-Level-Groups des aktuellen Steps. [3] stellt die Felder der aktuellen Top-Level-Group dar. Anhang \ref{app:tcSiteConfigurationOptionalGroups} zeigt anhand der 'Speicher'-Gruppe die Darstellung tieferer Group-Ebenen (siehe Kapitel \ref{Execution}). Außerdem wird bei [4] noch eine weitere Top-Level-Group angezeigt: die sogenannte Info-Group. Sie wird im Konfigurationsmodell durch die Bezeichnung \glqq Info\grqq{} festgelegt. Sie wird parallel zur gerade aktiven Top-Level-Group im jeweiligen Step dargestellt.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -805,7 +814,7 @@ Shopware behauptet in der der offiziellen Funktionsübersicht, bereits in der St
 \textbf{Technische Analyse}\\
 Ein Artikel, den ein Kunde kaufen kann, wird über den entsprechenden Menüpunkt im Backend angelegt (siehe Abbildung \ref{app:shopwareBackendArtikel}). Über das Userinterface kann dieser als \glqq Varianten-Artikel\grqq{} gekennzeichnet werden. Dadurch wird der Variantenreiter aktiviert, unter dem der Administrator alle Varianten des Artikels festlegt.
 
-Dazu werden sogenannte \glqq Gruppen\grqq{} (z.B. 'Storage') angelegt, die wiederum \glqq Optionen\grqq{} (z.B. 'HDD' oder 'SSD') besitzen. Das ist äquivalent zu den Begriffen \glqq Parameter\grqq{} und \glqq Domain\grqq{} in der Execution des Tacton-Konfigurationsmodells, vorgestellt in Kapitel \ref{subsubsection:Execution}. Es werden also die Wahlmöglichkeiten des Anwenders definiert, jedoch ohne Konfigurationswissen. Die Gruppen und Optionen werden separat in der Datenbank gespeichert und sind Artikelübergreifend verwendbar. Über den Button \glqq Varianten generieren\grqq{} (siehe Abbildung \ref{app:shopwareBackendArtikelVarianten}) werden alle Varianten explizit in der Datenbank angelegt, die sich aus der Kombination der Optionen ergeben. Übertragen auf Notebook-Beispiel ergibt das folgende Rechnung:
+Dazu werden sogenannte \glqq Gruppen\grqq{} (z.B. 'Storage') angelegt, die wiederum \glqq Optionen\grqq{} (z.B. 'HDD' oder 'SSD') besitzen. Das ist äquivalent zu den Begriffen \glqq Parameter\grqq{} und \glqq Domain\grqq{} in der Execution des Tacton-Konfigurationsmodells, vorgestellt in Kapitel \ref{Execution}. Es werden also die Wahlmöglichkeiten des Anwenders definiert, jedoch ohne Konfigurationswissen. Die Gruppen und Optionen werden separat in der Datenbank gespeichert und sind Artikelübergreifend verwendbar. Über den Button \glqq Varianten generieren\grqq{} (siehe Abbildung \ref{app:shopwareBackendArtikelVarianten}) werden alle Varianten explizit in der Datenbank angelegt, die sich aus der Kombination der Optionen ergeben. Übertragen auf Notebook-Beispiel ergibt das folgende Rechnung:
 
 \begin{addmargin}[40pt]{0pt} 
 $\;\;\;3_{Massenspeicher1}\\\cdot\;3_{Massenspeicher2}\\\cdot\;2_{Arbeitsspeicher}\\\cdot\;2_{Displaygr"o"se}\\\cdot\;2_{Betriebssystem}\\\cdot\;4_{Anzahl CPU-Kerne}\\\cdot\;99_{Anzahl iTunes-Music-Pakete}\\= 28512\;Varianten$
