@@ -458,7 +458,7 @@ Im vorangegangenen Kapitel wurde das theoretische Fundament für die Arbeit gele
 
 Nachdem in Kapitel \ref{Grundlagen} Konfiguratoren und eShop-Systeme unabhängig von konkreten Systemumsetzungen betrachtet wurden, findet nun eine Analyse von existierenden softwaretechnischen Implementierungen statt. Festgelegt durch die \emph{Lino GmbH} kommt der \emph{Tacton Produktkonfigurator} zum Einsatz. Im Folgenden wird dessen herstellerspezifisches Konfigurationsmodell analysiert. Daraufhin wird eine Konfiguratoranwendung in Form des Vertriebskonfigurators \emph{TCsite} vorgestellt. Aus der Analyse dieses Systems kann eine genauere Aussage über die in Frage kommenden eShop-Systeme für die Integration gemacht werden. Daraufhin wird ein System festgelegt und mit dessen Betrachtung fortgefahren. Davon ausgehend findet im Fazit des Kapitels ein Grobkonzept der jeweiligen Verantwortungsbereiche der Systeme im Integrationsszenario statt.
 
-\section{Tacton-Produktkonfigurator}
+\section{Tacton Produktkonfigurator}
 
 Die \emph{Tacton Systems AB} (Tacton) wurde 1998 als Spin-Off des \emph{Schwedischen Instituts für Informatik} (SICS) gegründet \citep{tactonProductOverview}. In der Forschungseinrichtung wurde als Resultat der Untersuchungen im Bereich \emph{Wissensbasierte Systeme} und \emph{Künstliche Intelligenz} der Tacton Produktkonfigurator entwickelt. Dieser interaktive Konfigurator ist die Basis der verschiedenen Produkte der Firma. Tacton bietet Lösungen im Bereich \emph{Vertriebskonfiguration} und \emph{Design Automation} (Automatisierung der Konstruktion in CAD-Systemen) \citep{tactonAbout}.
 
@@ -535,7 +535,7 @@ Abbildung \ref{fig:tactonModellLowLevelNotebook} veranschaulicht den Sachverhalt
 \label{Execution}
 Es wurde dargestellt, wie das Konfigurationswissen im Tacton Konfigurationsmodell definiert wird. Dadurch ist aber noch nicht gesagt, welche Entscheidungen ein Nutzer während der Konfiguration treffen kann. Nicht jeder Part und nicht jedes Attribut muss eine relevante Wahl darstellen. Vielleicht sollen dem Nutzer sogar Fragen auf einem anderen Abstraktionsniveau als auf Komponentenebene gestellt werden. Statt \glqq Soll eine HD oder eine SSD als Festplatte in das Notebook eingebaut werden?\grqq{} kann auch gefragt werden: \glqq Möchten Sie viel Speicherplatz oder einen schnellen Speicherzugriff?\grqq.
 
-Der Abstimmungsprozess durch den Anwender wird unter dem Begriff \glqq Execution\grqq{} definiert. Dabei wird nicht einfach nur eine Menge an Optionen festgelegt, die dem Nutzer am Ende als Liste präsentiert werden. Stattdessen werden die Optionen hierarchisch strukturiert.
+Der Abstimmungsprozess durch den Anwender wird unter dem Begriff \emph{Execution} definiert. Dabei wird nicht einfach nur eine Menge an Optionen festgelegt, die dem Nutzer am Ende als Liste präsentiert werden. Stattdessen werden die Optionen hierarchisch strukturiert.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -546,51 +546,64 @@ Der Abstimmungsprozess durch den Anwender wird unter dem Begriff \glqq Execution
 \end{minipage}
 \vspace{0.3em}
 
-Abbildung \ref{fig:tactonModellExecution} zeigt einen Ausschnitt der generischen Struktur der Execution als Baum. Die vollständige Darstellung ist Abbildung \ref{app:tactonModellExecutionLong} zu entnehmen. Abbildung \ref{fig:tactonModellExecutionNotebook} veranschaulicht das Konzept durch die exemplarische Umsetzung der Execution der Notebook-Konfiguration.
-\begin{compactitem}
-\item Die Wurzel wird als \textbf{Applikation} bezeichnet und kapselt den Vorgang der Konfiguration aus Anwenderperspektive.\\
-Beispiel: Eine Notebook-Konfiguration.
-\item Die nächste Knotenebene wird als \textbf{Steps} bezeichnet. Sie legen fest, in welcher Reihenfolge die Optionen präsentiert werden. Das ist in verschiedenen Fällen sinnvoll. Zum Beispiel dann, wenn komplexe Probleme in mehrere Schritte unterteilt oder Werte für spätere Schritte gesetzt werden sollen.\\
-Beispiel: In Step 1 legt der Anwender eine Preisgrenze fest. In Schritt 2 wird die technische Spezifikation getroffen.
-\item  Nun folgen $1..n$ Knotenebenen, die als \textbf{Groups} bezeichnet werden. Sie fassen Optionen zu logischen Einheiten zusammen. Die in Gruppen angeordneten Optionen müssen nicht in einer bestimmten Reihenfolge beantwortet werden.
-\begin{enumerate}[(a)]
-\item Die oberste Group-Ebene \textbf{Top-Level-Groups} ist obligatorisch.\\
-Beispiel: Eine 'Speicher'-Group in Step 2.
-\item Die Unterteilung in weitere Groups ist optional. Es kann beliebig tief geschachtelt werden.\\
-Beispiel: unter 'Speicher' wird die Group 'Massenspeicher' angelegt, um sie vom 'RAM' zu unterscheiden.
-\end{enumerate}
-\item \textbf{Fields} sind das, womit eine Entscheidung über die Konfiguration getroffen wird. Aus Anwendersicht besteht ein Field aus einer Beschreibung und einem Interaktionselement. Eine technischer Sicht kapselt ein Field einen Parameter mit einem Wertebereich (Domain), aus welchem ein Wert (Value) gewählt wird. Die Parameter stammen aus den Attributen der Parts. Damit ist ein Parameter mit einem Part-Attribute verknüpft, wie ein Part-Attribute mit einem Features der Component Class verknüpft sind. Je nach Interaktionselement wird in unterschiedliche Feldtypen unterschieden:
-\begin{enumerate}[(a)]
-\item \textbf{Menu:} Wahl aus einem Wertebereich, z.B. über ein Dropdownmenü realisiert.\\
-Beispiel Massenspeicher:\\
-Parameter = Storage-Part.type,  Domain = ['HD', 'SSD']\\
-Beispiel CPU-Kerne:\\
-Parameter = CPU-Part.cores, Domain = [1..4].
-\item \textbf{Number:} Eingabe eines eigenen Wertes in ein Textfeld.\\
-Beispiel Preisgrenze (Eingabe in Schritt 1):\\
- Parameter = Notebook-Part.maxPrice, Domain = [integer]
-\item \textbf{Label:} Anzeige eines Wertes aus Informationsgründen.\\
-Beispiel Aktueller Preis (Anzeige in Schritt 2):\\
-Parameter = Notebook-Part.price, Domain = [integer]
-\end{enumerate}
-\end{compactitem}
+Abbildung \ref{fig:tactonModellExecution} zeigt einen Ausschnitt der generischen Struktur der Execution als Baum. Die vollständige Darstellung ist Anhang \ref{app:tactonModellExecutionLong} zu entnehmen und wichtig zum weiteren Verständnis. Abbildung \ref{fig:tactonModellExecutionNotebook} veranschaulicht das Konzept durch eine mögliche Execution-Struktur der exemplarischen Notebook-Konfiguration.
 
-Die Feldtypen (a) und (b) haben gemein, dass der Anwender einen Wert aus einem Wertebereich festlegt. Bei (a) ist der Wertebereich eine Menge ausdefinierter Optionen, bei (b) ein Zahlenbereich, wobei er selbst eine Eingabe tätigt. Um die Formulierung kurz zu halten, wird das, was vom Anwender festgelegt wird, im Folgenden unter dem Begriff \glqq gewählte Option\grqq{} zusammengefasst.
+\begin{enumerate}[1.]
+\item Die Wurzel wird als \textbf{Applikation} bezeichnet. Sie beinhaltet die Gesamtheit aller Optionen.
+
+Beispiel: Eine Notebook-Konfiguration.
+\item Die nächste Knotenebene wird als \textbf{Steps} bezeichnet. Sie legen fest, in welcher Reihenfolge die Optionen präsentiert werden. Das ist in verschiedenen Fällen sinnvoll. Zum Beispiel dann, wenn komplexe Probleme in mehrere Schritte unterteilt oder Werte für spätere Schritte gesetzt werden sollen.
+
+Beispiel: In Step 1 legt der Anwender eine Preisgrenze fest. In Step 2 wird die technische Spezifikation getroffen, wobei die Preisgrenze aus Step 1 nicht überschritten werden darf.
+\item  Nun folgen $1..n$ Knotenebenen, die als \textbf{Groups} bezeichnet werden. Sie fassen Optionen zu logischen Einheiten zusammen. Groups geben keine Bearbeitungsreihenfolge vor.
+\begin{enumerate}
+\item[\textbf{Top-Level-Groups}:] Die oberste Group-Ebene  ist obligatorisch.
+
+Beispiel: Eine 'Speicher'-Gruppe in Step 2.
+\item[\textbf{optional Groups}:] Die Unterteilung in weitere Gruppen ist optional.
+
+Beispiel: Unter der 'Speicher'-Gruppe wird eine weitere Gruppe namens 'Massenspeicher' angelegt, um sie vom 'RAM' zu unterscheiden.
+\end{enumerate}
+\item \textbf{Fields} sind die Blätter des Execution-Baums. Sie sind das, worüber Optionen gewählt werden. Alle darüber liegenden Knoten haben den Fields nur eine Ordnungsstruktur gegeben.
+
+Aus Anwendersicht besteht ein Field aus einer Beschreibung und einem Interaktionselement. Aus technischer Sicht repräsentiert ein Field einen \emph{Parameter} mit einem Wertebereich (\emph{Domain}), aus welchem ein Wert (\emph{Value}) gewählt wird. Die Parameter stammen aus den Attributen der Parts. Das Wählen einer Option bedeutet also letztendlich das Wählen des Wertes eines Part-Attributs.
+
+Je nach Interaktionselement wird in unterschiedliche Feldtypen unterschieden:
+\begin{enumerate}[(a)]
+\item [\textbf{Menu:}] Wahl aus einem Wertebereich, z.B. via Dropdownmenü.
+
+Beispiel Massenspeicher:\\
+Parameter = 'Storage-Part.type',  Domain = ['HD', 'SSD']
+
+Beispiel CPU-Kerne:\\
+Parameter = 'CPU-Part.cores', Domain = [1..4].
+\item [\textbf{Number:}] Eingabe eines eigenen Wertes in ein Textfeld.
+
+Beispiel Preisgrenze (Eingabe in Schritt 1):\\
+ Parameter = 'Notebook-Part.maxPrice', Domain = [integer]
+\item [\textbf{Label:}] Anzeige eines Wertes aus Informationsgründen.
+
+Beispiel Aktueller Preis (Anzeige in Schritt 2):\\
+Parameter = 'Notebook-Part.price', Domain = [integer]
+\end{enumerate}
+\end{enumerate}
+
+Die Feldtypen \emph{Menu} und \emph{Number} haben gemein, dass der Anwender einen Wert aus einem Wertebereich festlegt. Beim \emph{Menu} ist dieser Wertebereich eine Menge vordefinierter Optionen, bei \emph{Number} ein Zahlenbereich, wobei der konkrete Wert vom Anwender selbst eingegeben wird. Um die Formulierung kurz zu halten, werden im Folgenden sowohl die Auswahl einer Option als auch die Eingabe eines Wertes unter dem Begriff \glqq gewählte Option\grqq{} zusammengefasst.
 
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=0.8\linewidth]{Abbildungen/tactonModellExecutionNotebook.pdf}
-	\captionof{figure}[tactonModellExecutionNotebook]{Exemplarische Exection-Struktur einer Notebook-Konfiguration}
+	\captionof{figure}[Mögliche Exection-Struktur einer exemplarischen Notebook-Konfiguration]{Mögliche Exection-Struktur einer exemplarischen Notebook-Konfiguration}
 	\label{fig:tactonModellExecutionNotebook}
 \end{minipage}
-\vspace{1em}
+\vspace{0.3em}
 
-Das Modell wird in einer XML-basierten Format mit der Dateiendung '.tcx' abgelegt. Die Entwicklung einer solchen Datei wird von entsprechenden Programmen unterstützt. Hierfür kann zum Beispiel \glqq TCstudio\grqq{} genutzt werden, welches eine grafische Oberfläche zur Modellentwicklung bietet \citep{tactonAbout}.
+Das Modell wird in einem XML-basierten Format mit der Dateiendung '.tcx' abgelegt. Die Entwicklung einer solchen Datei wird von entsprechenden Programmen unterstützt. Hierfür kann zum Beispiel \glqq TCstudio\grqq{} genutzt werden, welches eine grafische Oberfläche zur Modellentwicklung bietet \citep{tactonAbout}.
 
 \textbf{Zwischenfazit}\\
-Das Tacton-Modellierungskonzept wurde vorgestellt. Neben dem Konfigurationswissen werden darin auch die Optionen des Anwenders definiert. Diese werden durch Steps in eine Reihenfolge gebracht und durch Groups logisch gegliedert. Über Felder wählt der Anwender Optionen. Der Feldtyp Number ermöglicht die Eingabe eines eigenen Wertes. So werden Komponenten definiert, die nach Kundenanforderung konstruiert oder gefertigt werden müssen. Entsprechend der vorgestellten Produktklassifizierung in Kapitel \ref{Produktklassifizierung} werden so auch \ac{MTO}-Produkte abgebildet.
+Das Tacton-Modellierungskonzept wurde vorgestellt. Neben dem Konfigurationswissen werden darin auch die Optionen des Anwenders definiert. Diese werden durch Steps in eine Reihenfolge gebracht und durch Groups logisch gegliedert. Über Felder wählt der Anwender Optionen. Der Feldtyp Number ermöglicht die Eingabe eines eigenen Wertes. So werden Komponenten definiert, die nach Kundenanforderung konstruiert oder gefertigt werden müssen. Entsprechend der vorgestellten Produktklassifizierung in Kapitel \ref{Produktklassifizierung} bildet das Konfigurationsmodell so auch \ac{MTO}-Produkte ab.
 
-Das Konfigurationsmodell definiert die Interaktionsstruktur. Diese muss jedoch noch in Form eine Konfigurationsoberfläche dargestellt werden. TCsite stellt eine solche Oberfläche zur Verfügung. Die Anwendung wird im folgenden analysiert.
+Das Konfigurationsmodell definiert die Interaktionsstruktur. Diese muss jedoch noch in Form eine Konfigurationsoberfläche dargestellt werden. Neben anderen Funktionalitäten realisiert TCsite eine solche Darstellung. Die Anwendung wird im folgenden analysiert.
 
 \subsection{TCsite}
 \label{subsection:TCsite}
