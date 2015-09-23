@@ -705,7 +705,7 @@ Die Kommunikation läuft in drei Phasen ab (siehe Abbildung \ref{fig:tcsiteTCser
 \begin{enumerate}
 \item[\textbf{initiate configuration}:]Der erste KE-Input beinhaltet noch keinen Eingabeparameter. Er dient dem initialen Aufbau der Konfigurationsoberfläche entsprechend der festgelegten Struktur in der Execution aus dem Konfigurationsmodell. Der Konfigurationsprozess startet immer in Step 1. Die Steps müssen in der vordefinierten Reihenfolge abgearbeitet werden.
 \item[\textbf{loop}:] Nach jeder Wahl einer Option wird die Konfigurationsengine mit dem Eingabeparameter aufgerufen und daraufhin die Oberfläche neu gerendert. Die Oberfläche spiegelt dabei den Konfigurationszustand wieder, d.h. die bisher gewählten Optionen werden hervorgehoben.
-\item[\textbf{finish configuration}:] Wird die Konfiguration im letzten Step vom Anwender abgeschlossen, erfolgt ein finaler Aufruf der Konfigurationsengine. Aus dem KE-Output ist die finale Instanziierung (Konfigurationslösung), extrahierbar \citep{tactonTCsiteDevelopmentManual}.
+\item[\textbf{finish configuration}:] Wird die Konfiguration im letzten Step vom Anwender abgeschlossen, erfolgt ein finaler Aufruf der Konfigurationsengine. Aus dem KE-Output werden die finale Instanziierung (Konfigurationslösung), der Endpreis etc. extrahiert \citep{tactonTCsiteDevelopmentManual}.
 \end{enumerate}
 
 Der Konfigurationsprozess in TCsite wird anhand der exemplarischen Notebook-Konfiguration veranschaulicht. Abbildung \ref{fig:tcsiteConfigurationNumbered} zeigt die Konfigurationsoberfläche in TCsite. Diese befindet sich im zweiten Step. Mittels [1] wird zwischen den Steps gewechselt. [2] erlaubt die Navigation durch die Top-Level-Groups des aktuellen Steps. [3] stellt die Felder der aktuellen Top-Level-Group dar. Anhang \ref{app:tcSiteConfigurationOptionalGroups} zeigt anhand der 'Speicher'-Gruppe die Darstellung der Unterteilung in weitere Gruppen. Außerdem wird unter [4] noch eine weitere Top-Level-Group angezeigt -- die sogenannte \emph{Info-Group}. Sie wird im Konfigurationsmodell durch die Bezeichnung \glqq Info\grqq{} ausgezeichnet. Sie wird parallel zur gerade aktiven Top-Level-Group im jeweiligen Step dargestellt.
@@ -860,7 +860,7 @@ Die in Kapitel \ref{begriffsuberblick} vorgestellte Konfigurationsdefinition von
 
 \subsubsection{Einkaufsvorgang}
 \label{shopwareEinkaufsvorgang}
-Ausgehend von dieser Analyse ist der Einkaufsvorgang eines Varianten-Artikels unter Berücksichtigung der technischen Prozesse als Aktivitätsdiagramm in Abbildung \ref{fig:shopwareKonfigurationFlussdiagramm} darstellbar .
+Ausgehend von dieser Analyse ist der Einkaufsvorgang eines Varianten-Artikels unter Berücksichtigung der technischen Prozesse als Aktivitätsdiagramm in Abbildung \ref{fig:shopwareKonfigurationFlussdiagramm} darstellbar.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -873,7 +873,7 @@ Ausgehend von dieser Analyse ist der Einkaufsvorgang eines Varianten-Artikels un
 
 Mittels der Katalog- oder Suchfunktion wählt der Kunde einen konfigurierbaren Artikel aus - d.h., er wurde im Backend als \emph{Varianten-Artikel} gekennzeichnet. Auf dessen Detailseite wird die erste Variante des Artikels angezeigt. Dazu muss angemerkt werden, dass im Backend eingestellt wird, welche Variante eine Artikels initial geladen werden soll. Diese Variante wird ab jetzt als \emph{Basisvariante} bezeichnet. Neben beschreibenden Texten und Bildern befindet sich auf der Detailseite die Konfigurationsoberfläche (siehe Anhang \ref{app:shopwareNotebookDetail}). Zu jeder Gruppe wird ein Menü mit den entsprechenden Optionen angezeigt. Die Auswahl einer Option führt zum Reload der Seite mit der aktuellen Variante. Dieser Vorgang wiederholt sich so lange, bis der Artikel den Vorstellungen des Kunden entspricht. Außerdem wird die gewünschte Kaufmenge (Anzahl) eingestellt. Über den \glqq In den Warenkorb\grqq{}-Button wird der Artikel in den Warenkorb gelegt. Ist diese Variante bereits im Warenkorb, wird die Anzahl der entsprechenden Warenkorbposition inkrementiert. Anderenfalls entsteht eine neue Warenkorbposition. An der Bezeichnung der Warenkorbpositionen ist ablesbar, welche Optionskombination jeweils vorliegt (siehe Anhang \ref{app:shopwareNotebookWarenkorb}). Nun überprüft der Kunde den Warenkorb. Möchte er weitere Artikel hinzufügen, beginnt der Prozess mit der Auswahl des Wunschartikels von vorne. Ist der Kunde mit der Konfiguration einer Warenkorbposition noch nicht zufrieden, kann er diese löschen oder ändern. Möchte er sie ändern, kommt er über einen Klick auf die entsprechende Position zur Detailansicht dieser Variante zurück. Nun können andere Optionen gewählt werden. Ein erneuter klick auf \glqq In den Warenkorb\grqq{} aktualisiert nicht etwa die zugehörige Warenkorbposition, sondern erzeugt einen neue. Die alte Variante verbleibt zusätzlich im Warenkorb. Ist der Nutzer mit allen Positionen im Warenkorb zufrieden, wird der Bestellvorgang über den Checkout-Prozess abgeschlossen.
 
-Dieser Vorgang stellt den Lebenszyklus einer Variante in Shopware dar. Er beginnt mit dem Anlegen alle Varianten eines Artikels im Backend. Das ist ein Unterschied zu der Umsetzung in TCsite, welche in Kapitel \ref{TCsiteArchitektur}
+Dieser Vorgang illustriert den Lebenszyklus einer Variante in Shopware. Er beginnt mit dem Anlegen alle Varianten eines Artikels im Backend. Das ist ein Unterschied zu der Umsetzung in TCsite, welche in Kapitel \ref{TCsiteArchitektur}
  besprochen wurde. Hier beginnt der Lebenszyklus erst mit der Konfiguration.
 
 \section{Fazit}
@@ -912,103 +912,105 @@ In Kapitel \ref{Webservices} wurde besprochen, dass Webservices nicht direkt von
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=0.8\linewidth]{Abbildungen/systemcontextErweitert.pdf}
-	\captionof{figure}[systemcontextErweitert]{Systemkontext}
+	\captionof{figure}[erweiterter Systemkontext]{erweiterter Systemkontext}
 	\label{fig:systemcontextErweitert}
 \end{minipage}
-\vspace{1em}
+\vspace{0.3em}
 
 Basierend auf den Systemkontext werden nun Anforderungen spezifiziert, die sich auf das System und die Aspekte des Systemkontexts beziehen. Es wird in funktionale und nichtfunktionale Anforderungen unterschieden.
 
-\subsection{Funktionale Anforderungen}
+\section{Funktionale Anforderungen}
 
-Funktionale Anforderungen beschreiben das \glqq was\grqq{}, d.h. welche Funktionalitäten und Dienste das System erfüllen soll. Es werden zunächst die funktionalen Anforderungen des Shopware-Plugins erwähnt. Aus diesen ergibt sich, was das TCsite-Plugin, welches einen Webservice repräsentiert, liefern muss.
+Funktionale Anforderungen beschreiben das \glqq was\grqq{}, d.h. welche Funktionalitäten und Dienste das System erfüllen soll. Es werden zunächst die funktionalen Anforderungen des Shopware-Plugins vorgestellt. Aus diesen ergibt sich, was das TCsite-Plugin als Webservice liefern muss.
 
-\subsubsection{Shopware-Plugin}
-Die Analyse des Einkaufsvorgangs hat ergeben, dass die Konfiguration eines Artikels auf dessen Detailseite stattfindet. Daraus ergibt sich die funktionale Anforderung SW.F01:
+\subsection{Shopware-Plugin}
+Die Analyse des Einkaufsvorgangs in Kapitel \ref{shopwareEinkaufsvorgang} hat ergeben, dass die Konfiguration eines Artikels auf dessen Detailseite stattfindet. Daraus ergibt sich folgende Anforderung:
 \begin{enumerate}[SW.F01:]\bfseries
 \item Das Shop-Plugin muss auf der Detailseite eine Konfigurationsoberfläche bieten.
 \end{enumerate}
-Die Funktionalität der Konfigurationsoberfläche kann näher beschrieben werden. Aus der Analyse des Konfigurationsprozesses in TCsite (siehe Kapitel \ref{TCsiteArchitektur}) ergibt sich die Anforderung SW.F02:
+Die Funktionalität der Konfigurationsoberfläche kann näher beschrieben werden. Aus der Analyse des Konfigurationsprozesses in TCsite (siehe Kapitel \ref{TCsiteKonfigurationsprozess}) ergibt sich die Anforderung:
 \begin{enumerate}[SW.F02:]\bfseries
 \item Die Konfigurationsoberfläche muss einen Konfigurationsprozess äquivalent zu TCsite ermöglichen. 
 \end{enumerate}
-Das beinhaltet: Aktualisierung der Oberfläche nach jeder Wahl des Anwenders; Darstellung von Steps, Toplevel-Groups, optionalen Gruppen, allen Feldtypen, Hervorhebung der verhandelbar/nichtverhandelbar gewählten Optionen; Navigation durch die Execution-Struktur (Steps in vordefinierter Reihenfolge, Toplevel-Groups); Wählen von Optionen, Eingabe von Werten; Wechsel des Optionszustands zwischen verhandelbar/nichtverhandelbar; Konfliktbehebung.
+Das beinhaltet: Aktualisierung der Oberfläche nach jeder Wahl des Anwenders; Darstellung von Steps, Toplevel-Groups, optionalen Gruppen, allen Feldtypen, Hervorhebung der verhandelbar/nichtverhandelbar gesetzten Werte; Navigation durch die Execution-Struktur (Steps in vordefinierter Reihenfolge, Toplevel-Groups); Wählen von Optionen, Eingabe von Werten; Wechsel des Optionszustands zwischen verhandelbar/nichtverhandelbar; Konfliktbehebung;
 
-Aus der Analyse des Einkaufsvorgangs in Kapitel \ref{shopwareKonfiguration} geht hervor, dass nach der Konfigurationen die resultierende Variante weitere Stationen durchläuft (Warenkorb, Checkout, eventuell Umkonfiguration, etc...). Daraus resultiert Anforderung SW.03, welche die Basis der folgenden Anforderungen darstellt:
+Im Fazit der Analyse (Kapitel \ref{analyseFazit}) wurde festgestellt, dass die aus dem Konfigurationsprozess resultierenden Varianten in den Einkaufsvorgang integriert werden müssen. Die dementsprechende Anforderung lautet:
 \begin{enumerate}[SW.F03:]\bfseries
 \item Die aus dem Konfigurationsprozess resultierende Variante muss sich in den Einkaufsvorgang integrieren.
 \end{enumerate}
-Damit eine Variante gekauft werden kann, benötigt sie einen Preis. Dieser wird auf der Detailseite gezeigt. Er muss entsprechend des Konfigurationsprozesses laufend aktualisiert werden. Dementsprechend lautet Anforderung SW.F04:
+Diese Anforderung stellt die Basis der folgenden Anforderungen dar.
+
+Damit eine Variante gekauft werden kann, benötigt sie einen Preis. Dieser wird unter anderem auf der Detailseite angezeigt. Er muss nach jeder Nutzerinteraktion neu berechnet werden. Daraus ergibt sich die Anforderung:
 \begin{enumerate}[SW.F04:]\bfseries
 \item Die Detailseite muss den aktuellen Preis der Variante anzeigen.
 \end{enumerate}
-Von der Detailseite aus kommt die Variante in den Warenkorb. Daraus ergibt sich Anforderung SW.F05:
+Von der Detailseite aus kommt die Variante in den Warenkorb. Die dementsprechende Anforderung lautet:
 \begin{enumerate}[SW.F05:]\bfseries
 \item Die Detailseite muss das Ablegen der Variante in den Warenkorb ermöglichen.
 \end{enumerate}
-In Shopware wird dabei die auf der Detailseite eingestellte Anzahl berücksichtigt. Gleiches gilt implizit für Anforderung SW.F05.
+Dabei müssen Preis und Anzahl entsprechend von der Detailseite übernommen werden..
 
-In Kapitel \ref{TCsiteArchitektur} wurde bei der Analyse des Konfigurationsprozesses in TCsite festgestellt, dass diese erst im letzten Step abgeschlossen werden kann. Äquivalent resultiert für das Shopszenario die Anforderung SW.F06, die eine detailiertere Beschreibung der Anforderung SW.F05 darstellt:
+In Kapitel \ref{TCsiteKonfigurationsprozess} wurde bei der Analyse des Konfigurationsprozesses in TCsite festgestellt, dass diese erst im letzten Step abgeschlossen werden kann. Äquivalent resultiert für das Shopszenario folgende Anforderung, die eine detailliertere Beschreibung der Anforderung SW.F05 darstellt:
 \begin{enumerate}[SW.F06:]\bfseries
 \item Die Variante muss erst im letzten Step in den Warenkorb legbar sein.
 \end{enumerate}
-Varianten im Warenkorb sind Warenkorbpositionen. Bei unterschiedlichen Varianten im Warenkorb muss der Kunde diese unterscheiden können. Daraus resultiert Anforderung SW.F07:
+Eine Variante im Warenkorb stellt eine Warenkorbposition dar. Bei unterschiedlichen Varianten im Warenkorb muss der Kunde diese unterscheiden können. Daraus resultiert die Anforderung:
 \begin{enumerate}[SW.F07:]\bfseries
 \item Warenkorbpositionen müssen eine Beschreibung bieten.
 \end{enumerate}
-Zur Beschreibung gehört der Preis, aber zum Beispiel auch eine Zusammenfassung der gewählten Optionen.
+Der Umfang der Beschreibung muss angemessen sein. Bei Konfigurationen mit vielen Parametern kommt eine Aufzählung aller gewählter Optionen also nicht in Frage. Es muss eine \emph{Kurzbeschreibung} geboten werden.
 
-Der in Kapitel \ref{shopwareKonfiguration} vorgestellte Einkaufsvorgang beinhaltet die Umkonfiguration von Warenkorbposition. Daraus resultiert Anforderung SW.F08: 
+Der in Kapitel \ref{shopwareEinkaufsvorgang} vorgestellte Einkaufsvorgang beinhaltet die Umkonfiguration von Warenkorbposition. Daraus resultiert folgende Anforderung: 
 \begin{enumerate}[SW.F08:]\bfseries
 \item Warenkorbpositionen müssen umkonfigurierbar sein.
 \end{enumerate}
-Umkonfiguration wird in der Arbeit so verstanden, dass sich ändert, welche Variante eine Warenkorbposition repräsentiert. Daraus resultiert implizit, dass eine Umkonfiguration nicht zur Erstellung einer neuen, sondern zur Aktualisierung der entsprechenden Warenkorbposition führt.
+Umkonfiguration wird in der Arbeit als Aktualisierung einer Warenkorbposition verstanden. Dadurch ändert sich, welche Variante durch eine Warenkorbposition repräsentiert wird. Somit resultiert implizit, dass eine Umkonfiguration nicht zur Erstellung einer neuen Warenkorbposition führt, wie dies im bisherigen Einkaufsvorgang von Shopware der Fall ist.
 
-Die Umkonfiguration findet auf der Detailseite statt. Dementsprechend lautet Anforderung SW.F09: 
+Die Umkonfiguration findet auf der Detailseite statt. Die dementsprechende Anforderung lautet: 
 \begin{enumerate}[SW.F09:]\bfseries
 \item Die Detailseite einer Warenkorbposition muss aufrufbar sein.
 \end{enumerate}
-Auf der Detailseite soll die Konfiguration jedoch nicht neu beginnen, sondern dem letzten Konfigurationszustand entsprechen. Es ergibt sich Anforderung SW.F10:
+Auf der Detailseite soll die Konfiguration jedoch nicht neu beginnen, sondern dem letzten Konfigurationszustand entsprechen. Daraus resultiert die folgende Anforderung:
 \begin{enumerate}[SW.F10:]\bfseries
-\item Die Detailseite muss den Konfigurationszustand einer Warenkorbposition abbilden.
+\item Die Detailseite muss dem Konfigurationszustand einer Warenkorbposition entsprechen.
 \end{enumerate}
 Das beinhaltet den Preis und die Konfigurationsoberfläche.
 
-Im Einkaufsvorgang aus Kapitel \ref{shopwareKonfiguration} registriert der Warenkorb die Umkonfiguration erst beim erneuten Ablegen in den Warenkorb. Dementsprechend lautet Anforderung SW.F11:
+Beim bisherigen Einkaufsvorgang (siehe Kapitel \ref{shopwareEinkaufsvorgang}) wird die Umkonfiguration erst beim erneuten Ablegen der Variante in den Warenkorb registriert. Die dementsprechende Anforderung lautet folgendermaßen:
 \begin{enumerate}[SW.F11:]\bfseries
 \item Auf der Artikeldetailseite muss die Umkonfiguration einer Warenkorbposition durch einen entsprechenden Button vom Kunden bestätigt werden.
 \end{enumerate}
-Durch das Umkonfigurieren kann es passieren, dass zwei Warenkorbpositionen die gleiche Variante repräsentieren. Die Varianten sollen jedoch weiterhin einzeln umkonfigurierbar sein. Daraus resultiert Anforderung SW.F13:
-\begin{enumerate}[SW.F13:]\bfseries
+Durch eine Umkonfiguration ist es möglich, dass zwei ursprünglich unterschiedliche Warenkorbpositionen nun die gleiche Variante repräsentieren. Die Warenkorbpositionen sollen jedoch weiterhin separat umkonfigurierbar sein. Daraus resultiert die folgende Anforderung:
+\begin{enumerate}[SW.F12:]\bfseries
 \item Im Warenkorb muss jede Variante eine eigene Position darstellen.
 \end{enumerate}
-Warenkorbartikel sind auch löschbar. Daraus folgt Anforderung SW.F13:
+Beim bisherigen Einkaufsvorgang (siehe Kapitel \ref{shopwareEinkaufsvorgang}) sind Warenkorbpositionen löschbar. Die dementsprechende Anforderung lautet folgendermaßen:
 \begin{enumerate}[SW.F13:]\bfseries
 \item Im Warenkorb müssen Varianten löschbar sein.
 \end{enumerate}
-Die nächste Phase des Lebenszyklus ist die Bestellung. Dementsprechend lautet Anforderung SW.F14:
+Die nächste Station des Einkaufsvorgangs ist die Bestellung. Daraus resultiert die folgende Anforderung:
 \begin{enumerate}[SW.F14:]\bfseries
-\item In der Bestellung müssen Warenkorbpositionen übernommen werden.
+\item In der Bestellung müssen die Warenkorbpositionen übernommen werden.
 \end{enumerate}
-So wie die Varianten im Warenkorb beschrieben wurden, muss gleiches auch in der Bestellbestätigung stattfinden. Es resultiert Anforderung SW.F15:
+Äquivalent zum Warenkorb muss auch in der Bestellbestätigung ersichtlich sein, welche Varianten bestellt wurden (Preis, Anzahl, Kurzbeschreibung, etc.). Dementsprechend lautet die folgende Anforderung:
 \begin{enumerate}[SW.F15:]\bfseries
 \item In der Bestellbestätigung für den Kunden müssen die Beschreibungen der Warenkorbpositionen übernommen werden.
 \end{enumerate}
-Bis jetzt wurde unterschlagen, dass der Lebenszyklus einer Variante zwar mit der Konfiguration beginnt, auf Übersichtsseiten wie z.B. dem Artikellisting trotzdem Preise verzeichnet sind. Der Preis steht vor der Konfiguration aber noch nicht fest. Dementsprechend lautet SW.F16:
+Bis jetzt wurde unterschlagen, dass auf Übersichtsseiten wie z.B. dem Artikellisting (siehe Anhang \ref{app:shopwareArtikelListing}) bereits Preise verzeichnet werden. Diese stehen vor der Konfiguration aber noch nicht fest. Die dementsprechende Anforderung lautet:
 \begin{enumerate}[SW.F16:]\bfseries
 \item Im Artikellisting dürfen konfigurierbare Artikel keinen Preis auszeichnen.
 \end{enumerate}
-Ein eShop bietet nicht nur konfigurierbare Artikel an. Dementsprechend muss das Plugin einen Mechanismus anbieten, über den im Backend eingestellt wird, welche Artikel via Plugin konfigurierbar sind und welche nicht. Daraus ergibt sich Anforderung SW.F17:
+Ein eShop muss nicht zwangsläufig ausschließlich konfigurierbare Artikel verkaufen. Dementsprechend muss das Plugin einen Mechanismus anbieten, über den im Backend eingestellt wird, welche Artikel via Plugin konfigurierbar sind und welche nicht. Daraus ergibt sich folgende Anforderung:
 \begin{enumerate}[SW.F17:]\bfseries
-\item Das Shop-Plugin muss dem Administrator im Backend eine Angabe darüber ermöglichen, ob ein Artikel per Plugin konfigurierbar ist.
+\item Das Shop-Plugin muss dem Administrator im Backend eine Angabe darüber ermöglichen, ob ein Artikel via Plugin konfigurierbar ist.
 \end{enumerate}
-Wenn ein Artikel per Plugin konfigurierbar ist, stellt sich die Frage, welchem Konfigurationsmodell die Konfiguration es entsprechen soll. In TCsite sind Konfigurationsmodelle Produkten zugeordnet. Daraus ergibt sich Anforderung SW.F18:
+Wenn ein Artikel via Plugin konfigurierbar ist, stellt sich die Frage, durch welches Konfigurationsmodell der Konfigurationsprozess definiert wird. In TCsite sind Konfigurationsmodelle Produkten zugeordnet (siehe Kapitel \ref{TCsiteArchitektur}). Die dementsprechende Anforderung lautet folgendermaßen:
 \begin{enumerate}[SW.F18:]\bfseries
 \item Das Shop-Plugin muss dem Administrator im Backend eine Angabe darüber ermöglichen, welchem TCsite-Produkt ein Artikel entspricht.
 \end{enumerate}
-So wird die Zuordnung händisch vom Shopware-Administrator hergestellt. Er muss also auch Kenntnis von den in TCsite verfügbaren Produkten haben.
+So wird die Zuordnung händisch vom Shopware-Administrator hergestellt. Er muss also auch Kenntnis von den Produkten haben, die in TCsite verfügbar sind.
 
-Abschließend muss das Plugin noch die Adresse des Webservices kennen, welches durch das TCsite-Plugins implementiert wird. Es folgt Anforderung SW.F19:
+Abschließend muss das Plugin noch die Adresse des Webservices kennen, welcher durch das TCsite-Plugins implementiert wird. Daraus folgt die abschließende Anforderung:
 \begin{enumerate}[SW.F19:]\bfseries
 \item Das Shop-Plugin muss dem Administrator im Backend eine Angabe darüber ermöglichen, unter welcher URI das TCsite-Plugin erreichbar ist.
 \end{enumerate}
