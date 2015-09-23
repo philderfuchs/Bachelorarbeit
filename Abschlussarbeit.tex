@@ -247,7 +247,7 @@ Eine Konfigurationslösung kann durch ein UML-Instanz-Diagramm visualisiert werd
 
 \subsection{Konfiguratoren}
 \label{Konfigurationssysteme}
-Konfiguratoren \glqq [...] führen den Abnehmer durch alle Abstimmungsprozesse, die zur Definition des individuellen Produktes nötig sind und prüfen sogleich die Konsistenz sowie Fertigungsfähigkeit der gewünschten Variante\grqq{} \citep{piller06}. Der erste Teil dieser Definition versteht den Konfigurationsprozess als eine Nutzerführung. Der zweite Teil der Definition entspricht der Charakterisierung als einen technischen Verarbeitungsprozess aus Kapitel \ref{begriffsuberblick}. Es muss also die technische- und die anwenderbezogene Sicht unterschieden werden. Aus technischer Sicht ist der Konfigurationsprozess der Vorgang der Verarbeitung einer Konfigurationsaufgabe. Aus Anwendersicht bezeichnet er den Abstimmungsprozess. Beides gehört zum Verantwortungsbereich des Konfigurators. Es wird im Folgenden die Konvention verwendet, dass der Begriff \glqq Konfigurationsprozess\grqq{} die Nutzerführung meint, der \glqq technische Konfigurationsprozess\grqq{} die softwaretechnische Verarbeitung der Nutzereingaben.
+Konfiguratoren \glqq [...] führen den Abnehmer durch alle Abstimmungsprozesse, die zur Definition des individuellen Produktes nötig sind und prüfen sogleich die Konsistenz sowie Fertigungsfähigkeit der gewünschten Variante\grqq{} \citep{piller06}. Der erste Teil dieser Definition versteht den Konfigurationsprozess als eine Nutzerführung. Der zweite Teil der Definition entspricht der Charakterisierung als einen technischen Verarbeitungsprozess aus Kapitel \ref{begriffsuberblick}. Es muss also die technische- und die anwenderbezogene Sicht unterschieden werden. Aus technischer Sicht ist der Konfigurationsprozess der Vorgang der Verarbeitung einer Konfigurationsaufgabe. Aus Anwendersicht bezeichnet er den Abstimmungsprozess. Beides gehört zum Verantwortungsbereich des Konfigurators.
 
 Nach \citet{piller06} besitzt ein Konfigurator drei Komponenten:
 \begin{compactitem}
@@ -782,7 +782,7 @@ Jedes Shopsystem, für welches auf Grundlage dieser Bedingungen eine Daten- und 
 
 Shopware wird von der \emph{shopware AG} in Schöppingen entwickelt. Das eShop-System ist aus einer Individuallösung gewachsen, welche 2003 von den heutigen Geschäftsführern entwickelt wurde. Infolgedessen wurde das Unternehmen 2008 als Vertriebsgesellschaft für die Software gegründet. Aktuell liegt die fünfte Version vor. Shopware wird in einem Dual-License Modell vertrieben. Die Community-Edition wird unter der \citeauthor{gnuAGPLv3} Open-Source Lizenz \emph{AGPLv3} angeboten. Außerdem existieren drei kommerzielle Versionen \citep{shopwareUnternehmen}.
 
-Im Folgenden wird Shopware einer technischen Analyse unterzogen. Darauf aufbauend wird die Erweiterbarkeit des Systems besprochen. Anschließend wird diskutiert, wie die Produktkonfiguration in der Standardinstallation technisch realisiert wird. Daraus kann eine Abgrenzung zum Tacton-Produktkonfigurator gewonnen und gleichzeitig dessen Integration motiviert werden. Die abschließende Betrachtung der Konfiguration im Einkaufsprozess liefert Ansatzpunkte für das Integrationskonzept.
+Im Folgenden wird Shopware einer technischen Analyse unterzogen. Darauf aufbauend wird die Erweiterbarkeit des Systems besprochen. Anschließend wird diskutiert, wie die Produktkonfiguration in der Standardinstallation technisch realisiert wird. Daraus kann eine Abgrenzung zum Tacton Produktkonfigurator gewonnen und gleichzeitig dessen Integration motiviert werden. Die abschließende Betrachtung der Konfiguration im Einkaufsprozess liefert Ansatzpunkte für das Integrationskonzept.
 
 \subsection{Architektur}
 \label{shopwareArchitektur}
@@ -878,7 +878,7 @@ Dieser Vorgang illustriert den Lebenszyklus einer Variante in Shopware. Er begin
 
 \section{Fazit}
 \label{analyseFazit}
-Shopware bietet in der Standardinstallation keine Funktionalität, die der Definition eines Konfigurationsprozesses gerecht wird. Stattdessen wird eine \emph{Variantenselektion} durchgeführt. Da alle Varianten expliziert vordefiniert sind, werden dadurch die in Kapitel \ref{Produktklassifizierung} beschriebenen \ac{ATO}-Produkte abgebildet. Die Analyse in Kapitel \ref{tactonKonfigurationsmodell} hat ergeben, dass das Tacton-Konfigurationsmodell auch \ac{MTO}-Produkte abbilden kann. Eine Integration des Tacton-Produktkonfigurators in Shopware würde somit dessen Angebotsspektrum in Bezug auf Produktionskonzepte erweitern.
+Shopware bietet in der Standardinstallation keine Funktionalität, die der Definition eines Konfigurationsprozesses gerecht wird. Stattdessen wird eine \emph{Variantenselektion} durchgeführt. Da alle Varianten expliziert vordefiniert sind, werden dadurch die in Kapitel \ref{Produktklassifizierung} beschriebenen \ac{ATO}-Produkte abgebildet. Die Analyse in Kapitel \ref{tactonKonfigurationsmodell} hat ergeben, dass das Tacton-Konfigurationsmodell auch \ac{MTO}-Produkte abbilden kann. Eine Integration des Tacton Produktkonfigurators in Shopware würde somit dessen Angebotsspektrum in Bezug auf Produktionskonzepte erweitern.
 
 In Kapitel \ref{shopwareErweiterbarkeit} wurde das Plugin-Konzept von Shopware vorgestellt. Template-Erweiterungen erlauben einen Eingriff in die Oberfläche. Damit ist eine Konfigurationsoberfläche in Shopware darstellbar. Die Analyse des Einkaufsvorgangs von konfigurierbaren Artikeln in Kapitel \ref{shopwareEinkaufsvorgang} impliziert jedoch Änderungen über die reine Integration einer Konfigurationsoberfläche hinaus. Nach dem Konfigurationsprozess absolvieren Varianten weitere Stationen im Einkaufsvorgang. Für die Arbeit bedeutet dies, dass ein Shopware-Plugin (Shop-Plugin) zu erstellen ist, welches (1.) eine Konfigurationsoberfläche bereitstellt und (2.) die resultierenden Varianten in den Einkaufsvorgang integriert.
 
@@ -928,19 +928,19 @@ Die Analyse des Einkaufsvorgangs in Kapitel \ref{shopwareEinkaufsvorgang} hat er
 \begin{enumerate}[SW.F01:]\bfseries
 \item Das Shop-Plugin muss auf der Detailseite eine Konfigurationsoberfläche bieten.
 \end{enumerate}
-Die Funktionalität der Konfigurationsoberfläche kann näher beschrieben werden. Aus der Analyse des Konfigurationsprozesses in TCsite (siehe Kapitel \ref{TCsiteKonfigurationsprozess}) ergibt sich die Anforderung:
+Die Funktionalität der Konfigurationsoberfläche kann näher beschrieben werden. Aus der Analyse des Konfigurationsprozesses in TCsite (siehe Kapitel \ref{TCsiteKonfigurationsprozess}) ergibt sich die folgende Anforderung:
 \begin{enumerate}[SW.F02:]\bfseries
 \item Die Konfigurationsoberfläche muss einen Konfigurationsprozess äquivalent zu TCsite ermöglichen. 
 \end{enumerate}
 Das beinhaltet: Aktualisierung der Oberfläche nach jeder Wahl des Anwenders; Darstellung von Steps, Toplevel-Groups, optionalen Gruppen, allen Feldtypen, Hervorhebung der verhandelbar/nichtverhandelbar gesetzten Werte; Navigation durch die Execution-Struktur (Steps in vordefinierter Reihenfolge, Toplevel-Groups); Wählen von Optionen, Eingabe von Werten; Wechsel des Optionszustands zwischen verhandelbar/nichtverhandelbar; Konfliktbehebung;
 
-Im Fazit der Analyse (Kapitel \ref{analyseFazit}) wurde festgestellt, dass die aus dem Konfigurationsprozess resultierenden Varianten in den Einkaufsvorgang integriert werden müssen. Die dementsprechende Anforderung lautet:
+Im Fazit des Kapitels \ref{analyseFazit} wurde festgelegt, dass die aus dem Konfigurationsprozess resultierenden Varianten in den Einkaufsvorgang integriert werden müssen. Die dementsprechende Anforderung lautet:
 \begin{enumerate}[SW.F03:]\bfseries
 \item Die aus dem Konfigurationsprozess resultierende Variante muss sich in den Einkaufsvorgang integrieren.
 \end{enumerate}
 Diese Anforderung stellt die Basis der folgenden Anforderungen dar.
 
-Damit eine Variante gekauft werden kann, benötigt sie einen Preis. Dieser wird unter anderem auf der Detailseite angezeigt. Er muss nach jeder Nutzerinteraktion neu berechnet werden. Daraus ergibt sich die Anforderung:
+Damit eine Variante gekauft werden kann, benötigt sie einen Preis. Dieser wird unter anderem auf der Detailseite angezeigt. Er muss nach jeder Nutzerinteraktion neu berechnet werden. Daraus ergibt sich folgende Anforderung:
 \begin{enumerate}[SW.F04:]\bfseries
 \item Die Detailseite muss den aktuellen Preis der Variante anzeigen.
 \end{enumerate}
@@ -1010,71 +1010,71 @@ Wenn ein Artikel via Plugin konfigurierbar ist, stellt sich die Frage, durch wel
 \end{enumerate}
 So wird die Zuordnung händisch vom Shopware-Administrator hergestellt. Er muss also auch Kenntnis von den Produkten haben, die in TCsite verfügbar sind.
 
-Abschließend muss das Plugin noch die Adresse des Webservices kennen, welcher durch das TCsite-Plugins implementiert wird. Daraus folgt die abschließende Anforderung:
+Abschließend muss das Plugin noch die Adresse des Webservices kennen, der durch das TCsite-Plugin implementiert wird. Daraus folgt die abschließende Anforderung:
 \begin{enumerate}[SW.F19:]\bfseries
 \item Das Shop-Plugin muss dem Administrator im Backend eine Angabe darüber ermöglichen, unter welcher URI das TCsite-Plugin erreichbar ist.
 \end{enumerate}
 
-\subsubsection{TCsite-Plugin}
+\subsection{TCsite-Plugin}
 Die Anforderungen des TCsite-Plugins ergeben sich aus den Anforderungen des Shopware-Plugins.
 
-SW.F02 fordert Daten, auf deren Grundlage die Konfigurationsoberfläche gerendert werden kann. Dementsprechend lautet Anforderung TC.F01:
+SW.F01 fordert Daten, auf deren Grundlage die Konfigurationsoberfläche gerendert werden kann. Die dementsprechende Anforderung lautet:
 \begin{enumerate}[TC.F01:]\bfseries
 \item Das TCsite-Plugin muss die Informationen zum Aufbau der Konfigurationsoberfläche bereitstellen.
 \end{enumerate}
-Aus SW.F10 ergibt sich, dass das Shopware-Plugin auch nach Abschluss der Konfiguration im Falle einer Umkonfiguration die Konfigurationsoberfläche erneut rendern muss. Ob und wann eine Umkonfiguration stattfindet, ist nicht klar. Daraus ergibt sich Anforderung TC.F02:
+Aus SW.F10 ergibt sich, dass das Shopware-Plugin im Falle einer Umkonfiguration die Konfigurationsoberfläche entsprechend eines bereits bestehenden Konfigurationszustands erneut rendern muss. Ob und wann eine Umkonfiguration stattfindet, ist nicht klar. Daraus ergibt sich die folgende Anforderung:
 \begin{enumerate}[TC.F02:]\bfseries
 \item Die Informationen zum Aufbau der Konfigurationsoberfläche müssen persistiert werden.
 \end{enumerate}
-Weiterhin muss das Shopware-Plugin wissen, wie es diese persistenten Informationen zu einem späteren Zeitpunkt wieder abrufen kann. Daraus ergibt sich Anforderung TC.03:
+Weiterhin muss das Shopware-Plugin wissen, wie diese persistenten Informationen zu einem späteren Zeitpunkt wiedergefunden werden können. Es muss also irgendeine Form der Identifikation existieren. Daraus resultiert folgende Anforderung:
 \begin{enumerate}[TC.F03:]\bfseries
-\item Das TCsite-Plugin muss Informationen zum späteren Aufbau der Konfigurationsoberfläche bereitstellen.
+\item Die Informationen zum Aufbau der Konfigurationsoberfläche müssen identifizierbar sein.
 \end{enumerate}
-Im Fazit aus Kapitel \ref{TCsiteFazit} wurde festgelegt, dass über die Oberfläche die gewählten Optionen des Shopkunden erfasst werden, der technische Konfigurationsprozess aber durch das TCsite-Plugin realisiert wird. Daraus ergibt sich Anforderung TC.04:
+Im Zwischenfazit des Analysekapitels (Kapitel \ref{TCsiteFazit}) wurde festgelegt, dass über die Oberfläche die gewählten Optionen des Shopkunden erfasst und die daraus resultierenden Eingabeparameter an das TCsite-Plugin weitergereicht werden. In diesem wird der KE-Input verarbeitet. Daraus ergibt sich die folgende Anforderung:
 \begin{enumerate}[TC.F04:]\bfseries
-\item Das TCsite-Plugin führt den technischen Konfigurationsprozess durch.
+\item Das TCsite-Plugin führt die Verarbeitung der KE-Inputs durch.
 \end{enumerate}
-Neben den Daten für die Oberfläche fordert SW.F04 Preisinformation. Dementsprechend lautet Anforderung TC.F04:
+Neben den Daten für die Oberfläche fordert SW.F04 Preisinformation. Die dementsprechende Anforderung lautet folgendermaßen:
 \begin{enumerate}[TC.F04:]\bfseries
 \item Das TCsite-Plugin muss Informationen über den Preis einer Variante bereitstellen.
 \end{enumerate}
-Abschließend fordert SW.F07 nach einer Beschreibung von Warenkorbpositionen. Es resultiert Anforderung TC.F05:
+Abschließend fordert SW.F07 die Anzeige von Beschreibungstexten der Warenkorbpositionen. Diese wurden als \emph{Kurzbeschreibungen} näher charakterisiert. Daraus resultiert die letzte funktionale Anforderung:
 \begin{enumerate}[TC.F05:]\bfseries
-\item Das TCsite-Plugin muss die Beschreibung einer Variante bereitstellen.
+\item Das TCsite-Plugin muss einen beschreibenden Text einer Variante bereitstellen.
 \end{enumerate}
 
-\subsection{Nichtfunktionale Anforderungen}
+\section{Nichtfunktionale Anforderungen}
 Nichtfunktionale Anforderungen beschreiben das \glqq wie\grqq{}, d.h. welche Eigenschaften das System besitzen soll.
 
-\subsubsection{Shopware-Plugin}
-Wie bereits erwähnt, werden die Funktionalitäten im Rahmen eines Plugins implementiert. Die Anforderung SW.NF01 lautet dementsprechend:
+\subsection{Shopware-Plugin}
+Wie bereits erwähnt, werden die Funktionalitäten im Rahmen eines Plugins implementiert. Die dementsprechende Anforderung lautet folgendermaßen:
 \begin{enumerate}[SW.NF01:]\bfseries
-\item Die Integration des Tacton-Produktkonfigurators muss über ein Shop-Plugin umgesetzt werden.
+\item Die Integration des Tacton Produktkonfigurators muss über ein Shop-Plugin umgesetzt werden.
 \end{enumerate}
-Weiterhin kann aufgrund der technischen Analyse eine Aussage darüber getroffen werden, mit welchen Programmiersprachen das Shop-Plugin zu entwickeln ist. In der View kommt Smarty-Syntax zum Einsatz, wobei Javascript und CSS eingebunden werden kann. Die logischen Erweiterungen werden in PHP verfasst. Anforderung SW.NF02 lautet demzufolge:
+Weiterhin kann aufgrund der technischen Analyse aus Kapitel \ref{shopwareArchitektur} eine Aussage darüber getroffen werden, mit welchen Programmiersprachen das Shop-Plugin zu entwickeln ist. In der View kommt Smarty-Syntax zum Einsatz, wobei Javascript und CSS eingebunden werden können. Die logischen Erweiterungen werden in PHP verfasst. Daraus resultiert folgende Anforderung:
 \begin{enumerate}[SW.NF02:]\bfseries
 \item Das Shop-Plugin muss unter der Verwendung von PHP, Smarty-Syntax, Javascript, und CSS erstellt werden.
 \end{enumerate}
 
-\subsubsection{TCsite-Plugin}
-Die nichtfunktionalen Anforderungen des TCsite-Plugins fallen äquivalent aus. TC.NF01 lautet:
+\subsection{TCsite-Plugin}
+Die nichtfunktionalen Anforderungen des TCsite-Plugins fallen äquivalent aus. Die erste nichtfunktionale Anforderung lautet dementsprechend:
 \begin{enumerate}[TC.NF01:]\bfseries
 \item Die Konfigurationsschnittstelle muss über ein TCsite-Plugin umgesetzt werden.
 \end{enumerate}
-In Kapitel \ref{TCsite} wurde erwähnt, dass die Architektur in Java implementiert ist. Daraus resultiert für die Anforderung TC.NF02:
+In Kapitel \ref{TCsite} wurde erwähnt, dass die TCsite-Architektur in Java implementiert ist. Daraus resultiert die folgende Anforderung bezüglich der zu verwenden Programmiersprache:
 \begin{enumerate}[TC.NF02:]\bfseries
 \item Das TCsite-Plugin muss unter der Verwendung von Java erstellt werden.
 \end{enumerate}
-Aus dem Erweiterungskonzept von TCsite (siehe Kapitel \ref{TCsiteErweiterbarkeit})
- kann schon jetzt das zu verwendende Webservice-Paradigma abgeleitet werden. Im Fazit des vorangegenen Kapitels wurde festgelegt, dass Web-Controller genutzt werden. Entsprechend des Kurfazits in Kapitel \ref{Webservices} steht damit das Werkzeug zur Implementierung eines REST-Websservices zur Verfügung. Es resultiert die Anforderung:
+Im Zwischenfazit des Analysekapitels (siehe Kapitel \ref{TCsiteFazit}) wurde festgestellt, dass durch Webcontroller das Umsetzungswerkzeug für Webservices nach dem REST-Architekturstil bereitsteht. Daraus resultiert die abschließende nichtfunktionale Anforderung:
 \begin{enumerate}[TC.NF03:]\bfseries
 \item Die Konfigurationsschnittstelle wird als Webservice entsprechend des REST-Architekturstils implementiert.
 \end{enumerate}
 
-\pagebreak
+\textbf{Zusammenfassung}\\
+Die Zusammenarbeit der beiden Plugins sieht die Zuordnung von Shopware-Artikeln zu TCsite-Produkten vor. Somit entsteht abgesehen von Anforderung SW.F18\footnote{Die Angabe im Backend darüber, welchem TCsite-Produkt ein Shopware-Artikel entspricht.} kein zusätzlicher manueller Verwaltungsaufwand im Shopsystem. Es müssen also shopseitig zum Einsatz des Tacton Produktkonfigurators keine weiteren Dateien (z.B. Konfigurationsmodelle) angelegt werden, da der Datenbankbestand von TCsite genutzt wird. Inwiefern in der Folge der Anforderung SW.F03\footnote{Die Variantenintegration in den Einkaufsvorgang.} neue Datenbankentitäten bei Shopware entstehen, wird im folgenden Konzeptionskapitel geklärt. Davon unabhängig ist die Entscheidung, ob in TCsite extra für den Shopeinsatz angefertigte Konfigurationsmodelle zum Einsatz kommen oder die bereits vorhandene Produktpalette genutzt wird.
 
-\section{Konzeption}
-\label{section:Konzeption}
+\chapter{Konzeption}
+\label{Konzeption}
 Aus der Anforderungsanalyse ist hervorgegangen, dass zwei Plugins konzipiert werden müssen. Es wird erst das Shopware-Plugin und danach das TCsite-Plugin behandelt. Grund dafür ist, dass das TCsite-Plugin einen Webservice darstellt, den das Shopware-Plugin als Client nutzt. Indem der Client zuerst konzipiert wird, ergeben sich daraus die Ressourcen und Prozesse, die vom Service bereitgestellt werden müssen.
 
 \subsection{Shopware-Plugin}
@@ -1385,7 +1385,7 @@ In der momentan entworfenen Lösung wird jedes mal, wenn die Detailseite eines k
 
 Weiterhin kann der Lebenszyklus von \emph{Quotations}\footnote{Der Quotation-Lebenszyklus wurde in Kapitel \ref{subsubsection:tcsiteArchitektur} vorgestellt} genutzt werden, um neben der Container-Funktionalität auch die Ausdruckskraft einer \emph{Quotation} zu nutzen. Die Einrichtung weiterer Zustände, wie z.B. \glqq Bestellung im Shop ausgelöst\grqq würde Vertriebsmitarbeitern die Verwaltung der Bestellungen erleichtern.
 
-Dies leitet zu dem in Kapitel \ref{section:Konzeption} angesprochenen Problem über, dass der Vertrieb eine Möglichkeit zur Interpretation der bestellten Varianten haben muss. Der momentane Lösungsentwurf ist das Öffnen der Varianten in TCsite. Das erfordert zur Behandlung einer Bestellung den Wechsel zwischen zwei Anwendungen -- Shopware und TCsite. Neben dem umständlichen Workflow setzt diese Lösung implizit voraus, dass der entsprechende Mitarbeiter überhaupt Zugang zu TCsite hat. Ein Lösungsansatz wäre das Bereitstellen weiterer Dokumente in der Bestellübersicht von Shopware, wie z.B. Stücklisten oder Konstruktionszeichnungen.
+Dies leitet zu dem in Kapitel \ref{Konzeption} angesprochenen Problem über, dass der Vertrieb eine Möglichkeit zur Interpretation der bestellten Varianten haben muss. Der momentane Lösungsentwurf ist das Öffnen der Varianten in TCsite. Das erfordert zur Behandlung einer Bestellung den Wechsel zwischen zwei Anwendungen -- Shopware und TCsite. Neben dem umständlichen Workflow setzt diese Lösung implizit voraus, dass der entsprechende Mitarbeiter überhaupt Zugang zu TCsite hat. Ein Lösungsansatz wäre das Bereitstellen weiterer Dokumente in der Bestellübersicht von Shopware, wie z.B. Stücklisten oder Konstruktionszeichnungen.
 
 Momentan gewährleistet die Konfigurationsoberfläche nur, dass der Shopkunde eine korrekte Variante bestellt (vorausgesetzt, das Konfigurationsmodell ist richtig definiert). Ansonsten hat der Konfigurationsprozess für den Anwender keinerlei informativen Charakter. Abgesehen von der Feldbeschreibung bietet die Oberfläche keine Begleitinformation. Diese muss noch mit Bildern, beschreibenden Texten oder sonstigen medialen- und interaktiven Elementen angereichert werden. Im Augenblick ist die Nutzung des Konfigurators nur unter der Voraussetzung möglich, dass der Anwender bereits Vorwissen über alle wählbaren Optionen hat. Davon kann nicht ausgegangen werden, weshalb der momentan Prototyp für den Einsatz im Endverbrauchermarkt noch ungeeignet ist.
 
