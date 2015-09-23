@@ -251,17 +251,17 @@ Konfiguratoren \glqq [...] führen den Abnehmer durch alle Abstimmungsprozesse, 
 
 Nach \citet{piller06} besitzt ein Konfigurator drei Komponenten:
 \begin{compactitem}
-\item Die \textbf{Konfigurationskomponente} führt den technischen Konfigurationsprozess durch. Sie wird auch als Konfigurationsengine bezeichnet \citep{tactonProductOverview}.
+\item Die \textbf{Konfigurationskomponente} führt das Lösen von Konfigurationsaufgaben durch. Sie wird auch als Konfigurationsengine bezeichnet \citep{tactonProductOverview}.
 \item Die \textbf{Präsentationskomponente} erstellt eine Konfigurationsdarstellung in zielgruppenspezifischer Form. Sie stellt die Schnittstelle für die Abstimmungsprozesse mit dem Anwender dar.
 \item Die \textbf{Auswertungskomponente} präsentiert die Konfigurationslösung in einer Form, welche eine Interpretation der Variante außerhalb des Konfigurators erlaubt. Dies können z.B. Stücklisten, Konstruktionszeichnungen und Arbeitspläne sein.
 \end{compactitem}
 
-\textbf{Konfiguratorarten}\\
+\subsubsection*{Konfiguratorarten}
 Konfiguratoren für die Erhebung komplexer Anforderungen technischer Systeme  müssen von Konfiguratoren für den Einsatz im Rahmen der \ac{MC} unterschieden werden \citep{felferning14}. Erstere sind für den Experteneinsatz gedacht oder dienen nach \citet{piller06} als Vertriebskonfiguratoren der Unterstützung des Verkaufsgespräches. Letztere werden direkt vom Kunden in einer Company-to–Customer Beziehung genutzt und werden auch als \emph{Mass Customization Toolkits} bezeichnet. Die sogenannte \emph{Selbstkonfiguration} ist eine Voraussetzung für \ac{MC}, indem der zeitkonsumierende Prozess der Erhebung der Kundenbedürfnisse auf die Seite des Kunden verlagert wird \citep{piller06}
 
 Konfiguratoren können bei allen in Abschnit \ref{Produktklassifizierung} genannten Produktionskonzepten zum Einsatz kommen. Je nach Produktionskonzept hat der Konfigurationsprozess eine unterschiedliche Bedeutung. Bei \ac{PTO} hat der Konfigurator eine Katalogfunktion, indem er den Anwender bei der Auswahl eines fertigen Produkts aus einer Produktpalette unterstützt. Bei \ac{ATO} verhält sich der Konfigurator wie ein Variantengenerator, der den Anwender bei der Auswahl der richtigen Variante unterstützt. Dabei hat der Hersteller bereits alle möglichen Varianten vordefiniert. Daher werden diese als \emph{herstellerspezifisch} bezeichnet \citep{schomburg80}. Der Anwendungsfall bei \ac{MTO} ist ähnlich, jedoch wird durch die stärkere Einflussnahme des Kunden von \emph{kundenspezifischen} Varianten gesprochen \citep{schomburg80}. Außerdem unterstützt ein Konfigurator die regelbasierte Generierung von Konstruktionsdaten. Bei \ac{ETO} besteht ein erheblicher Neukonstruktionsbedarf. Dies widerspricht der Definition der Konfiguration als Routine Design aus Abschnitt \ref{begriffsuberblick} -- die Spezifikation der beteiligten Objekte ist nicht vollständig bekannt. Konfiguratoren können hier nur einen begrenzten Beitrag leisten. Aus dieser Erläuterung lässt sich ableiten, dass das Haupteinsatzgebiet von Konfiguratoren im \ac{ATO}/\ac{MTO} Umfeld liegt.
 
-\textbf{Zusammenfassung}\\
+\subsubsection*{Zusammenfassung}
 In Abschnitt \ref{Produktklassifizierung} wurde dargestellt, wie bestimmte Produktionskonzepte die Herstellung individualisierter Produktvarianten bei gleichzeitiger Lagerfertigung ermöglichen. Produkte werden mit dem Ziel gestaltet, so individuell und auftragsunabhängig wie möglich zu sein. Damit wurde einer der Schlüsselfaktoren für die Ermöglichung der hybriden Wettbewerbsstrategie \ac{MC} erläutert. Diese verbindet die Vorteile effizienter Massenproduktion mit denen
 der kundenspezifischen Einzelfertigung \citep{piller98}. \ac{MC} resultiert in Variantenvielfalt und damit in Produktkomplexität. In Abschnitt \ref{Produktkonfiguration} wurde die Funktionsweise von Konfiguratoren vorgestellt, mit welcher sie zur Beherrschung der Produktkomplexität beitragen.
 
@@ -314,7 +314,7 @@ Entsprechend \citeauthor{tilkov11}s Architekturdefinition werden im Folgenden di
 \label{Einschränkungen}
 Einschränkungen sind (in eigenen Worten) Implementierungskriterien. Während \citeauthor{fielding00} in seiner theoretischen Abhandlung explizit vier solcher Kriterien nennt, basiert die folgende Erläuterung auf der praxiserprobten Variante der Sekundärliteratur \citep{wilde11, tilkov11}.
 
-\textbf{Ressourcen mit eindeutiger Identifikation}\\
+\subsubsection*{Ressourcen mit eindeutiger Identifikation}
 \glqq Eine Ressource ist alles, was wichtig genug ist, um als eigenständiges Etwas referenziert zu werden\grqq{} \citep{richardson07}. Identifiziert werden Ressourcen im Web durch \emph{\ac{URI}s}, die einen globalen Namensraum darstellen. Jede Ressource hat mindestens eine ID, eine ID kann jedoch nicht mehr als eine Ressource identifizieren. Es ist hervorzuheben, dass Ressourcen nicht das gleiche sind wie die Datenelemente aus der Persistenzschicht einer Anwendung. Sie befinden sich auf einem anderen Abstraktionsniveau \citep{tilkov11}.\vspace{0.3em}
 
 Beispiel: Eine Warenkorbressource (d.h. ein virtueller Warenkorb) mit der ID '1024' ist unter 'http://onlineshop.de/api/basket/1024'. Die einzelnen Warenkorbposition (d.h. die einzelnen Artikel im Warenkorb) haben jedoch keine URI.
@@ -328,14 +328,14 @@ Beispiel: Weglassen der Beschreibungstexte von Warenkorbpositionen.
 
 Beispiel: Hinzufügen der Versandkosten beim Abruf des Warenkorbs.
 \end{enumerate}
-\textbf{Hypermedia}\\
+\subsubsection*{Hypermedia}
 Hypermedia beschreibt das Prinzip verknüpfter Ressourcen. Dies ermöglicht dem Client, neue Ressourcen zu entdecken und bestimmte Prozesse auszulösen \citep{wilde11}.
 
 Beispiel (Ressource): Zu einer Warenkorbressource wird für jede enthaltene Warenkorbposition eine URI zur jeweiligen Detailseite (d.h. die Seite, auf welcher der Artikel einzeln präsentiert wird) hinzugefügt.
 
 Beispiel (Prozess): Zur einer Bestellbestätigungsressource wird der zugehörige Stornierungslink hinzugefügt.
 
-\textbf{Standardmethoden/uniforme Schnittstelle}\\
+\subsubsection*{Standardmethoden/uniforme Schnittstelle}
 Oben wurde beschrieben, dass jede Ressource durch (mindestens) eine ID identifiziert wird. Jede URI unterstützt dabei den gleichen Methodensatz, welche mit den HTTP-Methoden korrespondieren. Übertragen auf die objektorientierte Programmierung bedeutet das: Jede Klasse implementiert das gleiche Interface. Folgende Teilmenge der neun verfügbaren HTTP-Methoden finden in der Literatur am häufigsten Erwähnung \citep{richardson07, tilkov11, wilde11}:
 \begin{enumerate}[a.]
 \item [\textbf{GET:}] Das Abholen einer Ressource.\vspace{0.2em}
@@ -366,12 +366,12 @@ Beispiel: DELETE an 'http://onlineshop.com/api/artikel/notebook' löscht die Not
 
 Abbildung \ref{fig:restMethoden} fasst die Eigenschaften der Methoden aus der HTTP-Spezifikation 1.1 zusammen. Die Implementierung einer Methode muss dem erwarteten Verhalten aus dieser Spezifikation entsprechen. Die Praxis zeigt, dass nur die Methoden unterstützt werden, die für die jeweilige Ressource sinnvoll sind. Abbildung \ref{fig:restMethoden} macht außerdem klar, dass es für POST keinerlei Garantien gibt. \citet{richardson07} sehen bei der Verwendung des POST im weiteren Sinne (prozessbezogen) eine Verletzung der uniformen Schnittstelle. Dies wird damit begründet, dass das Resultat des Prozesses, der durch POST ausgelöst wird, der API-Beschreibung des Webservices und nicht der HTTP-Spezifikation zu entnehmen ist. Das schafft eine Abhängig von der Schnittstellenimplementierung, die gerade durch die uniforme Schnittstelle vermieden werden soll.
 
-\textbf{Ressourcen und Repräsentationen}\\
+\subsubsection*{Ressourcen und Repräsentationen}
 Beschreibt die Darstellungen einer Ressource in einem definierten Format. Der Client bekommt nie die Ressource selbst, sondern nur eine Repräsentation derer zu sehen. In der Praxis hat sich durchgesetzt, eine serialisierte Variante eines Objektes als JSON-Objekt zur Verfügung zu stellen \citep{tilkov11}.
 
 Beispiel: Bereitstellung einer Bestellbestätigung als PDF und HTML.
 
-\textbf{Statuslose Kommunikation}\\
+\subsubsection*{Statuslose Kommunikation}
 Bei REST soll ein serverseitig abgelegter, transienter, clientspezifischer Status über die Dauer eines Requests hinweg vermieden werden. Der Service benötigt also nie Kontextinformationen zur Bearbeitung eines Requests.
 
 Beispiel: Ein Warenkorb wird nicht in einem Sessionobjekt, sondern als persistentes Datenelement gehalten.
@@ -392,7 +392,7 @@ Aus den vorgestellten Kriterien resultieren folgende Eigenschaften \citep{tilkov
 \end{compactitem}
 \pagebreak
 
-\textbf{Zusammenfassung}\\
+\subsubsection*{Zusammenfassung}
 REST ist Ressourcenorientiert, während SOAP aufgrund von \ac{RPC}s Methodenorientiert ist. Die Umsetzung von REST ist nicht an technische Voraussetzungen gebunden, vielmehr müssen eine Reihe von Kriterien erfüllt werden. Das Implementierungswerkzeug von REST sind Funktionen, die auf HTTP-Requests an definierte URIs reagieren, diese verarbeiten und mit einer HTTP-Nachricht beantworten können. Bei SOAP ist HTTP nur das Transportprotokoll. Die Verarbeitung des Inhalts erfordert einen weiteren Technologiestack.
 
 \section{eCommerce}
@@ -436,26 +436,28 @@ Die Hauptaufgaben eines eShop-Systems sehen \citet{boles00} in den Bereichen \em
 
 Die Systeme sind nach Strategie der Anbieter kategorisierbar, wie im Folgenden dargestellt wird.
 \newpage
-\textbf{Open-Source}\\
+\subsubsection*{Open-Source}
 Der Quellcode von Open-Source-Systemen ist kostenlos verfügbar. Daher bieten sie völlige Gestaltungsfreiheit, aber keinen Herstellersupport. Die Dokumentationen sind schwächer und der Funktionsumfang geringer als bei kostenpflichtigen Alternativen. Andererseits existieren Communities, die Unterstützung bieten und die Entwicklung von Erweiterungen vorantreiben \citep{stahl15}.
 
 Open-Source bedeutet nicht per se, dass die Systeme ohne Kostenaufwand einsetzbar sind. Beim kommerziellen Handel der modularen Erweiterungen auf shopspezifischen Stores liegt eine der Erlösquellen der Open-Source-Strategie (vgl. der \emph{Addon Marketplace} der \emph{PrestShop SA}\footnote{http://addons.prestashop.com} oder das Extensionverzeichnis der \emph{Opencart Limited}\footnote{http://www.opencart.com/index.php?route=extension/extension}).
 
-\textbf{Kauf-Lösungen}\\
+\subsubsection*{Kauf-Lösungen}
 Kauf-Lösungen werden kostenpflichtig lizensiert \citep[z.B.][]{shopwarePricing}. Sie bieten Herstellersupport, zusätzliche Dienstleistungen (z.B. Installation des Shops) und einen höheren Funktionsumfang (z. B. Schnittstellen zu verschiedenen Warenwirtschaftssystemen oder Zahlungsdienstleistern) \citep{stahl15}. Die Hersteller bieten verschiedene Editionen mit teilweise erheblichen Preisunterschieden an\footnote{Beispiel: die Preisdifferenz der \emph{Magento Enterprise Edition} zu \emph{Enterprise Premium} liegt bei über 35.000 \$ \citep[vgl][]{fwpShop}}.
 
 Im Rahmen eines Dual-License-Modells ist eine Open-Source \textbf{Community Edition} Teil des Editionsspektrums \citep{t3n14} (vgl. das Shopangebot der \citet{magentoShops}, \citet{shopwarePricing} oder \citet{oxidShops}). Durch den offenen Quellcode existiert auch hier der Handel modularer Erweiterungen, von dem auch die kostenpflichtigen Varianten profitieren (vgl. der \emph{Plugin Store} der shopware AG\footnote{http://store.shopware.com/}). Die Codebasis aller Editionen ist gleich. Daher kann später zu einer Kauf-Lösung migriert werden. Das bietet Flexibilität für wachsende Shopanforderungen.
 
-\textbf{Miet-Shops}\\
+\subsubsection*{Miet-Shops}
 Miet-Shops entsprechen einer Cloud-Lösung als \emph{Software-as-a-Service} (z.B. \citet{stratoWebshops}, \citet{shopify15}). Die technische Infrastruktur wird vom Provider zur Verfügung gestellt. Systemwartung, Bereitstellung der Shopsoftware und Hosting werden unter dem Mietpreis abgerechnet. \citet{stahl15} bewertet diese Variante als Einstiegslösung mit geringer Gestaltungsfreiheit.
 
-\textbf{Eigenentwicklungen}\\
+\subsubsection*{Eigenentwicklungen}
 Wenn die Standardsysteme die Anforderungen nicht erfüllen, eignen sich Eigenentwicklungen für individuelle Bedürfnisse \citep{stahl15, graf14}.
 
 Aus dieser Darstellung sind die (zumindest initial) kostenfreien Varianten ersichtlich: reine Open-Source eShop-Systeme sowie die Community-Editionen der Dual-License Modelle. Eine Anbieterübersicht ist \citet{t3n14} zu entnehmen. Eine Kategorisierung der Systeme nach Anforderungsklassen ist \citet{graf14} zu entnehmen.
 
-\textbf{Zusammenfassung}
-Im vorangegangenen Kapitel wurde das theoretische Fundament für die Arbeit gelegt. Durch die Aufstellung eines Anwendungsrahmens wurde ein wirtschaftlicher Kontext für Konfiguratoren im Allgemeinen geschaffen. Im Zusammenhang mit den Geschäftsoptionen des eCommerce lässt sich eine genauere Aussage über den Anwendungsbezug von Konfiguratoren in eShops machen. Die Konfiguration im B2C wird durch den Endverbraucher durchgeführt, entspricht also der Selbstkonfiguration. Im B2B ist beispielsweise im Rahmen des Einsatzes von Vertriebskonfiguratoren durch ausgebildetes Personal die Konfiguration komplexerer Systeme möglich. REST und SOAP ermöglichen die Instrumentierung des Webs für Integrationsszenarien.
+\section*{Zusammenfassung}
+Im vorangegangenen Kapitel wurde das theoretische Fundament für die Arbeit gelegt. Durch die Aufstellung eines Anwendungsrahmens wurde ein wirtschaftlicher Kontext für Konfiguratoren im Allgemeinen geschaffen. Daraufhin wurde die Konfiguration als Prozess zur Bestimmung von Varianten eines Produkts besprochen. Dieser Prozess eignet sich besonders für Produkte, deren Bestandteile nicht beliebig kombiniert werden können. Daraufhin wurden Konfiguratoren als Systeme vorgestellt, die eine Nutzerschittstelle zur Konfiguration anbieten und die Entscheidungen des Anwenders im Rahmen von Konfigurationsaufgaben verarbeiten. Die Diskussion von Webservices hat ergeben, dass REST und SOAP die Instrumentierung des Webs für Integrationsszenarien ermöglichen.
+
+Im Zusammenhang mit den Geschäftsoptionen des eCommerce lässt sich eine genauere Aussage über den Anwendungsbezug von Konfiguratoren in eShops machen. Der Konfigurationsprozess im B2C wird durch den Endverbraucher durchgeführt, entspricht also der Selbstkonfiguration. Im B2B ist die Konfiguration komplexerer Systeme möglich, z.B. durch die Bedienung von Vertriebskonfiguratoren durch ausgebildetes Personal. 
 
 \chapter{Analyse}
 \label{section:Analyse}
@@ -604,7 +606,7 @@ Die Feldtypen \emph{Menu} und \emph{Number} haben gemein, dass der Anwender eine
 
 Das Modell wird in einem XML-basierten Format mit der Dateiendung '.tcx' abgelegt. Die Entwicklung einer solchen Datei wird von entsprechenden Programmen unterstützt. Hierfür kann zum Beispiel \glqq TCstudio\grqq{} genutzt werden, welches eine grafische Oberfläche zur Modellentwicklung bietet \citep{tactonAbout}.
 
-\textbf{Zusammenfassung}\\
+\subsubsection*{Zusammenfassung}
 Das Tacton-Modellierungskonzept wurde vorgestellt. Neben dem Konfigurationswissen werden darin auch die Optionen des Anwenders definiert. Diese werden durch Steps in eine Reihenfolge gebracht und durch Groups logisch gegliedert. Über Felder wählt der Anwender Optionen. Der Feldtyp Number ermöglicht die Eingabe eines eigenen Wertes. So werden Komponenten definiert, die nach Kundenanforderung konstruiert oder gefertigt werden müssen. Entsprechend der vorgestellten Produktklassifizierung in Kapitel \ref{Produktklassifizierung} bildet das Konfigurationsmodell so auch \ac{MTO}-Produkte ab.
 
 Das Konfigurationsmodell definiert die Interaktionsstruktur. Diese muss jedoch noch in Form eine Konfigurationsoberfläche dargestellt werden. Neben anderen Funktionalitäten realisiert TCsite eine solche Darstellung. Die Anwendung wird im folgenden analysiert.
@@ -640,13 +642,13 @@ Abbildung \ref{fig:tcsiteLowLevel} visualisiert die offene Schichtenarchitektur 
 
 Im Folgenden werden die Architekturkomponenten einzeln vorgestellt.
 
-\textbf{Repository}\\
+\subsubsection*{Repository}
 Das \emph{Repository} bietet eine Datenbank sowie ein Reihe von Funktionen zum Lesen und Schreiben der TCsite-Objekte. Es ist in einen lokalen und einen globalen Speicher strukturiert. Wird ein Objekt erstellt oder geöffnet, geschieht die Bearbeitung immer auf einer Arbeitskopie in dem für jeden Nutzer spezifischen lokalen Speicher. Änderungen sind solange für andere Nutzer unsichtbar. Erst ein \glqq Commit\grqq{} sorgt für die nutzerübergreifende Sichtbarkeit im globalen Speicher. Bei dieser Übertragung wird eine Revisionshistorie über Objektänderungen geführt, so dass alte Zustande wieder abrufbar sind \citep{tactonTCsiteDevelopmentManual}.
 
-\textbf{Plattform}\\
-Die Plattform bietet keine eigene Oberfläche, sondern bildet eine \ac{API} mit grundlegenden Funktionalitäten für die darüberliegenden Schichten.
+\subsubsection*{Plattform}
+Die Plattform bietet keine eigene Oberfläche, sondern bildet eine \ac{API} mit grundlegenden Funktionalitäten für die darüberliegenden Schichten. \citep{tactonTCsiteDevelopmentManual}
 
-\textbf{Administration}\\
+\subsubsection*{Administration}
 Dieses Modul bildet die Administrationsoberfläche, dargestellt in Anhang \ref{app:tcsiteAdministration}. Hier werden Einstellungen getroffen und Verwaltungsaspekte realisiert. Dazu gehört zum Beispiel die Verwaltung der Nutzergruppen und Produkte.
 
 Die Nutzergruppen definieren, welche Rechte ein TCsite-User hat. Standardmäßig verfügbar sind die Nutzergruppen \glqq Standarduser\grqq{}, \glqq Systemadministrator\grqq{} und \glqq Integrationsuser\grqq{}. Letzterer Typ dient der Authentifizierung bei der Kommunikation mit externen Systemen, zum Beispiel bei einem Integrationsszenario. Bildlich gesprochen personifiziert jede externe Webanfrage einen Gast, der die Maske des Integrationsusers aufgesetzt und dessen Rechte bekommt.
@@ -662,7 +664,7 @@ Die Nutzergruppen definieren, welche Rechte ein TCsite-User hat. Standardmäßig
 
 Außerdem wird hier der Produktkatalog verwaltet. Abbildung \ref{fig:tcsiteAdministrationProduct} zeigt die Detailansicht eines Produkts. Die Darstellung macht deutlich, dass neben Produktbeschreibungen auch Dateien hinterlegt werden. Wird eine Modelldatei hochgeladen, ist das Produkt konfigurierbar. Ressourcen, wie z.B. Bilder oder eine Übersetzungsdatei können ergänzend hinzugefügt werden \citep{tactonTCsiteReferenceManual}. Entsprechend der Definition eines Konfigurationsmodells in Kapitel \ref{Produktkonfiguration} werden so nicht alle Produktvarianten explizit ausdefiniert und angelegt, sondern implizit definiert.
 
-\textbf{Quotation}\\
+\subsubsection*{Quotation}
 Das Quotation-Modul erstellt die \emph{Quotation-View}, dargestellt in Abbildung \ref{fig:tcsiteQuotationNumbered}. Technisch betrachtet realisiert das Modul Methoden für die Manipulation und Anzeige von \emph{Quotations} sowie zur Dokumentengenerierung aus den mit ihr im Zusammenhang stehenden Dateien. Aus Anwendersicht ist eine Quotation ein Angebot, dass die fertig konfigurierten Produkte enthält. Diese werden als \emph{QuotationItems} bezeichnet und unter 'Products' gelistet (siehe [1]) \citep{tactonTCsiteDevelopmentManual}. Betrachtet man eine Quotation als einen (realen) Warenkorb, sind die QuotationItems die Artikel darin. Der Vergleich hinkt insofern, als dass die Artikel im Warenkorb auch unabhängig von diesem existieren. Sie stehen zum Beispiel im Warenregal. Ein QuotationItem ist jedoch eine konkrete Variante eines konfigurierbaren Produktes, die nur innerhalb der Quotation existiert.
 
 \vspace{1em}
@@ -679,8 +681,8 @@ Der Konfigurationsprozess wird über die Schaltfläche 'Add Product' gestartet (
 Eine Quotation hat weiterhin einen Lebenszyklus, welcher unter 'Lifecycle State' dargestellt wird (siehe [3]). Das Angebot befindet sich zu jedem Zeitpunkt in einem bestimmten Zustand, welche über den Administrationsbereich verwaltet werden. Die Zustandsabfolge definiert den sogenannten \emph{Workflow}. Zustände unterscheiden sich in der Sichtbarkeit für verschiedene Nutzergruppen und deren Editierbarkeit. Beispielsweise kann sich eine Quotation in den Zuständen \glqq Design\grqq{} oder \glqq Offered\grqq{} befinden. In letzterem Zustand ist sie nicht mehr änderbar, damit keine Inkonsistenz zum herausgegebenen Angebot entstehen kann \citep{tactonTCsiteReferenceManual}.
 
 Die Box auf der rechten Seite stellt den Index aller Quotations dar (siehe [4]). Unter dem Suchfeld ist einstellbar, ob nur die Quotations des eingeloggten Nutzers gezeigt werden, oder ob nutzerübergreifend gelistet werden sollen. Wie im Administrationsbereich erwähnt, agieren auch externe Systeme als Nutzer, nämlich als Integrationsuser. Auch Quotations, die von dieser Nutzergruppe stammen, werden hier gelistet \citep{tactonTCsiteReferenceManual}.
-\newpage
-\textbf{Configuration}\\
+
+\subsubsection*{Configuration}
 Das Configuration-Modul realisiert den C-Teil des CPQ-Prozesses -- die Konfiguration. Es rendert die Konfigurationsoberfläche und verwaltet die mit der Konfiguration im Zusammenhang stehenden Objekte \citep{tactonTCsiteDevelopmentManual}. Die  technischen Verarbeitungsschritte des Konfigurationsprozesses geschehen jedoch im TCserver. Somit ist die Konfiguration als Client-Server Architektur implementiert. Das Configuration-Modul besitzt Serviceklassen, die die Kommunikation mit der Konfigurationsengine abstrahieren \citep{tactonTCsiteApiDocu}. Ansonsten ist der TCserver nicht unmittelbar ansprechbar.
 
 \subsubsection{Konfigurationsprozess}
@@ -761,7 +763,7 @@ Zur Erweiterung der Funktionalität bietet TCsite ein Pluginkonzept, welches Abb
 
 Jedes Plugin hat Zugriff auf das Repository, die Plattform und das Modul, zu dem es gehört. Die Plattform stellt außerdem ein paar spezielle Erweiterungspunkte bereit. Sie erlaubt unter anderem die Definition von \emph{Webcontrollern}. Das sind Methoden, die auf HTTP-Requests an bestimmte URIs innerhalb des TCsite-Addressraums reagieren, diese verarbeiten und mit einer HTTP-Nachricht beantworten.
 
-\textbf{Zusammenfassung}\\
+\subsubsection*{Zusammenfassung}
 Der Produktkatalog von TCsite besteht nicht aus explizit ausdefinierten Varianten, sondern Produkten mit Konfigurationsmodellen. Erst innerhalb einer \emph{Quotation} werden kundenspezifische Varianten durch einen Konfigurationsprozess generiert, welche als \emph{QuotationItems} bezeichnet werden. Der Konfigurationsprozess ist die Führung des Anwenders durch die in einem Konfigurationsmodell definierte \emph{Execution}, bei dem in jedem Step Optionen gewählt und Eingaben getätigt werden.
 
 Der Konfigurationsprozess passiert im Configuration-Modul. Technisch betrachtet werden dabei \emph{KE-Inputs} verarbeitet, die mit \emph{KE-Outputs} beantwortet werden. Ein KE-Input besteht aus dem Konfigurationsmodell, dessen Konfigurationszustand und (fakultativ) einem Eingabeparameter. Der Konfigurationszustand bezeichnet die Menge aller bisherigen Eingabeparameter. Das Konfigurationsmodell und der Konfigurationszustand werden durch das \emph{Configurable} gekapselt, der Eingabeparameter resultiert aus den Nutzerinteraktionen mit der Konfigurationsoberfläche. Die Konfigurationsoberfläche wird aus den Daten des \emph{KE-Outputs} erstellt.
@@ -778,7 +780,7 @@ Potentieller Client dieses Services ist jedes System, welches HTTP nutzen kann. 
 Jedes Shopsystem, für welches auf Grundlage dieser Bedingungen eine Daten- und Workflowschnittstelle entwickelt werden kann, kommt für das Integrationsszenario in Frage. Ein interner Evaluierungsprozess der Lino GmbH, bei dem zusätzlich ökonomische Faktoren bewertet wurden, hat zur Favorisierung von \emph{Shopware} für die weitere Entwicklungsarbeit geführt.
 
 \section{Shopsystem}
-\label{subsection:Shopsystem}
+\label{Shopsystem}
 
 Shopware wird von der \emph{shopware AG} in Schöppingen entwickelt. Das eShop-System ist aus einer Individuallösung gewachsen, welche 2003 von den heutigen Geschäftsführern entwickelt wurde. Infolgedessen wurde das Unternehmen 2008 als Vertriebsgesellschaft für die Software gegründet. Aktuell liegt die fünfte Version vor. Shopware wird in einem Dual-License Modell vertrieben. Die Community-Edition wird unter der \citeauthor{gnuAGPLv3} Open-Source Lizenz \emph{AGPLv3} angeboten. Außerdem existieren drei kommerzielle Versionen \citep{shopwareUnternehmen}.
 
@@ -825,17 +827,17 @@ Der Großteil der Logik ist jedoch nicht in den Actions, sondern den sogenannten
 \label{shopwareErweiterbarkeit}
 Der Quellcode der Community-Edition liegt offen. Theoretisch ist eine Erweiterung der Funktionalität über ein direktes Eingreifen in den Shopware-Kern denkbar. Der Hersteller sieht jedoch eine Anpassung über Plugins vor. Entsprechend der \ac{MVC}-Architektur wird in \emph{logische Erweiterungen} (betrifft Controller), \emph{Daten-Erweiterungen} (betrifft Model) und \emph{Template-Erweiterungen} (betrifft View) unterschieden \citep{shopware5Docs}.
 
-\textbf{Logische Erweiterungen}\\
+\subsubsection*{Logische Erweiterungen}
 Logische Erweiterungen werden über \emph{Events} und \emph{Hooks} realisiert. Events sind \glqq definierte Ereignisse, die im Workflow des Shops auftreten\grqq{} \citep{shopware4Docs}. Plugins können Code registrieren, welcher an den Ereignispunkten ausgeführt wird. Steht kein Event für die geplante Modifikation zur Verfügung, kann Plugin-Code über das Hooksystem unmittelbar auf Funktionen des Shopware-Kerns registriert werden \citep{shopware5Docs}. Damit ist das Erweiterungskonzept flexibler als das von TCsite. Im Folgenden werden die Konzepte detaillierter vorgestellt.
 
 Events werden in \emph{Controller-Events} und \emph{Notify-Events} unterschieden \citep{shopware4Docs}. Controller-Events sind an den \emph{Dispatch}-Vorgang gekoppelt. Der shopware-Entwickler \citet{noegel15Diaspatch} definiert Dispatching als einen Prozess, bei dem das Request-Objekt gehandhabt, daraus das relevante Modul, der Controller und die Action extrahiert, der entsprechende Controller instanziiert und dieser zur Behandlung des Requests gebracht wird. Leitet ein Controller den Request zu einem anderen Controller weiter, wiederholt sich dieser Vorgang. Plugins können auszuführenden Code registrieren, der vor (\emph{PreDispatch}) oder nach dem Dispatching (\emph{PostDispatch}) ausgeführt werden soll. Außerdem können sie den Dispatch-Prozess auf eigene Funktionen umleiten und so ganze Controller-Methoden ersetzen. Notify-Events entsprechen hingegen den in Kapitel \ref{TCsiteErweiterbarkeit} erwähnten Extension-Points von TCsite. Sie finden beispielsweise in den Core-Klassen Verwendung. So kann abseits der Controller in den Programmablauf eingegriffen werden \citep{shopware4Docs}.
 
 Hooks bieten einen generischeren Ansatz. Events sind auf den Dispatchprozess und alle sonstigen Punkte beschränkt, an denen ein Shopware-Entwickler den Eingriff eines Plugins vorgedacht hat. Das Hooksystem bezeichnet die Möglichkeit, jede Public- und Protected-Funktion von Shopware zu erweitern. Hooks erlauben die Modifizierung der Eingangsparameter und Rückgabewerte der Originalfunktion sowie deren komplette Ersetzung \citep{noegel15Hooks}.
 
-\textbf{Daten-Erweiterungen}\\
+\subsubsection*{Daten-Erweiterungen}
 Im Gegensatz zu TCsite erlaubt Shopware die Erstellung und Modifizierung von Datenbanktabellen. Sollen bestehende Datenmodelle nur um bestimmte Eigenschaften ergänzt werden, kommt das \emph{Attributsystem} in Frage. Gewisse Shopware-Entitäten (z.B. \emph{s\_user} für Shopkunden) haben Attributtabellen (z.B. \emph{s\_user\_attributes}) in einer 1-zu-1 Beziehung zugeordnet. Plugins können diesen Tabellen beliebige Spalten hinzufügen (z.B. die Lieblingsfarbe des Kunden) \citep{shopware5Docs}.
 
-\textbf{Template-Erweiterungen}\\
+\subsubsection*{Template-Erweiterungen}
 Die View bietet Erweiterungspunkte über das Smarty-Block-System. Die Blöcke können durch eigenen Templatecode ersetzt oder erweitert werden. Weiterführend sind so eigene CSS- und Javascriptdateien im Seitenkopf einbindbar. Folglich kann mittels Template-Erweiterungen auch clientseitige Logik realisiert werden.
 
 Abschließend wird bemerkt, dass Oberflächenerweiterungen im administrativen Bereich nicht durch Smarty realisiert werden, sondern durch das dort eingesetzte Framework \emph{Ext JS}. Dies wird nicht in der offiziellen Dokumentation erwähnt. Stattdessen weisen die Orientierungsbeispiele für Backenderweiterungen implizit darauf hin (siehe \citet{shopwareBackendPluginExamples}). \emph{Ext JS}-Erweiterungen sind ein komplexer Sachverhalt und werden in dieser Arbeit nicht weiter behandelt.
@@ -880,7 +882,7 @@ Dieser Vorgang illustriert den Lebenszyklus einer Variante in Shopware. Er begin
 \label{analyseFazit}
 Shopware bietet in der Standardinstallation keine Funktionalität, die der Definition eines Konfigurationsprozesses gerecht wird. Stattdessen wird eine \emph{Variantenselektion} durchgeführt. Da alle Varianten expliziert vordefiniert sind, werden dadurch die in Kapitel \ref{Produktklassifizierung} beschriebenen \ac{ATO}-Produkte abgebildet. Die Analyse in Kapitel \ref{tactonKonfigurationsmodell} hat ergeben, dass das Tacton-Konfigurationsmodell auch \ac{MTO}-Produkte abbilden kann. Eine Integration des Tacton Produktkonfigurators in Shopware würde somit dessen Angebotsspektrum in Bezug auf Produktionskonzepte erweitern.
 
-In Kapitel \ref{shopwareErweiterbarkeit} wurde das Plugin-Konzept von Shopware vorgestellt. Template-Erweiterungen erlauben einen Eingriff in die Oberfläche. Damit ist eine Konfigurationsoberfläche in Shopware darstellbar. Die Analyse des Einkaufsvorgangs von konfigurierbaren Artikeln in Kapitel \ref{shopwareEinkaufsvorgang} impliziert jedoch Änderungen über die reine Integration einer Konfigurationsoberfläche hinaus. Nach dem Konfigurationsprozess absolvieren Varianten weitere Stationen im Einkaufsvorgang. Für die Arbeit bedeutet dies, dass ein Shopware-Plugin (Shop-Plugin) zu erstellen ist, welches (1.) eine Konfigurationsoberfläche bereitstellt und (2.) die resultierenden Varianten in den Einkaufsvorgang integriert.
+In Kapitel \ref{shopwareErweiterbarkeit} wurde das Plugin-Konzept von Shopware vorgestellt. Template-Erweiterungen erlauben einen Eingriff in die Oberfläche. Damit ist eine Konfigurationsoberfläche in Shopware darstellbar. Die Analyse des Einkaufsvorgangs von konfigurierbaren Artikeln in Kapitel \ref{shopwareEinkaufsvorgang} impliziert jedoch Änderungen über die reine Integration einer Konfigurationsoberfläche hinaus. Nach dem Konfigurationsprozess absolvieren Varianten weitere Stationen im Einkaufsvorgang. Für die Arbeit bedeutet dies, dass ein Shopware-Plugin zu erstellen ist, welches (1.) eine Konfigurationsoberfläche bereitstellt und (2.) die resultierenden Varianten in den Einkaufsvorgang integriert.
 
 Im Zwischenfazit der TCsite-Analyse (Kapitel \ref{TCsiteFazit}) wurde
 geschlussfolgert, dass eine Konfigurationsoberfläche auch in einem externen System umsetzbar ist. Über Webcontroller kann ein Webservice implementiert werden, mit dem die Konfigurationsoberfläche kommuniziert. Webcontroller werden via Plugin definiert. Zusätzlich wurde oben festgestellt, dass das Shopware-Plugin nicht nur eine Konfigurationsoberfläche bereitstellen, sondern auch die resultierenden Varianten in den Einkaufsvorgang integrieren muss. Für die Arbeit bedeutet dies, dass ein TCsite-Plugin zu erstellen ist, welches (1.) eine Schnittstelle für externe Konfigurationsoberflächen anbietet und (2.) alle sonstigen Daten zur Integration einer Variante in den Einkaufsvorgang zur Verfügung stellt. 
@@ -906,7 +908,7 @@ Im Zentrum des Systemkontexts befindet sich das zu entwickelnde System selbst.
 
 Ausgehend von dem Fazit des vorherigen Kapitels kann das System feingranularer bestimmt werden, wie Abbildung \ref{fig:systemcontextErweitert} darstellt. Im Fazit des vorangegangenen Kapitels wurde beschrieben, dass sowohl für TCsite als auch für Shopware Plugins entwickelt werden müssen. Das TCsite-Plugin stellt eine Schnittstelle als Webservice bereit, welche vom Shopware-Plugin genutzt wird. Darum besteht eine Verbindung zwischen beiden Plugins.
 
-In Kapitel \ref{Webservices} wurde besprochen, dass Webservices nicht direkt von menschlichen Anwendern genutzt werden. Darum steht keiner der Stakeholder in Verbindung zum TCsite-Plugin. Hingegen werden Shopkunden im Frontend und der Administrator im Backend mit dem Shop-Plugin interagieren.
+In Kapitel \ref{Webservices} wurde besprochen, dass Webservices nicht direkt von menschlichen Anwendern genutzt werden. Darum steht keiner der Stakeholder in Verbindung zum TCsite-Plugin. Hingegen werden Shopkunden im Frontend und der Administrator im Backend mit dem Shopware-Plugin interagieren.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -926,7 +928,7 @@ Funktionale Anforderungen beschreiben das \glqq was\grqq{}, d.h. welche Funktion
 \subsection{Shopware-Plugin}
 Die Analyse des Einkaufsvorgangs in Kapitel \ref{shopwareEinkaufsvorgang} hat ergeben, dass die Konfiguration eines Artikels auf dessen Detailseite stattfindet. Daraus ergibt sich folgende Anforderung:
 \begin{enumerate}[SW.F01:]\bfseries
-\item Das Shop-Plugin muss auf der Detailseite eine Konfigurationsoberfläche bieten.
+\item Das Shopware-Plugin muss auf der Detailseite eine Konfigurationsoberfläche bieten.
 \end{enumerate}
 Die Funktionalität der Konfigurationsoberfläche kann näher beschrieben werden. Aus der Analyse des Konfigurationsprozesses in TCsite (siehe Kapitel \ref{TCsiteKonfigurationsprozess}) ergibt sich die folgende Anforderung:
 \begin{enumerate}[SW.F02:]\bfseries
@@ -1002,17 +1004,17 @@ Bis jetzt wurde unterschlagen, dass auf Übersichtsseiten wie z.B. dem Artikelli
 \end{enumerate}
 Ein eShop muss nicht zwangsläufig ausschließlich konfigurierbare Artikel verkaufen. Dementsprechend muss das Plugin einen Mechanismus anbieten, über den im Backend eingestellt wird, welche Artikel via Plugin konfigurierbar sind und welche nicht. Daraus ergibt sich folgende Anforderung:
 \begin{enumerate}[SW.F17:]\bfseries
-\item Das Shop-Plugin muss dem Administrator im Backend eine Angabe darüber ermöglichen, ob ein Artikel via Plugin konfigurierbar ist.
+\item Das Shopware-Plugin muss dem Administrator im Backend eine Angabe darüber ermöglichen, ob ein Artikel via Plugin konfigurierbar ist.
 \end{enumerate}
 Wenn ein Artikel via Plugin konfigurierbar ist, stellt sich die Frage, durch welches Konfigurationsmodell der Konfigurationsprozess definiert wird. In TCsite sind Konfigurationsmodelle Produkten zugeordnet (siehe Kapitel \ref{TCsiteArchitektur}). Die dementsprechende Anforderung lautet folgendermaßen:
 \begin{enumerate}[SW.F18:]\bfseries
-\item Das Shop-Plugin muss dem Administrator im Backend eine Angabe darüber ermöglichen, welchem TCsite-Produkt ein Artikel entspricht.
+\item Das Shopware-Plugin muss dem Administrator im Backend eine Angabe darüber ermöglichen, welchem TCsite-Produkt ein Artikel entspricht.
 \end{enumerate}
 So wird die Zuordnung händisch vom Shopware-Administrator hergestellt. Er muss also auch Kenntnis von den Produkten haben, die in TCsite verfügbar sind.
 
 Abschließend muss das Plugin noch die Adresse des Webservices kennen, der durch das TCsite-Plugin implementiert wird. Daraus folgt die abschließende Anforderung:
 \begin{enumerate}[SW.F19:]\bfseries
-\item Das Shop-Plugin muss dem Administrator im Backend eine Angabe darüber ermöglichen, unter welcher URI das TCsite-Plugin erreichbar ist.
+\item Das Shopware-Plugin muss dem Administrator im Backend eine Angabe darüber ermöglichen, unter welcher URI das TCsite-Plugin erreichbar ist.
 \end{enumerate}
 
 \subsection{TCsite-Plugin}
@@ -1049,11 +1051,11 @@ Nichtfunktionale Anforderungen beschreiben das \glqq wie\grqq{}, d.h. welche Eig
 \subsection{Shopware-Plugin}
 Wie bereits erwähnt, werden die Funktionalitäten im Rahmen eines Plugins implementiert. Die dementsprechende Anforderung lautet folgendermaßen:
 \begin{enumerate}[SW.NF01:]\bfseries
-\item Die Integration des Tacton Produktkonfigurators muss über ein Shop-Plugin umgesetzt werden.
+\item Die Integration des Tacton Produktkonfigurators muss über ein Shopware-Plugin umgesetzt werden.
 \end{enumerate}
-Weiterhin kann aufgrund der technischen Analyse aus Kapitel \ref{shopwareArchitektur} eine Aussage darüber getroffen werden, mit welchen Programmiersprachen das Shop-Plugin zu entwickeln ist. In der View kommt Smarty-Syntax zum Einsatz, wobei Javascript und CSS eingebunden werden können. Die logischen Erweiterungen werden in PHP verfasst. Daraus resultiert folgende Anforderung:
+Weiterhin kann aufgrund der technischen Analyse aus Kapitel \ref{shopwareArchitektur} eine Aussage darüber getroffen werden, mit welchen Programmiersprachen das Shopware-Plugin zu entwickeln ist. In der View kommt Smarty-Syntax zum Einsatz, wobei Javascript und CSS eingebunden werden können. Die logischen Erweiterungen werden in PHP verfasst. Daraus resultiert folgende Anforderung:
 \begin{enumerate}[SW.NF02:]\bfseries
-\item Das Shop-Plugin muss unter der Verwendung von PHP, Smarty-Syntax, Javascript, und CSS erstellt werden.
+\item Das Shopware-Plugin muss unter der Verwendung von PHP, Smarty-Syntax, Javascript, und CSS erstellt werden.
 \end{enumerate}
 
 \subsection{TCsite-Plugin}
@@ -1070,59 +1072,63 @@ Im Zwischenfazit des Analysekapitels (siehe Kapitel \ref{TCsiteFazit}) wurde fes
 \item Die Konfigurationsschnittstelle wird als Webservice entsprechend des REST-Architekturstils implementiert.
 \end{enumerate}
 
-\textbf{Zusammenfassung}\\
+\subsection*{Zusammenfassung}
 Die Zusammenarbeit der beiden Plugins sieht die Zuordnung von Shopware-Artikeln zu TCsite-Produkten vor. Somit entsteht abgesehen von Anforderung SW.F18\footnote{Die Angabe im Backend darüber, welchem TCsite-Produkt ein Shopware-Artikel entspricht.} kein zusätzlicher manueller Verwaltungsaufwand im Shopsystem. Es müssen also shopseitig zum Einsatz des Tacton Produktkonfigurators keine weiteren Dateien (z.B. Konfigurationsmodelle) angelegt werden, da der Datenbankbestand von TCsite genutzt wird. Inwiefern in der Folge der Anforderung SW.F03\footnote{Die Variantenintegration in den Einkaufsvorgang.} neue Datenbankentitäten bei Shopware entstehen, wird im folgenden Konzeptionskapitel geklärt. Davon unabhängig ist die Entscheidung, ob in TCsite extra für den Shopeinsatz angefertigte Konfigurationsmodelle zum Einsatz kommen oder die bereits vorhandene Produktpalette genutzt wird.
 
 \chapter{Konzeption}
 \label{Konzeption}
 Aus der Anforderungsanalyse ist hervorgegangen, dass zwei Plugins konzipiert werden müssen. Es wird erst das Shopware-Plugin und danach das TCsite-Plugin behandelt. Grund dafür ist, dass das TCsite-Plugin einen Webservice darstellt, den das Shopware-Plugin als Client nutzt. Indem der Client zuerst konzipiert wird, ergeben sich daraus die Ressourcen und Prozesse, die vom Service bereitgestellt werden müssen.
 
-\subsection{Shopware-Plugin}
-\label{subsection:Shopware-Plugin}
-\textbf{Vorbetrachtung}\\
-Vor der Konzeption des Shopware-Plugins wird betrachtet, wie sich Artikel, Varianten, Warenkorbpositionen etc. zueinander im Datenbankschema verhalten. Daraus wird abgeleitet, wie die Ergebnisse einer Konfiguration -- die Varianten -- in den Einkaufsvorgang integriert werden. Es wird geklärt, ob neue Klassen bzw. Tabellen erzeugt oder bestehende Strukturen verwendet werden können.
+\section{Shopware-Plugin}
+\label{Shopware-Plugin}
+\subsection{Vorbetrachtung}
+Vor der Konzeption des Shopware-Plugins wird betrachtet, wie sich Artikel, Varianten, Warenkorbpositionen etc. zueinander im Datenbankschema verhalten. Daraus wird abgeleitet, wie das Ergebnis eines Konfigurationsprozesses -- die Variante -- in den Einkaufsvorgang integriert wird. Es wird geklärt, ob dafür neue Klassen bzw. Tabellen erzeugt oder bestehende Strukturen verwendet werden können.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=0.7\linewidth]{Abbildungen/shopwareArtikelRelationenModell.pdf}
-	\captionof{figure}[shopwareArtikelRelationenModell]{Ausschnitt des Relationenmodells in Shopware}
+	\captionof{figure}[Ausschnitt des Relationenmodells von Shopware]{Ausschnitt des Relationenmodells von Shopware}
 	\label{fig:shopwareArtikelRelationenModell}
 \end{minipage}
-\vspace{1em}
+\vspace{0.3em}
 
-Abbildung \ref{fig:shopwareArtikelRelationenModell} zeigt einen Ausschnitt des Shopware-Datenbankschemas als Relationenmodell. Eine vollständige Übersicht ist Quelle \citet{shopwareDatabaseScheme} zu entnehmen. Auf der Abbildung sind die im Analysekapitel \ref{Shopsystem} verwendeten Begriffe rot zugeordnet. Dem Relationenmodell ist zu entnehmen, dass Artikel (\emph{s\_articles}) und deren Varianten (\emph{s\_articles\_details}) in unterschiedlichen Tabellen gespeichert werden. Artikel und Varianten stehen in einer 1-zu-n Beziehung. Dabei kennen Varianten ihren jeweiligen Basisartikel, aber nicht umgekehrt. Es ist anzumerken, dass auch zu einem nichtkonfigurierbaren Artikel zumindest eine Zeile in \emph{s\_articles\_details} angelegt wird\footnote{Solche Kardinalitäten können in einem Relationenmodell nicht ausgedrückt werden.}. Der Artikel steht dann mit einer Variante in einer 1-zu-1 Beziehung. Diese Variante ist damit automatisch immer die Basisvariante\footnote{Der Begriff Basisvariante wurde in Kapitel \ref{shopwareKonfiguration} definiert}. Daraus lässt sich ableiten, dass in \emph{s\_articles} Informationen stehen, die für alle Varianten gelten (z.B. die allgemeine Produktbeschreibung \emph{description}) während \emph{s\_articles\_details} detailliertere Informationen enthält (z.B. der jeweilige Lagerbestand \emph{instock}). Es ist hervorzuheben, dass \emph{s\_articles\_details} zwei Primärschlüssel besitzt -- \emph{articledetailsID} und \emph{ordernumber}. Die \emph{articledetailsID} wird vom System vergeben, während die \emph{ordernumber} vom Administrator bestimmt werden kann. Somit ist die \emph{ordernumber} ein menschenlesbarer Identifikator, der vom Vertrieb dem Produktkatalog des Unternehmens zugeordnet werden kann.
+Abbildung \ref{fig:shopwareArtikelRelationenModell} zeigt einen Ausschnitt des Shopware-Datenbankschemas als Relationenmodell. Eine vollständige Übersicht ist \citet{shopwareDatabaseScheme} zu entnehmen. Auf der Abbildung sind die im Analysekapitel \ref{Shopsystem} verwendeten Begriffe rot zugeordnet. Dem Relationenmodell ist zu entnehmen, dass Artikel (\emph{s\_articles}) und deren Varianten (\emph{s\_articles\_details}) in unterschiedlichen Tabellen gespeichert werden. Artikel und Varianten stehen in einer 1-zu-n Beziehung. Dabei kennen Varianten ihren jeweiligen Basisartikel, aber nicht umgekehrt. Es ist anzumerken, dass auch zu einem nichtkonfigurierbaren Artikel zumindest eine Zeile in \emph{s\_articles\_details} angelegt wird\footnote{Solche Kardinalitäten können in einem Relationenmodell nicht ausgedrückt werden.}. Der Artikel steht dann mit einer Variante in einer 1-zu-1 Beziehung. Diese Variante ist damit automatisch immer die \emph{Basisvariante}\footnote{Der Begriff Basisvariante wurde in Kapitel \ref{shopwareEinkaufsvorgang} definiert}. Daraus lässt sich ableiten, dass in \emph{s\_articles} Informationen stehen, die für alle Varianten gelten (z.B. die allgemeine Produktbeschreibung \emph{description}) während \emph{s\_articles\_details} detailliertere Informationen enthält (z.B. der jeweilige Lagerbestand \emph{instock}). Es ist hervorzuheben, dass \emph{s\_articles\_details} zwei Primärschlüssel besitzt -- \emph{articledetailsID} und \emph{ordernumber}. Die \emph{articledetailsID} wird vom System vergeben, während die \emph{ordernumber} vom Administrator bestimmt werden kann. Somit ist die \emph{ordernumber} ein menschenlesbarer Identifikator, der vom Vertrieb dem Produktkatalog des Unternehmens zugeordnet werden kann.
 
-Die Verbindung zwischen einer Variante und den Optionen (\emph{s\_article\_configurator\_options }), aus denen sie generiert wurde, wird über die Tabelle \emph{s\_article\_configurator\_option\_relations} hergestellt. Weder sind Optionen inhärenter Bestandteil einer Variante, noch besitzt \emph{s\_articles\_details} Fremdschlüsselverweise auf \emph{s\_article\_configurator\_options }. Damit ist eine Variante nicht existentiell auf Optionen angewiesen. Daraus wird geschlussfolgert, dass während des Einkaufsprozesses Varianten dynamisch, d.h. bei Bedarf, generiert werden können.
+Die Verbindung zwischen einer Variante und den Optionen (\emph{s\_article\_configurator\_options }), aus denen sie generiert wurde, wird über die Tabelle \emph{s\_article\_configurator\_option\_relations} hergestellt. Weder sind Optionen inhärenter Bestandteil einer Variante, noch besitzt \emph{s\_articles\_details} obligatorische Fremdschlüsselverweise auf \emph{s\_article\_configurator\_options}. Damit ist eine Variante nicht existentiell auf Optionen angewiesen. Daraus wird geschlussfolgert, dass während des Einkaufsprozesses Varianten dynamisch, d.h. bei Bedarf, generiert werden können.
 
 Im Gegensatz dazu hat eine Warenkorbposition (\emph{s\_order\_basket}) einen obligatorischen Fremdschlüsselverweis auf eine Variante -- und ist damit von deren Existenz abhängig. Ein Warenkorbposition kann zeitlich nicht vor der zugehörigen Variante angelegt werden. Es wird geschlussfolgert, dass eine Variante noch nicht zum Beginn des Einkaufsvorgangs, aber spätestens beim Ablegen in den Warenkorb erstellt werden muss. Damit steht der zeitliche Spielraum für die dynamische Variantengenerierung fest.
 
-\subsubsection{Einkaufsvorgang}
+\subsection{Einkaufsvorgang}
 Abbildung \ref{fig:konzeptionEinkausvorgang1} stellt den neuen Einkaufsvorgang dar. Er entsteht aus dem Einkaufsvorgang in Abbildung \ref{fig:shopwareKonfigurationFlussdiagramm}, wenn folgende Sachverhalte berücksichtigt werden:
 \begin{enumerate}
 \item Es wird mit dem TCsite-Plugin kommuniziert (dargestellt als Wolken).
 \item Varianten werden dynamisch angelegt.
-\item Wird eine Warenkorbposition umkonfiguriert, entsteht keine neue Warenkorbposition. Stattdessen wird die Warenkorbposition aktualisiert.
+\item Wird eine Warenkorbposition umkonfiguriert, entsteht keine neue Warenkorbposition. Stattdessen wird die entsprechende Warenkorbposition aktualisiert.
 \end{enumerate}
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=1\linewidth]{Abbildungen/konzeptionEinkausvorgang1.pdf}
-	\captionof{figure}[konzeptionEinkausvorgang1]{Aktivitätsdiagramm des Einkaufsvorgangs von Artikeln, die per Plugin konfiguriert werden}
+	\captionof{figure}[Aktivitätsdiagramm des Einkaufsvorgangs von Artikeln, die via Plugin konfiguriert werden]{Aktivitätsdiagramm des Einkaufsvorgangs von Artikeln, die via Plugin konfiguriert werden}
 	\label{fig:konzeptionEinkausvorgang1}
 \end{minipage}
-\vspace{1em}
+\vspace{0.3em}
 
 Das Aktivitätsdiagramm (Abbildung \ref{fig:konzeptionEinkausvorgang1}) bildet den \glqq roten Faden\grqq{} für die folgende Konzeption. Während der chronologischen Erläuterung des Einkaufsvorgangs werden die Daten und Prozesse erläutert, die vom Service bereit gestellt werden müssen. Gleichzeitig wird besprochen, welche Modifikationen der Shopware-Funktionalität vorgenommen werden müssen und welche der Erweiterungskonzepte aus Kapitel \ref{shopwareErweiterbarkeit} dafür jeweils in Frage kommen.
 
-\textbf{Artikellisting}\\
-Der Einkaufsvorgang beginnt mit dem Auswählen des gewünschten Artikels. Das kann über verschiedene Wege passieren, zum Beispiel über das Artikellisting. Anhang \ref{app:shopwareArtikelListing} zeigt, dass dabei standardmäßig Preise angezeigt werden. Gemäß Anforderung \emph{SW.F16} dürfen konfigurierbare Artikel aber keinen Preis ausweisen. Es muss also ein Hinweis darüber hinterlegt werden, welche Artikel per Plugin konfigurierbar sind. Das entspricht Anforderung \emph{SW.F16}, gemäß derer konfigurierbare Artikel im Backend als solche markierbar sein müssen. Gleichzeitig fordert \emph{SW.F17} die Angabe, welchem Produkt in TCsite ein Shopware-Artikel entspricht. Im Folgenden wird diese Zuordnung als \emph{korrespondierendes TCsite-Produkt} bezeichnet. Es wird festgelegt: besitzt ein Artikel diese Zuordnung, ist es via Plugin konfigurierbar.
+\subsubsection*{Artikellisting}
+Der Einkaufsvorgang beginnt mit dem Auswählen des gewünschten Artikels. Das kann über verschiedene Wege passieren, zum Beispiel über das Artikellisting. Anhang \ref{app:shopwareArtikelListing} zeigt, dass dabei standardmäßig Preise angezeigt werden. Gemäß Anforderung SW.F16 dürfen konfigurierbare Artikel aber keinen Preis ausweisen.
 
-Zum Hinterlegen der Zuordnung wird eine Datenbank-Erweiterung genutzt. Konkret wird das in Kapitel \ref{shopwareErweiterbarkeit} angesprochene System der Attributtabellen verwendet. Plugins können Attributtabellen (Tabellenbezeichnung endet auf \emph{*\_attributes}) Spalten hinzufügen. Abbildung \ref{fig:shopwareArtikelRelationenModell} zeigt \emph{s\_articles\_attributes}, die Attributtabelle von Artikeln und ihren Varianten. Shopware legt zu jeder Variante in \emph{s\_articles\_details} automatisch eine zugehörige Zeile in der Attributtabelle an. Es wird die Entwurfsentscheidung getroffen, der Tabelle eine Spalte \emph{correspondingTcsiteProduct} hinzuzufügen. Um diese Spalte befüllen zu können, wird ein entsprechendes Textfeld per \emph{Ext JS}-Erweiterung dem Artikelmenü (dargestellt in Anhang \ref{app:shopwareBackendArtikel}) hinzugefügt. In Kapitel \ref{shopwareErweiterbarkeit} wurde außerdem erwähnt, dass in Smarty-Templates logische Einheiten existieren, die als Blöcke bezeichnet werden. Der Block namens \emph{frontend\_listing\_box\_article\_price\_default} beinhaltet den Preis eines Artikels im Artikellisting.  Über eine Template-Erweiterung muss dieser Block ersetzt werden. Er soll künftig überprüfen, ob ein Eintrag über ein korrespondierendes TCsite-Produkt vorliegt und die Ausgabe entsprechend anpassen. Statt des Preises wird dann die Nachricht  \glqq Preis entsprechend Konfiguration\grqq{} angezeigt. Somit werden die Anforderungen \emph{SW.F16}, \emph{SW.F17} und \emph{SW.F18} erfüllt.
+Bereits zu diesem Zeitpunkt muss also vom System interpretierbar sein, welche Artikel via Plugin konfiguriert werden. Demzufolge muss bei den betreffenden Artikeln ein Hinweis über deren \glqq Konfigurierbarkeit\grqq{} hinterlegt werden. Das entspricht Anforderung SW.F17, gemäß derer im Backend die via Plugin konfigurierbaren Artikel markierbar sein müssen. Gleichzeitig fordert SW.F18 die Angabe, welchem TCsite-Produkt ein Shopware-Artikel entspricht. Im Folgenden wird diese Zuordnung als \emph{korrespondierendes TCsite-Produkt} bezeichnet. Es wird festgelegt: besitzt ein Artikel diese Zuordnung, ist es via Plugin konfigurierbar.
+
+Zum Hinterlegen der Zuordnung wird eine Datenbank-Erweiterung genutzt. Konkret wird das in Kapitel \ref{shopwareErweiterbarkeit} angesprochene System der Attributtabellen verwendet. Plugins können Attributtabellen\footnote{Attributtabellen sind daran erkennbar, dass ihre Bezeichnung auf \emph{\_attributes} endet.} Spalten hinzufügen. Abbildung \ref{fig:shopwareArtikelRelationenModell} zeigt \emph{s\_articles\_attributes}, die Attributtabelle von Artikeln und ihren Varianten. Shopware legt zu jeder Zeile in \emph{s\_articles\_details} automatisch eine zugehörige Zeile in der Attributtabelle an. Es wird die Entwurfsentscheidung getroffen, der Tabelle die Spalte \emph{correspondingTcsiteProduct} hinzuzufügen.
+
+Um diese Spalte im Backend befüllen zu können, wird ein entsprechendes Textfeld per \emph{Ext JS}-Erweiterung dem Artikelmenü (dargestellt in Anhang \ref{app:shopwareBackendArtikel}) hinzugefügt. In Kapitel \ref{shopwareErweiterbarkeit} wurde außerdem erwähnt, dass Smarty-Templates logische Einheiten via \emph{Blöcke} auszeichnen. Der Block namens \emph{frontend\_listing\_box\_article\_price\_default} beinhaltet den Preis eines Artikels im Artikellisting.  Über eine Template-Erweiterung muss dieser Block ersetzt werden. Er soll künftig überprüfen, ob für den aktuell zu rendernden Artikel ein Eintrag in der Spalte \emph{correspondingTcsiteProduct} vorliegt und die Ausgabe entsprechend anpassen. Statt des Preises wird dann die Nachricht \glqq Preis entsprechend Konfiguration\grqq{} angezeigt. Somit werden die Anforderungen SW.F16, SW.F17 und SW.F18 erfüllt.
 
 \textbf{Detailseite}\\
-Der Anwender befindet sich nur auf der Detailseite eines Artikels, der via Plugin konfigurierbar ist. Es wird die Basisvariante geladen und angezeigt. Der Artikel wurde im Backend nie als \emph{Varianten-Artikel} markiert. Darum wird nicht der Standard-Konfigurationsmechanismus von Shopware getriggert. Demzufolge wird  auch kein Konfigurationsmenü wie in Anhang \ref{app:shopwareNotebookDetail} angezeigt. Aus Shopware-Sicht handelt es sich um einen normalen, nichtkonfigurierbaren Artikel und lädt die Basisvariante.
+Der Anwender befindet sich nur auf der Detailseite eines Artikels, der via Plugin konfigurierbar ist. Wie in Kapitel \ref{shopwareEinkaufsvorgang} besprochen, wird die Basisvariante geladen und angezeigt. Der Artikel wurde im Backend nie als \emph{Varianten-Artikel} markiert. Darum wird nicht der Standard-Konfigurationsmechanismus von Shopware getriggert. Demzufolge wird  auch kein Konfigurationsmenü wie in Anhang \ref{app:shopwareNotebookDetail} angezeigt. Aus Shopware-Sicht handelt es sich um einen normalen, nichtkonfigurierbaren Artikel und lädt die Basisvariante.
 
 Stattdessen startet nun der Konfigurationsprozess über das Shopware-Plugin. Dazu müssen Daten vom TCsite-Plugin geladen werden. Diese Daten werden im Rest der Konzeption unter dem Begriff \textbf{configuration} zusammengefasst. Aus Shopware-Sicht ist das ein Aggregat, welches alle Informationen zum Rendern der Konfigurationsoberfläche und zur Integration der entstehenden Variante in den Einkaufsvorgang enthält. Ob und wie dieses Aggregat als einzelne Ressourcen modelliert wird, ist Verantwortungsbereich der späteren Webservice-Konzeption. Fest steht jetzt bereits, dass \emph{configuration} in Form von JSON repräsentiert wird. TCsite hat für Webcontroller bereits Komponenten zum serialisieren und deserialisieren von JSON-Objekten eingebaut \citep{tactonTCsiteDevelopmentManual}.
 
@@ -1351,7 +1357,7 @@ Bis jetzt wurde die \emph{Quotation} mit den dazugehörigen Objekten nach der Ge
 
 Nun begann die Entwicklung des Shopware-Plugins. Mittels der im Konzeptionsteil vorgestellten Template-Erweiterungen wurde die sporadische Eingabemaske des Testclienten in die Detailseite von Shopware übertragen. So wurde zunächst sichergestellt, dass die Kommunikation mit TCsite auch aus Shopware funktioniert. Als nächstes wurde die Konfigurationsoberfläche zum Ersatz der bisherigen Eingabemaske implementiert. Dafür wurde ein jQuery-Plugin geschrieben, welches mit einem rekursivem Algorithmus den \emph{grouptree} parst und währenddessen die entsprechenden DOM-Elemente generiert und verkettet. Die resultierende HTML-Struktur wurde in den \emph{DOM-tree} der Detailseite einhängt. Per CSS wurde die Darstellung der Oberfläche an das Shopware-Design angepasst. Als nächstes wurde über die Registrierung von Eventhandlern die Funktionalität der Interaktionselemente (Steps, Felder vom Typ \emph{Menu} und \emph{Number}) hergestellt. Außerdem wurde der Mechanismus zum Wechseln der Optionszustände zwischen verhandelbar/unverhandelbar implementiert. Jede Eingabeparamter, der aus jeder Nutzerinteraktion resultiert, wurde via \emph{AJAX} an den Server übertragen, daraufhin der neue \emph{grouptree} entgegen genommen und die Konfigurationsoberfläche aktualisiert. Somit läuft der Konfigurationsprozess wie eine Single-Page-Application ab, d.h. ohne Seitenreload. Ergebnis dieses Abschnitts ist die Erstellung der Konfigurationsoberfläche, die einen Konfigurationsprozess äquivalent zu TCsite ermöglicht (entspricht Anforderung SW.F02). Dieser Teil der Umsetzung hat den größten Teil der praktischen Bearbeitungszeit ausgemacht.
 
-Nun wurde der konfigurierte Artikel in den Einkaufsvorgang integriert. Alle  Umsetzungsschritte entsprechen den Beschreibungen aus Kapitel \ref{subsection:Shopware-Plugin}. Darin wurden die verwendeten Erweiterungspunkte bereits erläutert. Der Lebenszyklus der dynamisch generierten Varianten wurde stets mit der mySQL-Administrationsanwendung \emph{phpMyAdmin} überprüft und auf Fehler kontrolliert. Die Funktionalität des Webservices wurde nur bei Bedarf erweitert. So wurde der Serviceendpunkt zum Löschen einer \emph{Quotation} erst eingerichtet, als das Löschen von dynamisch generierten Varianten in Shopware implementiert wurde. Das Umkonfigurieren von Varianten wurde als Letztes umgesetzt. Ergebnis dieses Abschnitts ist die Integration der Varianten in den Einkaufsvorgang, die aus dem Konfigurationsprozess resultieren. Damit ist die Implementierung abgeschlossen.
+Nun wurde der konfigurierte Artikel in den Einkaufsvorgang integriert. Alle  Umsetzungsschritte entsprechen den Beschreibungen aus Kapitel \ref{Shopware-Plugin}. Darin wurden die verwendeten Erweiterungspunkte bereits erläutert. Der Lebenszyklus der dynamisch generierten Varianten wurde stets mit der mySQL-Administrationsanwendung \emph{phpMyAdmin} überprüft und auf Fehler kontrolliert. Die Funktionalität des Webservices wurde nur bei Bedarf erweitert. So wurde der Serviceendpunkt zum Löschen einer \emph{Quotation} erst eingerichtet, als das Löschen von dynamisch generierten Varianten in Shopware implementiert wurde. Das Umkonfigurieren von Varianten wurde als Letztes umgesetzt. Ergebnis dieses Abschnitts ist die Integration der Varianten in den Einkaufsvorgang, die aus dem Konfigurationsprozess resultieren. Damit ist die Implementierung abgeschlossen.
 
 \textbf{Zusammenfassung}\\
 Zunächst wurde eine Grundlage für die Kommunikation von TCsite mit externen Systemen geschaffen (CORS/\emph{Integrationsuser}). Danach wurden die Serviceendpunkte im TCsite-Plugin soweit implementiert, dass ein Client einen Konfigurationsprozess durchführen konnte. Anschließend wurde die Konfigurationsoberfläche implementiert. Letztendlich wurden die entstehenden Varianten in den Einkaufsvorgang integriert.
