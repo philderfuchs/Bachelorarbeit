@@ -173,7 +173,7 @@ Die vorausgehende Beschreibung einer Konfigurationslösung suggeriert, dass zu B
 \label{wissenrepraesentation}
 Das Wissen, welches über ein konfigurierbares Produkt besteht, wird als  \emph{Konfigurationswissen} bezeichnet \citep{soininen98}. Dieses Wissen kann auf unterschiedliche Art und Weise repräsentiert (d.h. dargestellt) werden. Die Repräsentation kann zur Definition eines Konfigurationsmodells genutzt werden \citep{felferning14}. Auf konzeptioneller Ebene werden die Begriffe Wissensrepräsentation und Konfigurationsmodell äquivalent verwendet. Auf technischer Ebene bezeichnet das Konfigurationsmodell jedoch das spezifische Format, welches ein Konfigurator versteht \citep{soininen98}.
 
-Im Folgenden wird eine grafische Form der Wissensrepräsentation vorgestellt, die auf UML basiert. Die grafische Darstellung wurde gewählt, da durch diese eine Vorstellung über die Problemdomäne gebildet werden kann. Sie ist UML-basiert, da die Sprache in der Informatik zur Wissensmodellierung bekannt ist. Zur Erklärung wird eine Notebook-Konfiguration eingeführt, die im weiteren Verlauf der Arbeit immer wieder aufgegriffen wird. Die Modellierung basiert auf dem Arbeitsbeispiel von \citep{felferning14}. Einzelne Komponenten des Beispiels wirken aus aktueller Sicht überholt, sind zur Veranschaulichung bestimmter Sachverhalte aber bewusst gewählt.
+Im Folgenden wird eine grafische Form der Wissensrepräsentation vorgestellt, die auf UML basiert. Die grafische Darstellung wurde gewählt, da durch diese eine Vorstellung über die Problemdomäne gebildet werden kann. Sie ist UML-basiert, da die Sprache in der Informatik zur Wissensmodellierung bekannt ist. Zur Erklärung wird eine Notebook-Konfiguration eingeführt, die im weiteren Verlauf der Arbeit immer wieder aufgegriffen wird. Die Modellierung basiert auf dem Arbeitsbeispiel von \citep{felferning14}. Einzelne Komponenten des Beispiels wirken aus aktueller Sicht überholt, sind zur Veranschaulichung bestimmter Constraints aber bewusst gewählt.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -358,13 +358,13 @@ Beispiel: DELETE an 'http://onlineshop.com/api/artikel/notebook' löscht die Not
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=0.7\linewidth]{Abbildungen/restMethoden.png}
-	\captionof{figure}[HTTP-Methoden und ihre Eigenschaften]{HTTP-Methoden und ihre Eigenschaften\footnote{Relevante Attribute im Rahmen der Arbeit: \glqq Sicher\grqq{} bedeutet nebenwirkungsfrei, d.h. kein Ressourcenzustand ändert sich durch diese Methode. \glqq Idempotent\grqq{} bedeutet, dass das Resultat der Methode bei Mehrfachausführung das gleiche ist. \glqq Identifizierbare Ressource\grqq{} bedeutet, dass die URI garantiert eine Ressource identifiziert.}
+	\captionof{table}[HTTP-Methoden und ihre Eigenschaften]{HTTP-Methoden und ihre Eigenschaften\footnote{Relevante Attribute im Rahmen der Arbeit: \glqq Sicher\grqq{} bedeutet nebenwirkungsfrei, d.h. kein Ressourcenzustand ändert sich durch diese Methode. \glqq Idempotent\grqq{} bedeutet, dass das Resultat der Methode bei Mehrfachausführung das gleiche ist. \glqq Identifizierbare Ressource\grqq{} bedeutet, dass die URI garantiert eine Ressource identifiziert.}
 	(Quelle: \citet{tilkov11})}
-	\label{fig:restMethoden}
+	\label{tab:restMethoden}
 \end{minipage}
 \vspace{1em}
 
-Abbildung \ref{fig:restMethoden} fasst die Eigenschaften der Methoden aus der HTTP-Spezifikation 1.1 zusammen. Die Implementierung einer Methode muss dem erwarteten Verhalten aus dieser Spezifikation entsprechen. Die Praxis zeigt, dass nur die Methoden unterstützt werden, die für die jeweilige Ressource sinnvoll sind. Abbildung \ref{fig:restMethoden} macht außerdem klar, dass es für POST keinerlei Garantien gibt. \citet{richardson07} sehen bei der Verwendung des POST im weiteren Sinne (prozessbezogen) eine Verletzung der uniformen Schnittstelle. Dies wird damit begründet, dass das Resultat des Prozesses, der durch POST ausgelöst wird, der API-Beschreibung des Webservices und nicht der HTTP-Spezifikation zu entnehmen ist. Das schafft eine Abhängig von der Schnittstellenimplementierung, die gerade durch die uniforme Schnittstelle vermieden werden soll.
+Tabelle \ref{tab:restMethoden} fasst die Eigenschaften der Methoden aus der HTTP-Spezifikation 1.1 zusammen. Die Implementierung einer Methode muss dem erwarteten Verhalten aus dieser Spezifikation entsprechen. Die Praxis zeigt, dass nur die Methoden unterstützt werden, die für die jeweilige Ressource sinnvoll sind. Tabelle \ref{tab:restMethoden} macht außerdem klar, dass es für POST keinerlei Garantien gibt. \citet{richardson07} sehen bei der Verwendung des POST im weiteren Sinne (prozessbezogen) eine Verletzung der uniformen Schnittstelle. Dies wird damit begründet, dass das Resultat des Prozesses, der durch POST ausgelöst wird, der API-Beschreibung des Webservices und nicht der HTTP-Spezifikation zu entnehmen ist. Das schafft eine Abhängig von der Schnittstellenimplementierung, die gerade durch die uniforme Schnittstelle vermieden werden soll.
 
 \subsubsection*{Ressourcen und Repräsentationen}
 Beschreibt die Darstellungen einer Ressource in einem definierten Format. Der Client bekommt nie die Ressource selbst, sondern nur eine Repräsentation derer zu sehen. In der Praxis hat sich durchgesetzt, eine serialisierte Variante eines Objektes als JSON-Objekt zur Verfügung zu stellen \citep{tilkov11}.
@@ -378,7 +378,7 @@ Beispiel: Ein Warenkorb wird nicht in einem Sessionobjekt, sondern als persisten
 
 \subsubsection{REST-Konformität}
 \label{REST-Konformität}
-Diese Auflistung legt folgende Frage nahe: Ist ein Webservice nur dann REST-konform, wenn alle Kriterien erfüllt werden? Was ist mit einem Webservice, der allen Einschränkungen gerecht wird, jedoch Ressourcen nur als JSON repräsentiert (ein Verstoß gegen die Forderung nach unterschiedlichen Repräsentationen)? Aus diesem Grund existiert das \glqq Richardson Maturity Model\grqq{}, welches die abgestufte Bewertung eines Webservices nach dessen REST-Konformität erlaubt. Es wird während der Auswertung in Kapitel \ref{Fazit} vorgestellt und zur Evaluierung der Implementierung genutzt.
+Diese Auflistung legt folgende Frage nahe: Ist ein Webservice nur dann REST-konform, wenn alle Kriterien erfüllt werden? Was ist mit einem Webservice, der allen Einschränkungen gerecht wird, jedoch Ressourcen nur in Form von JSON repräsentiert (ein Verstoß gegen die Forderung nach unterschiedlichen Repräsentationen)? Aus diesem Grund existiert das \glqq Richardson Maturity Model\grqq{}, welches die abgestufte Bewertung eines Webservices nach dessen REST-Konformität erlaubt. Es wird während der Auswertung in Kapitel \ref{Fazit} vorgestellt und zur Evaluierung der Implementierung genutzt.
 
 \subsubsection{Eigenschaften}
 \label{REST-Eigenschaften}
@@ -388,7 +388,7 @@ Aus den vorgestellten Kriterien resultieren folgende Eigenschaften \citep{tilkov
 \item [\textbf{Lose Kopplung:}] Beschreibt isolierte Systeme mit größtmöglicher Unabhängigkeit, die über Schnittstellen miteinander kommunizieren. Hierzu tragen die Standardmethoden bei.
 \item [\textbf{Interoperabilität:}] Beschreibt die Möglichkeit der Kommunikation von Systemen unabhängig von deren technischen Implementierung. Dies ergibt sich durch die Festlegung auf Standards. Bei der Anwendung von REST auf Webservices sind dies Webstandards (z.B. HTTP, URIs).
 \item [\textbf{Wiederverwendbarkeit}:] Jeder Client, der die Schnittstelle eines REST-basierten Service verwenden kann, kann auch jeden anderen beliebigen REST-basierten Service nutzen - vorausgesetzt, das Datenformat wird von beiden Seiten verstanden.
-\item [\textbf{Performance und Skalierbarkeit}:] Webservices sollen schnell antworten, unabhängig von der Anzahl von Anfragen in einem definierten Zeitraum. Dies wird durch die Cachebarkeit (siehe HTTP-Methodenspezifikation in Abbildung \ref{fig:restMethoden}) und Zustandslosigkeit erreicht. Da der Service keinen clientspezifischen Kontext aufbauen muss, müssen aufeinanderfolgende Requests nicht vom gleichen Server beantwortet werden.
+\item [\textbf{Performance und Skalierbarkeit}:] Webservices sollen schnell antworten, unabhängig von der Anzahl von Anfragen in einem definierten Zeitraum. Dies wird durch die Cachebarkeit (siehe HTTP-Methodenspezifikation in Tabelle \ref{tab:restMethoden}) und Zustandslosigkeit erreicht. Da der Service keinen clientspezifischen Kontext aufbauen muss, müssen aufeinanderfolgende Requests nicht vom gleichen Server beantwortet werden.
 \end{compactitem}
 
 \subsubsection*{Zusammenfassung}
@@ -401,14 +401,14 @@ Im Folgenden wird durch die Charakterisierung des Begriffs \emph{eCommerce} ein 
 
 \subsection{Anwendungsrahmen}
 \label{eCommerce:Anwendungsrahmen}
-eShops gehören zur Domäne des elektronischen Handels (eCommerce). eCommerce ist \glqq die elektronisch unterstützte Abwicklung von Handelsgeschäften auf der Basis des Internet\grqq{} \citep{schwarze02}. Je nachdem, welche Marktpartner an dem Handelsgeschäft teilnehmen, werden verschiedene Formen des eCommerce unterschieden. Die in Abbildung \ref{fig:eCommerceGrundformen} fett hervorgehobenen Varianten werden von \citet{meier12} als \glqq die zwei Geschäftsoptionen des eCommerce\grqq{} bezeichnet -- \emph{\ac{B2C}} und \emph{\ac{B2B}}. Bei \ac{B2C} erfolgt der Handel von Produkten und Dienstleistungen zwischen Unternehmen und Endverbraucher, bei \ac{B2B} zwischen Unternehmen.
+eShops gehören zur Domäne des elektronischen Handels (eCommerce). eCommerce ist \glqq die elektronisch unterstützte Abwicklung von Handelsgeschäften auf der Basis des Internet\grqq{} \citep{schwarze02}. Je nachdem, welche Marktpartner an dem Handelsgeschäft teilnehmen, werden verschiedene Formen des eCommerce unterschieden. Die in Tabelle \ref{tab:eCommerceGrundformen} fett hervorgehobenen Varianten werden von \citet{meier12} als \glqq die zwei Geschäftsoptionen des eCommerce\grqq{} bezeichnet -- \emph{\ac{B2C}} und \emph{\ac{B2B}}. Bei \ac{B2C} erfolgt der Handel von Produkten und Dienstleistungen zwischen Unternehmen und Endverbraucher, bei \ac{B2B} zwischen Unternehmen.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=0.6\linewidth]{Abbildungen/eCommerceGrundformen.png}
-	\captionof{figure}[Grundformen des eCommerce]{Grundformen des eCommerce nach Marktpartnern (Quelle: \citet{schwarze02})}
-	\label{fig:eCommerceGrundformen}
+	\captionof{table}[Grundformen des eCommerce]{Grundformen des eCommerce nach Marktpartnern (Quelle: \citet{schwarze02})}
+	\label{tab:eCommerceGrundformen}
 \end{minipage}
 \vspace{0.1em}
 
@@ -1259,7 +1259,7 @@ Abbildung \ref{fig:konzeptConfigurableUML} visualisiert die Beziehungen zwischen
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=1\linewidth]{Abbildungen/konzeptConfigurableUML.pdf}
-	\captionof{figure}[konzeptConfigurableUML]{Verhältnis von \emph{Quotations}, \emph{QuotationItems} und \emph{Configurables}}
+	\captionof{figure}[Beziehungen zwischen \emph{Quotations}, \emph{QuotationItems} und \emph{Configurables}]{Beziehungen zwischen \emph{Quotations}, \emph{QuotationItems} und \emph{Configurables}}
 	\label{fig:konzeptConfigurableUML}
 \end{minipage}
 \vspace{1em}
@@ -1302,7 +1302,7 @@ Zunächst einmal hat das Plugin einen Basispfad im Web, der Teil jeder Ressource
 
 Der Identifikator einer Ressource ist ein Parameter, der Teil der URI ist. Laut \citet{tilkov11} ist es Geschmackssache, ob er als Pfad-Parameter (z.B. \glqq http://tcsite-uri.de/path-to-the-plugin/configuration/1024\grqq{}) oder Query-Parameter (z.B. \glqq http://tcsite-uri.de/path-to-the-plugin/configuration?id=1024\grqq{}) entworfen wird. Da im Laufe der folgenden Erläuterung noch weitere Query-Parameter eingeführt werden, wird aus Konsistenzgründen letztere Variante gewählt.
 
-Als nächstes müssen die HTTP-Methoden definiert werden, welche die Ressource unterstützt. Die Wolken in Abbildung \ref{fig:konzeptionEinkausvorgang1} zeigen alle Operationen, die vom Service implementiert werden müssen. Im Folgenden wird unter Berücksichtigung der HTTP-Spezifikation (siehe Abbildung \ref{fig:restMethoden}) besprochen, auf welche HTTP-Methode jede der Operation abgebildet werden darf. Außerdem werden bei Bedarf zusätzliche Query-Paramter definiert.
+Als nächstes müssen die HTTP-Methoden definiert werden, welche die Ressource unterstützt. Die Wolken in Abbildung \ref{fig:konzeptionEinkausvorgang1} zeigen alle Operationen, die vom Service implementiert werden müssen. Im Folgenden wird unter Berücksichtigung der HTTP-Spezifikation (siehe Tabelle \ref{tab:restMethoden}) besprochen, auf welche HTTP-Methode jede der Operation abgebildet werden darf. Außerdem werden bei Bedarf zusätzliche Query-Paramter definiert.
 
 \begin{enumerate}
 \item[\textbf{\emph{configuration} löschen:}] Entspricht semantisch der HTTP-Methode DELETE.
@@ -1328,21 +1328,21 @@ Ein POST-Request an \glqq http://tcsite-uri.de/path-to-the-plugin/
 \item[\textbf{bestehende \emph{configuration} ändern \& laden:}] Bedeutet die Verarbeitung eines Eingabeparameters, während der Anwender in Shopware konfiguriert (entspricht Anforderung TC.F04). Semantisch wird dadurch ein Prozess ausgedrückt. Prozesse werden der Methode POST (im weiteren Sinne) zugeordnet. Für den \emph{operation}-Parameter wird das Schlüsselwort \emph{change} gewählt, da sich der Konfigurationszustand innerhalb des zugehörigen \emph{Configurables} ändert. Weiterhin muss der Methode der Eingabeparameter mitgeteilt werden. Die Codierung dieser Information ist ein Implementierungsdetail und wird in der Arbeit nicht weiter besprochen\footnote{Genaueren Aufschluss gibt \citet{tactonTCsiteDevelopmentManual} im Abschnitt \glqq ConfigurationActionBean\grqq{}.}. Um nicht zu viele Query-Parameter zu erzeugen, wird der Eingabeparameter als JSON codiert und im Entity-Body des HTTP-Requests mitgeschickt.
 \begin{addmargin}[25pt]{0pt} 
 Beispiel:\\
-Ein \emph{POST}-Request an \glqq http://tcsite-uri.de/path-to-the-plugin/
+Ein POST-Request an \glqq http://tcsite-uri.de/path-to-the-plugin/
 \\configuration?id=1024\&operation=change\grqq{}
 \\mit einer JSON-Payload, in welcher die Wahl des Betriebssystems 'OSX Yosemite' codiert wird, setzt diese Option unverhandelbar im Konfigurationszustand (falls sie nicht im Konflikt mit einer anderen Option steht).
 \end{addmargin}
 \end{enumerate}
 
 \subsection{Zusammenfassung}
-Abbildung \ref{fig:konzeptRestZusammenfassung} fasst die Spezifikation des  \emph{configuration}-Ressourcenendpunkts tabellarisch zusammen.
+Tabelle \ref{tab:konzeptRestZusammenfassung} fasst die Spezifikation des  \emph{configuration}-Ressourcenendpunkts tabellarisch zusammen.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=1\linewidth]{Abbildungen/konzeptRestZusammenfassung.png}
-	\captionof{figure}[Zusammenfassung der REST-Schnittstelle]{Zusammenfassung der REST-Schnittstelle}
-	\label{fig:konzeptRestZusammenfassung}
+	\captionof{table}[Zusammenfassung der REST-Schnittstelle]{Zusammenfassung der REST-Schnittstelle}
+	\label{tab:konzeptRestZusammenfassung}
 \end{minipage}
 \vspace{1em}
 
