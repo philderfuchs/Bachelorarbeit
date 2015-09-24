@@ -640,15 +640,15 @@ Abbildung \ref{fig:tcsiteLowLevel} visualisiert die offene Schichtenarchitektur 
 Im Folgenden werden die Architekturkomponenten einzeln vorgestellt.
 
 \subsubsection*{Repository}
-Das \emph{Repository} bietet eine Datenbank sowie ein Reihe von Funktionen zum Lesen und Schreiben der TCsite-Objekte. Es ist in einen lokalen und einen globalen Speicher strukturiert. Wird ein Objekt erstellt oder geöffnet, geschieht die Bearbeitung immer auf einer Arbeitskopie in dem für jeden Nutzer spezifischen lokalen Speicher. Änderungen sind solange für andere Nutzer unsichtbar. Erst ein \glqq Commit\grqq{} sorgt für die nutzerübergreifende Sichtbarkeit im globalen Speicher. Bei dieser Übertragung wird eine Revisionshistorie über Objektänderungen geführt, so dass alte Zustande wieder abrufbar sind \citep{tactonTCsiteDevelopmentManual}.
+Das \emph{Repository} bietet eine Datenbank sowie ein Reihe von Funktionen zum Lesen und Schreiben der TCsite-Objekte. Es ist in einen lokalen und einen globalen Speicher strukturiert. Wird ein Objekt erstellt oder geöffnet, geschieht die Bearbeitung immer auf einer Arbeitskopie in dem für jeden Nutzer spezifischen lokalen Speicher. Änderungen sind solange für andere Nutzer unsichtbar. Erst ein \glqq Commit\grqq{} sorgt für die nutzerübergreifende Sichtbarkeit im globalen Speicher. Dabei wird eine Revisionshistorie über Objektänderungen geführt, so dass alte Zustande wieder abrufbar sind \citep{tactonTCsiteDevelopmentManual}.
 
 \subsubsection*{Plattform}
-Die Plattform bietet keine eigene Oberfläche, sondern bildet eine \ac{API} mit grundlegenden Funktionalitäten für die darüberliegenden Schichten. \citep{tactonTCsiteDevelopmentManual}
+Die Plattform bietet keine eigene Oberfläche, sondern bildet eine \ac{API} mit grundlegenden Funktionalitäten für die darüberliegenden Schichten \citep{tactonTCsiteDevelopmentManual}. 
 
 \subsubsection*{Administration}
 Dieses Modul bildet die Administrationsoberfläche, dargestellt in Anhang \ref{app:tcsiteAdministration}. Hier werden Einstellungen getroffen und Verwaltungsaspekte realisiert. Dazu gehört zum Beispiel die Verwaltung der Nutzergruppen und Produkte.
 
-Die Nutzergruppen definieren, welche Rechte ein TCsite-User hat. Standardmäßig verfügbar sind die Nutzergruppen \glqq Standarduser\grqq{}, \glqq Systemadministrator\grqq{} und \glqq Integrationsuser\grqq{}. Letzterer Typ dient der Authentifizierung bei der Kommunikation mit externen Systemen, zum Beispiel bei einem Integrationsszenario. Bildlich gesprochen personifiziert jede externe Webanfrage einen Gast, der die Maske des Integrationsusers aufgesetzt und dessen Rechte bekommt.
+Die Nutzergruppen definieren, welche Rechte ein TCsite-User hat. Standardmäßig verfügbar sind die Nutzergruppen \glqq Standarduser\grqq{}, \glqq Systemadministrator\grqq{} und \glqq Integrationsuser\grqq{}. Letzterer Typ dient der Authentifizierung bei der Kommunikation mit externen Systemen, zum Beispiel bei einem Integrationsszenario. Bildlich gesprochen personifiziert jede externe Webanfrage einen Gast, der die Maske des Integrationsusers aufgesetzt und dessen Rechte bekommt \citep{tactonTCsiteDevelopmentManual}.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -662,7 +662,7 @@ Die Nutzergruppen definieren, welche Rechte ein TCsite-User hat. Standardmäßig
 Außerdem wird hier der Produktkatalog verwaltet. Abbildung \ref{fig:tcsiteAdministrationProduct} zeigt die Detailansicht eines Produkts. Die Darstellung macht deutlich, dass neben Produktbeschreibungen auch Dateien hinterlegt werden. Wird eine Modelldatei hochgeladen, ist das Produkt konfigurierbar. Ressourcen, wie z.B. Bilder oder eine Übersetzungsdatei können ergänzend hinzugefügt werden \citep{tactonTCsiteReferenceManual}. Entsprechend der Definition eines Konfigurationsmodells in Kapitel \ref{Produktkonfiguration} werden so nicht alle Produktvarianten explizit ausdefiniert und angelegt, sondern implizit definiert.
 
 \subsubsection*{Quotation}
-Das Quotation-Modul erstellt die \emph{Quotation-View}, dargestellt in Abbildung \ref{fig:tcsiteQuotationNumbered}. Technisch betrachtet realisiert das Modul Methoden für die Manipulation und Anzeige von \emph{Quotations} sowie zur Dokumentengenerierung aus den mit ihr im Zusammenhang stehenden Dateien. Aus Anwendersicht ist eine Quotation ein Angebot, dass die fertig konfigurierten Produkte enthält. Diese werden als \emph{QuotationItems} bezeichnet und unter 'Products' gelistet (siehe [1]) \citep{tactonTCsiteDevelopmentManual}. Betrachtet man eine Quotation als einen (realen) Warenkorb, sind die QuotationItems die Artikel darin. Der Vergleich hinkt insofern, als dass die Artikel im Warenkorb auch unabhängig von diesem existieren. Sie stehen zum Beispiel im Warenregal. Ein QuotationItem ist jedoch eine konkrete Variante eines konfigurierbaren Produktes, die nur innerhalb der Quotation existiert.
+Das Quotation-Modul erstellt die \emph{Quotation-View}, dargestellt in Abbildung \ref{fig:tcsiteQuotationNumbered}. Technisch betrachtet realisiert das Modul Methoden für die Manipulation und Anzeige von \emph{Quotations} sowie zur Dokumentengenerierung aus den mit ihr im Zusammenhang stehenden Dateien. Aus Anwendersicht ist eine Quotation ein Angebot, dass die fertig konfigurierten Produkte enthält. Diese werden als \emph{QuotationItems} bezeichnet und unter 'Products' gelistet (siehe [1]) \citep{tactonTCsiteDevelopmentManual}. Betrachtet man eine Quotation als einen (realen) Warenkorb, sind die QuotationItems die Artikel darin. Der Vergleich hinkt insofern, als dass die Artikel im Warenkorb auch unabhängig von diesem existieren (sie stehen zum Beispiel im Warenregal). Ein QuotationItem ist jedoch eine konkrete Variante eines konfigurierbaren Produktes, die nur innerhalb der Quotation existiert.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -673,7 +673,7 @@ Das Quotation-Modul erstellt die \emph{Quotation-View}, dargestellt in Abbildung
 \end{minipage}
 \vspace{1em}
 
-Der Konfigurationsprozess wird über die Schaltfläche 'Add Product' gestartet (siehe [2]). Daraufhin wählt der Anwender das gewünschte Produkt aus einer Liste aus. Im Anschluss erfolgt der Übergang zum Configuration-Modul \citep{tactonTCsiteReferenceManual}.
+Der Konfigurationsprozess wird über die Schaltfläche 'Add Product' gestartet (siehe [2]). Daraufhin wählt der Anwender das gewünschte Produkt aus einer Liste aus. Im Anschluss erfolgt der Übergang zum Configuration-Modul (Erklärung folgt im nächsten Abschnitt) \citep{tactonTCsiteReferenceManual}.
 
 Eine Quotation hat weiterhin einen Lebenszyklus, welcher unter 'Lifecycle State' dargestellt wird (siehe [3]). Das Angebot befindet sich zu jedem Zeitpunkt in einem bestimmten Zustand, welche über den Administrationsbereich verwaltet werden. Die Zustandsabfolge definiert den sogenannten \emph{Workflow}. Zustände unterscheiden sich in der Sichtbarkeit für verschiedene Nutzergruppen und deren Editierbarkeit. Beispielsweise kann sich eine Quotation in den Zuständen \glqq Design\grqq{} oder \glqq Offered\grqq{} befinden. In letzterem Zustand ist sie nicht mehr änderbar, damit keine Inkonsistenz zum herausgegebenen Angebot entstehen kann \citep{tactonTCsiteReferenceManual}.
 
@@ -687,7 +687,7 @@ Das Configuration-Modul realisiert den C-Teil des CPQ-Prozesses -- die Konfigura
 
 Abbildung \ref{fig:tcsiteTCserverCommunication} veranschaulicht die Kommunikation zwischen TCsite und TCserver während des Konfigurationsprozesses. Das Configuration-Modul führt wiederholt zustandslose Aufrufe (\emph{configure}) der Konfigurationsengine durch, welche jeweils eine Antwort produzieren (\emph{result}) \citep{tactonTCsiteDevelopmentManual}. Dabei weichen \emph{configure} und \emph{result} semantisch von den Definitionen der Konfigurationsaufgabe und -lösung aus Kapitel \ref{begriffsuberblick} ab.
 
-Um diese Abweichung zu verstehen, muss rekapituliert werden, dass interaktive Konfiguratoren einen Mechanismus zum merken des Konfigurationszustands besitzen (siehe Kapitel \ref{begriffsuberblick}). Ein Konfigurationszustand beinhaltet bei Tacton, welche Eingabeparameter in welchem Step gewählt wurden. Oben wurde festgestellt, dass die Aufrufe zustandslos sind. Also wird kein serverseitiger Kontext aufgebaut, der den Konfigurationszustand enthält. Die Alternative ist die Übertragung des Zustands in jedem Aufruf.
+Um diese Abweichung zu verstehen, muss rekapituliert werden, dass interaktive Konfiguratoren einen Mechanismus zum Merken des Konfigurationszustands besitzen (siehe Kapitel \ref{begriffsuberblick}). Ein Konfigurationszustand beinhaltet bei Tacton, welche Eingabeparameter in welchem Step gewählt wurden. Oben wurde festgestellt, dass die Aufrufe zustandslos sind. Also wird kein serverseitiger Kontext aufgebaut, der den Konfigurationszustand enthält. Die Alternative ist die Übertragung des Zustands in jedem Aufruf.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -698,15 +698,15 @@ Um diese Abweichung zu verstehen, muss rekapituliert werden, dass interaktive Ko
 \end{minipage}
 \vspace{0.3em}
 
-Demzufolge enthält der \emph{configure}-Aufruf (1.) das Konfigurationsmodell, (2.) den Konfigurationszustand und fakultativ (3.), den aktuellen Eingabeparameter \citep{tactonTCsiteApiDocu}. Diese Bestandteile werden ab jetzt unter dem Begriff \emph{Konfigurationsengine-Input} (KE-Input) zusammengefasst. Die Antwort (\emph{result}) beinhaltet primär den neuen Konfigurationszustand. Aus dem result können weiterhin diverse Informationen extrahiert werden -- die finale Instanziierung (Konfigurationslösung), der Endpreis sowie auch die Datengrundlage zum Rendern der Konfigurationsoberfläche \citep{tactonTCsiteApiDocu}. Diese Bestandteile werden ab jetzt unter dem Begriff \emph{Konfigurationsengine-Output} (KE-Output) zusammengefasst.
+Demzufolge enthält der configure-Aufruf (1.) das Konfigurationsmodell, (2.) den Konfigurationszustand und fakultativ (3.), den aktuellen Eingabeparameter \citep{tactonTCsiteApiDocu}. Diese Bestandteile werden ab jetzt unter dem Begriff \emph{Konfigurationsengine-Input (KE-Input)} zusammengefasst. Die Antwort (result) beinhaltet primär den neuen Konfigurationszustand. Aus dem result können weiterhin diverse Informationen extrahiert werden -- die finale Instanziierung (Konfigurationslösung), der Endpreis sowie auch die Datengrundlage zum Rendern der Konfigurationsoberfläche \citep{tactonTCsiteApiDocu}. Diese Bestandteile werden ab jetzt unter dem Begriff \emph{Konfigurationsengine-Output (KE-Output)} zusammengefasst.
 
 Der Konfigurationszustand und ein Verweis auf das Konfigurationsmodell, auf dass sich der Konfigurationszustand bezieht, werden in der Klasse \emph{Configurable} zusammengefasst und persistiert. Das \emph{QuotationItem} (vorgestellt in Kapitel  \ref{TCsiteArchitektur}) steht in einer 1-zu-1 Beziehung mit einem \emph{Configurable}.
 
 Die Kommunikation läuft in drei Phasen ab (siehe Abbildung \ref{fig:tcsiteTCserverCommunication}):
 \begin{enumerate}
-\item[\textbf{initiate configuration}:]Der erste KE-Input beinhaltet noch keinen Eingabeparameter. Er dient dem initialen Aufbau der Konfigurationsoberfläche entsprechend der festgelegten Struktur in der Execution aus dem Konfigurationsmodell. Der Konfigurationsprozess startet immer in Step 1. Die Steps müssen in der vordefinierten Reihenfolge abgearbeitet werden.
-\item[\textbf{loop}:] Nach jeder Wahl einer Option wird die Konfigurationsengine mit dem Eingabeparameter aufgerufen und daraufhin die Oberfläche neu gerendert. Die Oberfläche spiegelt dabei den Konfigurationszustand wieder, d.h. die bisher gewählten Optionen werden hervorgehoben.
-\item[\textbf{finish configuration}:] Wird die Konfiguration im letzten Step vom Anwender abgeschlossen, erfolgt ein finaler Aufruf der Konfigurationsengine. Aus dem KE-Output werden die finale Instanziierung (Konfigurationslösung), der Endpreis etc. extrahiert \citep{tactonTCsiteDevelopmentManual}.
+\item[\textbf{initiate configuration}:]Der erste KE-Input beinhaltet noch keinen Eingabeparameter. Er dient dem initialen Aufbau der Konfigurationsoberfläche entsprechend der festgelegten Execution-Struktur im Konfigurationsmodell. Der Konfigurationsprozess startet immer in Step 1. Die Steps müssen in der vordefinierten Reihenfolge abgearbeitet werden.
+\item[\textbf{loop}:] Nach jeder Wahl einer Option wird die Konfigurationsengine mit dem Eingabeparameter aufgerufen und daraufhin die Oberfläche neu gerendert. Die Oberfläche spiegelt dabei jeweils den aktuellen Konfigurationszustand wieder, d.h. die bisher gewählten Optionen werden hervorgehoben.
+\item[\textbf{finish configuration}:] Wird die Konfiguration im letzten Step vom Anwender abgeschlossen, erfolgt ein finaler Aufruf der Konfigurationsengine. Aus dem KE-Output werden die finale Instanziierung (Konfigurationslösung), der Endpreis, etc. extrahiert \citep{tactonTCsiteDevelopmentManual}.
 \end{enumerate}
 
 \vspace{1em}
@@ -718,7 +718,7 @@ Die Kommunikation läuft in drei Phasen ab (siehe Abbildung \ref{fig:tcsiteTCser
 \end{minipage}
 \vspace{0.3em}
 
-Der Konfigurationsprozess in TCsite wird anhand der exemplarischen Notebook-Konfiguration veranschaulicht. Abbildung \ref{fig:tcsiteConfigurationNumbered} zeigt die Konfigurationsoberfläche in TCsite. Diese befindet sich im zweiten Step. Mittels [1] wird zwischen den Steps gewechselt. [2] erlaubt die Navigation durch die Top-Level-Groups des aktuellen Steps. [3] stellt die Felder der aktuellen Top-Level-Group dar. Anhang \ref{app:tcSiteConfigurationOptionalGroups} zeigt anhand der 'Speicher'-Gruppe die Darstellung der Unterteilung in weitere Gruppen. Außerdem wird unter [4] noch eine weitere Top-Level-Group angezeigt -- die sogenannte \emph{Info-Group}. Sie wird im Konfigurationsmodell durch die Bezeichnung \glqq Info\grqq{} ausgezeichnet. Sie wird parallel zur gerade aktiven Top-Level-Group im jeweiligen Step dargestellt.
+Der Konfigurationsprozess in TCsite wird anhand der exemplarischen Notebook-Konfiguration veranschaulicht. Abbildung \ref{fig:tcsiteConfigurationNumbered} zeigt die Konfigurationsoberfläche in TCsite. Das Beispiel befindet sich im zweiten Step. Mittels [1] wird zwischen den Steps gewechselt. [2] erlaubt die Navigation durch die Top-Level-Groups des aktuellen Steps. [3] stellt die Felder der aktuellen Top-Level-Group dar. Anhang \ref{app:tcSiteConfigurationOptionalGroups} zeigt anhand der 'Speicher'-Gruppe die Darstellung der Unterteilung in weitere Gruppen. Außerdem wird unter [4] noch eine zusätzliche Top-Level-Group angezeigt -- die sogenannte \emph{Info-Group}. Sie wird im Konfigurationsmodell durch die Bezeichnung \glqq Info\grqq{} ausgezeichnet und parallel zur gerade aktiven Top-Level-Group im jeweiligen Step dargestellt.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -731,7 +731,7 @@ Der Konfigurationsprozess in TCsite wird anhand der exemplarischen Notebook-Konf
 
 Es fällt auf, dass bereits Optionen gewählt sind - obwohl der Anwender noch gar nichts entschieden hat. Offensichtlich hat die Konfigurationsengine initial \emph{Default-Values} gesetzt. Sie sind durch den grauen 'Please Confirm'-Hinweis gekennzeichnet.
 
-Abbildung \ref{fig:tcsiteConfigurationChoice} zeigt die Konfigurationsoberfläche, nachdem der Anwender eine Option gewählt hat (Parameter: 'OS.type', Value: 'Windows XP'). Die gewählte Option wird \emph{unverhandelbar}. Das wird gekennzeichnet durch das grüne 'Confirmed'. Außerdem wird überprüft, wie die gewählte Option die anderen verfügbaren Optionen beeinflusst. Was bei der Auswahl zu einem Konflikt führen würde, wird ausgegraut. Beim Feld 'Displaygröße' ist zu beobachten, dass die Wahl der Konfigurationsengine von '13' auf '15' geändert wurde. Offensichtlich sind Werte, die nicht vom Anwender gesetzt wurden, \emph{verhandelbar}. Die Konfigurationsengine sorgt folglich immer für einen konfliktfreien Zustand. Durch einen Klick auf 'Confirm' bzw. 'Please Confirm' können Optionen zwischen verhandelbar und unverhandelbar gewechselt werden.
+Abbildung \ref{fig:tcsiteConfigurationChoice} zeigt die Konfigurationsoberfläche, nachdem der Anwender eine Option gewählt hat (Parameter: 'OS.type', Value: 'Windows XP'). Die gewählte Option wird \emph{unverhandelbar}. Dies wird gekennzeichnet durch das grüne 'Confirmed'. Außerdem wird überprüft, wie die gewählte Option die anderen verfügbaren Optionen beeinflusst. Was bei der Auswahl zu einem Konflikt führen würde, wird ausgegraut. Gleichzeitig ändert die Konfigurationsengine ihre initial selbstgewählten Werte so, dass der aktuelle Konfigurationszustand konsistent ist. Werte, die nicht vom Anwender gesetzt wurden, sind also \emph{verhandelbar}. Die Konfigurationsengine sorgt folglich immer für einen konfliktfreien Zustand. Durch einen Klick auf 'Confirm' bzw. 'Please Confirm' können Optionen zwischen verhandelbar und unverhandelbar gewechselt werden.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -742,7 +742,7 @@ Abbildung \ref{fig:tcsiteConfigurationChoice} zeigt die Konfigurationsoberfläch
 \end{minipage}
 \vspace{0.3em}
 
-Ausgegraute Optionen sind dennoch wählbar. Abbildung \ref{fig:tcsiteConfigurationConflict} zeigt die Konfigurationsoberfläche nach einem Klick auf die Displaygröße '13'. Dennoch ist '15' noch immer die aktive Option. Gleichzeitig wird am oberen Ende eine Konflikthinweis angezeigt. Die Konfigurationsengine weist darauf hin, dass Optionen im Widerspruch stehen und schlägt eine Konfliktlösung vor. Diese kann angenommen oder abgelehnt werden. Im letzteren Fall bleibt die Konfiguration einfach in dem Zustand vor der Wahl der konfliktverursachenden Option. Auch die Eingabe von Werten in ein Textfeld kann zu Konflikten führen. Beispielsweise dann, wenn diese außerhalb der Domain des Parameters liegen oder im Widerspruch mit einer anderen Wahl stehen. 
+Ausgegraute Optionen sind dennoch wählbar. Abbildung \ref{fig:tcsiteConfigurationConflict} zeigt die Konfigurationsoberfläche nach einem Klick auf die Displaygröße '13'. Offensichtlich ist '15' jedoch noch immer die aktive Option. Gleichzeitig wird am oberen Ende eine Konflikthinweis angezeigt. Die Konfigurationsengine weist darauf hin, dass Optionen im Widerspruch stehen und schlägt eine Konfliktlösung vor. Diese kann angenommen oder abgelehnt werden. Im letzteren Fall bleibt die Konfiguration einfach in dem Zustand vor der Wahl der konfliktverursachenden Option. Auch die Eingabe von Werten in ein Textfeld kann zu Konflikten führen. Beispielsweise dann, wenn diese außerhalb der Domain des Parameters liegen oder im Widerspruch mit einer anderen Wahl stehen. 
 
 Wird der Konfigurationsprozess über die Schaltfläche 'Ok' beendet, kehrt TCsite zum Quotation-Modul zurück. Dort erscheint die Variante in der Liste der QuotationItems.
 
@@ -760,12 +760,12 @@ Zur Erweiterung der Funktionalität bietet TCsite ein Pluginkonzept, welches Abb
 \end{minipage}
 \vspace{0.3em}
 
-Jedes Plugin hat Zugriff auf das Repository, die Plattform und das Modul, zu dem es gehört. Die Plattform stellt außerdem ein paar spezielle Erweiterungspunkte bereit. Sie erlaubt unter anderem die Definition von \emph{Webcontrollern}. Das sind Methoden, die auf HTTP-Requests an bestimmte URIs innerhalb des TCsite-Addressraums reagieren, diese verarbeiten und mit einer HTTP-Nachricht beantworten.
+Jedes Plugin hat Zugriff auf das Repository, die Plattform und das Modul, zu dem es gehört. Die Plattform stellt außerdem ein paar spezielle Erweiterungspunkte bereit. Sie erlaubt unter anderem die Definition von \emph{Webcontrollern}. Das sind Methoden, die auf HTTP-Requests an bestimmte URIs innerhalb des TCsite-Addressraums reagieren, diese verarbeiten und mit HTTP-Nachrichten beantworten.
 
 \subsubsection*{Zusammenfassung}
 Der Produktkatalog von TCsite besteht nicht aus explizit ausdefinierten Varianten, sondern Produkten mit Konfigurationsmodellen. Erst innerhalb einer \emph{Quotation} werden kundenspezifische Varianten durch einen Konfigurationsprozess generiert, welche als \emph{QuotationItems} bezeichnet werden. Der Konfigurationsprozess ist die Führung des Anwenders durch die in einem Konfigurationsmodell definierte \emph{Execution}, bei dem in jedem Step Optionen gewählt und Eingaben getätigt werden.
 
-Der Konfigurationsprozess passiert im Configuration-Modul. Technisch betrachtet werden dabei \emph{KE-Inputs} verarbeitet, die mit \emph{KE-Outputs} beantwortet werden. Ein KE-Input besteht aus dem Konfigurationsmodell, dessen Konfigurationszustand und (fakultativ) einem Eingabeparameter. Der Konfigurationszustand bezeichnet die Menge aller bisherigen Eingabeparameter. Das Konfigurationsmodell und der Konfigurationszustand werden durch das \emph{Configurable} gekapselt, der Eingabeparameter resultiert aus den Nutzerinteraktionen mit der Konfigurationsoberfläche. Die Konfigurationsoberfläche wird aus den Daten des \emph{KE-Outputs} erstellt.
+Der Konfigurationsprozess passiert im Configuration-Modul. Technisch betrachtet werden dabei \emph{KE-Inputs} verarbeitet, die mit \emph{KE-Outputs} beantwortet werden. Ein KE-Input besteht aus dem Konfigurationsmodell, dessen Konfigurationszustand und (fakultativ) einem Eingabeparameter. Der Konfigurationszustand beinhaltet die Menge aller bisherigen Eingabeparameter. Das \emph{Configurable} erlaubt den Zugriff auf das Konfigurationsmodell und den Konfigurationszustand eine Konfiguration. Der Eingabeparameter resultiert aus den Nutzerinteraktionen mit der Konfigurationsoberfläche. Die Konfigurationsoberfläche wird aus den Daten des \emph{KE-Outputs} erstellt.
 
 \subsection{Zwischenfazit}
 \label{TCsiteFazit}
@@ -774,24 +774,24 @@ Die Daten aus dem KE-Output können auch einem externen System zum Aufbau einer 
 
 Das Pluginkonzept erlaubt die Definition von Webcontrollern. Die in Kapitel \ref{TCsiteErweiterbarkeit} vorgestellte Definition eines Webcontrollers entspricht dem  Umsetzungswerkzeug von REST, welches im Fazit des Kapitels \ref{REST} genannt wurde. Dadurch ist es möglich, einen Webservice zu implementieren, der eine Schnittstelle für externe Konfigurationsoberflächen bereitstellt.
 
-Potentieller Client dieses Services ist jedes System, welches HTTP nutzen kann. Das trifft auf jede Webanwendung zu. eShop-Systeme für den Endverbrauchermarkt sind per se Webanwendungen. Somit können technische Bedingungen an das eShop-System für das Integrationsszenario formuliert werden: (1) das System muss modifizierbar sein, (2) die Modifizierung muss einen Webservice in einer Client-Server Architektur nutzen können und (3) die Verwaltung von Varianten muss integraler Bestandteil des Systems sein.
+Potentieller Client dieses Services ist jedes System, welches HTTP nutzen kann. Das trifft auf jede Webanwendung zu. eShop-Systeme für den Endverbrauchermarkt sind per se Webanwendungen. Somit können technische Bedingungen an das eShop-System für das Integrationsszenario formuliert werden: (1) Das System muss modifizierbar sein, (2) die Modifizierung muss einen Webservice in einer Client-Server Architektur nutzen können und (3) die Verwaltung von Varianten muss integraler Bestandteil des Systems sein.
 
 Jedes Shopsystem, für welches auf Grundlage dieser Bedingungen eine Daten- und Workflowschnittstelle entwickelt werden kann, kommt für das Integrationsszenario in Frage. Ein interner Evaluierungsprozess der Lino GmbH, bei dem zusätzlich ökonomische Faktoren bewertet wurden, hat zur Favorisierung von \emph{Shopware} für die weitere Entwicklungsarbeit geführt.
 
 \section{Shopsystem}
 \label{Shopsystem}
 
-Shopware wird von der \emph{shopware AG} in Schöppingen entwickelt. Das eShop-System ist aus einer Individuallösung gewachsen, welche 2003 von den heutigen Geschäftsführern entwickelt wurde. Infolgedessen wurde das Unternehmen 2008 als Vertriebsgesellschaft für die Software gegründet. Aktuell liegt die fünfte Version vor. Shopware wird in einem Dual-License Modell vertrieben. Die Community-Edition wird unter der \citeauthor{gnuAGPLv3} Open-Source Lizenz \emph{AGPLv3} angeboten. Außerdem existieren drei kommerzielle Versionen \citep{shopwareUnternehmen}.
+Shopware wird von der shopware AG in Schöppingen entwickelt. Das eShop-System ist aus einer Individuallösung gewachsen, welche 2003 von den heutigen Geschäftsführern entwickelt wurde. Infolgedessen wurde das Unternehmen 2008 als Vertriebsgesellschaft für die Software gegründet. Aktuell liegt die fünfte Version vor. Shopware wird in einem Dual-License Modell vertrieben. Die Community-Edition wird unter der \citeauthor{gnuAGPLv3} Open-Source Lizenz AGPLv3 angeboten. Außerdem existieren drei kommerzielle Versionen \citep{shopwareUnternehmen}.
 
 Im Folgenden wird Shopware einer technischen Analyse unterzogen. Darauf aufbauend wird die Erweiterbarkeit des Systems besprochen. Anschließend wird diskutiert, wie die Produktkonfiguration in der Standardinstallation technisch realisiert wird. Daraus kann eine Abgrenzung zum Tacton Produktkonfigurator gewonnen und gleichzeitig dessen Integration motiviert werden. Die abschließende Betrachtung der Konfiguration im Einkaufsprozess liefert Ansatzpunkte für das Integrationskonzept.
 
 \subsection{Architektur}
 \label{shopwareArchitektur}
-Shopware basiert auf der Programmiersprache PHP und verwendet eine relationale MySQL Datenbank. Grundlage des Technologiestacks ist das \emph{Zend-Framework}, welches in der eigenentwickelten Abwandlung namens \emph{Enlight} vorliegt \citep{shopware5Docs}.
+Shopware basiert auf der Programmiersprache PHP und verwendet eine relationale MySQL Datenbank. Grundlage des Technologiestacks ist das Zend-Framework, welches in der eigenentwickelten Abwandlung namens \glqq Enlight\grqq{} vorliegt \citep{shopware5Docs}.
 
 Abbildung \ref{fig:shopwareMVC} zeigt einen Überblick über die Shopware-Architektur, welche im Folgenden erklärt wird. Eine mit Beispielen angereicherte Variante dieser Abbildung ist Anhang \ref{fig:shopwareMVCLong} zu entnehmen.
 
-Shopware implementiert das Architekturmuster \emph{\ac{MVC}}. Das \emph{Model} definiert die Datenstrukturen des Systems (z.B. Artikel, Kategorien, Bestellungen etc.). \emph{Doctrine} wird für die \ac{ORM} verwendet. Dadurch wird eine Abstraktionsschicht über der Datenbank aufgebaut \citep{shopware5Docs}. Das Framework ermöglicht die zentrale Definition der Datenbankstruktur in PHP und einen objektorientierten Datenzugriff \citep{shopware4Docs}.
+Shopware implementiert das Architekturmuster \emph{\ac{MVC}}. Das \emph{Model} definiert die Datenstrukturen des Systems (z.B. Artikel, Kategorien, Bestellungen, etc.). \emph{Doctrine} wird für die \ac{ORM} verwendet. Dadurch wird eine Abstraktionsschicht über der Datenbank aufgebaut \citep{shopware5Docs}. Das Framework ermöglicht die zentrale Definition der Datenbankstruktur in PHP und einen objektorientierten Datenzugriff \citep{shopware4Docs}.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -808,28 +808,28 @@ Die \emph{View} nutzt die Templating-Engine \emph{Smarty}. Sie erweitert die HTM
 \begin{compactitem}
 \item \textbf{Frontend}-Controller sind für die Storefront zuständig. Das betrifft alle Seiten, die ein Kunde sieht.\vspace{0.3em}
 
-Beispiele: Artikelliste einer bestimmten Kategorie, Detailseite eines Artikels, Warenkorb, Nutzeraccount, ...
+Beispiele: Artikelliste einer bestimmten Kategorie, Detailseite eines Artikels, Warenkorb, Nutzeraccount, etc.
 \item \textbf{Widget}-Controller generieren wiederverwendbare Bestandteile der Storefront.\vspace{0.3em}
 
-Beispiel: Liste der meistverkauften Artikel.
+Beispiel: Liste der meistverkauften Artikel
 \item \textbf{Backend}-Controller sind für die Datenverwaltung der Shopadministration zuständig. Sie generieren jedoch keine Einzelseiten wie im Falle der Frontend-Controller. Stattdessen ist der administrative Bereich als Single-Page-Application mittels des Javascript-Frameworks \emph{Ext JS} implementiert. Dieses stellt eine Menge an Steuerelementen (z.B. Menüs, Formulare, etc.) zur Verfügung.\vspace{0.3em}
 
-Beispiele: Nutzerverwaltung, Artikelverwaltung, Pluginverwaltung, ...
+Beispiele: Nutzerverwaltung, Artikelverwaltung, Pluginverwaltung, etc.
 \item Für externe Systeme, die mit den Ressourcen von Shopware interagieren möchten, ist eine \textbf{REST-API} implementiert. Ein vollständige Übersicht aller Ressourcenendpunkte ist \citet{shopwareRestApiEndpunkte} zu entnehmen.\vspace{0.3em}
 
 Beispiel: Abrufen des Artikels mit der ID 167.
 \end{compactitem}
 
-Der Großteil der Logik ist jedoch nicht in den Actions, sondern den sogenannten \emph{Core}-Klassen implementiert \citep{shopware4Docs}. Beispielsweise wird der Request zum Hinzufügen einer Warenkorbposition zwar vom Checkout-Controller entgegengenommen, die notwendigen Geschäftsprozesse finden aber in der Serviceklasse 'sBasket' statt.
+Der Großteil der Logik ist jedoch nicht in den Actions, sondern den sogenannten \emph{Core}-Klassen implementiert \citep{shopware4Docs}. Beispielsweise wird der Request zum Hinzufügen einer Warenkorbposition zwar vom Checkout-Controller entgegengenommen, die notwendigen Geschäftsprozesse finden aber in der Serviceklasse \emph{sBasket} statt.
 
 \subsection{Erweiterbarkeit}
 \label{shopwareErweiterbarkeit}
-Der Quellcode der Community-Edition liegt offen. Theoretisch ist eine Erweiterung der Funktionalität über ein direktes Eingreifen in den Shopware-Kern denkbar. Der Hersteller sieht jedoch eine Anpassung über Plugins vor. Entsprechend der \ac{MVC}-Architektur wird in \emph{logische Erweiterungen} (betrifft Controller), \emph{Daten-Erweiterungen} (betrifft Model) und \emph{Template-Erweiterungen} (betrifft View) unterschieden \citep{shopware5Docs}.
+Der Quellcode der Community-Edition liegt offen. Theoretisch ist eine Erweiterung der Funktionalität über ein direktes Eingreifen in den Shopware-Kern möglich. Der Hersteller sieht jedoch eine Anpassung über Plugins vor. Entsprechend der \ac{MVC}-Architektur wird in \emph{logische Erweiterungen} (betrifft Controller), \emph{Daten-Erweiterungen} (betrifft Model) und \emph{Template-Erweiterungen} (betrifft View) unterschieden \citep{shopware5Docs}.
 
 \subsubsection*{Logische Erweiterungen}
 Logische Erweiterungen werden über \emph{Events} und \emph{Hooks} realisiert. Events sind \glqq definierte Ereignisse, die im Workflow des Shops auftreten\grqq{} \citep{shopware4Docs}. Plugins können Code registrieren, welcher an den Ereignispunkten ausgeführt wird. Steht kein Event für die geplante Modifikation zur Verfügung, kann Plugin-Code über das Hooksystem unmittelbar auf Funktionen des Shopware-Kerns registriert werden \citep{shopware5Docs}. Damit ist das Erweiterungskonzept flexibler als das von TCsite. Im Folgenden werden die Konzepte detaillierter vorgestellt.
 
-Events werden in \emph{Controller-Events} und \emph{Notify-Events} unterschieden \citep{shopware4Docs}. Controller-Events sind an den \emph{Dispatch}-Vorgang gekoppelt. Der shopware-Entwickler \citet{noegel15Diaspatch} definiert Dispatching als einen Prozess, bei dem das Request-Objekt gehandhabt, daraus das relevante Modul, der Controller und die Action extrahiert, der entsprechende Controller instanziiert und dieser zur Behandlung des Requests gebracht wird. Leitet ein Controller den Request zu einem anderen Controller weiter, wiederholt sich dieser Vorgang. Plugins können auszuführenden Code registrieren, der vor (\emph{PreDispatch}) oder nach dem Dispatching (\emph{PostDispatch}) ausgeführt werden soll. Außerdem können sie den Dispatch-Prozess auf eigene Funktionen umleiten und so ganze Controller-Methoden ersetzen. Notify-Events entsprechen hingegen den in Kapitel \ref{TCsiteErweiterbarkeit} erwähnten Extension-Points von TCsite. Sie finden beispielsweise in den Core-Klassen Verwendung. So kann abseits der Controller in den Programmablauf eingegriffen werden \citep{shopware4Docs}.
+Events werden in \emph{Controller-Events} und \emph{Notify-Events} unterschieden \citep{shopware4Docs}. Controller-Events sind an den \emph{Dispatch}-Vorgang gekoppelt. Der shopware-Entwickler \citet{noegel15Diaspatch} definiert Dispatching als einen Prozess, bei dem das Request-Objekt gehandhabt, daraus das relevante Modul, der Controller und die Action extrahiert, der entsprechende Controller instanziiert und dieser zur Behandlung des Requests gebracht wird. Leitet ein Controller den Request zu einem anderen Controller weiter, wiederholt sich dieser Vorgang. Plugins können Code registrieren, der vor (\emph{PreDispatch}) oder nach dem Dispatching (\emph{PostDispatch}) ausgeführt werden soll. Außerdem können sie den Dispatch-Prozess auf eigene Funktionen umleiten und so ganze Controller-Methoden ersetzen. Notify-Events entsprechen hingegen den in Kapitel \ref{TCsiteErweiterbarkeit} erwähnten Extension-Points von TCsite. Sie finden beispielsweise in den Core-Klassen Verwendung. So kann abseits der Controller in den Programmablauf eingegriffen werden \citep{shopware4Docs}.
 
 Hooks bieten einen generischeren Ansatz. Events sind auf den Dispatchprozess und alle sonstigen Punkte beschränkt, an denen ein Shopware-Entwickler den Eingriff eines Plugins vorgedacht hat. Das Hooksystem bezeichnet die Möglichkeit, jede Public- und Protected-Funktion von Shopware zu erweitern. Hooks erlauben die Modifizierung der Eingangsparameter und Rückgabewerte der Originalfunktion sowie deren komplette Ersetzung \citep{noegel15Hooks}.
 
@@ -839,25 +839,25 @@ Im Gegensatz zu TCsite erlaubt Shopware die Erstellung und Modifizierung von Dat
 \subsubsection*{Template-Erweiterungen}
 Die View bietet Erweiterungspunkte über das Smarty-Block-System. Die Blöcke können durch eigenen Templatecode ersetzt oder erweitert werden. Weiterführend sind so eigene CSS- und Javascriptdateien im Seitenkopf einbindbar. Folglich kann mittels Template-Erweiterungen auch clientseitige Logik realisiert werden.
 
-Abschließend wird bemerkt, dass Oberflächenerweiterungen im administrativen Bereich nicht durch Smarty realisiert werden, sondern durch das dort eingesetzte Framework \emph{Ext JS}. Dies wird nicht in der offiziellen Dokumentation erwähnt. Stattdessen weisen die Orientierungsbeispiele für Backenderweiterungen implizit darauf hin (siehe \citet{shopwareBackendPluginExamples}). \emph{Ext JS}-Erweiterungen sind ein komplexer Sachverhalt und werden in dieser Arbeit nicht weiter behandelt.
+Abschließend wird bemerkt, dass Oberflächenerweiterungen im administrativen Bereich nicht durch Smarty realisiert werden, sondern durch das dort eingesetzte Framework Ext JS. Dies wird nicht in der offiziellen Dokumentation erwähnt. Stattdessen weisen die Orientierungsbeispiele für Backenderweiterungen implizit darauf hin (siehe \citet{shopwareBackendPluginExamples}). Ext JS-Erweiterungen sind ein komplexer Sachverhalt und werden in dieser Arbeit nicht weiter behandelt.
 
 \subsection{Konfiguration}
 \label{shopwareKonfiguration}
-Shopware behauptet in der der offiziellen Funktionsübersicht, bereits in der Standardinstallation einen Konfigurator zu besitzen \citep{shopware5Funktionsuebersicht}. Im Folgenden wird dessen Implementierung analysiert. Daraufhin wird dessen Integration in den Einkaufsvorgang diskutiert.
+Shopware behauptet in der der offiziellen Funktionsübersicht, bereits in der Standardinstallation einen Konfigurator zu besitzen \citep{shopware5Funktionsuebersicht}. Im Folgenden wird dessen Implementierung sowie Integration in den Einkaufsvorgang analysiert.
 
 \subsubsection{Technische Analyse}
 \label{shopwareKonfigurationAnalyse}
 Ein Artikel, den ein Kunde kaufen kann, wird über den entsprechenden Menüpunkt im Backend angelegt (siehe Anhang \ref{app:shopwareBackendArtikel}). Über das Userinterface kann dieser als \emph{Varianten-Artikel} gekennzeichnet werden. Dadurch wird der Variantenreiter aktiviert, unter dem der Administrator alle Varianten des Artikels festlegt.
 
-Dazu werden sogenannte \emph{Gruppen}\footnote{Nicht zu verwechseln mit den Gruppen des TCsite-Modells, siehe Kapitel \ref{Execution}} (z.B. 'Storage') angelegt, die wiederum \emph{Optionen}\footnote{Ebenfalls nicht zu verwechseln mit den Optionen des TCsite-Modells} (z.B. 'HDD' oder 'SSD') besitzen. Das ist äquivalent zu den Begriffen \emph{Parameter} und \emph{Domain} in der Execution des Tacton-Konfigurationsmodells, vorgestellt in Kapitel \ref{Execution}. Es werden also die Wahlmöglichkeiten des Anwenders definiert, jedoch ohne Konfigurationswissen. Die Gruppen und Optionen werden separat in der Datenbank gespeichert und sind Artikelübergreifend verwendbar. Über den Button 'Varianten generieren' (siehe Anhang \ref{app:shopwareBackendArtikelVarianten}) werden alle Varianten explizit in der Datenbank angelegt, die sich aus der Kombination der Optionen ergeben. Übertragen auf das Notebook-Beispiel ergibt das folgende Rechnung:
+Dazu werden sogenannte \emph{Gruppen}\footnote{Nicht zu verwechseln mit den Gruppen des TCsite-Modells, siehe Kapitel \ref{Execution}.} (z.B. 'Storage') angelegt, die wiederum \emph{Optionen}\footnote{Ebenfalls nicht zu verwechseln mit den Optionen des TCsite-Modells.} (z.B. 'HDD' oder 'SSD') besitzen. Das ist äquivalent zu den Begriffen \emph{Parameter} und \emph{Domain} in der Execution des Tacton-Konfigurationsmodells, vorgestellt in Kapitel \ref{Execution}. Es werden also die Wahlmöglichkeiten des Anwenders definiert, jedoch ohne Konfigurationswissen. Die Gruppen und Optionen werden separat in der Datenbank gespeichert und sind Artikelübergreifend verwendbar. Über den Button \glqq Varianten generieren\grqq{} (siehe Anhang \ref{app:shopwareBackendArtikelVarianten}) werden alle Varianten explizit in der Datenbank angelegt, die sich aus der Kombination der Optionen ergeben. Übertragen auf das Notebook-Beispiel ergibt das folgende Rechnung:
 
 \begin{addmargin}[40pt]{0pt} 
-$\;\;\;3_{Massenspeicher1}\\\cdot\;3_{Massenspeicher2}\\\cdot\;2_{Arbeitsspeicher}\\\cdot\;2_{Displaygr"o"se}\\\cdot\;2_{Betriebssystem}\\\cdot\;4_{Anzahl CPU-Kerne}\\\cdot\;99_{Anzahl iTunes-Music-Pakete}\\= 28512\;Varianten$
+$\;\;\;3_{Massenspeicher1}\\\cdot\;3_{Massenspeicher2}\\\cdot\;2_{Arbeitsspeicher}\\\cdot\;2_{Displaygr"o"se}\\\cdot\;2_{Betriebssystem}\\\cdot\;4_{Anzahl\;CPU-Kerne}\\\cdot\;99_{Anzahl\;iTunes-Music-Pakete}\\= 28512\;Varianten$
 \end{addmargin}
 
 Damit passiert das, was durch das Konfigurationsmodell laut Kapitel \ref{begriffsuberblick} verhindert werden soll -- das explizite Definieren und Abspeichern aller Varianten. Es gibt keine Constraints. Dementsprechend muss der Administrator händisch alle inkorrekten Varianten löschen und die Preise der korrekten Varianten nachtragen.
 
-Die in Kapitel \ref{begriffsuberblick} vorgestellte Konfigurationsdefinition von \citet{sabin98} fordert Constraints. Somit stellt Shopware keinen Konfigurationsprozess bereit, sondern die Selektion einer explizit definierten Variante entsprechend der gewählten Optionen des Anwenders aus einer Datenbank.
+Die in Kapitel \ref{begriffsuberblick} vorgestellte Konfigurationsdefinition von \citet{sabin98} fordert Constraints. Somit stellt Shopware keinen Konfigurationsprozess bereit, sondern die Selektion einer explizit definierten Variante aus einer Datenbank entsprechend der gewählten Optionen des Anwenders.
 
 \subsubsection{Einkaufsvorgang}
 \label{shopwareEinkaufsvorgang}
@@ -872,9 +872,9 @@ Ausgehend von dieser Analyse ist der Einkaufsvorgang eines Varianten-Artikels un
 \end{minipage}
 \vspace{0.3em}
 
-Mittels der Katalog- oder Suchfunktion wählt der Kunde einen konfigurierbaren Artikel aus - d.h., er wurde im Backend als \emph{Varianten-Artikel} gekennzeichnet. Auf dessen Detailseite wird die erste Variante des Artikels angezeigt. Dazu muss angemerkt werden, dass im Backend eingestellt wird, welche Variante eine Artikels initial geladen werden soll. Diese Variante wird ab jetzt als \emph{Basisvariante} bezeichnet. Neben beschreibenden Texten und Bildern befindet sich auf der Detailseite die Konfigurationsoberfläche (siehe Anhang \ref{app:shopwareNotebookDetail}). Zu jeder Gruppe wird ein Menü mit den entsprechenden Optionen angezeigt. Die Auswahl einer Option führt zum Reload der Seite mit der aktuellen Variante. Dieser Vorgang wiederholt sich so lange, bis der Artikel den Vorstellungen des Kunden entspricht. Außerdem wird die gewünschte Kaufmenge (Anzahl) eingestellt. Über den \glqq In den Warenkorb\grqq{}-Button wird der Artikel in den Warenkorb gelegt. Ist diese Variante bereits im Warenkorb, wird die Anzahl der entsprechenden Warenkorbposition inkrementiert. Anderenfalls entsteht eine neue Warenkorbposition. An der Bezeichnung der Warenkorbpositionen ist ablesbar, welche Optionskombination jeweils vorliegt (siehe Anhang \ref{app:shopwareNotebookWarenkorb}). Nun überprüft der Kunde den Warenkorb. Möchte er weitere Artikel hinzufügen, beginnt der Prozess mit der Auswahl des Wunschartikels von vorne. Ist der Kunde mit der Konfiguration einer Warenkorbposition noch nicht zufrieden, kann er diese löschen oder ändern. Möchte er sie ändern, kommt er über einen Klick auf die entsprechende Position zur Detailansicht dieser Variante zurück. Nun können andere Optionen gewählt werden. Ein erneuter klick auf \glqq In den Warenkorb\grqq{} aktualisiert nicht etwa die zugehörige Warenkorbposition, sondern erzeugt einen neue. Die alte Variante verbleibt zusätzlich im Warenkorb. Ist der Nutzer mit allen Positionen im Warenkorb zufrieden, wird der Bestellvorgang über den Checkout-Prozess abgeschlossen.
+Mittels der Katalog- oder Suchfunktion wählt der Kunde einen konfigurierbaren Artikel aus - d.h., er wurde im Backend als \emph{Varianten-Artikel} gekennzeichnet. Auf der Detailseite wird die erste Variante des Artikels angezeigt. Dazu muss angemerkt werden, dass im Backend eingestellt wird, welche Variante eine Artikels initial geladen werden soll. Diese Variante wird ab jetzt als \emph{Basisvariante} bezeichnet. Neben beschreibenden Texten und Bildern befindet sich auf der Detailseite die Konfigurationsoberfläche (siehe Anhang \ref{app:shopwareNotebookDetail}). Zu jeder Gruppe wird ein Menü mit den entsprechenden Optionen angezeigt. Die Auswahl einer Option führt zum Reload der Seite mit der aktuellen Variante. Dieser Vorgang wiederholt sich so lange, bis der Artikel den Vorstellungen des Kunden entspricht. Außerdem wird die gewünschte Kaufmenge (Anzahl) eingestellt. Über den \glqq In den Warenkorb\grqq{}-Button wird der Artikel in den Warenkorb gelegt. Ist diese Variante bereits im Warenkorb, wird die Anzahl der entsprechenden Warenkorbposition inkrementiert. Anderenfalls entsteht eine neue Warenkorbposition. An der Bezeichnung der Warenkorbpositionen ist ablesbar, welche Optionskombination jeweils vorliegt (siehe Anhang \ref{app:shopwareNotebookWarenkorb}). Nun überprüft der Kunde den Warenkorb. Möchte er weitere Artikel hinzufügen, beginnt der Prozess mit der Auswahl des Wunschartikels von vorne. Ist der Kunde mit der Konfiguration einer Warenkorbposition noch nicht zufrieden, kann er diese löschen oder ändern. Möchte er sie ändern, kommt er über einen Klick auf die entsprechende Position zur Detailansicht dieser Variante zurück. Nun können andere Optionen gewählt werden. Ein erneuter Klick auf \glqq In den Warenkorb\grqq{} aktualisiert nicht etwa die zugehörige Warenkorbposition, sondern erzeugt einen neue. Die alte Variante verbleibt zusätzlich im Warenkorb. Ist der Nutzer mit allen Positionen im Warenkorb zufrieden, wird der Bestellvorgang über den Checkout-Prozess abgeschlossen.
 
-Dieser Vorgang illustriert den Lebenszyklus einer Variante in Shopware. Er beginnt mit dem Anlegen alle Varianten eines Artikels im Backend. Das ist ein Unterschied zu der Umsetzung in TCsite, welche in Kapitel \ref{TCsiteArchitektur}
+Dieser Vorgang illustriert den Lebenszyklus einer Variante in Shopware. Er beginnt mit dem Anlegen aller Varianten eines Artikels im Backend. Das ist ein Unterschied zu der Umsetzung in TCsite, welche in Kapitel \ref{TCsiteArchitektur}
  besprochen wurde. Hier beginnt der Lebenszyklus erst mit der Konfiguration.
 
 \section{Fazit}
@@ -933,7 +933,7 @@ Die Funktionalität der Konfigurationsoberfläche kann näher beschrieben werden
 \begin{enumerate}[SW.F02:]\bfseries
 \item Die Konfigurationsoberfläche muss einen Konfigurationsprozess äquivalent zu TCsite ermöglichen. 
 \end{enumerate}
-Das beinhaltet: Aktualisierung der Oberfläche nach jeder Wahl des Anwenders; Darstellung von Steps, Toplevel-Groups, optionalen Gruppen, allen Feldtypen, Hervorhebung der verhandelbar/nichtverhandelbar gesetzten Werte; Navigation durch die Execution-Struktur (Steps in vordefinierter Reihenfolge, Toplevel-Groups); Wählen von Optionen, Eingabe von Werten; Wechsel des Optionszustands zwischen verhandelbar/nichtverhandelbar; Konfliktbehebung;
+Das beinhaltet: Aktualisierung der Oberfläche nach jeder Wahl des Anwenders; Darstellung von Steps, Toplevel-Groups, optionalen Gruppen, allen Feldtypen; Hervorhebung der verhandelbar/nichtverhandelbar gesetzten Werte; Navigation durch die Execution-Struktur (Steps in vordefinierter Reihenfolge, Toplevel-Groups); Wählen von Optionen, Eingabe von Werten; Wechsel des Optionszustands zwischen verhandelbar/nichtverhandelbar; Konfliktbehebung;
 
 Im Fazit des Kapitels \ref{analyseFazit} wurde festgelegt, dass die aus dem Konfigurationsprozess resultierenden Varianten in den Einkaufsvorgang integriert werden müssen. Die dementsprechende Anforderung lautet:
 \begin{enumerate}[SW.F03:]\bfseries
@@ -965,7 +965,7 @@ Der in Kapitel \ref{shopwareEinkaufsvorgang} vorgestellte Einkaufsvorgang beinha
 \begin{enumerate}[SW.F08:]\bfseries
 \item Warenkorbpositionen müssen umkonfigurierbar sein.
 \end{enumerate}
-Umkonfiguration wird in der Arbeit als Aktualisierung einer Warenkorbposition verstanden. Dadurch ändert sich, welche Variante durch eine Warenkorbposition repräsentiert wird. Somit resultiert implizit, dass eine Umkonfiguration nicht zur Erstellung einer neuen Warenkorbposition führt, wie dies im bisherigen Einkaufsvorgang von Shopware der Fall ist.
+Umkonfiguration wird in dieser Arbeit als Aktualisierung einer Warenkorbposition verstanden. Dadurch ändert sich, welche Variante durch eine Warenkorbposition repräsentiert wird. Somit resultiert implizit, dass eine Umkonfiguration nicht zur Erstellung einer neuen Warenkorbposition führt, wie dies im bisherigen Einkaufsvorgang von Shopware der Fall ist.
 
 Die Umkonfiguration findet auf der Detailseite statt. Die dementsprechende Anforderung lautet: 
 \begin{enumerate}[SW.F09:]\bfseries
@@ -977,7 +977,7 @@ Auf der Detailseite soll die Konfiguration jedoch nicht neu beginnen, sondern de
 \end{enumerate}
 Das beinhaltet den Preis und die Konfigurationsoberfläche.
 
-Beim bisherigen Einkaufsvorgang (siehe Kapitel \ref{shopwareEinkaufsvorgang}) wird die Umkonfiguration erst beim erneuten Ablegen der Variante in den Warenkorb registriert. Die dementsprechende Anforderung lautet folgendermaßen:
+Im bisherigen Einkaufsvorgang (siehe Kapitel \ref{shopwareEinkaufsvorgang}) wird die Umkonfiguration erst beim erneuten Ablegen der Variante in den Warenkorb registriert. Die dementsprechende Anforderung lautet folgendermaßen:
 \begin{enumerate}[SW.F11:]\bfseries
 \item Auf der Artikeldetailseite muss die Umkonfiguration einer Warenkorbposition durch einen entsprechenden Button vom Kunden bestätigt werden.
 \end{enumerate}
@@ -1005,7 +1005,7 @@ Ein eShop muss nicht zwangsläufig ausschließlich konfigurierbare Artikel verka
 \begin{enumerate}[SW.F17:]\bfseries
 \item Das Shopware-Plugin muss dem Administrator im Backend eine Angabe darüber ermöglichen, ob ein Artikel via Plugin konfigurierbar ist.
 \end{enumerate}
-Wenn ein Artikel via Plugin konfigurierbar ist, stellt sich die Frage, durch welches Konfigurationsmodell der Konfigurationsprozess definiert wird. In TCsite sind Konfigurationsmodelle Produkten zugeordnet (siehe Kapitel \ref{TCsiteArchitektur}). Die dementsprechende Anforderung lautet folgendermaßen:
+Wenn ein Artikel via Plugin konfigurierbar ist, stellt sich die Frage, durch welches Konfigurationsmodell der Konfigurationsprozess definiert wird. In TCsite sind Konfigurationsmodelle Produkten zugeordnet (siehe Kapitel \ref{TCsiteArchitektur}). Die dementsprechende Anforderung lautet wie folgt:
 \begin{enumerate}[SW.F18:]\bfseries
 \item Das Shopware-Plugin muss dem Administrator im Backend eine Angabe darüber ermöglichen, welchem TCsite-Produkt ein Artikel entspricht.
 \end{enumerate}
