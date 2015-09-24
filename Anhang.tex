@@ -4,7 +4,10 @@
 
 \renewcommand\refname{Anhang}
 \begin{appendix}
-\chapter{Anhang}
+\addcontentsline{toc}{chapter}{Anhang}
+\renewcommand\thefigure{A.\arabic{figure}}
+\rhead{Anhang}
+\chapter*{Anhang}
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -37,7 +40,7 @@
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=1\linewidth]{Abbildungen/shopwareMVC.pdf}
-	\captionof{figure}[vollständige High-Level-Architektur von Shopware]{vollständige Shopware High-Level-Architektur}
+	\captionof{figure}[Vollständige High-Level-Architektur von Shopware]{Vollständige Shopware High-Level-Architektur}
 	\label{fig:shopwareMVCLong}
 \end{minipage}
 \vspace{1em}
@@ -100,7 +103,7 @@
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=0.2\linewidth]{Abbildungen/provisorischeEingabemaske.png}
-	\captionof{figure}[provisorische Eingabemaske]{provisorische Eingabemaske}
+	\captionof{figure}[Provisorische Eingabemaske]{Provisorische Eingabemaske}
 	\label{app:provisorischeEingabemaske}
 \end{minipage}
 \vspace{1em}
@@ -109,7 +112,7 @@
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=1\linewidth]{Abbildungen/finaleKonfigurationsOberflaeche.PNG}
-	\captionof{figure}[finale Konfigurationsoberfläche in Shopware]{finale Konfigurationsoberfläche in Shopware}
+	\captionof{figure}[Finale Konfigurationsoberfläche in Shopware]{Finale Konfigurationsoberfläche in Shopware}
 	\label{app:finaleKonfigurationsOberflaeche}
 \end{minipage}
 \vspace{1em}

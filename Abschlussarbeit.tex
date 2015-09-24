@@ -48,7 +48,9 @@
 	colorlinks=true,linkcolor=black,citecolor=black,filecolor=magenta,urlcolor=black}
 \pdfinfo{/CreationDate (D:20110620133321)}
 
-
+\makeatletter
+\renewcommand*\l@figure{\@dottedtocline{1}{1.5em}{3em}}
+\makeatother
 \makeatletter
 \def\l@lstlisting#1#2{\@dottedtocline{1}{1.5em}{3em}{#1}{#2}}
 \makeatother
@@ -87,26 +89,23 @@ Die Produktkonfiguration findet Anwendung in einem breiten Aufgabenfeld. Das kan
 Die vorliegende Arbeit entstand im Rahmen der Tätigkeit bei der Lino GmbH. Diese vertreibt unter anderem als autorisierter Reseller Produkte der Tacton Systems AB (Tacton), welche eine softwaretechnische Lösung für die Produktkonfiguration in Form des Tacton Produktkonfigurators anbietet. Die Lino GmbH hat den Bedarf von Industrieunternehmen, deren Produktkatalog aus konfigurierbaren Artikeln besteht, zur Erschließung eines direkten Absatzweges via Onlineshop erkannt. Die Integration des Tacton Produktkonfigurators in ein Shopsystem erweitert dessen technische Mittel, um diesem Bedarf gerecht zu werden.
 
 \section{Ziel der Arbeit}
-Das Ziel der Arbeit ist die Entwicklung einer softwaretechnischen Lösung, die es dem Anwender ermöglicht, ein Produkt in einem Open-Source Shopsystem zu konfigurieren und zu bestellen, wobei die Konfiguration durch den Tacton Produktkonfigurator realisiert wird. Dabei müssen zwei Systeme betrachet werden -- das Shopsystem und das Konfigurationssystem. Um letzteres in einer neuen Systemumgebung verfügbar zu machen, muss ein entsprechendes Integrationskonzept entworfen werden. Dabei wird geklärt, welche Daten auf welchem Wege auszutauschen sind. Wie weiterhin das Resultat einer Konfiguration in den Bestellprozess integriert werden kann, wird von der konkreten Wahl des Shopsystems abhängig gemacht. Letztendlich werden ein Plugin für das Konfigurtionssystem und ein Plugin für das Shopsystem entwickelt, welche durch deren Zusammenarbeit das Integrationsszenario bewältigen.
+Das Ziel der Arbeit ist die Entwicklung einer softwaretechnischen Lösung, die es dem Anwender ermöglicht, ein Produkt in einem Open-Source Shopsystem zu konfigurieren und zu bestellen, wobei die Konfiguration durch den Tacton Produktkonfigurator realisiert wird. Dabei müssen zwei Systeme betrachet werden -- das Shopsystem und das Konfigurationssystem. Um letzteres in einer neuen Systemumgebung verfügbar zu machen, muss ein entsprechendes Integrationskonzept entworfen werden. Dabei wird geklärt, welche Daten auf welchem Wege auszutauschen sind. Wie weiterhin der konfigurierte Artikel in den Bestellprozess integriert wird, ist abhängig von der konkreten Wahl des Shopsystems. Letztendlich werden ein Plugin für das Konfigurationssystem und ein Plugin für das Shopsystem entwickelt, welche durch deren Zusammenarbeit das Integrationsszenario bewältigen.
 
 \section{Aufbau der Arbeit}
-Im Grundlagenteil (Kapitel 2) wird zunächst ein Bezugsrahmen für das Thema Produktkonfiguration geschaffen. Dabei wird geklärt, welche ökonomischen Rahmenbedingungen deren Einsatz motivieren und auf welche Produkte sie anwendbar sind. Das weitere theoretische Fundament leitet sich aus dem Titel der Arbeit \glqq \textbf{Integration} des Tacton \textbf{Produktkonfigurators} in ein Open-Source \textbf{Shopsystem}\grqq{} ab. Zunächst werden die Themen Produktkonfiguration sowie die Softwaresysteme, die diese realisieren, behandelt. Unter der Voraussetzung, dass sowohl das Shopsystem als auch das Konfigurationssystem webfähig sind, werden danach Webservices als Integrationsinstrument erläutert. Abschließend werden Online-Shops in einen ökonomischen Rahmen eingeordnet und typisiert. 
+Im Grundlagenteil (Kapitel 2) wird zunächst ein Bezugsrahmen für das Thema Produktkonfiguration geschaffen. Dabei wird geklärt, welche ökonomischen Rahmenbedingungen deren Einsatz motivieren und auf welche Produkte sie anwendbar ist. Das weitere theoretische Fundament leitet sich aus dem Titel der Arbeit \glqq \textbf{Integration} des Tacton \textbf{Produktkonfigurators} in ein Open-Source \textbf{Shopsystem}\grqq{} ab. Zunächst wird die Produktkonfiguration sowie die Softwaresysteme, die diese realisieren, behandelt. Unter der Voraussetzung, dass sowohl das Shopsystem als auch das Konfigurationssystem webfähig sind, werden danach Webservices als Integrationsinstrument erläutert. Abschließend werden Online-Shops in einen ökonomischen Rahmen eingeordnet und typisiert. 
 
 Im Analyseteil (Kapitel 3) werden die konkreten Systeme betrachtet. Dabei wird zunächst der Tacton Produktkonfigurator besprochen. Aus dessen Analyse werden Anforderungen an das Shopsystem abgeleitet. Die Evaluierung der möglichen Kandidaten ist nicht Bestandteil der Arbeit. Es wird ein Shopsystem festgelegt und einer Detailbetrachtung unterzogen. Aus dem Kapitel resultieren die Erweiterungsmöglichkeiten und grundlegenden Verantwortungsbereiche der Systeme im Integrationsszenario.
 
-Aufbauend auf der Analyse werden in Kapitel 4 die funktionalen und nichtfunktionalen Anforderungen der Integration formuliert. Diese dienen als Orientierungspunkte für die folgende Entwicklung eines Integrationskonzepts in Kapitel 5. Kapitel 6 skizziert die Herangehensweise und den Ablauf der Implementierung.
+Aufbauend auf der Analyse werden in Kapitel 4 die funktionalen und nichtfunktionalen Anforderungen für die Integration formuliert. Diese dienen als Orientierungspunkte für die folgende Entwicklung eines Integrationskonzepts in Kapitel 5. Kapitel 6 skizziert die Herangehensweise und den Ablauf der Implementierung.
 
-In Kapitel 7 wird die Lösung diskutiert, wobei Potentiale für eine zukünftige Entwicklungsarbeit aufgezeigt werden. Die Arbeit schließt mit einer anwendungsbezogenen Einordnung des Resultats in den ökonomischen Kontext ab, der am Anfang der Arbeit umrissen wurde.
-
-
-\pagebreak
+In Kapitel 7 wird die Lösung diskutiert, wobei Potentiale für zukünftige Entwicklungsarbeiten aufgezeigt werden. Abschließen erfolgt eine anwendungsbezogene Einordnung des Resultats in den ökonomischen Kontext, der im Grundlagenteil umrissen wurde.
 
 \chapter{Grundlagen}
 \label{Grundlagen}
 \section{Bezugsrahmen}
 Im Folgenden wird ein Bezugsrahmen für Produktkonfigurationssysteme (Konfiguratoren) geschaffen. Dazu wird zunächst die marktwirtschaftliche Situation erläutert, welche die Notwendigkeit \emph{hybrider Wettbewerbsstrategien} begründet. Diese wiederum stellen zu ihrer Umsetzbarkeit Bedingungen an \emph{Produktionskonzepte}, welche daraufhin vorgestellt werden.
 
-\subsection{Ökonomischer Bezug}
+\subsection{Hybride Wettbewerbsstrategien}
 \label{oekonomischerBezug}
 Neue Wettbewerbsbedingungen und gesteigerte Kundenansprüche haben den Druck auf Industrieunternehmen zur Produktion individualisierter Produkte erhöht \citep{piller98}. Das entspricht einer stärkeren Forcierung der \emph{Leistungsdifferenzierung} \citep{lutz11}. Diese ist eine der von \citet{porter02} beschriebenen \glqq generischen Wettbewerbsstrategien\grqq{}. Bei der Leistungsdifferenzierung werden Produkte mit höherem individuellen Kundennutzen zu höheren Preisen verkauft. Eine der anderen Wettbewerbsstrategien ist die \emph{Kostenführerschaft}. Diese bezieht sich klassischerweise auf Anbieter von Massenproduktion. Dabei werden die Marktanteile durch die Unterbietung der Konkurrenzpreise gesteigert.
 
@@ -461,7 +460,7 @@ Im Zusammenhang mit den Geschäftsoptionen des eCommerce lässt sich eine genaue
 \chapter{Analyse}
 \label{section:Analyse}
 
-Nachdem in Kapitel \ref{Grundlagen} Konfiguratoren und eShop-Systeme unabhängig von konkreten Systemumsetzungen betrachtet wurden, findet nun eine Analyse von existierenden softwaretechnischen Implementierungen statt. Festgelegt durch die \emph{Lino GmbH} kommt der \emph{Tacton Produktkonfigurator} zum Einsatz. Im Folgenden wird dessen herstellerspezifisches Konfigurationsmodell analysiert. Daraufhin wird eine Konfiguratoranwendung in Form des Vertriebskonfigurators \emph{TCsite} vorgestellt. Aus der Analyse dieses Systems kann eine genauere Aussage über die in Frage kommenden eShop-Systeme für die Integration gemacht werden. Daraufhin wird ein System festgelegt und mit dessen Betrachtung fortgefahren. Davon ausgehend findet im Fazit des Kapitels ein Grobkonzept der jeweiligen Verantwortungsbereiche der Systeme im Integrationsszenario statt.
+Nachdem in Kapitel \ref{Grundlagen} Konfiguratoren und eShop-Systeme unabhängig von konkreten Systemumsetzungen betrachtet wurden, findet nun eine Analyse von existierenden softwaretechnischen Implementierungen statt. Festgelegt durch die \emph{Lino GmbH} kommt der \emph{Tacton Produktkonfigurator} zum Einsatz. Im Folgenden wird dessen herstellerspezifisches Konfigurationsmodell analysiert. Daraufhin wird eine Konfiguratoranwendung in Form des Vertriebskonfigurators \emph{TCsite} vorgestellt. Aus der Analyse dieses Systems kann eine genauere Aussage über die in Frage kommenden eShop-Systeme für die Integration getroffen werden. Daraufhin wird ein System festgelegt und mit dessen Betrachtung fortgefahren. Davon ausgehend findet im Fazit des Kapitels ein Grobkonzept der jeweiligen Verantwortungsbereiche der Systeme im Integrationsszenario statt.
 
 \section{Tacton Produktkonfigurator}
 
@@ -595,6 +594,8 @@ Parameter = 'Notebook-Part.price', Domain = [integer]
 
 Die Feldtypen \emph{Menu} und \emph{Number} haben gemein, dass der Anwender einen Wert aus einem Wertebereich festlegt. Beim \emph{Menu} ist dieser Wertebereich eine Menge vordefinierter Optionen, bei \emph{Number} ein Zahlenbereich, wobei der konkrete Wert vom Anwender selbst eingegeben wird. Um die Formulierung kurz zu halten, werden im Folgenden sowohl die ausgewählte Option als auch der eingegebene Wert unter dem Begriff \emph{Eingabeparameter} zusammengefasst.
 
+Das Modell wird in einem XML-basierten Format mit der Dateiendung '.tcx' abgelegt. Die Entwicklung einer solchen Datei wird von entsprechenden Programmen unterstützt. Hierfür kann zum Beispiel \glqq TCstudio\grqq{} genutzt werden, welches eine grafische Oberfläche zur Modellentwicklung bietet \citep{tactonAbout}.
+
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=0.8\linewidth]{Abbildungen/tactonModellExecutionNotebook.pdf}
@@ -602,8 +603,6 @@ Die Feldtypen \emph{Menu} und \emph{Number} haben gemein, dass der Anwender eine
 	\label{fig:tactonModellExecutionNotebook}
 \end{minipage}
 \vspace{0.3em}
-
-Das Modell wird in einem XML-basierten Format mit der Dateiendung '.tcx' abgelegt. Die Entwicklung einer solchen Datei wird von entsprechenden Programmen unterstützt. Hierfür kann zum Beispiel \glqq TCstudio\grqq{} genutzt werden, welches eine grafische Oberfläche zur Modellentwicklung bietet \citep{tactonAbout}.
 
 \subsubsection*{Zusammenfassung}
 Das Tacton-Modellierungskonzept wurde vorgestellt. Neben dem Konfigurationswissen werden darin auch die Optionen des Anwenders definiert. Diese werden durch Steps in eine Reihenfolge gebracht und durch Groups logisch gegliedert. Über Felder wählt der Anwender Optionen. Der Feldtyp Number ermöglicht die Eingabe eines eigenen Wertes. So werden Komponenten definiert, die nach Kundenanforderung konstruiert oder gefertigt werden müssen. Entsprechend der vorgestellten Produktklassifizierung in Kapitel \ref{Produktklassifizierung} bildet das Konfigurationsmodell so auch \ac{MTO}-Produkte ab.
@@ -619,11 +618,10 @@ Technisch betrachtet ist TCsite eine Webanwendung. Der serverseitige Programmcod
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
-	\includegraphics[width=1\linewidth]{Abbildungen/tcsiteHighLevel.pdf}
+	\includegraphics[width=0.7\linewidth]{Abbildungen/tcsiteHighLevel.pdf}
 	\captionof{figure}[High-Level-Architektur von TCsite]{High-Level-Architektur von TCsite}
 	\label{fig:tcsiteHighLevel}
 \end{minipage}
-\vspace{0.3em}
 
 \subsubsection{Architektur}
 \label{TCsiteArchitektur}
@@ -633,7 +631,7 @@ Abbildung \ref{fig:tcsiteLowLevel} visualisiert die offene Schichtenarchitektur 
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
-	\includegraphics[width=1\linewidth]{Abbildungen/tcsiteLowLevel.pdf}
+	\includegraphics[width=0.7\linewidth]{Abbildungen/tcsiteLowLevel.pdf}
 	\captionof{figure}[Schichtenarchitektur von TCsite]{Schichtenarchitektur von TCsite}
 	\label{fig:tcsiteLowLevel}
 \end{minipage}
@@ -655,7 +653,7 @@ Die Nutzergruppen definieren, welche Rechte ein TCsite-User hat. Standardmäßig
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
-	\includegraphics[width=1\linewidth]{Abbildungen/tcsiteAdministrationProduct.PNG}
+	\includegraphics[width=0.95\linewidth]{Abbildungen/tcsiteAdministrationProduct.PNG}
 	\captionof{figure}[Detailsansicht eines Produktes aus dem Produktkatalog]{Detailsansicht eines Produktes aus dem Produktkatalog}
 	\label{fig:tcsiteAdministrationProduct}
 \end{minipage}
@@ -669,7 +667,7 @@ Das Quotation-Modul erstellt die \emph{Quotation-View}, dargestellt in Abbildung
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
-	\includegraphics[width=1\linewidth]{Abbildungen/tcsiteQuotationNumbered.pdf}
+	\includegraphics[width=0.95\linewidth]{Abbildungen/tcsiteQuotationNumbered.pdf}
 	\captionof{figure}[Quotation-View von TCsite]{Quotation-View von TCsite}
 	\label{fig:tcsiteQuotationNumbered}
 \end{minipage}
@@ -689,6 +687,8 @@ Das Configuration-Modul realisiert den C-Teil des CPQ-Prozesses -- die Konfigura
 
 Abbildung \ref{fig:tcsiteTCserverCommunication} veranschaulicht die Kommunikation zwischen TCsite und TCserver während des Konfigurationsprozesses. Das Configuration-Modul führt wiederholt zustandslose Aufrufe (\emph{configure}) der Konfigurationsengine durch, welche jeweils eine Antwort produzieren (\emph{result}) \citep{tactonTCsiteDevelopmentManual}. Dabei weichen \emph{configure} und \emph{result} semantisch von den Definitionen der Konfigurationsaufgabe und -lösung aus Kapitel \ref{begriffsuberblick} ab.
 
+Um diese Abweichung zu verstehen, muss rekapituliert werden, dass interaktive Konfiguratoren einen Mechanismus zum merken des Konfigurationszustands besitzen (siehe Kapitel \ref{begriffsuberblick}). Ein Konfigurationszustand beinhaltet bei Tacton, welche Eingabeparameter in welchem Step gewählt wurden. Oben wurde festgestellt, dass die Aufrufe zustandslos sind. Also wird kein serverseitiger Kontext aufgebaut, der den Konfigurationszustand enthält. Die Alternative ist die Übertragung des Zustands in jedem Aufruf.
+
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
@@ -698,7 +698,7 @@ Abbildung \ref{fig:tcsiteTCserverCommunication} veranschaulicht die Kommunikatio
 \end{minipage}
 \vspace{0.3em}
 
-Um diese Abweichung zu verstehen, muss rekapituliert werden, dass interaktive Konfiguratoren einen Mechanismus zum merken des Konfigurationszustands besitzen (siehe Kapitel \ref{begriffsuberblick}). Ein Konfigurationszustand beinhaltet bei Tacton, welche Eingabeparameter in welchem Step gewählt wurden. Oben wurde festgestellt, dass die Aufrufe zustandslos sind. Also wird kein serverseitiger Kontext aufgebaut, der den Konfigurationszustand enthält. Die Alternative ist die Übertragung des Zustands in jedem Aufruf. Demzufolge enthält der \emph{configure}-Aufruf (1.) das Konfigurationsmodell, (2.) den Konfigurationszustand und fakultativ (3.), den aktuellen Eingabeparameter \citep{tactonTCsiteApiDocu}. Diese Bestandteile werden ab jetzt unter dem Begriff \emph{Konfigurationsengine-Input} (KE-Input) zusammengefasst. Die Antwort (\emph{result}) beinhaltet primär den neuen Konfigurationszustand. Aus dem result können weiterhin diverse Informationen extrahiert werden --  die finale Instanziierung (Konfigurationslösung), der Endpreis sowie auch die Datengrundlage zum Rendern der Konfigurationsoberfläche \citep{tactonTCsiteApiDocu}. Diese Bestandteile werden ab jetzt unter dem Begriff \emph{Konfigurationsengine-Output} (KE-Output) zusammengefasst.
+Demzufolge enthält der \emph{configure}-Aufruf (1.) das Konfigurationsmodell, (2.) den Konfigurationszustand und fakultativ (3.), den aktuellen Eingabeparameter \citep{tactonTCsiteApiDocu}. Diese Bestandteile werden ab jetzt unter dem Begriff \emph{Konfigurationsengine-Input} (KE-Input) zusammengefasst. Die Antwort (\emph{result}) beinhaltet primär den neuen Konfigurationszustand. Aus dem result können weiterhin diverse Informationen extrahiert werden --  die finale Instanziierung (Konfigurationslösung), der Endpreis sowie auch die Datengrundlage zum Rendern der Konfigurationsoberfläche \citep{tactonTCsiteApiDocu}. Diese Bestandteile werden ab jetzt unter dem Begriff \emph{Konfigurationsengine-Output} (KE-Output) zusammengefasst.
 
 Der Konfigurationszustand und ein Verweis auf das Konfigurationsmodell, auf dass sich der Konfigurationszustand bezieht, werden in der Klasse \emph{Configurable} zusammengefasst und persistiert. Das \emph{QuotationItem} (vorgestellt in Kapitel  \ref{TCsiteArchitektur}) steht in einer 1-zu-1 Beziehung mit einem \emph{Configurable}.
 
@@ -709,8 +709,6 @@ Die Kommunikation läuft in drei Phasen ab (siehe Abbildung \ref{fig:tcsiteTCser
 \item[\textbf{finish configuration}:] Wird die Konfiguration im letzten Step vom Anwender abgeschlossen, erfolgt ein finaler Aufruf der Konfigurationsengine. Aus dem KE-Output werden die finale Instanziierung (Konfigurationslösung), der Endpreis etc. extrahiert \citep{tactonTCsiteDevelopmentManual}.
 \end{enumerate}
 
-Der Konfigurationsprozess in TCsite wird anhand der exemplarischen Notebook-Konfiguration veranschaulicht. Abbildung \ref{fig:tcsiteConfigurationNumbered} zeigt die Konfigurationsoberfläche in TCsite. Diese befindet sich im zweiten Step. Mittels [1] wird zwischen den Steps gewechselt. [2] erlaubt die Navigation durch die Top-Level-Groups des aktuellen Steps. [3] stellt die Felder der aktuellen Top-Level-Group dar. Anhang \ref{app:tcSiteConfigurationOptionalGroups} zeigt anhand der 'Speicher'-Gruppe die Darstellung der Unterteilung in weitere Gruppen. Außerdem wird unter [4] noch eine weitere Top-Level-Group angezeigt -- die sogenannte \emph{Info-Group}. Sie wird im Konfigurationsmodell durch die Bezeichnung \glqq Info\grqq{} ausgezeichnet. Sie wird parallel zur gerade aktiven Top-Level-Group im jeweiligen Step dargestellt.
-
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
@@ -720,7 +718,7 @@ Der Konfigurationsprozess in TCsite wird anhand der exemplarischen Notebook-Konf
 \end{minipage}
 \vspace{0.3em}
 
-Es fällt auf, dass bereits Optionen gewählt sind - obwohl der Anwender noch gar nichts entschieden hat. Offensichtlich hat die Konfigurationsengine initial \emph{Default-Values} gesetzt. Sie sind durch den grauen 'Please Confirm'-Hinweis gekennzeichnet.
+Der Konfigurationsprozess in TCsite wird anhand der exemplarischen Notebook-Konfiguration veranschaulicht. Abbildung \ref{fig:tcsiteConfigurationNumbered} zeigt die Konfigurationsoberfläche in TCsite. Diese befindet sich im zweiten Step. Mittels [1] wird zwischen den Steps gewechselt. [2] erlaubt die Navigation durch die Top-Level-Groups des aktuellen Steps. [3] stellt die Felder der aktuellen Top-Level-Group dar. Anhang \ref{app:tcSiteConfigurationOptionalGroups} zeigt anhand der 'Speicher'-Gruppe die Darstellung der Unterteilung in weitere Gruppen. Außerdem wird unter [4] noch eine weitere Top-Level-Group angezeigt -- die sogenannte \emph{Info-Group}. Sie wird im Konfigurationsmodell durch die Bezeichnung \glqq Info\grqq{} ausgezeichnet. Sie wird parallel zur gerade aktiven Top-Level-Group im jeweiligen Step dargestellt.
 
 \vspace{1em}
 \begin{minipage}{\linewidth}
@@ -730,6 +728,8 @@ Es fällt auf, dass bereits Optionen gewählt sind - obwohl der Anwender noch ga
 	\label{fig:tcsiteConfigurationChoice}
 \end{minipage}
 \vspace{0.3em}
+
+Es fällt auf, dass bereits Optionen gewählt sind - obwohl der Anwender noch gar nichts entschieden hat. Offensichtlich hat die Konfigurationsengine initial \emph{Default-Values} gesetzt. Sie sind durch den grauen 'Please Confirm'-Hinweis gekennzeichnet.
 
 Abbildung \ref{fig:tcsiteConfigurationChoice} zeigt die Konfigurationsoberfläche, nachdem der Anwender eine Option gewählt hat (Parameter: 'OS.type', Value: 'Windows XP'). Die gewählte Option wird \emph{unverhandelbar}. Das wird gekennzeichnet durch das grüne 'Confirmed'. Außerdem wird überprüft, wie die gewählte Option die anderen verfügbaren Optionen beeinflusst. Was bei der Auswahl zu einem Konflikt führen würde, wird ausgegraut. Beim Feld 'Displaygröße' ist zu beobachten, dass die Wahl der Konfigurationsengine von '13' auf '15' geändert wurde. Offensichtlich sind Werte, die nicht vom Anwender gesetzt wurden, \emph{verhandelbar}. Die Konfigurationsengine sorgt folglich immer für einen konfliktfreien Zustand. Durch einen Klick auf 'Confirm' bzw. 'Please Confirm' können Optionen zwischen verhandelbar und unverhandelbar gewechselt werden.
 
@@ -913,7 +913,7 @@ In Kapitel \ref{Webservices} wurde besprochen, dass Webservices nicht direkt von
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=0.8\linewidth]{Abbildungen/systemcontextErweitert.pdf}
-	\captionof{figure}[erweiterter Systemkontext]{erweiterter Systemkontext}
+	\captionof{figure}[Erweiterter Systemkontext]{Erweiterter Systemkontext}
 	\label{fig:systemcontextErweitert}
 \end{minipage}
 \vspace{0.3em}
@@ -1176,7 +1176,7 @@ Abbildung \ref{fig:dynamischeVariantengenerierung} visualisiert die Vorgänge in
 \begin{minipage}{\linewidth}
 	\centering
 	\includegraphics[width=1\linewidth]{Abbildungen/dynamischeVariantengenerierung.pdf}
-	\captionof{figure}[dynamische Variantengenerierung]{dynamische Variantengenerierung}
+	\captionof{figure}[Dynamische Variantengenerierung]{Dynamische Variantengenerierung}
 	\label{fig:dynamischeVariantengenerierung}
 \end{minipage}
 \vspace{0.3em}
@@ -1195,8 +1195,6 @@ Der Löschvorgang einer Warenkorbposition wird in Shopware von der Methode \emph
 \subsubsection*{Umkonfiguration}
 Durch einen Klick auf eine Warenkorbposition gelangt der Anwender zur Detailansicht der Variante. Dies entspricht soweit dem Shopware-Standard und erfordert keine zusätzliche Logik. Somit wird Anforderung SW.F09 erfüllt. Zusätzlich muss die Konfigurationsoberfläche wieder aufgebaut und der Preis abgeholt werden, um SW.F10 zu erfüllen. Beim Anlegen der Variante wurde die zugehörige \emph{configurationID} gespeichert. Somit kann die entsprechende \emph{configuration} geladen werden. Dies entspricht der Aktivität \glqq bestehende \emph{configuration} kopieren und laden\grqq{} aus Abbildung \ref{fig:konzeptionEinkausvorgang1}.
 
-Abbildung \ref{fig:konzeptCopy} stellt den dabei ablaufenden Prozess dar. Er entspricht insofern der Aktivität \glqq neue \emph{configuration} erstellen \& laden\grqq{} (siehe Abbildung \ref{fig:konzeptCreate}), als dass der KE-Input ohne Eingabeparameter verarbeitet wird. Dementsprechend ist der Konfigurationszustand vor und nach dem Aufruf der Konfigurationsengine gleich. Jedoch geschieht der Umkonfigurationsprozess auf einer Arbeitskopie, wobei der Konfigurationszustand der ursprünglichen \emph{configuration} übernommen wird. Grund dafür ist Anforderung SW.F11, gemäß derer die Umkonfiguration erst abschließend vom Anwender bestätigt werden muss. Es ist also möglich, dass der Anwender zunächst andere Optionen wählt, die Änderungen aber verwerfen möchte (z.B. indem er die Detailseite ohne Bestätigung der Umkonfiguration verlässt). Ohne das Anfertigen einer Arbeitskopie würde im Falle des Verwerfens eine Diskrepanz zwischen einer Variante und der zugeordneten \emph{configuration} entstehen.
-
 \vspace{1em}
 \begin{minipage}{\linewidth}
 	\centering
@@ -1205,6 +1203,8 @@ Abbildung \ref{fig:konzeptCopy} stellt den dabei ablaufenden Prozess dar. Er ent
 	\label{fig:konzeptCopy}
 \end{minipage}
 \vspace{0.3em}
+
+Abbildung \ref{fig:konzeptCopy} stellt den dabei ablaufenden Prozess dar. Er entspricht insofern der Aktivität \glqq neue \emph{configuration} erstellen \& laden\grqq{} (siehe Abbildung \ref{fig:konzeptCreate}), als dass der KE-Input ohne Eingabeparameter verarbeitet wird. Dementsprechend ist der Konfigurationszustand vor und nach dem Aufruf der Konfigurationsengine gleich. Jedoch geschieht der Umkonfigurationsprozess auf einer Arbeitskopie, wobei der Konfigurationszustand der ursprünglichen \emph{configuration} übernommen wird. Grund dafür ist Anforderung SW.F11, gemäß derer die Umkonfiguration erst abschließend vom Anwender bestätigt werden muss. Es ist also möglich, dass der Anwender zunächst andere Optionen wählt, die Änderungen aber verwerfen möchte (z.B. indem er die Detailseite ohne Bestätigung der Umkonfiguration verlässt). Ohne das Anfertigen einer Arbeitskopie würde im Falle des Verwerfens eine Diskrepanz zwischen einer Variante und der zugeordneten \emph{configuration} entstehen.
 
 Die Beschriftung des \glqq In den Warenkorb\grqq{}-Buttons wird auf \glqq Neue Konfiguration speichern\grqq{} geändert. So wird darauf hingewiesen, dass der Button ein geändertes Verhalten aufweist. Die entsprechende Warenkorbposition wird nicht inkrementiert, sondern aktualisiert. Die Aktualisierung betrifft den Preis (Spalte: \emph{price}; Tabelle: \emph{s\_articles\_prices}), die Beschreibung (Spalte: \emph{articlename}; Tabelle: \emph{s\_order\_basket}) und die Anzahl (Spalte: \emph{quantity}; Tabelle: \emph{s\_order\_basket}). Außerdem muss die \emph{configurationID} auf die der Arbeitskopie aktualisiert werden, da diese nun den aktuellen Konfigurationszustand enthält.
 
@@ -1346,8 +1346,6 @@ Tabelle \ref{tab:konzeptRestZusammenfassung} fasst die Spezifikation des  \emph{
 	\label{tab:konzeptRestZusammenfassung}
 \end{minipage}
 \vspace{1em}
-
-\subsection*{Fazit}
 
 \chapter{Umsetzung}
 \label{Umsetzung}
